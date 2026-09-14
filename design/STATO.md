@@ -36,7 +36,12 @@
 - Le API GitHub autenticate (es. cambiare il branch di default) non sono disponibili: lo strumento GitHub della sessione copre branch, PR, issue, Actions. Per le impostazioni del repo serve l'interfaccia web.
 - Chromium per Playwright è pre-installato in `/opt/pw-browsers/chromium`; lo script degli screenshot lo usa come fallback automatico. In locale serve `npx playwright install chromium` una volta.
 
+## Cambio di rotta (2026-09-14)
+
+Il brand ha chiesto l'**e-commerce completo proprietario** (Next.js, PostgreSQL, Prisma, admin, pagamenti ad adapter, 5 lingue, mercati per Paese). Audit e specifica sono in `docs/` (10 file). Le decisioni bloccanti sono in `docs/10-decisioni-bloccanti.md`. Finché non sono approvate il codice resta il prototipo Vite.
+
+Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, seed e test integration girano qui), Docker ha solo il client, `github.io` resta bloccato.
+
 ## Prossimo passo
 
-Il responsabile design apre una sessione e scrive `/inizia` → parte lo step 1 (`/brief`).
-Fase 2 (sviluppo con logica) solo dopo `/consegna`.
+Approvazione delle decisioni → milestone **M0 Fondazione** sul branch `claude/the-hasher-ecommerce-o8r9lt`, poi merge su `main` a fine milestone approvata.
