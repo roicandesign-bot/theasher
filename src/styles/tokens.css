@@ -1,0 +1,93 @@
+/* ============================================================
+   DESIGN TOKENS — unica fonte di verità per lo stile del sito.
+   Modificati nello step /stile. Ogni token qui dentro diventa
+   automaticamente una classe Tailwind (es. --color-primary → bg-primary,
+   --font-display → font-display, --radius-card → rounded-card).
+
+   ⚠ Valori attuali = PLACEHOLDER neutri. Vanno sostituiti con quelli
+   del brand nello step /stile.
+   ============================================================ */
+
+@theme static {
+  /* ---------- Colori semantici (usa SEMPRE questi nei componenti) ---------- */
+  --color-bg: #fafaf7; /* sfondo pagina */
+  --color-bg-alt: #f1f0ea; /* sfondo sezioni alternate */
+  --color-surface: #ffffff; /* card, pannelli */
+  --color-fg: #14130f; /* testo principale */
+  --color-fg-muted: #6b6960; /* testo secondario */
+  --color-line: #e4e2da; /* bordi, divisori */
+
+  --color-primary: #14130f; /* azione principale (bottoni, link) */
+  --color-primary-fg: #ffffff; /* testo sopra primary */
+  --color-primary-hover: #2b2a25;
+
+  --color-accent: #d9480f; /* accento / evidenziazione */
+  --color-accent-fg: #ffffff;
+
+  --color-success: #2f9e44;
+  --color-warning: #e8590c;
+  --color-danger: #c92a2a;
+
+  /* ---------- Scala brand (opzionale, per sfumature) ---------- */
+  --color-brand-50: #f5f5f4;
+  --color-brand-100: #e7e6e2;
+  --color-brand-200: #d1cfc8;
+  --color-brand-300: #b3b0a6;
+  --color-brand-400: #8f8b7f;
+  --color-brand-500: #737064;
+  --color-brand-600: #5d5a50;
+  --color-brand-700: #4b4941;
+  --color-brand-800: #3e3c36;
+  --color-brand-900: #2b2a26;
+  --color-brand-950: #14130f;
+
+  /* ---------- Tipografia ---------- */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
+
+  /* Scala tipografica fluida: si adatta tra mobile e desktop */
+  --text-display: clamp(2.75rem, 2rem + 3.5vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.03em;
+  --text-h1: clamp(2.25rem, 1.6rem + 2.5vw, 3.75rem);
+  --text-h1--line-height: 1.08;
+  --text-h1--letter-spacing: -0.025em;
+  --text-h2: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
+  --text-h2--line-height: 1.15;
+  --text-h2--letter-spacing: -0.02em;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.3;
+  --text-lead: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  --text-lead--line-height: 1.5;
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1.2;
+  --text-eyebrow--letter-spacing: 0.12em;
+
+  /* ---------- Spaziature di layout ---------- */
+  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem); /* py-section */
+  --spacing-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem); /* px-gutter */
+  --container-content: 72rem; /* max-w-content (1152px) */
+  --container-prose: 42rem; /* max-w-prose-w (672px) */
+
+  /* ---------- Raggi ---------- */
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-card: 1rem; /* rounded-card */
+  --radius-button: 0.625rem; /* rounded-button */
+
+  /* ---------- Ombre ---------- */
+  --shadow-soft: 0 1px 2px rgb(20 19 15 / 0.04), 0 8px 24px -12px rgb(20 19 15 / 0.12);
+  --shadow-card: 0 1px 2px rgb(20 19 15 / 0.05), 0 12px 32px -16px rgb(20 19 15 / 0.18);
+  --shadow-pop: 0 24px 48px -24px rgb(20 19 15 / 0.35);
+
+  /* ---------- Movimento ---------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: var(--ease-out-soft);
+}
