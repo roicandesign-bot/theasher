@@ -5,3 +5,6 @@
 
 - 2026-09-14 · Stack Vite + React + Tailwind v4 con token semantici in `tokens.css` · cambiare un colore in un punto solo
 - 2026-09-14 · Screenshot committati in `design/screenshots/` · chi disegna li vede su GitHub senza avviare nulla
+- 2026-09-14 · `main` è il branch di default, il sito pubblico è la versione di `main` · una sola fonte per il capo
+- 2026-09-14 · Anteprima su GitHub Pages (https://roicandesign-bot.github.io/theasher/) invece di ambienti locali · chi disegna guarda un link, non avvia nulla
+- 2026-09-14 · Hook di avvio sincrono · Claude non lancia mai build o screenshot prima che le dipendenze siano pronte

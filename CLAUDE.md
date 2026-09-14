@@ -18,6 +18,10 @@ Fase 2 (dopo): sviluppo con logica, API, backend. Non anticiparla.
 4. Le correzioni («più aria», «più scuro», «meno tondo», «titolo più grande») si fanno subito: token o componente → screenshot → mostra.
 5. Non chiedere conferma prima di fare: fai, mostra, chiedi «va bene così?».
 
+## Memoria di progetto
+
+All'inizio di ogni sessione leggi `design/STATO.md` (chi c'è, cosa è pronto, GitHub, limiti dell'ambiente) e `design/PROGRESS.md` (a che step siamo). Aggiorna `STATO.md` solo per cambiamenti strutturali, `PROGRESS.md` a fine step, `DECISIONS.md` per ogni scelta non ovvia.
+
 ## Il processo a step
 
 Lo stato è in `design/PROGRESS.md`: leggilo all'inizio di ogni sessione e aggiornalo a fine step.
@@ -58,7 +62,7 @@ src/components/sections/   sezioni riutilizzabili tra pagine (Hero, Features, CT
 src/pages/                 una pagina = un file (PascalCase)
 src/routes.tsx             elenco pagine: router + menu + screenshot leggono da qui
 src/data/                  contenuti statici (testi, liste, contatti). Niente fetch.
-design/                    BRIEF, PROGRESS, DECISIONS, inputs/, screenshots/
+design/                    STATO (memoria), BRIEF, PROGRESS, DECISIONS, inputs/, screenshots/
 scripts/screenshot.mjs     cattura tutte le route a mobile/tablet/desktop
 ```
 
@@ -88,4 +92,4 @@ npm run format       formatta tutto con Prettier
 2. `npm run screenshot` (o solo le route toccate) e **guarda** gli screenshot: se qualcosa è storto, sistemalo prima di rispondere.
 3. Aggiorna `design/PROGRESS.md` se lo step è concluso.
 4. Commit con messaggio chiaro in italiano (es. `Pagina Servizi: hero, griglia servizi, CTA`). Gli screenshot in `design/screenshots/` si committano: l'utente li vede su GitHub.
-5. Rispondi in modo breve: fatto / dove guardare / prossimo step.
+5. Rispondi in modo breve: fatto / dove guardare / prossimo step. «Dove guardare» include l'anteprima online https://roicandesign-bot.github.io/theasher/ quando il lavoro è su `main` (si aggiorna da sola a ogni push, in 1-2 minuti). Non provare ad aprirla dalla sessione: `github.io` è bloccato dalla rete remota, chiedi all'utente di guardarla.

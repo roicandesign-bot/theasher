@@ -25,6 +25,7 @@ Extra: `/animazioni`, `/accessibilita`, `/consegna` (prepara il passaggio allo s
 - Non serve usare i comandi: scrivi cosa vuoi («fammi la pagina Servizi come in questo screenshot») e Claude capisce lo step.
 - Claude non ti farà molte domande: costruisce, mostra, e tu correggi («più aria», «titolo più grande», «colori più caldi»).
 - Gli screenshot delle pagine sono in `design/screenshots/`: li vedi direttamente su GitHub.
+- Il sito pubblicato è sempre su https://roicandesign-bot.github.io/theasher/ (versione di `main`).
 
 ## Per chi sviluppa
 
@@ -41,9 +42,8 @@ Struttura e regole complete in [`CLAUDE.md`](./CLAUDE.md).
 
 ### Anteprima online (GitHub Pages)
 
-Il workflow `.github/workflows/deploy-pages.yml` pubblica il sito a ogni push su `main`.
-Attivazione una tantum: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-URL: `https://<owner>.github.io/<repo>/`.
+**https://roicandesign-bot.github.io/theasher/** — si aggiorna da sola a ogni push su `main` (1-2 minuti).
+Il workflow è `.github/workflows/deploy-pages.yml`; Pages è già attivo con sorgente "GitHub Actions".
 
 ### Sessioni Claude Code sul web
 
