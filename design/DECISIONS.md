@@ -13,3 +13,9 @@
 - 2026-09-14 · Foto demo = ritagli dai mockup, marcate demo in `public/images/demo/README.md` · unica fonte con la direzione fotografica corretta finché non arrivano foto ufficiali
 - 2026-09-14 · Font proposti: Anton (display) + Archivo variabile (testo, UI, etichette condensate) · una famiglia per tutto il testo, display "tall bold impact" dei mockup
 - 2026-09-14 · Tema unico scuro · il brand manual impone il nero come superficie dominante
+- 2026-09-14 · Lorenzo (responsabile design, non tecnico) guida le vibes; Vishu (sviluppatore) la parte tecnica · il prototipo Vite resta il posto dove si decide il look, `docs/` è per lo sviluppo
+- 2026-09-14 · Font self-hosted via pacchetti fontsource (Anton, Archivo variabile con asse larghezza) · Google Fonts non raggiungibile dalla sessione e più veloce in produzione
+- 2026-09-14 · Claim del brand in inglese (Premium CBD. Bold character. / Shop the drop / Good plants. Brighter days.), testi in italiano · le linee ufficiali restano intatte, il resto parla al cliente
+- 2026-09-14 · Menu e CTA puntano alle sezioni della home (#hash, #cbd-flower, #new-drop, #story) finché le pagine non esistono · nessun link morto
+- 2026-09-14 · Recensioni in home marcate «esempio» · nel sito reale solo acquisti verificati
+- 2026-09-14 · Lo script screenshot scorre la pagina prima di catturare · le immagini lazy sotto la piega altrimenti restano vuote

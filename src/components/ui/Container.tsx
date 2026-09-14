@@ -2,7 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
 type ContainerProps = HTMLAttributes<HTMLDivElement> & {
-  /** `content` = larghezza sito (1152px), `prose` = larghezza testo (672px) */
+  /** `content` = larghezza sito (1280px), `prose` = larghezza testo (672px) */
   width?: 'content' | 'prose'
   children: ReactNode
 }

@@ -1,9 +1,11 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import { cn } from '@/lib/cn'
+import { Eyebrow } from './Eyebrow'
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
-  /** Sfondo alternato per creare ritmo tra le sezioni */
-  tone?: 'default' | 'alt' | 'dark'
+  /** `alt` grigio scuro per dare ritmo, `yellow` banda gialla (una per pagina) */
+  tone?: 'default' | 'alt' | 'yellow'
   children: ReactNode
 }
 
@@ -12,9 +14,9 @@ export function Section({ tone = 'default', className, children, ...rest }: Sect
   return (
     <section
       className={cn(
-        'py-section',
+        'relative py-section',
         tone === 'alt' && 'bg-bg-alt',
-        tone === 'dark' && 'bg-brand-950 text-white',
+        tone === 'yellow' && 'bg-primary text-primary-fg',
         className,
       )}
       {...rest}
@@ -29,26 +31,58 @@ type SectionHeaderProps = {
   title: string
   subtitle?: string
   align?: 'left' | 'center'
+  /** Link a destra (es. «Vedi tutti») */
+  action?: { label: string; to: string }
+  tone?: 'default' | 'yellow'
   className?: string
 }
 
-/** Intestazione standard di sezione: occhiello + titolo + sottotitolo. */
+/** Intestazione standard di sezione: occhiello + titolo (Anton, maiuscolo) + sottotitolo. */
 export function SectionHeader({
   eyebrow,
   title,
   subtitle,
   align = 'left',
+  action,
+  tone = 'default',
   className,
 }: SectionHeaderProps) {
+  const onYellow = tone === 'yellow'
   return (
-    <div className={cn('max-w-prose', align === 'center' && 'mx-auto text-center', className)}>
-      {eyebrow && (
-        <p className="tracking-eyebrow text-eyebrow font-medium text-fg-muted uppercase">
-          {eyebrow}
-        </p>
+    <div
+      className={cn(
+        'flex flex-col gap-4 md:flex-row md:items-end md:justify-between',
+        align === 'center' && 'text-center md:flex-col md:items-center',
+        className,
       )}
-      <h2 className="mt-3 text-h2 font-semibold">{title}</h2>
-      {subtitle && <p className="mt-4 text-lead text-fg-muted">{subtitle}</p>}
+    >
+      <div className={cn('max-w-prose', align === 'center' && 'mx-auto')}>
+        {eyebrow && (
+          <Eyebrow
+            tone={onYellow ? 'dark' : 'primary'}
+            className={cn('mb-3', align === 'center' && 'justify-center')}
+          >
+            {eyebrow}
+          </Eyebrow>
+        )}
+        <h2 className="text-h2">{title}</h2>
+        {subtitle && (
+          <p className={cn('mt-4 text-lead', onYellow ? 'text-primary-fg/80' : 'text-fg-muted')}>
+            {subtitle}
+          </p>
+        )}
+      </div>
+      {action && (
+        <Link
+          to={action.to}
+          className={cn(
+            'inline-flex items-center gap-2 self-start label transition md:self-auto hocus:text-primary',
+            onYellow ? 'text-primary-fg' : 'text-fg',
+          )}
+        >
+          {action.label} <span aria-hidden="true">→</span>
+        </Link>
+      )}
     </div>
   )
 }

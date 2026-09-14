@@ -15,6 +15,8 @@
     "check": "npm run lint && npm run typecheck && npm run format:check && vite build"
   },
   "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource/anton": "^5.3.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.545.0",
     "motion": "^12.23.0",

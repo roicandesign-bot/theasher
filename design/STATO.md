@@ -6,8 +6,8 @@
 
 ## Chi c'è
 
-- **Sviluppatore** (proprietario del repo, `roicandesign-bot`): ha creato l'ambiente con Claude. Nella fase 2 svilupperà la logica insieme a Claude.
-- **Responsabile design** («il capo»): non è uno sviluppatore. Definirà design e prototipo usando le sessioni Claude Code su questo repo. Con lui: italiano, poche domande, mostrare risultati, correggere a vista.
+- **Sviluppatore**: **Vishu** (repo `roicandesign-bot`). Farà la parte tecnica (Next.js, database, admin) partendo da `docs/`. Con Lorenzo si lavora solo sulle vibes: look, pagine, screenshot.
+- **Responsabile design** («il capo»): **Lorenzo**, non è uno sviluppatore. Definirà design e prototipo usando le sessioni Claude Code su questo repo. Con lui: italiano, poche domande, mostrare risultati, correggere a vista.
 
 ## Cosa è pronto (fase 1, ambiente)
 

@@ -142,6 +142,7 @@ async function main() {
       for (const route of routes) {
         await page.goto(`${server.url}${route}`, { waitUntil: 'networkidle' })
         await page.evaluate(() => document.fonts?.ready)
+        await scrollThrough(page) // carica le immagini lazy sotto la piega
         await page.waitForTimeout(300) // lascia finire le animazioni di ingresso
         const file = resolve(OUT_DIR, `${slug(route)}--${vpName}.png`)
         await page.screenshot({ path: file, fullPage })
@@ -171,3 +172,21 @@ main()
     console.error(err)
     process.exit(1)
   })
+
+// Scorre tutta la pagina a passi di una schermata e torna in cima:
+// così le immagini con loading="lazy" vengono caricate prima dello screenshot.
+async function scrollThrough(page) {
+  await page.evaluate(async () => {
+    const step = window.innerHeight
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo(0, y)
+      await new Promise((r) => setTimeout(r, 60))
+    }
+    window.scrollTo(0, 0)
+    // forza il caricamento e la decodifica di tutte le immagini
+    const imgs = [...document.images]
+    for (const img of imgs) img.loading = 'eager'
+    await Promise.all(imgs.map((img) => img.decode().catch(() => {})))
+  })
+  await page.waitForLoadState('networkidle')
+}

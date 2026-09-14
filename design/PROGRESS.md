@@ -2,22 +2,23 @@
 
 > Aggiornato da Claude a fine di ogni step. `/inizia` legge questo file.
 
-| Step             | Stato      | Note                                                          |
-| ---------------- | ---------- | ------------------------------------------------------------- |
-| 1. Brief         | ✅ fatto   | Dalla richiesta del brand + brand manual (`docs/`)            |
-| 2. Stile (token) | ⬜ da fare | Token placeholder neutri attivi                               |
-| 3. Componenti    | ⬜ da fare | Base pronta: Button, Card, Container, Section, Header, Footer |
-| 4. Pagine        | ⬜ da fare | Home = segnaposto                                             |
-| 5. Verifica      | ⬜ da fare |                                                               |
+| Step             | Stato       | Note                                                                                          |
+| ---------------- | ----------- | --------------------------------------------------------------------------------------------- |
+| 1. Brief         | ✅ fatto    | Dalla richiesta del brand + brand manual (`docs/`)                                            |
+| 2. Stile (token) | ✅ fatto    | Palette The Hasher, Anton + Archivo self-hosted, `/styleguide`                                |
+| 3. Componenti    | ✅ fatto    | Button pill, Badge, Price, Logo, Diamond, StrokePattern, ProductCard, InfoBar, Header, Footer |
+| 4. Pagine        | 🟡 in corso | Home fatta (12 sezioni); prossime: prodotto, categoria, carrello                              |
+| 5. Verifica      | ⬜ da fare  |                                                                                               |
 
 Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Pagine
 
-| Pagina | Route | Stato      | Ultima verifica |
-| ------ | ----- | ---------- | --------------- |
-| Home   | `/`   | segnaposto |                 |
+| Pagina     | Route         | Stato | Ultima verifica           |
+| ---------- | ------------- | ----- | ------------------------- |
+| Home       | `/`           | ✅ v1 | 2026-09-14 (390/834/1440) |
+| Styleguide | `/styleguide` | ✅    | 2026-09-14                |
 
 ## Prossima azione consigliata
 
-Approvare `docs/10-decisioni-bloccanti.md` («ok, vai» accetta le proposte), poi milestone **M0 Fondazione** (`docs/09-piano-milestone.md`).
+Lorenzo guarda la home e corregge le vibes; poi `/pagina prodotto`. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.

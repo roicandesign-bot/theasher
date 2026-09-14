@@ -1,74 +1,90 @@
 /* ============================================================
-   DESIGN TOKENS — unica fonte di verità per lo stile del sito.
-   Modificati nello step /stile. Ogni token qui dentro diventa
-   automaticamente una classe Tailwind (es. --color-primary → bg-primary,
-   --font-display → font-display, --radius-card → rounded-card).
+   DESIGN TOKENS — THE HASHER
+   Unica fonte di verità per lo stile. Ogni token diventa una classe
+   Tailwind (--color-primary → bg-primary, --font-display → font-display,
+   --radius-card → rounded-card, --text-h1 → text-h1).
 
-   ⚠ Valori attuali = PLACEHOLDER neutri. Vanno sostituiti con quelli
-   del brand nello step /stile.
+   Regole del brand: il nero domina le superfici, il giallo acido guida
+   azioni e informazioni prioritarie, il bianco garantisce leggibilità.
+   Niente gradienti decorativi, niente colori aggiuntivi.
    ============================================================ */
 
 @theme static {
   /* ---------- Colori semantici (usa SEMPRE questi nei componenti) ---------- */
-  --color-bg: #fafaf7; /* sfondo pagina */
-  --color-bg-alt: #f1f0ea; /* sfondo sezioni alternate */
-  --color-surface: #ffffff; /* card, pannelli */
-  --color-fg: #14130f; /* testo principale */
-  --color-fg-muted: #6b6960; /* testo secondario */
-  --color-line: #e4e2da; /* bordi, divisori */
+  --color-bg: #050505; /* Near Black: sfondo pagina */
+  --color-bg-alt: #111111; /* sezioni alternate, input */
+  --color-surface: #0d0d0d; /* card, drawer, pannelli */
+  --color-surface-hover: #171717; /* hover di card e voci */
+  --color-fg: #ffffff; /* testo principale */
+  --color-fg-muted: #a3a3a3; /* testo secondario (7,4:1 su nero) */
+  --color-fg-subtle: #737373; /* solo decorativo, mai testo importante */
+  --color-line: #262626; /* bordi, divisori */
+  --color-line-strong: #404040; /* bordi in evidenza */
 
-  --color-primary: #14130f; /* azione principale (bottoni, link) */
-  --color-primary-fg: #ffffff; /* testo sopra primary */
-  --color-primary-hover: #2b2a25;
+  --color-primary: #dfff00; /* Acid Yellow: CTA, prezzi, badge */
+  --color-primary-fg: #050505; /* testo sopra il giallo */
+  --color-primary-hover: #eaff4d;
 
-  --color-accent: #d9480f; /* accento / evidenziazione */
-  --color-accent-fg: #ffffff;
+  --color-accent: #dfff00; /* nel brand accento = giallo */
+  --color-accent-fg: #050505;
 
-  --color-success: #2f9e44;
-  --color-warning: #e8590c;
-  --color-danger: #c92a2a;
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-danger: #ff5c5c;
 
-  /* ---------- Scala brand (opzionale, per sfumature) ---------- */
-  --color-brand-50: #f5f5f4;
-  --color-brand-100: #e7e6e2;
-  --color-brand-200: #d1cfc8;
-  --color-brand-300: #b3b0a6;
-  --color-brand-400: #8f8b7f;
-  --color-brand-500: #737064;
-  --color-brand-600: #5d5a50;
-  --color-brand-700: #4b4941;
-  --color-brand-800: #3e3c36;
-  --color-brand-900: #2b2a26;
-  --color-brand-950: #14130f;
+  /* ---------- Scala neutra (placeholder, superfici, pattern) ---------- */
+  --color-brand-50: #f5f5f0;
+  --color-brand-100: #e5e5df;
+  --color-brand-200: #3a3a36;
+  --color-brand-300: #2e2e2b;
+  --color-brand-400: #262624;
+  --color-brand-500: #1f1f1d;
+  --color-brand-600: #191918;
+  --color-brand-700: #141413;
+  --color-brand-800: #0f0f0e;
+  --color-brand-900: #0a0a0a;
+  --color-brand-950: #050505;
 
   /* ---------- Tipografia ---------- */
-  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  /* Display: alto, compatto, maiuscolo ("tall bold impact") */
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  /* Testo e interfaccia: grotesk moderno con asse di larghezza (condensato per etichette) */
+  --font-sans:
+    'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
   --font-mono: ui-monospace, 'JetBrains Mono', SFMono-Regular, Menlo, monospace;
 
-  /* Scala tipografica fluida: si adatta tra mobile e desktop */
-  --text-display: clamp(2.75rem, 2rem + 3.5vw, 5rem);
-  --text-display--line-height: 1.02;
-  --text-display--letter-spacing: -0.03em;
-  --text-h1: clamp(2.25rem, 1.6rem + 2.5vw, 3.75rem);
-  --text-h1--line-height: 1.08;
-  --text-h1--letter-spacing: -0.025em;
-  --text-h2: clamp(1.75rem, 1.35rem + 1.5vw, 2.5rem);
-  --text-h2--line-height: 1.15;
-  --text-h2--letter-spacing: -0.02em;
-  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-h3--line-height: 1.3;
-  --text-lead: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  --text-display: clamp(3.5rem, 2rem + 7vw, 8rem);
+  --text-display--line-height: 0.9;
+  --text-display--letter-spacing: 0.005em;
+  --text-h1: clamp(3rem, 2rem + 4.5vw, 5.5rem);
+  --text-h1--line-height: 0.92;
+  --text-h1--letter-spacing: 0.005em;
+  --text-h2: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  --text-h2--line-height: 0.95;
+  --text-h2--letter-spacing: 0.005em;
+  --text-h3: clamp(1.5rem, 1.25rem + 0.8vw, 2rem);
+  --text-h3--line-height: 1;
+  --text-h3--letter-spacing: 0.01em;
+  --text-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
   --text-lead--line-height: 1.5;
-  --text-eyebrow: 0.8125rem;
+  --text-eyebrow: 0.75rem;
   --text-eyebrow--line-height: 1.2;
-  --text-eyebrow--letter-spacing: 0.12em;
+  --text-eyebrow--letter-spacing: 0.14em;
+  --text-label: 0.8125rem;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.08em;
+  --text-price: 1.375rem;
+  --text-price--line-height: 1;
+
+  --tracking-eyebrow: 0.14em;
+  --tracking-label: 0.08em;
 
   /* ---------- Spaziature di layout ---------- */
-  --spacing-section: clamp(4rem, 3rem + 5vw, 8rem); /* py-section */
+  --spacing-section: clamp(3.5rem, 2.5rem + 4vw, 7rem); /* py-section */
   --spacing-gutter: clamp(1rem, 0.5rem + 2.5vw, 2.5rem); /* px-gutter */
-  --container-content: 72rem; /* max-w-content (1152px) */
-  --container-prose: 42rem; /* max-w-prose-w (672px) */
+  --container-content: 80rem; /* max-w-content (1280px) */
+  --container-prose: 42rem; /* (672px) */
 
   /* ---------- Raggi ---------- */
   --radius-xs: 0.25rem;
@@ -77,13 +93,15 @@
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
-  --radius-card: 1rem; /* rounded-card */
-  --radius-button: 0.625rem; /* rounded-button */
+  --radius-card: 0.75rem; /* rounded-card */
+  --radius-button: 999px; /* rounded-button: pill */
+  --radius-input: 0.5rem;
+  --radius-badge: 0.25rem;
 
-  /* ---------- Ombre ---------- */
-  --shadow-soft: 0 1px 2px rgb(20 19 15 / 0.04), 0 8px 24px -12px rgb(20 19 15 / 0.12);
-  --shadow-card: 0 1px 2px rgb(20 19 15 / 0.05), 0 12px 32px -16px rgb(20 19 15 / 0.18);
-  --shadow-pop: 0 24px 48px -24px rgb(20 19 15 / 0.35);
+  /* ---------- Ombre: sul nero non si vedono, si usano i bordi ---------- */
+  --shadow-soft: 0 0 0 1px rgb(255 255 255 / 0.04);
+  --shadow-card: 0 0 0 1px rgb(255 255 255 / 0.06);
+  --shadow-pop: 0 24px 48px -24px rgb(0 0 0 / 0.8);
 
   /* ---------- Movimento ---------- */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);

@@ -2,22 +2,27 @@ import type { ButtonHTMLAttributes, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 
-type Variant = 'primary' | 'secondary' | 'ghost'
+type Variant = 'primary' | 'outline' | 'ghost' | 'dark'
 type Size = 'sm' | 'md' | 'lg'
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-button font-medium whitespace-nowrap transition select-none disabled:pointer-events-none disabled:opacity-50'
+  'inline-flex items-center justify-center gap-2 rounded-button label whitespace-nowrap transition select-none disabled:pointer-events-none disabled:opacity-50'
 
 const variants: Record<Variant, string> = {
-  primary: 'bg-primary text-primary-fg hocus:bg-primary-hover shadow-soft',
-  secondary: 'bg-surface text-fg ring-1 ring-line ring-inset hocus:bg-bg-alt',
-  ghost: 'text-fg hocus:bg-bg-alt',
+  /** Giallo pieno: una sola per sezione */
+  primary: 'bg-primary text-primary-fg hocus:bg-primary-hover',
+  /** Contorno giallo: azioni secondarie (es. "Aggiungi al carrello" nelle card) */
+  outline: 'text-primary ring-[1.5px] ring-primary ring-inset hocus:bg-primary/10',
+  /** Solo testo bianco */
+  ghost: 'text-fg hocus:bg-surface-hover',
+  /** Nero su superfici gialle */
+  dark: 'bg-bg text-primary hocus:bg-brand-800',
 }
 
 const sizes: Record<Size, string> = {
-  sm: 'h-9 px-3.5 text-sm',
-  md: 'h-11 px-5 text-base',
-  lg: 'h-13 px-7 text-lg',
+  sm: 'h-10 px-4 text-xs',
+  md: 'h-12 px-6',
+  lg: 'h-14 px-8 text-sm',
 }
 
 type CommonProps = {
@@ -29,12 +34,12 @@ type CommonProps = {
 
 type ButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & { to?: undefined; href?: undefined }
-type LinkProps = CommonProps & { to: string; href?: undefined }
+type LinkProps = CommonProps & { to: string; href?: undefined; onClick?: () => void }
 type AnchorProps = CommonProps & { href: string; to?: undefined; target?: string; rel?: string }
 
 /**
- * Bottone unico per tutto il sito. Diventa <Link> se passi `to`,
- * <a> se passi `href`, altrimenti <button>.
+ * Bottone unico per tutto il sito (pill, etichetta maiuscola).
+ * Diventa <Link> se passi `to`, <a> se passi `href`, altrimenti <button>.
  */
 export function Button(props: ButtonProps | LinkProps | AnchorProps) {
   const { variant = 'primary', size = 'md', className, children } = props
@@ -42,7 +47,7 @@ export function Button(props: ButtonProps | LinkProps | AnchorProps) {
 
   if ('to' in props && props.to !== undefined) {
     return (
-      <Link to={props.to} className={classes}>
+      <Link to={props.to} className={classes} onClick={props.onClick}>
         {children}
       </Link>
     )
