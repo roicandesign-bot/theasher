@@ -41,9 +41,6 @@ export default function Home() {
               <Button to="/#best-seller" size="lg">
                 {home.hero.cta} <ArrowRight className="size-4" />
               </Button>
-              <Button to="/#lab" variant="ghost" size="lg" className="ring-1 ring-line ring-inset">
-                {home.hero.ctaSecondary}
-              </Button>
             </div>
             <ul className="mt-8 flex fade-up flex-wrap gap-x-7 gap-y-3 [animation-delay:240ms]">
               {home.hero.badges.map((b, i) => {

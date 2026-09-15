@@ -6,7 +6,6 @@ export const home = {
     titleB: 'Bold character.',
     lead: 'Hash e fiori CBD d’eccezione, selezionati in Europa. Analisi di laboratorio su ogni lotto, spedizione discreta in tutta la UE.',
     cta: 'Shop the drop',
-    ctaSecondary: 'Analisi di laboratorio',
     badges: [
       { label: 'Premium', sub: 'quality' },
       { label: 'EU', sub: 'sourced' },

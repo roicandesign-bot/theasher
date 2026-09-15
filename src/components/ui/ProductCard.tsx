@@ -1,7 +1,8 @@
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Price } from '@/components/ui/Price'
-import type { Product } from '@/data/products'
+import { productPath, type Product } from '@/data/products'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
@@ -17,7 +18,10 @@ export function ProductCard({ product, className }: { product: Product; classNam
         className,
       )}
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-brand-800">
+      <Link
+        to={productPath(product.slug)}
+        className="relative block aspect-[4/3] overflow-hidden bg-brand-800"
+      >
         <img
           src={asset(product.image)}
           alt={`${product.name}, ${product.category === 'hash' ? 'hash CBD' : 'fiore CBD'}`}
@@ -25,18 +29,22 @@ export function ProductCard({ product, className }: { product: Product; classNam
           className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
         {product.badges && (
-          <div className="absolute top-3 left-3 flex gap-1.5">
+          <span className="absolute top-3 left-3 flex gap-1.5">
             {product.badges.map((b) => (
               <Badge key={b} variant={b === 'Limited drop' ? 'outline' : 'solid'}>
                 {b}
               </Badge>
             ))}
-          </div>
+          </span>
         )}
-      </div>
+      </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <h3 className="text-h3">{product.name}</h3>
+          <h3 className="text-h3">
+            <Link to={productPath(product.slug)} className="transition hocus:text-primary">
+              {product.name}
+            </Link>
+          </h3>
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
         </div>
         <div className="flex items-end justify-between gap-3">

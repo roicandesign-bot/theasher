@@ -21,4 +21,4 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Prossima azione consigliata
 
-Lorenzo guarda la home e corregge le vibes; poi `/pagina prodotto`. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.
+Lorenzo guarda la pagina prodotto e corregge le vibes; poi pagina categoria o carrello. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.

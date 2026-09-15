@@ -45,7 +45,15 @@ const routes = (flag('routes') ?? readRoutes())
 function readRoutes() {
   const file = resolve(ROOT, 'src/routes.tsx')
   const src = readFileSync(file, 'utf8')
-  const found = [...src.matchAll(/path:\s*['"`]([^'"`]+)['"`]/g)].map((m) => m[1])
+  // Un blocco { ... } per ogni route; se c'è screenshotPath (percorsi con :parametro) vince su path.
+  const blocks = [...src.matchAll(/\{[^{}]*path:[^{}]*\}/g)].map((m) => m[0])
+  const found = blocks
+    .map((block) => {
+      const preview = block.match(/screenshotPath:\s*['"`]([^'"`]+)['"`]/)
+      const path = block.match(/path:\s*['"`]([^'"`]+)['"`]/)
+      return preview?.[1] ?? path?.[1]
+    })
+    .filter(Boolean)
   return found.length ? found.join(',') : '/'
 }
 

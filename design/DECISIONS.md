@@ -19,3 +19,7 @@
 - 2026-09-14 · Menu e CTA puntano alle sezioni della home (#hash, #cbd-flower, #new-drop, #story) finché le pagine non esistono · nessun link morto
 - 2026-09-14 · Recensioni in home marcate «esempio» · nel sito reale solo acquisti verificati
 - 2026-09-14 · Lo script screenshot scorre la pagina prima di catturare · le immagini lazy sotto la piega altrimenti restano vuote
+- 2026-09-15 · Tolto il secondo bottone dalla hero (Analisi di laboratorio) · una sola CTA per sezione, il link alle analisi resta nel footer e nella pagina prodotto
+- 2026-09-15 · Pagina prodotto a un solo indirizzo con parametro (`/prodotto/:slug`): tutte le card del sito portano al prodotto giusto · una pagina sola da mantenere
+- 2026-09-15 · Barra di acquisto in basso su mobile solo dopo aver superato il bottone principale · non copre il prodotto appena apri la pagina
+- 2026-09-15 · Prezzo al grammo mostrato su ogni formato · rende confrontabili 1 / 3,5 / 5 / 10 g senza calcoli

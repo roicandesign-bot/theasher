@@ -19,6 +19,10 @@ export const site = {
   },
   /** Numero demo per mostrare il contatore del carrello */
   cartCount: 2,
+  /** Soglia spedizione gratuita, in centesimi */
+  freeShippingFrom: 4900,
+  /** Metodi di pagamento mostrati in pagina prodotto e al checkout */
+  payments: ['Carta', 'Bonifico', 'Apple Pay', 'Google Pay'],
   footer: {
     shop: [
       { label: 'Hash', to: '/#hash' },
