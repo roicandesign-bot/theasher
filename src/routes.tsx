@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
 import Product from './pages/Product'
+import Sitemap from './pages/Sitemap'
 import Styleguide from './pages/Styleguide'
 
 /**
@@ -28,5 +29,6 @@ export const routes: AppRoute[] = [
     inNav: false,
     screenshotPath: '/prodotto/lemon-haze',
   },
+  { path: '/mappa', label: 'Mappa del sito', component: Sitemap, inNav: false },
   { path: '/styleguide', label: 'Styleguide', component: Styleguide, inNav: false },
 ]

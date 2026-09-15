@@ -21,4 +21,4 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Prossima azione consigliata
 
-Lorenzo guarda la pagina prodotto e corregge le vibes; poi pagina categoria o carrello. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.
+Guarda `/mappa`: 3 pagine pronte, 31 da costruire. Prossime nell’ordine: categoria Hash, carrello, checkout. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.

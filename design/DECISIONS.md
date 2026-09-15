@@ -23,3 +23,6 @@
 - 2026-09-15 · Pagina prodotto a un solo indirizzo con parametro (`/prodotto/:slug`): tutte le card del sito portano al prodotto giusto · una pagina sola da mantenere
 - 2026-09-15 · Barra di acquisto in basso su mobile solo dopo aver superato il bottone principale · non copre il prodotto appena apri la pagina
 - 2026-09-15 · Prezzo al grammo mostrato su ogni formato · rende confrontabili 1 / 3,5 / 5 / 10 g senza calcoli
+- 2026-09-15 · Pagina di lavoro `/mappa` con tutte le pagine dell’e-commerce e il loro stato · Lorenzo vede da solo cosa manca senza leggere i documenti tecnici
+- 2026-09-15 · Ordine di costruzione: percorso d’acquisto, poi racconto del brand, poi servizio e legale · prima quello che fa vendere
+- 2026-09-15 · Aggiunta «Diventa distributore» (idea di Lorenzo) alle pagine previste: richiesta B2B con P. IVA e listino riservato · il brand vende anche all’ingrosso
