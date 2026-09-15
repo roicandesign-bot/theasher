@@ -14,8 +14,9 @@ import { ProductCard } from '@/components/ui/ProductCard'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
 import { home } from '@/data/home'
-import { bestSellers, newDrop } from '@/data/products'
+import { bestSellers, categories, newDrop } from '@/data/products'
 import { asset } from '@/lib/asset'
+import { cn } from '@/lib/cn'
 import { formatPrice } from '@/lib/money'
 
 const trustIcons = [FlaskConical, Truck, Lock, Package]
@@ -38,7 +39,7 @@ export default function Home() {
               {home.hero.lead}
             </p>
             <div className="mt-7 flex fade-up flex-wrap gap-3 [animation-delay:180ms]">
-              <Button to="/#best-seller" size="lg">
+              <Button to="/negozio" size="lg">
                 {home.hero.cta} <ArrowRight className="size-4" />
               </Button>
             </div>
@@ -63,12 +64,12 @@ export default function Home() {
             </ul>
           </div>
           <div className="order-1 lg:order-2">
-            <div className="relative mx-auto aspect-[4/3] max-h-[46svh] w-full overflow-hidden rounded-card ring-1 ring-line ring-inset lg:aspect-[1.1] lg:max-h-none">
+            <div className="relative mx-auto aspect-[4/3] max-h-[46svh] w-full overflow-hidden rounded-card ring-1 ring-line ring-inset lg:max-h-none">
               <img
-                src={asset('images/demo/hero-products.jpg')}
-                alt="Vaso di hash CBD e busta di fiori CBD The Hasher su fondo nero"
-                width={408}
-                height={370}
+                src={asset('images/demo/hero-packs.jpg')}
+                alt="Busta Lemon Haze, barattolo Royal Hash e barattolo Diamond Resin su fondo nero"
+                width={1200}
+                height={900}
                 fetchPriority="high"
                 className="size-full object-cover"
               />
@@ -102,33 +103,43 @@ export default function Home() {
 
       {/* ---------- Categorie ---------- */}
       <Section className="py-12 md:py-16">
-        <Container className="grid gap-5 md:grid-cols-2">
+        <Container className="grid gap-5 md:grid-cols-3">
           {home.categories.map((c) => (
             <article
               key={c.id}
               id={c.id}
-              className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset"
+              className="group relative flex scroll-mt-28 flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset"
             >
-              <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
+              <div className="relative aspect-[5/4] overflow-hidden bg-brand-900">
+                <img
+                  src={asset(c.image)}
+                  alt=""
+                  loading="lazy"
+                  className="size-full object-contain p-4 transition duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
+              <div className="flex flex-1 flex-col gap-4 border-t border-line p-6">
                 <div>
-                  <h2 className="text-h2">{c.title}</h2>
-                  <p className="mt-3 label text-[0.75rem] text-fg-muted">
+                  <span
+                    aria-hidden="true"
+                    className={cn('block h-1 w-10 rounded-full', categories[c.category].color)}
+                  />
+                  <h2 className="mt-3 text-h2">{c.title}</h2>
+                  <p className="mt-2 label text-[0.75rem] text-fg-muted">
                     {c.lines[0]}
                     <br />
                     {c.lines[1]}
                   </p>
                 </div>
-                <Button to={`/#${c.id}`} variant="outline" size="sm" className="self-start">
+                <p className="text-xs text-fg-subtle">{c.pack}</p>
+                <Button
+                  to={`/negozio?categoria=${c.category}`}
+                  variant="outline"
+                  size="sm"
+                  className="mt-auto self-start"
+                >
                   {c.cta} <ArrowRight className="size-4" />
                 </Button>
-              </div>
-              <div className="w-36 sm:w-52 md:w-44 lg:w-60">
-                <img
-                  src={asset(c.image)}
-                  alt=""
-                  loading="lazy"
-                  className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                />
               </div>
             </article>
           ))}
@@ -141,7 +152,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Best seller"
             title="I più scelti."
-            action={{ label: 'Vedi tutti', to: '/#hash' }}
+            action={{ label: 'Vedi tutti', to: '/negozio' }}
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bestSellers.map((p) => (
@@ -159,7 +170,7 @@ export default function Home() {
             <Eyebrow tone="dark">{home.newDrop.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-display">{newDrop.name}</h2>
             <p className="mt-3 label text-[0.75rem] text-primary-fg/70">
-              {newDrop.aroma.join(' / ')} · {newDrop.grams} g · lotto limitato
+              {newDrop.profile.join(' | ')} · {newDrop.grams} g · lotto limitato
             </p>
             <p className="mt-5 max-w-md text-lead text-primary-fg/80">{home.newDrop.text}</p>
             <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -200,6 +211,13 @@ export default function Home() {
             <Eyebrow>{home.story.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-h2">{home.story.title}</h2>
             <p className="mt-5 max-w-prose text-lead text-fg-muted">{home.story.text}</p>
+            <p className="mt-6 font-display text-h3 text-primary">
+              {home.story.triad.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </p>
             <ul className="mt-8 grid gap-5 sm:grid-cols-3">
               {home.story.points.map((p) => (
                 <li key={p.title} className="border-t border-line pt-4">

@@ -99,7 +99,7 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-6 flex flex-col gap-3">
-            <Button to="/#best-seller" size="lg" onClick={() => setOpen(false)}>
+            <Button to="/negozio" size="lg" onClick={() => setOpen(false)}>
               Shop the drop →
             </Button>
             <div className="flex gap-2">

@@ -4,7 +4,7 @@ export const home = {
     eyebrow: 'Selected in Europe. Made for those who know.',
     titleA: 'Premium CBD.',
     titleB: 'Bold character.',
-    lead: 'Hash e fiori CBD d’eccezione, selezionati in Europa. Analisi di laboratorio su ogni lotto, spedizione discreta in tutta la UE.',
+    lead: 'Fiori, hash ed estratti CBD selezionati in Europa. Analisi di laboratorio su ogni lotto, spedizione discreta in tutta la UE.',
     cta: 'Shop the drop',
     badges: [
       { label: 'Premium', sub: 'quality' },
@@ -21,17 +21,30 @@ export const home = {
   categories: [
     {
       id: 'hash',
+      category: 'hash' as const,
       title: 'Hash',
       lines: ['Rich aromas.', 'Smooth character.'],
       cta: 'Esplora hash',
-      image: 'images/demo/cat-hash.jpg',
+      image: 'images/demo/jar-royal-hash.jpg',
+      pack: 'Barattolo in vetro',
     },
     {
       id: 'cbd-flower',
+      category: 'flower' as const,
       title: 'CBD Flower',
       lines: ['Natural terpenes.', 'Real flavours.'],
       cta: 'Esplora flower',
-      image: 'images/demo/cat-flower.jpg',
+      image: 'images/demo/pouch-lemon-haze.jpg',
+      pack: 'Busta richiudibile',
+    },
+    {
+      id: 'cbd-extract',
+      category: 'extract' as const,
+      title: 'CBD Extract',
+      lines: ['Clear. Pure.', 'Refined.'],
+      cta: 'Esplora extract',
+      image: 'images/demo/jar-diamond-resin.jpg',
+      pack: 'Barattolo da 1 g',
     },
   ],
   newDrop: {
@@ -43,6 +56,7 @@ export const home = {
     eyebrow: 'Crafted with character',
     title: 'Selezionato in Europa, spiegato senza giri di parole.',
     text: 'Scegliamo pochi prodotti e li conosciamo uno per uno: origine, lotto, analisi. Il resto è packaging nero, giallo acido e nessuna promessa che non possiamo mantenere.',
+    triad: ['Clean plants.', 'Bolder people.', 'European culture.'],
     points: [
       { title: 'Selezione europea', text: 'Produttori scelti di persona, filiera corta.' },
       { title: 'Lotti tracciati', text: 'Ogni confezione riporta il lotto e il suo certificato.' },

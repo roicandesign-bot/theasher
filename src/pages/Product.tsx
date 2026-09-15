@@ -24,7 +24,7 @@ import { ProductCard } from '@/components/ui/ProductCard'
 import { ProductGallery } from '@/components/ui/ProductGallery'
 import { QuantityInput } from '@/components/ui/QuantityInput'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import { findProduct, products, type Variant } from '@/data/products'
+import { categories, findProduct, products, type Variant } from '@/data/products'
 import { site } from '@/data/site'
 import { cn } from '@/lib/cn'
 import { formatPrice } from '@/lib/money'
@@ -88,7 +88,8 @@ export default function Product() {
   const total = variant.price * quantity
   const missingForFreeShipping = site.freeShippingFrom - total
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3)
-  const categoryLabel = product.category === 'hash' ? 'Hash' : 'CBD Flower'
+  const category = categories[product.category]
+  const categoryLabel = category.label
 
   return (
     <>
@@ -99,10 +100,7 @@ export default function Product() {
             Home
           </Link>
           <span aria-hidden="true">/</span>
-          <Link
-            to={`/#${product.category === 'hash' ? 'hash' : 'cbd-flower'}`}
-            className="transition hocus:text-primary"
-          >
+          <Link to={`/#${category.anchor}`} className="transition hocus:text-primary">
             {categoryLabel}
           </Link>
           <span aria-hidden="true">/</span>
@@ -127,7 +125,7 @@ export default function Product() {
             )}
             <Eyebrow>{categoryLabel}</Eyebrow>
             <h1 className="mt-3 text-h1">{product.name}</h1>
-            <p className="mt-3 label text-[0.75rem] text-fg-muted">{product.aroma.join(' / ')}</p>
+            <p className="mt-3 label text-[0.75rem] text-fg-muted">{product.profile.join(' | ')}</p>
             <p className="mt-4 max-w-prose text-lead text-fg-muted">{product.short}</p>
           </div>
 

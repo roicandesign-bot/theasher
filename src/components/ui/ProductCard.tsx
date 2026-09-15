@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Price } from '@/components/ui/Price'
-import { productPath, type Product } from '@/data/products'
+import { categories, productPath, type Product } from '@/data/products'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
@@ -24,9 +24,12 @@ export function ProductCard({ product, className }: { product: Product; classNam
       >
         <img
           src={asset(product.image)}
-          alt={`${product.name}, ${product.category === 'hash' ? 'hash CBD' : 'fiore CBD'}`}
+          alt={`${product.name}, ${categories[product.category].label}`}
           loading="lazy"
-          className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
+          className={cn(
+            'size-full transition duration-500 group-hover:scale-[1.03]',
+            product.imageFit === 'contain' ? 'object-contain p-4' : 'object-cover',
+          )}
         />
         {product.badges && (
           <span className="absolute top-3 left-3 flex gap-1.5">
@@ -40,12 +43,23 @@ export function ProductCard({ product, className }: { product: Product; classNam
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <h3 className="text-h3">
+          <span className="flex items-center gap-2">
+            <span
+              aria-hidden="true"
+              className={cn('h-0.5 w-6 rounded-full', categories[product.category].color)}
+            />
+            <span className="label text-[0.625rem] text-fg-muted">
+              {categories[product.category].label}
+            </span>
+          </span>
+          <h3 className="mt-1.5 text-h3">
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
               {product.name}
             </Link>
           </h3>
-          <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
+          <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">
+            {product.profile.join(' | ')}
+          </p>
         </div>
         <div className="flex items-end justify-between gap-3">
           <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />

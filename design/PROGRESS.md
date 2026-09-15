@@ -21,4 +21,4 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Prossima azione consigliata
 
-Guarda `/mappa`: 3 pagine pronte, 31 da costruire. Prossime nell’ordine: categoria Hash, carrello, checkout. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.
+Guarda `/mappa`: percorso d’acquisto, wireframe di ogni pagina, 5 pronte e 30 da costruire. Prossime: carrello e checkout. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.
