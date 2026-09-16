@@ -42,10 +42,6 @@ Il brand ha chiesto l'**e-commerce completo proprietario** (Next.js, PostgreSQL,
 
 Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, seed e test integration girano qui), Docker ha solo il client, `github.io` resta bloccato.
 
-## Materiali del brand ricevuti
-
-1. Brand identity board · 2. Mockup e-commerce · 3. Sistema Instagram · 4. Logo · 5. Visual brand manual (PDF, 12 pagine) · 6. **Sistema packaging (15/09)**: tre categorie con colore (Flower viola, Hash arancio, Extract azzurro), busta per i fiori, barattolo per hash ed estratti, gerarchia informazioni, zona lotto e QR. Tutti in `design/inputs/`.
-
 ## Prossimo passo
 
 Approvazione delle decisioni → milestone **M0 Fondazione** sul branch `claude/the-hasher-ecommerce-o8r9lt`, poi merge su `main` a fine milestone approvata.

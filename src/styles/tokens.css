@@ -28,12 +28,6 @@
   --color-accent: #dfff00; /* nel brand accento = giallo */
   --color-accent-fg: #050505;
 
-  /* Sistema categorie (dal packaging): una barretta di colore per categoria.
-     Si usa SOLO come codice di categoria, mai per bottoni o testo lungo. */
-  --color-cat-flower: #9a38fd; /* CBD Flower */
-  --color-cat-hash: #fcae02; /* Premium CBD Hash */
-  --color-cat-extract: #72d1fd; /* CBD Extract */
-
   --color-success: #4ade80;
   --color-warning: #fbbf24;
   --color-danger: #ff5c5c;

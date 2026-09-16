@@ -28,7 +28,7 @@ export function ProductGallery({ images }: { images: Image[] }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="relative overflow-hidden rounded-card bg-brand-900 ring-1 ring-line ring-inset">
+      <div className="relative overflow-hidden rounded-card bg-brand-800 ring-1 ring-line ring-inset">
         <button
           type="button"
           onClick={() => setZoom(true)}
@@ -38,7 +38,7 @@ export function ProductGallery({ images }: { images: Image[] }) {
           <img
             src={asset(image.src)}
             alt={image.alt}
-            className="aspect-square w-full object-contain p-4"
+            className="aspect-square w-full object-cover"
             fetchPriority="high"
           />
         </button>
@@ -70,7 +70,7 @@ export function ProductGallery({ images }: { images: Image[] }) {
                 src={asset(img.src)}
                 alt=""
                 loading="lazy"
-                className="aspect-square w-full object-contain p-4"
+                className="aspect-square w-full object-cover"
               />
             </button>
           </li>

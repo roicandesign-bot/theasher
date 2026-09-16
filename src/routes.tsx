@@ -1,7 +1,6 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
 import Product from './pages/Product'
-import Shop from './pages/Shop'
 import Sitemap from './pages/Sitemap'
 import Styleguide from './pages/Styleguide'
 
@@ -23,7 +22,6 @@ export type AppRoute = {
 
 export const routes: AppRoute[] = [
   { path: '/', label: 'Home', component: Home },
-  { path: '/negozio', label: 'Negozio', component: Shop, inNav: false },
   {
     path: '/prodotto/:slug',
     label: 'Prodotto',

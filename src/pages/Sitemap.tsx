@@ -8,8 +8,7 @@ import { Container } from '@/components/ui/Container'
 import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import { beyondPages, journey, sitemap, wireframes } from '@/data/sitemap'
-import { Wireframe } from '@/components/ui/Wireframe'
+import { beyondPages, sitemap } from '@/data/sitemap'
 import { cn } from '@/lib/cn'
 
 const allPages = sitemap.flatMap((g) => g.pages)
@@ -46,68 +45,6 @@ export default function Sitemap() {
                 altre.
               </p>
             </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* ---------- Percorso d'acquisto ---------- */}
-      <Section tone="alt" className="py-12 md:py-16">
-        <Container>
-          <SectionHeader
-            eyebrow="Percorso d’acquisto"
-            title="Dove si interrompe oggi."
-            subtitle="Questi sei passaggi sono il negozio. I primi tre si possono già percorrere."
-          />
-          <ol className="mt-8 flex flex-wrap items-stretch gap-2">
-            {journey.map((s, i) => {
-              const done = s.status === 'fatta'
-              const box = (
-                <span
-                  className={cn(
-                    'flex h-16 min-w-32 flex-1 items-center justify-center gap-2 rounded-card px-4 text-center label transition',
-                    done
-                      ? 'bg-primary text-primary-fg'
-                      : 'ring-dashed text-fg-muted ring-1 ring-line ring-inset',
-                  )}
-                >
-                  {done && <Check aria-hidden="true" className="size-4" />}
-                  {s.step}
-                </span>
-              )
-              return (
-                <li key={s.step} className="flex min-w-32 flex-1 items-center gap-2">
-                  {s.to ? (
-                    <Link to={s.to} className="flex-1">
-                      {box}
-                    </Link>
-                  ) : (
-                    box
-                  )}
-                  {i < journey.length - 1 && (
-                    <ArrowRight
-                      aria-hidden="true"
-                      className="hidden size-4 shrink-0 text-fg-subtle sm:block"
-                    />
-                  )}
-                </li>
-              )
-            })}
-          </ol>
-        </Container>
-      </Section>
-
-      {/* ---------- Schizzi delle pagine ---------- */}
-      <Section className="py-12 md:py-16">
-        <Container>
-          <SectionHeader
-            eyebrow="Wireframe"
-            title="Com’è fatta ogni pagina."
-            subtitle="Ogni rettangolo è un pezzo della pagina, dall’alto in basso. Il giallo è l’azione principale, il grigio scuro una foto."
-          />
-          <div className="mt-8 grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {wireframes.map((w) => (
-              <Wireframe key={w.title} title={w.title} status={w.status} blocks={w.blocks} />
-            ))}
           </div>
         </Container>
       </Section>
