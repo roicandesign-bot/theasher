@@ -28,3 +28,5 @@
 - 2026-09-15 · Aggiunta «Diventa distributore» (idea di Lorenzo) alle pagine previste: richiesta B2B con P. IVA e listino riservato · il brand vende anche all’ingrosso
 - 2026-09-16 · **Annullata** la grafica basata sul board packaging del 15/09 (tre categorie colorate, foto delle confezioni ovunque, hero composito): Lorenzo l'ha giudicata caotica e ha chiesto di tornare alla versione precedente. Il materiale resta in `design/inputs/05-packaging-system.png`: non va riapplicato senza una sua richiesta esplicita.
 - 2026-09-16 · Con l'annullamento sono usciti anche la pagina `/negozio` con i filtri e i wireframe nella mappa, perché erano nello stesso pacchetto · si possono rifare sulla grafica attuale quando Lorenzo lo chiede
+- 2026-09-17 · Animazioni sobrie: comparsa allo scroll una volta sola (componente `Reveal`), hover che solleva le card, cambio pagina in dissolvenza da 180 ms · movimento solo su opacità e spostamento, tutto disattivato con «riduci movimento» di sistema
+- 2026-09-17 · Cambiando pagina si riparte sempre dall’alto · prima restava a metà scroll come in un’app, non come in un sito

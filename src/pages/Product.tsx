@@ -23,6 +23,7 @@ import { Price } from '@/components/ui/Price'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { ProductGallery } from '@/components/ui/ProductGallery'
 import { QuantityInput } from '@/components/ui/QuantityInput'
+import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { findProduct, products, type Variant } from '@/data/products'
 import { site } from '@/data/site'
@@ -322,31 +323,33 @@ export default function Product() {
               title="Il certificato di questo lotto."
               subtitle="Valori dimostrativi: nel sito reale il certificato viene caricato dal team a ogni nuovo lotto."
             />
-            <Card className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <dl className="grid flex-1 grid-cols-2 gap-6 sm:grid-cols-4">
-                {[
-                  { t: 'Lotto', v: product.batch },
-                  { t: 'CBD', v: product.lab.cbd, big: true },
-                  { t: 'THC', v: product.lab.thc },
-                  { t: 'Analisi', v: `${product.lab.lab}, ${product.lab.date}` },
-                ].map((row) => (
-                  <div key={row.t}>
-                    <dt className="label text-[0.6875rem] text-fg-muted">{row.t}</dt>
-                    <dd
-                      className={cn(
-                        'mt-1.5',
-                        row.big ? 'text-3xl font-semibold text-primary' : 'text-sm',
-                      )}
-                    >
-                      {row.v}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <Button variant="outline" className="shrink-0">
-                <Download className="size-4" /> Scarica il PDF
-              </Button>
-            </Card>
+            <Reveal className="mt-8 block">
+              <Card className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <dl className="grid flex-1 grid-cols-2 gap-6 sm:grid-cols-4">
+                  {[
+                    { t: 'Lotto', v: product.batch },
+                    { t: 'CBD', v: product.lab.cbd, big: true },
+                    { t: 'THC', v: product.lab.thc },
+                    { t: 'Analisi', v: `${product.lab.lab}, ${product.lab.date}` },
+                  ].map((row) => (
+                    <div key={row.t}>
+                      <dt className="label text-[0.6875rem] text-fg-muted">{row.t}</dt>
+                      <dd
+                        className={cn(
+                          'mt-1.5',
+                          row.big ? 'text-3xl font-semibold text-primary' : 'text-sm',
+                        )}
+                      >
+                        {row.v}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+                <Button variant="outline" className="shrink-0">
+                  <Download className="size-4" /> Scarica il PDF
+                </Button>
+              </Card>
+            </Reveal>
           </Container>
         </Section>
       )}
@@ -360,33 +363,38 @@ export default function Product() {
             subtitle="Contenuti dimostrativi. Nel sito reale compaiono solo recensioni collegate a un ordine verificato."
           />
           <ul className="mt-8 grid gap-5 md:grid-cols-3">
-            {reviews.map((r) => (
+            {reviews.map((r, i) => (
               <li key={r.name}>
-                <Card className="flex h-full flex-col gap-4">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-1" aria-label={`${r.rating} stelle su 5`}>
-                      {Array.from({ length: 5 }, (_, i) => (
-                        <Star
-                          key={i}
-                          aria-hidden="true"
-                          className={
-                            i < r.rating
-                              ? 'size-4 fill-primary text-primary'
-                              : 'size-4 text-line-strong'
-                          }
-                        />
-                      ))}
+                <Reveal delay={i * 80} className="h-full">
+                  <Card className="flex h-full flex-col gap-4">
+                    <div className="flex items-center justify-between gap-3">
+                      <div
+                        className="flex items-center gap-1"
+                        aria-label={`${r.rating} stelle su 5`}
+                      >
+                        {Array.from({ length: 5 }, (_, i) => (
+                          <Star
+                            key={i}
+                            aria-hidden="true"
+                            className={
+                              i < r.rating
+                                ? 'size-4 fill-primary text-primary'
+                                : 'size-4 text-line-strong'
+                            }
+                          />
+                        ))}
+                      </div>
+                      <span className="text-xs text-fg-muted">{r.date}</span>
                     </div>
-                    <span className="text-xs text-fg-muted">{r.date}</span>
-                  </div>
-                  <p className="text-lead">“{r.text}”</p>
-                  <p className="mt-auto flex items-center gap-2 text-sm">
-                    <span className="font-semibold">{r.name}</span>
-                    <Badge variant="outline" className="ml-auto">
-                      <Check className="size-3" /> Verificato
-                    </Badge>
-                  </p>
-                </Card>
+                    <p className="text-lead">“{r.text}”</p>
+                    <p className="mt-auto flex items-center gap-2 text-sm">
+                      <span className="font-semibold">{r.name}</span>
+                      <Badge variant="outline" className="ml-auto">
+                        <Check className="size-3" /> Verificato
+                      </Badge>
+                    </p>
+                  </Card>
+                </Reveal>
               </li>
             ))}
           </ul>
@@ -408,12 +416,12 @@ export default function Product() {
                     {f.q}
                     <span
                       aria-hidden="true"
-                      className="grid size-8 shrink-0 place-items-center rounded-full text-primary ring-1 ring-line transition group-open:rotate-45"
+                      className="grid size-8 shrink-0 place-items-center rounded-full text-primary ring-1 ring-line transition duration-300 ease-out-soft group-open:rotate-45 group-open:bg-primary group-open:text-primary-fg"
                     >
                       +
                     </span>
                   </summary>
-                  <p className="max-w-prose pb-6 text-fg-muted">{f.a}</p>
+                  <p className="max-w-prose fade-in pb-6 text-fg-muted">{f.a}</p>
                 </details>
               ))}
             </div>
@@ -426,8 +434,10 @@ export default function Product() {
         <Container>
           <SectionHeader eyebrow="Ti può interessare" title="Nella stessa selezione." />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {related.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 80} className="h-full">
+                <ProductCard product={p} className="h-full" />
+              </Reveal>
             ))}
           </div>
         </Container>

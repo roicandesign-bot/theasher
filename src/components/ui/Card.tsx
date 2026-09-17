@@ -13,7 +13,8 @@ export function Card({ variant = 'flat', className, children, ...rest }: CardPro
     <div
       className={cn(
         'rounded-card bg-surface p-6 ring-1 ring-line ring-inset',
-        variant === 'interactive' && 'transition hocus:bg-surface-hover hocus:ring-line-strong',
+        variant === 'interactive' &&
+          'transition duration-200 ease-out-soft hocus:-translate-y-0.5 hocus:bg-surface-hover hocus:ring-line-strong',
         className,
       )}
       {...rest}

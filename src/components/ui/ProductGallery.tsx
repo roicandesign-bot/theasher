@@ -62,7 +62,7 @@ export function ProductGallery({ images }: { images: Image[] }) {
               aria-label={img.alt}
               aria-current={i === current}
               className={cn(
-                'block w-full overflow-hidden rounded-md ring-1 transition',
+                'block w-full overflow-hidden rounded-md ring-1 transition duration-200 ease-out-soft',
                 i === current ? 'ring-2 ring-primary' : 'ring-line hocus:ring-line-strong',
               )}
             >
@@ -82,7 +82,7 @@ export function ProductGallery({ images }: { images: Image[] }) {
           role="dialog"
           aria-modal="true"
           aria-label={image.alt}
-          className="fixed inset-0 z-50 grid place-items-center bg-bg/95 p-4 backdrop-blur"
+          className="fixed inset-0 z-50 grid fade-in place-items-center bg-bg/95 p-4 backdrop-blur"
           onClick={() => setZoom(false)}
         >
           <img

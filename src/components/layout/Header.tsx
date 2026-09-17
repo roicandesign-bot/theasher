@@ -79,8 +79,8 @@ export function Header() {
       <div
         id="mobile-menu"
         className={cn(
-          'fixed inset-x-0 top-18 bottom-0 z-30 flex flex-col bg-bg transition-opacity lg:hidden',
-          open ? 'opacity-100' : 'pointer-events-none opacity-0',
+          'fixed inset-x-0 top-18 bottom-0 z-30 flex flex-col bg-bg transition duration-300 ease-out-soft lg:hidden',
+          open ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0',
         )}
         aria-hidden={!open}
       >
@@ -90,10 +90,13 @@ export function Header() {
               key={item.label}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="flex items-center justify-between border-b border-line py-4 font-display text-h3 uppercase transition hocus:text-primary"
+              className="group flex items-center justify-between border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary"
             >
               {item.label}
-              <span aria-hidden="true" className="text-primary">
+              <span
+                aria-hidden="true"
+                className="text-primary transition-transform duration-200 ease-out-soft group-hover:translate-x-1"
+              >
                 →
               </span>
             </Link>

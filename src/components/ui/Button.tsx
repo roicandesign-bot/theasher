@@ -6,7 +6,7 @@ type Variant = 'primary' | 'outline' | 'ghost' | 'dark'
 type Size = 'sm' | 'md' | 'lg'
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-button label whitespace-nowrap transition select-none disabled:pointer-events-none disabled:opacity-50'
+  'inline-flex items-center justify-center gap-2 rounded-button label whitespace-nowrap transition duration-200 ease-out-soft select-none active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50'
 
 const variants: Record<Variant, string> = {
   /** Giallo pieno: una sola per sezione */

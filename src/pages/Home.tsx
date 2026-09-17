@@ -11,6 +11,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Input } from '@/components/ui/Input'
 import { Price } from '@/components/ui/Price'
 import { ProductCard } from '@/components/ui/ProductCard'
+import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
 import { home } from '@/data/home'
@@ -103,34 +104,36 @@ export default function Home() {
       {/* ---------- Categorie ---------- */}
       <Section className="py-12 md:py-16">
         <Container className="grid gap-5 md:grid-cols-2">
-          {home.categories.map((c) => (
-            <article
-              key={c.id}
-              id={c.id}
-              className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset"
-            >
-              <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
-                <div>
-                  <h2 className="text-h2">{c.title}</h2>
-                  <p className="mt-3 label text-[0.75rem] text-fg-muted">
-                    {c.lines[0]}
-                    <br />
-                    {c.lines[1]}
-                  </p>
+          {home.categories.map((c, i) => (
+            <Reveal key={c.id} delay={i * 80}>
+              <article
+                key={c.id}
+                id={c.id}
+                className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset"
+              >
+                <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
+                  <div>
+                    <h2 className="text-h2">{c.title}</h2>
+                    <p className="mt-3 label text-[0.75rem] text-fg-muted">
+                      {c.lines[0]}
+                      <br />
+                      {c.lines[1]}
+                    </p>
+                  </div>
+                  <Button to={`/#${c.id}`} variant="outline" size="sm" className="self-start">
+                    {c.cta} <ArrowRight className="size-4" />
+                  </Button>
                 </div>
-                <Button to={`/#${c.id}`} variant="outline" size="sm" className="self-start">
-                  {c.cta} <ArrowRight className="size-4" />
-                </Button>
-              </div>
-              <div className="w-36 sm:w-52 md:w-44 lg:w-60">
-                <img
-                  src={asset(c.image)}
-                  alt=""
-                  loading="lazy"
-                  className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
-            </article>
+                <div className="w-36 sm:w-52 md:w-44 lg:w-60">
+                  <img
+                    src={asset(c.image)}
+                    alt=""
+                    loading="lazy"
+                    className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-[1.04]"
+                  />
+                </div>
+              </article>
+            </Reveal>
           ))}
         </Container>
       </Section>
@@ -144,8 +147,10 @@ export default function Home() {
             action={{ label: 'Vedi tutti', to: '/#hash' }}
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {bestSellers.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+            {bestSellers.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 80} className="h-full">
+                <ProductCard product={p} className="h-full" />
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -224,31 +229,33 @@ export default function Home() {
             subtitle={home.lab.text}
           />
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {home.lab.reports.map((r) => (
-              <Card key={r.batch} className="flex flex-col gap-5">
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="text-h3">{r.product}</h3>
-                    <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">
-                      Lotto {r.batch} · {r.date}
-                    </p>
+            {home.lab.reports.map((r, i) => (
+              <Reveal key={r.batch} delay={i * 80} className="h-full">
+                <Card className="flex flex-col gap-5">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <h3 className="text-h3">{r.product}</h3>
+                      <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">
+                        Lotto {r.batch} · {r.date}
+                      </p>
+                    </div>
+                    <FlaskConical className="size-6 shrink-0 text-primary" strokeWidth={1.5} />
                   </div>
-                  <FlaskConical className="size-6 shrink-0 text-primary" strokeWidth={1.5} />
-                </div>
-                <dl className="grid grid-cols-2 gap-3 border-t border-line pt-4 text-sm">
-                  <div>
-                    <dt className="label text-[0.6875rem] text-fg-muted">CBD</dt>
-                    <dd className="mt-1 text-2xl font-semibold text-primary">{r.cbd}</dd>
-                  </div>
-                  <div>
-                    <dt className="label text-[0.6875rem] text-fg-muted">THC</dt>
-                    <dd className="mt-1 text-sm">{r.thc}</dd>
-                  </div>
-                </dl>
-                <Badge variant="muted" className="self-start">
-                  Certificato PDF in pagina prodotto
-                </Badge>
-              </Card>
+                  <dl className="grid grid-cols-2 gap-3 border-t border-line pt-4 text-sm">
+                    <div>
+                      <dt className="label text-[0.6875rem] text-fg-muted">CBD</dt>
+                      <dd className="mt-1 text-2xl font-semibold text-primary">{r.cbd}</dd>
+                    </div>
+                    <div>
+                      <dt className="label text-[0.6875rem] text-fg-muted">THC</dt>
+                      <dd className="mt-1 text-sm">{r.thc}</dd>
+                    </div>
+                  </dl>
+                  <Badge variant="muted" className="self-start">
+                    Certificato PDF in pagina prodotto
+                  </Badge>
+                </Card>
+              </Reveal>
             ))}
           </div>
         </Container>
@@ -263,30 +270,32 @@ export default function Home() {
             subtitle={home.reviews.note}
           />
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
-            {home.reviews.items.map((r) => (
+            {home.reviews.items.map((r, i) => (
               <li key={r.name}>
-                <Card className="flex h-full flex-col gap-4">
-                  <div className="flex items-center gap-1" aria-label={`${r.rating} stelle su 5`}>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star
-                        key={i}
-                        aria-hidden="true"
-                        className={
-                          i < r.rating
-                            ? 'size-4 fill-primary text-primary'
-                            : 'size-4 text-line-strong'
-                        }
-                      />
-                    ))}
-                  </div>
-                  <p className="text-lead">“{r.text}”</p>
-                  <p className="mt-auto flex flex-wrap items-center gap-x-2 text-sm text-fg-muted">
-                    <span className="font-semibold text-fg">{r.name}</span> · {r.product}
-                    <Badge variant="outline" className="ml-auto">
-                      Acquisto verificato
-                    </Badge>
-                  </p>
-                </Card>
+                <Reveal delay={i * 80} className="h-full">
+                  <Card className="flex h-full flex-col gap-4">
+                    <div className="flex items-center gap-1" aria-label={`${r.rating} stelle su 5`}>
+                      {Array.from({ length: 5 }, (_, i) => (
+                        <Star
+                          key={i}
+                          aria-hidden="true"
+                          className={
+                            i < r.rating
+                              ? 'size-4 fill-primary text-primary'
+                              : 'size-4 text-line-strong'
+                          }
+                        />
+                      ))}
+                    </div>
+                    <p className="text-lead">“{r.text}”</p>
+                    <p className="mt-auto flex flex-wrap items-center gap-x-2 text-sm text-fg-muted">
+                      <span className="font-semibold text-fg">{r.name}</span> · {r.product}
+                      <Badge variant="outline" className="ml-auto">
+                        Acquisto verificato
+                      </Badge>
+                    </p>
+                  </Card>
+                </Reveal>
               </li>
             ))}
           </ul>
@@ -375,12 +384,12 @@ export default function Home() {
                   {f.q}
                   <span
                     aria-hidden="true"
-                    className="grid size-8 shrink-0 place-items-center rounded-full text-primary ring-1 ring-line transition group-open:rotate-45"
+                    className="grid size-8 shrink-0 place-items-center rounded-full text-primary ring-1 ring-line transition duration-300 ease-out-soft group-open:rotate-45 group-open:bg-primary group-open:text-primary-fg"
                   >
                     +
                   </span>
                 </summary>
-                <p className="max-w-prose pb-6 text-fg-muted">{f.a}</p>
+                <p className="max-w-prose fade-in pb-6 text-fg-muted">{f.a}</p>
               </details>
             ))}
           </div>

@@ -14,7 +14,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
   return (
     <article
       className={cn(
-        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition ring-inset hocus:ring-line-strong',
+        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft ring-inset hover:-translate-y-1 hover:ring-primary/40',
         className,
       )}
     >

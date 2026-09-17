@@ -12,7 +12,7 @@ export function IconButton({ className, children, ...rest }: IconButtonProps) {
     <button
       type="button"
       className={cn(
-        'inline-grid size-11 shrink-0 place-items-center rounded-full text-fg transition hocus:bg-surface-hover hocus:text-primary',
+        'inline-grid size-11 shrink-0 place-items-center rounded-full text-fg transition duration-200 ease-out-soft active:scale-95 hocus:bg-surface-hover hocus:text-primary',
         className,
       )}
       {...rest}
