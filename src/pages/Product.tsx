@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { Attivo } from '@/components/ui/Attivo'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -25,14 +26,7 @@ import { ProductGallery } from '@/components/ui/ProductGallery'
 import { QuantityInput } from '@/components/ui/QuantityInput'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import {
-  attivoPrincipale,
-  categorie,
-  findProduct,
-  products,
-  tagLavorazione,
-  type Variant,
-} from '@/data/products'
+import { categorie, findProduct, products, tagLavorazione, type Variant } from '@/data/products'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
 import { cn } from '@/lib/cn'
@@ -136,12 +130,8 @@ export default function Product() {
               </div>
             )}
             <Eyebrow>{categoryLabel}</Eyebrow>
-            <h1 className="mt-3 text-h1 text-pretty">
-              {product.name}
-              {attivoPrincipale(product) && (
-                <span className="text-primary"> — {attivoPrincipale(product)}</span>
-              )}
-            </h1>
+            <h1 className="mt-3 text-h1 text-pretty">{product.name}</h1>
+            <Attivo product={product} className="mt-3 text-[1.0625rem] md:text-[1.25rem]" />
             <p className="mt-3 label text-[0.75rem] text-fg-muted">
               {product.aroma.join(' / ')}
               {tagLavorazione(product) && (

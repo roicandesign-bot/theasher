@@ -844,19 +844,33 @@ export function formatQuantita(p: Product) {
 }
 
 /**
- * Etichetta del cannabinoide principale, es. "CBD 18,4 %".
+ * Etichetta del cannabinoide principale, es. "CBD: +18%".
+ * La percentuale è arrotondata all'intero sotto: il lotto ne contiene almeno tanto.
  * Se si sta filtrando per un cannabinoide, mostra quello: così la percentuale
  * in pagina è sempre quella che l'utente sta cercando.
  */
 export function attivoPrincipale(p: Product, preferito?: Cannabinoide | null) {
   if (preferito) {
     const v = p.attivi[chiaveAttivo[preferito]] ?? 0
-    if (v > 0) return `${preferito} ${numero(v)} %`
+    if (v > 0) return etichettaAttivo(preferito, v)
   }
   const top = cannabinoidi
     .map((c) => ({ c, v: p.attivi[chiaveAttivo[c]] ?? 0 }))
     .sort((a, b) => b.v - a.v)[0]
-  return top && top.v > 0 ? `${top.c} ${numero(top.v)} %` : null
+  return top && top.v > 0 ? etichettaAttivo(top.c, top.v) : null
+}
+
+const etichettaAttivo = (c: Cannabinoide, v: number) => `${c}: +${Math.floor(v)}%`
+
+/**
+ * Le due parti dell'etichetta, separate: la sigla va spaziata, il valore no.
+ * Serve al sottotitolo giallo di schede e pagina prodotto.
+ */
+export function attivoParti(p: Product, preferito?: Cannabinoide | null) {
+  const label = attivoPrincipale(p, preferito)
+  if (!label) return null
+  const [sigla, valore] = label.split(': ')
+  return { sigla: sigla!, valore: valore! }
 }
 
 /** Lotti certificati senza THC: è un'etichetta, non l'assenza di dichiarazione. */

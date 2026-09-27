@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
+import { Attivo } from '@/components/ui/Attivo'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Price } from '@/components/ui/Price'
 import {
-  attivoPrincipale,
   etichettaCategoria,
   formatQuantita,
   productPath,
@@ -22,18 +22,14 @@ import { cn } from '@/lib/cn'
 export function ProductCard({
   product,
   evidenzia,
-  percentuale = 'titolo',
   className,
 }: {
   product: Product
   /** Cannabinoide da mostrare al posto del principale (segue il filtro) */
   evidenzia?: Cannabinoide | null
-  /** Dove finisce la percentuale: dopo il nome (A) o come sottotitolo giallo (B) */
-  percentuale?: 'titolo' | 'sottotitolo'
   className?: string
 }) {
   const { add } = useCart()
-  const attivo = attivoPrincipale(product, evidenzia)
   return (
     <article
       className={cn(
@@ -67,15 +63,8 @@ export function ProductCard({
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
               {product.name}
             </Link>
-            {attivo && percentuale === 'titolo' && (
-              <span className="text-primary"> — {attivo}</span>
-            )}
           </h3>
-          {attivo && percentuale === 'sottotitolo' && (
-            <p className="mt-2 text-[0.875rem] font-bold tracking-attivo text-primary uppercase">
-              {attivo}
-            </p>
-          )}
+          <Attivo product={product} evidenzia={evidenzia} className="mt-2" />
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
           <p className="mt-1.5 label text-[0.625rem] text-fg-muted">{tagLavorazione(product)}</p>
         </div>

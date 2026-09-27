@@ -38,8 +38,6 @@ export default function Shop() {
   const filtri = leggiFiltri(params)
   const mostrati = applica(filtri)
   const attivi = attiviDi(filtri)
-  // Bozza da scegliere: ?stile=b mette la percentuale come sottotitolo giallo.
-  const percentuale = params.get('stile') === 'b' ? 'sottotitolo' : 'titolo'
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
   const setFilter = (key: string, value: string | null) => {
@@ -211,7 +209,6 @@ export default function Shop() {
                   <ProductCard
                     product={p}
                     evidenzia={filtri.cannabinoide ?? (filtri.linea as Cannabinoide | null)}
-                    percentuale={percentuale}
                     className="h-full"
                   />
                 </Reveal>

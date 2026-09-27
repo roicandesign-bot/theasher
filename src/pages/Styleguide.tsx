@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
 import { Diamond } from '@/components/ui/Diamond'
+import { Chip } from '@/components/ui/Chip'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Input } from '@/components/ui/Input'
 import { Logo } from '@/components/ui/Logo'
@@ -60,6 +61,11 @@ const typeScale = [
     cls: 'label text-eyebrow text-primary',
     name: 'eyebrow',
     sample: 'Good plants. Brighter days.',
+  },
+  {
+    cls: 'text-attivo text-primary',
+    name: 'text-attivo · cannabinoide',
+    sample: 'CBD: +31%',
   },
 ]
 
@@ -188,6 +194,23 @@ export default function Styleguide() {
           <div className="mt-6 flex flex-wrap items-end gap-8">
             <Price cents={2490} grams={3.5} />
             <Price cents={1990} compareAt={2370} grams={3} size="lg" />
+          </div>
+
+          <h3 className="mt-12 text-h3">Pillole dei filtri</h3>
+          <div className="mt-6 flex flex-wrap items-center gap-2">
+            <Chip size="sm" active onClick={() => {}}>
+              CBD
+            </Chip>
+            <Chip size="sm" onClick={() => {}}>
+              THC-X
+            </Chip>
+            <Chip size="sm" count={6} onClick={() => {}}>
+              Indoor
+            </Chip>
+            <Chip size="sm" count={0} disabled onClick={() => {}}>
+              Trim
+            </Chip>
+            <Chip onClick={() => {}}>Misura grande</Chip>
           </div>
 
           <h3 className="mt-12 text-h3">Campi</h3>

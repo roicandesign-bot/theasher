@@ -51,3 +51,5 @@
 - 2026-09-27 · Linee madri portate a quattro (CBD, THC-X, CBG, CBN) più l'etichetta THC free per i lotti certificati 0,0 % · sono le cinque pillole della seconda riga del negozio, tutte visibili a 390 px senza scorrere
 - 2026-09-27 · Aggiunti cinque prodotti demo a dominanza CBG e CBN (fiore, hash, isolati, olio notte) · senza prodotti i filtri nuovi resterebbero vuoti
 - 2026-09-27 · La percentuale mostrata segue il filtro: se cerchi CBG vedi il CBG, non il cannabinoide più alto · due bozze a confronto per dove metterla (nel titolo o come sottotitolo giallo), scelta di Lorenzo
+- 2026-09-27 · Scelta di Lorenzo: la percentuale va come sottotitolo giallo sotto il nome, in grassetto e molto spaziato, nel formato «CBD: +31%» · la sigla è spaziata, il valore resta compatto; arrotondiamo all'intero sotto, così il lotto contiene sempre almeno quel valore
+- 2026-09-27 · Nuovo stile di testo `text-attivo` (token `--tracking-attivo`) e componente `Attivo` · un unico posto per il sottotitolo del cannabinoide, documentato nella Styleguide
