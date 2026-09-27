@@ -33,7 +33,104 @@ export const azienda = {
   ],
 }
 
-export const journal = [
+export const blog = [
+  {
+    slug: 'indoor-glasshouse-outdoor',
+    titolo: 'Indoor, glasshouse, outdoor: cosa cambia davvero',
+    categoria: 'Guide',
+    data: '24 settembre 2026',
+    lettura: '5 min',
+    estratto:
+      'Stessa genetica, tre modi di coltivarla, tre prodotti diversi. Cosa si paga quando si paga di più.',
+    immagine: 'images/filiera/coltivazione.jpg',
+    corpo: [
+      'Il metodo di coltivazione è la prima cosa che decide il prezzo di un fiore, prima ancora della genetica. Non perché uno sia «buono» e l’altro «cattivo», ma perché cambia quanto controllo hai su quello che succede alla pianta.',
+      'Indoor vuol dire ambiente chiuso: luce, temperatura, umidità e nutrimento decisi da chi coltiva, ora per ora. Le cime vengono dense, cariche di resina, con un profilo aromatico netto. Costa di più perché consuma di più e richiede presenza costante.',
+      'Glasshouse e greenhouse usano la luce del sole dentro una struttura: si risparmia energia, si perde un po’ di controllo. Il risultato è spesso ottimo, con cime leggermente più aperte e un profilo più morbido.',
+      'Outdoor è la pianta in pieno campo. Il sole fa tutto, il clima decide l’annata. Le cime sono meno dense e il prezzo al grammo è il più basso del catalogo: per certi usi, come le estrazioni o gli infusi, è la scelta più sensata.',
+      'Cali, infine, non è un luogo: è uno standard di lavorazione — cure lungo, selezione stretta, cime grandi. Si paga quello, non la California.',
+    ],
+  },
+  {
+    slug: 'dentro-la-nostra-coltivazione',
+    titolo: 'Dentro la nostra coltivazione: una giornata in impianto',
+    categoria: 'Dietro le quinte',
+    data: '18 settembre 2026',
+    lettura: '6 min',
+    estratto:
+      'Luci, ricircolo d’aria, controllo dell’umidità e mani sulle piante. Come lavoriamo davvero, senza filtri.',
+    immagine: 'images/filiera/raccolta.jpg',
+    corpo: [
+      'La giornata comincia con i numeri: temperatura, umidità relativa, VPD, pH e conducibilità dell’acqua. Sono cinque valori che leggiamo prima ancora di guardare le piante, perché quando una pianta «si vede» che sta male, il problema è cominciato tre giorni prima.',
+      'Poi si passa fila per fila. Si tolgono le foglie che fanno ombra alle cime basse, si controllano le pagine inferiori, si spostano i vasi che ricevono meno luce. È lavoro manuale, lento, e non si può automatizzare del tutto.',
+      'Alla raccolta il tempo conta più di tutto: si taglia quando i tricomi sono al punto giusto, non quando fa comodo al calendario. Da lì partono asciugatura lenta e concia, che è il passaggio in cui la maggior parte del profumo si salva o si perde.',
+      'Il trim che avanza non si butta: è materia prima per estrazioni e setacciature. È il motivo per cui possiamo dire che i nostri hash nascono dalle nostre piante.',
+    ],
+  },
+  {
+    slug: 'che-cose-il-kif',
+    titolo: 'Che cos’è il kif, la polvere che esce dai setacci',
+    categoria: 'Cultura',
+    data: '12 settembre 2026',
+    lettura: '5 min',
+    estratto:
+      'Le ghiandole di resina separate dalla pianta: da qui nasce ogni hash setacciato. Come si guarda, come si giudica.',
+    immagine: 'images/filiera/setacciatura.jpg',
+    corpo: [
+      'Il kif è l’insieme delle ghiandole di resina — i tricomi — staccate dal fiore. Sul setaccio resta il vegetale, sotto scende una polvere che va dal biondo chiaro al sabbia scuro. Quella polvere è la base di ogni hash setacciato.',
+      'Il colore dice molto: più è chiara e uniforme, meno vegetale è passato. Una polvere verdognola significa che insieme alle ghiandole è sceso anche materiale della foglia, e in bocca si sente subito.',
+      'Il secondo indizio è come si comporta sotto le dita: un kif ricco si compatta con il calore della mano, uno povero resta polveroso e asciutto anche premendo.',
+      'Da qui in poi cambia solo cosa ci fai: pressato a freddo diventa un panetto, lavorato in più passaggi diventa un super dry, lasciato così resta polline. La qualità, però, è già decisa: viene dalla pianta e dal setaccio.',
+    ],
+  },
+  {
+    slug: 'cbg-cbn-cosa-sono',
+    titolo: 'CBG e CBN: i due cannabinoidi di cui si parla poco',
+    categoria: 'Guide',
+    data: '5 settembre 2026',
+    lettura: '4 min',
+    estratto:
+      'Non sono «CBD di serie B»: sono molecole diverse, con profili diversi. Cosa c’è da sapere prima di sceglierle.',
+    immagine: 'images/demo/packaging-family.jpg',
+    corpo: [
+      'Il CBG è il cannabinoide da cui derivano gli altri: nella pianta compare presto e, mano a mano che la fioritura avanza, si trasforma. Per avere fiori ricchi di CBG servono genetiche specifiche o raccolte anticipate, ed è il motivo per cui costa più del CBD.',
+      'Il CBN invece si forma dopo, con l’ossidazione: è il prodotto dell’invecchiamento del materiale. Per questo si trova soprattutto in estratti e oli, dove viene isolato e dosato, e raramente in fiore.',
+      'Sul sito li trovi come linee a sé: CBG e CBN hanno la loro pillola nei filtri del negozio, e in ogni scheda la percentuale è dichiarata sul lotto.',
+      'Una precisazione che ci teniamo a fare: non diciamo a cosa servono. Non è reticenza, è che non possiamo fare affermazioni su effetti o benefici. Quello che possiamo darti è il dato analitico, verificabile.',
+    ],
+  },
+  {
+    slug: 'thcx-perche-linea-separata',
+    titolo: 'THC-X: perché lo teniamo su una linea separata',
+    categoria: 'Legale',
+    data: '30 agosto 2026',
+    lettura: '5 min',
+    estratto:
+      'Due linee, regole diverse, nessuna confusione in carrello. Come abbiamo organizzato il catalogo e perché.',
+    immagine: 'images/demo/hash-texture.jpg',
+    corpo: [
+      'Il catalogo è diviso in linee: CBD e THC-X, più le linee CBG e CBN. Non è una scelta di marketing: sono famiglie con normative, disponibilità e Paesi di destinazione diversi.',
+      'Tutti i prodotti restano entro i limiti di legge sul THC del mercato in cui vengono venduti, e i limiti cambiano da Paese a Paese. Per questo la linea è scritta sulla scheda e filtrabile dal negozio: chi compra deve sapere cosa ha in mano prima di metterlo nel carrello.',
+      'Dove serve, indichiamo anche i lotti certificati 0,0 % di THC con l’etichetta THC free: isolati, terpsolate e alcuni oli.',
+      'La materia cambia in fretta. Quando cambia, aggiorniamo le schede e le note legali: la pagina Informazioni legali riporta sempre la versione in vigore.',
+    ],
+  },
+  {
+    slug: 'formati-fiore-come-scegliere',
+    titolo: 'Big bud, small bud, trim, prerolls: quale formato scegliere',
+    categoria: 'Prodotto',
+    data: '22 agosto 2026',
+    lettura: '4 min',
+    estratto:
+      'Stessa coltivazione, quattro formati, quattro prezzi. Una guida veloce per non pagare quello che non ti serve.',
+    immagine: 'images/demo/cat-flower.jpg',
+    corpo: [
+      'Big bud sono le cime grandi, quelle che si fotografano: selezione più stretta, resa più bassa per il coltivatore, prezzo più alto. Se cerchi l’aspetto oltre al profilo, sono quelle.',
+      'Small bud vengono dalle stesse piante e dallo stesso lotto: cime più piccole, stesso profumo, prezzo al grammo più basso. Per chi guarda la sostanza è quasi sempre l’acquisto più sensato.',
+      'Il trim è il materiale di lavorazione: foglie e residui selezionati. Non è materiale da fiore, è materia prima per estrazioni e infusi, e il prezzo lo dice.',
+      'I prerolls sono coni pronti: comodi, dosati, con tiraggio regolare. Si paga la lavorazione, non il grammo.',
+    ],
+  },
   {
     slug: 'come-si-legge-un-certificato',
     titolo: 'Come si legge un certificato di analisi',

@@ -8,7 +8,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Input } from '@/components/ui/Input'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Section } from '@/components/ui/Section'
-import { journal } from '@/data/contenuti'
+import { blog } from '@/data/contenuti'
 import { categorie, products, tagLavorazione } from '@/data/products'
 
 const suggerimenti = ['Hash', 'Lemon Haze', 'Fiori', 'Lotto', 'Spedizione']
@@ -31,7 +31,7 @@ export default function Search() {
 
   const articoliTrovati = useMemo(() => {
     if (!query) return []
-    return journal.filter((a) =>
+    return blog.filter((a) =>
       `${a.titolo} ${a.estratto} ${a.categoria}`.toLowerCase().includes(query),
     )
   }, [query])
@@ -126,12 +126,12 @@ export default function Search() {
 
           {articoliTrovati.length > 0 && (
             <section className="mt-12">
-              <h2 className="text-h3">Dal journal</h2>
+              <h2 className="text-h3">Dal blog</h2>
               <ul className="mt-5 flex flex-col gap-3">
                 {articoliTrovati.map((a) => (
                   <li key={a.slug}>
                     <Link
-                      to={`/journal/${a.slug}`}
+                      to={`/blog/${a.slug}`}
                       className="flex flex-col gap-1 rounded-card p-5 ring-1 ring-line transition ring-inset hocus:ring-primary"
                     >
                       <span className="font-semibold">{a.titolo}</span>

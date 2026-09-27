@@ -1,7 +1,8 @@
 // Home: InfoBar+Header (layout) → Hero split → Trust bar → Categorie Hash / CBD Flower →
 // Best seller (3 card) → New drop (banda gialla) → Story "Crafted with character" →
 // Analisi di laboratorio → Recensioni (esempio) → Bundle → Newsletter → FAQ → Footer (layout)
-import { ArrowRight, FlaskConical, Leaf, Lock, Package, Star, Truck } from 'lucide-react'
+import { ArrowRight, FlaskConical, Instagram, Leaf, Lock, Package, Star, Truck } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
@@ -15,8 +16,10 @@ import { ProductCard } from '@/components/ui/ProductCard'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
+import { blog } from '@/data/contenuti'
 import { home } from '@/data/home'
 import { bestSellers, formatQuantita, newDrop } from '@/data/products'
+import { site } from '@/data/site'
 
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
@@ -26,6 +29,12 @@ const trustIcons = [FlaskConical, Truck, Lock, Package]
 
 /** In home ne mostriamo tre: la lista completa sta nel negozio. */
 const treBestSeller = bestSellers.slice(0, 3)
+
+/** Gli ultimi tre articoli del blog. */
+const treArticoli = blog.slice(0, 3)
+
+const instagramUrl =
+  site.footer.socials.find((s) => s.label === 'Instagram')?.href ?? 'https://instagram.com'
 
 export default function Home() {
   return (
@@ -382,6 +391,52 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* ---------- Dal blog ---------- */}
+      <Section id="blog" className="scroll-mt-24">
+        <Container>
+          <SectionHeader
+            eyebrow={home.blog.eyebrow}
+            title={home.blog.title}
+            subtitle={home.blog.text}
+            action={{ label: home.blog.cta, to: '/blog' }}
+          />
+          <ul className="mt-8 grid gap-5 md:grid-cols-3">
+            {treArticoli.map((a, i) => (
+              <li key={a.slug}>
+                <Reveal delay={i * 80} className="h-full">
+                  <Link
+                    to={`/blog/${a.slug}`}
+                    className="group flex h-full flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft hover:-translate-y-1 hover:ring-2 hover:ring-primary"
+                  >
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={asset(a.immagine)}
+                        alt=""
+                        loading="lazy"
+                        className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="flex flex-1 flex-col gap-3 p-6">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <Badge variant="outline">{a.categoria}</Badge>
+                        <span className="label text-[0.625rem] text-fg-muted">
+                          {a.data} · {a.lettura}
+                        </span>
+                      </div>
+                      <h3 className="text-h3 text-pretty">{a.titolo}</h3>
+                      <p className="text-sm text-fg-muted">{a.estratto}</p>
+                      <span className="mt-auto flex items-center gap-2 pt-2 label text-[0.6875rem] text-primary">
+                        Leggi <ArrowRight className="size-4" />
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
+
       {/* ---------- FAQ ---------- */}
       <Section id="faq" className="scroll-mt-24">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
@@ -405,6 +460,47 @@ export default function Home() {
               </details>
             ))}
           </div>
+        </Container>
+      </Section>
+      {/* ---------- Instagram: banda gialla di chiusura ---------- */}
+      <Section id="instagram" tone="yellow" className="scroll-mt-24 overflow-hidden">
+        <StrokePattern tone="dark" className="opacity-[0.07]" position="85% 30%" scale="200%" />
+        <Container className="relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <Eyebrow tone="dark">{home.instagram.eyebrow}</Eyebrow>
+            <p className="mt-3 font-display text-h2">{home.instagram.handle}</p>
+            <h2 className="mt-2 max-w-md text-h3 text-primary-fg/80">{home.instagram.title}</h2>
+            <p className="mt-5 max-w-md text-lead text-primary-fg/80">{home.instagram.text}</p>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-7 inline-flex h-12 items-center gap-2 rounded-button bg-bg px-6 label text-[0.75rem] text-primary transition duration-200 ease-out-soft hocus:bg-bg-alt"
+            >
+              <Instagram className="size-4" /> {home.instagram.cta}
+            </a>
+          </div>
+          <ul className="grid grid-cols-3 gap-2 sm:gap-3">
+            {home.instagram.foto.map((src, i) => (
+              <li key={src}>
+                <Reveal delay={i * 50}>
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group block aspect-square overflow-hidden rounded-card ring-2 ring-primary-fg/10"
+                  >
+                    <img
+                      src={asset(src)}
+                      alt=""
+                      loading="lazy"
+                      className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-105"
+                    />
+                  </a>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
         </Container>
       </Section>
     </>

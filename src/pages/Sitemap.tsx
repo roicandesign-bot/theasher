@@ -143,7 +143,7 @@ export default function Sitemap() {
             {
               n: 'Poi',
               title: 'Il racconto',
-              text: 'Azienda, journal, contatti, diventa distributore. Portano traffico e fiducia.',
+              text: 'Azienda, blog, contatti, diventa distributore. Portano traffico e fiducia.',
             },
             {
               n: 'Infine',

@@ -6,7 +6,7 @@ import Auth from './pages/Auth'
 import Contact from './pages/Contact'
 import Distributor from './pages/Distributor'
 import Faq from './pages/Faq'
-import { JournalArticle, JournalList } from './pages/Journal'
+import { BlogArticle, BlogList } from './pages/Blog'
 import LabTests from './pages/LabTests'
 import Search from './pages/Search'
 import TextPage from './pages/TextPage'
@@ -61,13 +61,13 @@ export const routes: AppRoute[] = [
   { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
   { path: '/prezzi', label: 'Analisi prezzi', component: Prezzi, inNav: false },
   { path: '/azienda', label: 'L’azienda', component: About, inNav: false },
-  { path: '/journal', label: 'Journal', component: JournalList, inNav: false },
+  { path: '/blog', label: 'Blog', component: BlogList, inNav: false },
   {
-    path: '/journal/:slug',
+    path: '/blog/:slug',
     label: 'Articolo',
-    component: JournalArticle,
+    component: BlogArticle,
     inNav: false,
-    screenshotPath: '/journal/come-si-legge-un-certificato',
+    screenshotPath: '/blog/indoor-glasshouse-outdoor',
   },
   { path: '/contatti', label: 'Contatti', component: Contact, inNav: false },
   {

@@ -85,7 +85,7 @@ export const fatto = [
     data: '27 set',
     titolo: 'Racconto e pagine di servizio',
     testo:
-      'Azienda, journal con tre articoli, contatti, diventa distributore, analisi di laboratorio, domande frequenti, ricerca, preferiti e le sette pagine legali.',
+      'Azienda, blog con nove articoli, contatti, diventa distributore, analisi di laboratorio, domande frequenti, ricerca, preferiti e le sette pagine legali.',
   },
   {
     data: '27 set',

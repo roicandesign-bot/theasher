@@ -1,34 +1,63 @@
-// Journal: elenco articoli e pagina del singolo articolo
+// Blog: elenco articoli con filtro per categoria, e pagina del singolo articolo
 import { ArrowLeft, ArrowRight } from 'lucide-react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
+import { Chip } from '@/components/ui/Chip'
 import { Container } from '@/components/ui/Container'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import { journal } from '@/data/contenuti'
+import { blog } from '@/data/contenuti'
 import { asset } from '@/lib/asset'
 
-export function JournalList() {
-  const [primo, ...altri] = journal
+const categorie = [...new Set(blog.map((a) => a.categoria))]
+
+export function BlogList() {
+  const [params, setParams] = useSearchParams()
+  const categoria = params.get('categoria')
+  const articoli = categoria ? blog.filter((a) => a.categoria === categoria) : blog
+  const [primo, ...altri] = articoli
+
+  const filtra = (c: string | null) => {
+    const next = new URLSearchParams()
+    if (c) next.set('categoria', c)
+    setParams(next)
+  }
+
   return (
     <>
       <Section className="pb-8">
         <Container>
-          <Eyebrow>Journal</Eyebrow>
+          <Eyebrow>Blog</Eyebrow>
           <h1 className="mt-4 text-h1">Quello che vale la pena sapere.</h1>
           <p className="mt-5 max-w-prose text-lead text-fg-muted">
-            Guide pratiche e cultura del prodotto. Niente consigli di salute, niente promesse: solo
-            come funzionano le cose.
+            Guide pratiche, cultura del prodotto e come lavoriamo. Niente consigli di salute, niente
+            promesse: solo come funzionano le cose.
           </p>
+          <div className="mt-8 flex flex-wrap gap-2">
+            <Chip size="sm" active={!categoria} onClick={() => filtra(null)}>
+              Tutti
+            </Chip>
+            {categorie.map((c) => (
+              <Chip
+                key={c}
+                size="sm"
+                count={blog.filter((a) => a.categoria === c).length}
+                active={categoria === c}
+                onClick={() => filtra(categoria === c ? null : c)}
+              >
+                {c}
+              </Chip>
+            ))}
+          </div>
         </Container>
       </Section>
 
       {primo && (
         <Container className="pb-12">
           <Link
-            to={`/journal/${primo.slug}`}
+            to={`/blog/${primo.slug}`}
             className="group grid overflow-hidden rounded-card bg-surface ring-1 ring-line transition ring-inset md:grid-cols-2 hocus:ring-primary"
           >
             <div className="aspect-[16/10] overflow-hidden md:aspect-auto">
@@ -63,7 +92,7 @@ export function JournalList() {
               <li key={a.slug}>
                 <Reveal delay={i * 60} className="h-full">
                   <Link
-                    to={`/journal/${a.slug}`}
+                    to={`/blog/${a.slug}`}
                     className="group flex h-full flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition ring-inset hocus:ring-primary"
                   >
                     <div className="aspect-[16/9] overflow-hidden">
@@ -95,20 +124,20 @@ export function JournalList() {
   )
 }
 
-export function JournalArticle() {
+export function BlogArticle() {
   const { slug } = useParams()
-  const a = journal.find((x) => x.slug === slug) ?? journal[0]!
-  const altri = journal.filter((x) => x.slug !== a.slug).slice(0, 2)
+  const a = blog.find((x) => x.slug === slug) ?? blog[0]!
+  const altri = blog.filter((x) => x.slug !== a.slug).slice(0, 2)
 
   return (
     <>
       <Section className="pb-8">
         <Container width="prose">
           <Link
-            to="/journal"
+            to="/blog"
             className="inline-flex items-center gap-2 label text-[0.6875rem] text-fg-muted transition hocus:text-primary"
           >
-            <ArrowLeft className="size-4" /> Journal
+            <ArrowLeft className="size-4" /> Blog
           </Link>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <Badge>{a.categoria}</Badge>
@@ -141,7 +170,7 @@ export function JournalArticle() {
             {altri.map((x) => (
               <li key={x.slug}>
                 <Link
-                  to={`/journal/${x.slug}`}
+                  to={`/blog/${x.slug}`}
                   className="flex items-center justify-between gap-4 rounded-card p-4 ring-1 ring-line transition ring-inset hocus:ring-primary"
                 >
                   <span className="font-semibold">{x.titolo}</span>

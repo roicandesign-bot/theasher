@@ -110,7 +110,7 @@ export default function LabTests() {
             </p>
           </div>
           <Link
-            to="/journal/come-si-legge-un-certificato"
+            to="/blog/come-si-legge-un-certificato"
             className="inline-flex h-12 shrink-0 items-center gap-2 rounded-button bg-primary px-6 label text-primary-fg transition hocus:bg-primary-hover"
           >
             Leggi la guida →

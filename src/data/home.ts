@@ -95,6 +95,28 @@ export const home = {
       },
     ],
   },
+  blog: {
+    eyebrow: 'Dal blog',
+    title: 'Come funzionano le cose.',
+    text: 'Guide pratiche, cultura del prodotto e quello che succede in coltivazione. Senza promesse e senza consigli di salute.',
+    cta: 'Vai al blog',
+  },
+  instagram: {
+    eyebrow: 'Seguici',
+    handle: '@thehasher',
+    title: 'I drop escono prima su Instagram.',
+    text: 'Nuovi lotti, dietro le quinte della coltivazione, analisi appena arrivate. Se non vuoi perderti niente, è lì che succede per primo.',
+    cta: 'Seguici su Instagram',
+    /** Griglia della vetrina: foto già in chiave The Hasher */
+    foto: [
+      'images/filiera/setacciatura.jpg',
+      'images/demo/lemon-haze.jpg',
+      'images/filiera/coltivazione.jpg',
+      'images/demo/hash-macro.jpg',
+      'images/filiera/pressatura.jpg',
+      'images/demo/cat-flower.jpg',
+    ],
+  },
   lab: {
     eyebrow: 'Analisi di laboratorio',
     title: 'Ogni lotto, un certificato.',

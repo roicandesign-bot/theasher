@@ -171,17 +171,17 @@ export const sitemap: PageGroup[] = [
         fromLorenzo: true,
       },
       {
-        name: 'Journal (blog)',
+        name: 'Blog',
         what: 'Elenco degli articoli: guide, drop, cultura',
         status: 'fatta',
-        to: '/journal',
+        to: '/blog',
         fromLorenzo: true,
       },
       {
         name: 'Articolo',
-        what: 'Il singolo pezzo del journal',
+        what: 'Il singolo articolo del blog',
         status: 'fatta',
-        to: '/journal/come-si-legge-un-certificato',
+        to: '/blog/indoor-glasshouse-outdoor',
         fromLorenzo: true,
       },
       {

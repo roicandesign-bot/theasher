@@ -14,7 +14,7 @@ export const site = {
     { label: 'Estratti', to: '/negozio?categoria=estratti' },
     { label: 'New Drops', to: '/negozio?badge=New' },
     { label: 'Azienda', to: '/azienda' },
-    { label: 'Journal', to: '/journal' },
+    { label: 'Blog', to: '/blog' },
   ],
   infoBar: {
     age: '18+',
@@ -37,7 +37,7 @@ export const site = {
     ],
     info: [
       { label: 'L’azienda', to: '/azienda' },
-      { label: 'Journal', to: '/journal' },
+      { label: 'Blog', to: '/blog' },
       { label: 'Analisi di laboratorio', to: '/analisi' },
       { label: 'Domande frequenti', to: '/faq' },
       { label: 'Contatti', to: '/contatti' },
@@ -53,7 +53,7 @@ export const site = {
       { label: 'Informazioni legali', to: '/legale' },
     ],
     socials: [
-      { label: 'Instagram', href: 'https://instagram.com' },
+      { label: 'Instagram', href: 'https://instagram.com/thehasher' },
       { label: 'TikTok', href: 'https://tiktok.com' },
       { label: 'YouTube', href: 'https://youtube.com' },
     ],
