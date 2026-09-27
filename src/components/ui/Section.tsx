@@ -2,6 +2,7 @@ import type { HTMLAttributes, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 import { Eyebrow } from './Eyebrow'
+import { TestoRivelato } from './TestoRivelato'
 
 type SectionProps = HTMLAttributes<HTMLElement> & {
   /** `alt` grigio scuro per dare ritmo, `yellow` banda gialla (una per pagina) */
@@ -65,7 +66,9 @@ export function SectionHeader({
             {eyebrow}
           </Eyebrow>
         )}
-        <h2 className="text-h2">{title}</h2>
+        <h2 className="text-h2">
+          <TestoRivelato text={title} />
+        </h2>
         {subtitle && (
           <p className={cn('mt-4 text-lead', onYellow ? 'text-primary-fg/80' : 'text-fg-muted')}>
             {subtitle}

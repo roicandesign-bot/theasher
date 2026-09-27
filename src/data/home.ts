@@ -108,6 +108,11 @@ export const home = {
     title: 'I drop escono prima su Instagram.',
     text: 'Nuovi lotti, dietro le quinte della coltivazione, analisi appena arrivate. Se non vuoi perderti niente, è lì che succede per primo.',
     cta: 'Seguici su Instagram',
+    telegram: {
+      testo: 'Oppure unisciti al canale Telegram: sconti giornalieri sui fine batch.',
+      cta: 'Entra nel canale Telegram',
+      href: 'https://t.me/thehasher',
+    },
     /** Griglia della vetrina: foto già in chiave The Hasher */
     foto: [
       'images/filiera/setacciatura.jpg',
@@ -167,11 +172,13 @@ export const home = {
   bundle: {
     eyebrow: 'Bundle',
     title: 'Discovery box',
-    text: 'I tre best seller in formato da 1 g. Per scegliere il tuo con cognizione di causa.',
+    text: 'I tre best seller in formato da 1 g, nella stessa scatola. Per scegliere il tuo con cognizione di causa, senza prendere il formato grande alla cieca.',
     price: 1990,
     compareAt: 2370,
     grams: 3,
     cta: 'Aggiungi al carrello',
+    sconto: '−16 %',
+    nota: 'Spedizione gratuita inclusa.',
   },
   newsletter: {
     eyebrow: 'Newsletter',

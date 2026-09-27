@@ -76,3 +76,6 @@
 - 2026-09-27 · «Oli» punta al negozio filtrato su estratti + metodo Olio: nessuna pagina in più da mantenere
 - 2026-09-27 · Cornice delle schede categoria scure portata a un filo di giallo al 25 %; resta piena solo sulla scheda gialla
 - 2026-09-27 · Popup «−5 % per 6 mesi» che invita a creare l'account con la newsletter: compare dopo dodici secondi, una volta sola, e solo dopo verifica dell'età e consensi · negli screenshot resta chiuso come le altre finestre
+- 2026-09-27 · Sezione Instagram spostata prima delle FAQ e allargata con il canale Telegram («sconti giornalieri sui fine batch»), bottone con bordo scuro sul giallo · link provvisorio t.me/thehasher
+- 2026-09-27 · Discovery box rifatta: resta gialla, ma le tre foto non stanno più a filo del giallo — sono tre riquadri scuri che mostrano cosa c'è nella scatola, con nome e formato. Spostata sopra le recensioni
+- 2026-09-27 · Animazioni allo scorrimento: titoli di sezione che entrano una parola per volta, parallasse sulle foto grandi, striscia tipografica con il contorno giallo che scivola di lato, filo di avanzamento in cima alla pagina · tutto disattivato con «riduci animazioni»

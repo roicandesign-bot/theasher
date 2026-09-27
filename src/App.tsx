@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect } from 'react'
 import { matchPath, Route, Routes, useLocation } from 'react-router-dom'
 import { AgeGate } from './components/layout/AgeGate'
+import { BarraProgresso } from './components/ui/BarraProgresso'
 import { CookieBanner } from './components/layout/CookieBanner'
 import { PopupSconto } from './components/layout/PopupSconto'
 import { CartDrawer } from './components/shop/CartDrawer'
@@ -63,6 +64,7 @@ export default function App() {
         {!isBare && <Footer />}
         <CartDrawer />
         <AgeGate />
+        <BarraProgresso />
         <CookieBanner />
         <PopupSconto />
       </div>

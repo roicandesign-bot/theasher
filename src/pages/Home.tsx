@@ -8,6 +8,7 @@ import {
   Leaf,
   Lock,
   Package,
+  Send,
   ShieldCheck,
   Star,
   Truck,
@@ -18,9 +19,11 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
 import { Filiera } from '@/components/sections/Filiera'
+import { StrisciaScorrevole } from '@/components/sections/StrisciaScorrevole'
 import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Input } from '@/components/ui/Input'
+import { Parallax } from '@/components/ui/Parallax'
 import { Price } from '@/components/ui/Price'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Reveal } from '@/components/ui/Reveal'
@@ -28,8 +31,9 @@ import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
 import { blog } from '@/data/contenuti'
 import { home } from '@/data/home'
-import { bestSellers, formatQuantita, newDrop } from '@/data/products'
+import { bestSellers, formatQuantita, newDrop, productPath } from '@/data/products'
 import { site } from '@/data/site'
+import { useCart } from '@/lib/cart'
 
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
@@ -47,6 +51,7 @@ const instagramUrl =
   site.footer.socials.find((s) => s.label === 'Instagram')?.href ?? 'https://instagram.com'
 
 export default function Home() {
+  const { add } = useCart()
   return (
     <>
       {/* ---------- Hero ---------- */}
@@ -90,14 +95,16 @@ export default function Home() {
           </div>
           <div className="order-1 lg:order-2">
             <div className="relative mx-auto aspect-[4/3] max-h-[46svh] w-full overflow-hidden rounded-card ring-1 ring-line ring-inset lg:aspect-[1.1] lg:max-h-none">
-              <img
-                src={asset('images/demo/hero-products.jpg')}
-                alt="Vaso di hash CBD e busta di fiori CBD The Hasher su fondo nero"
-                width={408}
-                height={370}
-                fetchPriority="high"
-                className="size-full object-cover"
-              />
+              <Parallax distanza={26} className="size-full">
+                <img
+                  src={asset('images/demo/hero-products.jpg')}
+                  alt="Vaso di hash CBD e busta di fiori CBD The Hasher su fondo nero"
+                  width={408}
+                  height={370}
+                  fetchPriority="high"
+                  className="size-full scale-[1.12] object-cover"
+                />
+              </Parallax>
               <Badge className="absolute bottom-3 left-3" variant="muted">
                 Foto demo
               </Badge>
@@ -215,12 +222,14 @@ export default function Home() {
             </div>
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-card lg:aspect-square">
-            <img
-              src={asset(newDrop.image)}
-              alt={`${newDrop.name}, hash CBD in lotto limitato`}
-              loading="lazy"
-              className="size-full object-cover"
-            />
+            <Parallax distanza={42} className="size-full">
+              <img
+                src={asset(newDrop.image)}
+                alt={`${newDrop.name}, hash CBD in lotto limitato`}
+                loading="lazy"
+                className="size-full scale-[1.14] object-cover"
+              />
+            </Parallax>
             <div className="absolute top-3 left-3 flex gap-1.5">
               <Badge className="bg-bg text-primary">New</Badge>
               <Badge className="bg-bg text-primary">Limited drop</Badge>
@@ -282,6 +291,65 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* ---------- Striscia tipografica ---------- */}
+      <StrisciaScorrevole />
+
+      {/* ---------- Bundle ---------- */}
+      <Section className="pt-0">
+        <Container>
+          <article className="grid gap-8 rounded-card bg-primary p-6 text-primary-fg ring-2 ring-primary md:p-8 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-12">
+            <div>
+              <Eyebrow tone="dark">{home.bundle.eyebrow}</Eyebrow>
+              <h2 className="mt-3 text-h2">{home.bundle.title}</h2>
+              <p className="mt-4 max-w-prose text-lead text-primary-fg/80">{home.bundle.text}</p>
+              <div className="mt-7 flex flex-wrap items-center gap-5">
+                <Price
+                  cents={home.bundle.price}
+                  compareAt={home.bundle.compareAt}
+                  grams={home.bundle.grams}
+                  size="lg"
+                  tone="dark"
+                />
+                <Badge className="bg-primary-fg text-primary">{home.bundle.sconto}</Badge>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-4">
+                <Button size="lg" variant="dark" onClick={() => add(treBestSeller[0]!)}>
+                  {home.bundle.cta} <ArrowRight className="size-4" />
+                </Button>
+                <p className="label text-[0.6875rem] text-primary-fg/70">{home.bundle.nota}</p>
+              </div>
+            </div>
+
+            {/* cosa c'è dentro */}
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {treBestSeller.map((p, i) => (
+                <li key={p.slug}>
+                  <Reveal delay={i * 70} className="h-full">
+                    <Link
+                      to={productPath(p.slug)}
+                      className="group flex h-full items-center gap-3 rounded-card bg-bg p-3 ring-1 ring-line transition duration-300 ease-out-soft ring-inset sm:flex-col sm:items-stretch sm:gap-4 sm:p-4 hocus:ring-primary"
+                    >
+                      <img
+                        src={asset(p.image)}
+                        alt=""
+                        loading="lazy"
+                        className="size-16 shrink-0 rounded-[0.75rem] object-cover sm:aspect-square sm:size-auto sm:w-full"
+                      />
+                      <div className="min-w-0">
+                        <p className="truncate label text-[0.6875rem] text-fg transition group-hover:text-primary">
+                          {p.name}
+                        </p>
+                        <p className="mt-1 label text-[0.625rem] text-fg-muted">1 g</p>
+                      </div>
+                    </Link>
+                  </Reveal>
+                </li>
+              ))}
+            </ul>
+          </article>
+        </Container>
+      </Section>
+
       {/* ---------- Recensioni (esempio) ---------- */}
       <Section id="recensioni" className="scroll-mt-24">
         <Container>
@@ -320,40 +388,6 @@ export default function Home() {
               </li>
             ))}
           </ul>
-        </Container>
-      </Section>
-
-      {/* ---------- Bundle ---------- */}
-      <Section className="pt-0">
-        <Container>
-          <article className="grid overflow-hidden rounded-card bg-primary text-primary-fg ring-2 ring-primary md:grid-cols-[1fr_1.2fr]">
-            <div className="m-0.5 grid grid-cols-3 gap-0.5 bg-primary">
-              {treBestSeller.map((p) => (
-                <img
-                  key={p.slug}
-                  src={asset(p.image)}
-                  alt={p.name}
-                  loading="lazy"
-                  className="aspect-square size-full object-cover md:aspect-auto md:h-full"
-                />
-              ))}
-            </div>
-            <div className="flex flex-col gap-4 p-6 md:p-8">
-              <Eyebrow tone="dark">{home.bundle.eyebrow}</Eyebrow>
-              <h2 className="text-h2">{home.bundle.title}</h2>
-              <p className="max-w-prose text-primary-fg/80">{home.bundle.text}</p>
-              <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
-                <Price
-                  cents={home.bundle.price}
-                  compareAt={home.bundle.compareAt}
-                  grams={home.bundle.grams}
-                  size="lg"
-                  tone="dark"
-                />
-                <Button variant="dark">{home.bundle.cta}</Button>
-              </div>
-            </div>
-          </article>
         </Container>
       </Section>
 
@@ -438,6 +472,60 @@ export default function Home() {
         </Container>
       </Section>
 
+      {/* ---------- Instagram e Telegram: banda gialla ---------- */}
+      <Section id="instagram" tone="yellow" className="scroll-mt-24 overflow-hidden">
+        <StrokePattern tone="dark" className="opacity-[0.07]" position="85% 30%" scale="200%" />
+        <Container className="relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
+          <div>
+            <Eyebrow tone="dark">{home.instagram.eyebrow}</Eyebrow>
+            <p className="mt-3 font-display text-h2">{home.instagram.handle}</p>
+            <h2 className="mt-2 max-w-md text-h3 text-primary-fg/80">{home.instagram.title}</h2>
+            <p className="mt-5 max-w-md text-lead text-primary-fg/80">{home.instagram.text}</p>
+            <a
+              href={instagramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="mt-7 inline-flex h-12 items-center gap-2 rounded-button bg-bg px-6 label text-[0.75rem] text-primary transition duration-200 ease-out-soft hocus:bg-bg-alt"
+            >
+              <Instagram className="size-4" /> {home.instagram.cta}
+            </a>
+            <div className="mt-7 border-t border-primary-fg/20 pt-6">
+              <p className="max-w-sm text-pretty text-primary-fg/80">
+                {home.instagram.telegram.testo}
+              </p>
+              <a
+                href={home.instagram.telegram.href}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mt-4 inline-flex h-11 items-center gap-2 rounded-button px-5 label text-[0.6875rem] text-primary-fg ring-2 ring-primary-fg transition duration-200 ease-out-soft hocus:bg-primary-fg hocus:text-primary"
+              >
+                <Send className="size-4" /> {home.instagram.telegram.cta}
+              </a>
+            </div>
+          </div>
+          <ul className="grid grid-cols-3 gap-2 sm:gap-3">
+            {home.instagram.foto.map((src, i) => (
+              <li key={src}>
+                <Reveal delay={i * 50}>
+                  <a
+                    href={instagramUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="group block aspect-square overflow-hidden rounded-card ring-2 ring-primary-fg/10"
+                  >
+                    <img
+                      src={asset(src)}
+                      alt=""
+                      loading="lazy"
+                      className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-105"
+                    />
+                  </a>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </Container>
+      </Section>
       {/* ---------- FAQ ---------- */}
       <Section id="faq" className="scroll-mt-24">
         <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
@@ -461,47 +549,6 @@ export default function Home() {
               </details>
             ))}
           </div>
-        </Container>
-      </Section>
-      {/* ---------- Instagram: banda gialla di chiusura ---------- */}
-      <Section id="instagram" tone="yellow" className="scroll-mt-24 overflow-hidden">
-        <StrokePattern tone="dark" className="opacity-[0.07]" position="85% 30%" scale="200%" />
-        <Container className="relative grid items-center gap-10 lg:grid-cols-[1fr_1.1fr]">
-          <div>
-            <Eyebrow tone="dark">{home.instagram.eyebrow}</Eyebrow>
-            <p className="mt-3 font-display text-h2">{home.instagram.handle}</p>
-            <h2 className="mt-2 max-w-md text-h3 text-primary-fg/80">{home.instagram.title}</h2>
-            <p className="mt-5 max-w-md text-lead text-primary-fg/80">{home.instagram.text}</p>
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="mt-7 inline-flex h-12 items-center gap-2 rounded-button bg-bg px-6 label text-[0.75rem] text-primary transition duration-200 ease-out-soft hocus:bg-bg-alt"
-            >
-              <Instagram className="size-4" /> {home.instagram.cta}
-            </a>
-          </div>
-          <ul className="grid grid-cols-3 gap-2 sm:gap-3">
-            {home.instagram.foto.map((src, i) => (
-              <li key={src}>
-                <Reveal delay={i * 50}>
-                  <a
-                    href={instagramUrl}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="group block aspect-square overflow-hidden rounded-card ring-2 ring-primary-fg/10"
-                  >
-                    <img
-                      src={asset(src)}
-                      alt=""
-                      loading="lazy"
-                      className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-105"
-                    />
-                  </a>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
         </Container>
       </Section>
     </>
