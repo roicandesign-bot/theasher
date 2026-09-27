@@ -251,6 +251,9 @@ export default function Stato() {
             <Button to="/mappa">
               Mappa delle pagine <ArrowRight className="size-4" />
             </Button>
+            <Button to="/prezzi" variant="outline">
+              Analisi prezzi di mercato <ArrowRight className="size-4" />
+            </Button>
             <Link
               to="/styleguide"
               className="inline-flex h-12 items-center rounded-button px-6 label text-fg ring-1 ring-line transition ring-inset hocus:text-primary"

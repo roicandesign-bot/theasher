@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
+import Prezzi from './pages/Prezzi'
 import Product from './pages/Product'
 import Sitemap from './pages/Sitemap'
 import Stato from './pages/Stato'
@@ -31,6 +32,7 @@ export const routes: AppRoute[] = [
     screenshotPath: '/prodotto/lemon-haze',
   },
   { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
+  { path: '/prezzi', label: 'Analisi prezzi', component: Prezzi, inNav: false },
   { path: '/mappa', label: 'Mappa del sito', component: Sitemap, inNav: false },
   { path: '/styleguide', label: 'Styleguide', component: Styleguide, inNav: false },
 ]

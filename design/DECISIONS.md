@@ -34,3 +34,5 @@
 - 2026-09-27 · Aggiunta variante `tone="dark"` al prezzo, da usare sui fondi gialli · il prezzo resta leggibile senza colori fuori palette
 - 2026-09-27 · Pagina di lavoro `/stato`: resoconto di quello che è fatto, di quello che manca fuori dal sito e roadmap in cinque tappe · Lorenzo ha un quadro unico da aprire dal telefono
 - 2026-09-27 · `cn()` ora conosce le nostre dimensioni di testo (text-display, text-h1…): prima venivano scartate quando nella stessa classe c’era anche un colore · bug che rimpiccioliva i titoli costruiti con classi condizionali
+- 2026-09-27 · Pagina di lavoro `/prezzi`: analisi delle fasce di prezzo B2C europee per categoria (fiori e hash) e proposta di posizionamento per The Hasher · serve a fissare il listino con dati, non a sensazione
+- 2026-09-27 · Archivio foto e video Roican individuato su Google Drive (cartella condivisa, con Flowers, Hash ed Extractions) · i file non sono scaricabili da questa sessione: la rete blocca Drive e il download via connettore riempirebbe la memoria della sessione. Vanno allegati in chat o messi nel repo
