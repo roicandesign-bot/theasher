@@ -109,18 +109,18 @@ export default function Home() {
               <article
                 key={c.id}
                 id={c.id}
-                className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset"
+                className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-primary text-primary-fg"
               >
                 <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
                   <div>
                     <h2 className="text-h2">{c.title}</h2>
-                    <p className="mt-3 label text-[0.75rem] text-fg-muted">
+                    <p className="mt-3 label text-[0.75rem] text-primary-fg/70">
                       {c.lines[0]}
                       <br />
                       {c.lines[1]}
                     </p>
                   </div>
-                  <Button to={`/#${c.id}`} variant="outline" size="sm" className="self-start">
+                  <Button to={`/#${c.id}`} variant="dark" size="sm" className="self-start">
                     {c.cta} <ArrowRight className="size-4" />
                   </Button>
                 </div>
@@ -305,8 +305,8 @@ export default function Home() {
       {/* ---------- Bundle ---------- */}
       <Section className="pt-0">
         <Container>
-          <article className="grid overflow-hidden rounded-card bg-surface ring-1 ring-line ring-inset md:grid-cols-[1fr_1.2fr]">
-            <div className="grid grid-cols-3 gap-px bg-line">
+          <article className="grid overflow-hidden rounded-card bg-primary text-primary-fg md:grid-cols-[1fr_1.2fr]">
+            <div className="grid grid-cols-3 gap-px bg-primary-fg/20">
               {bestSellers.map((p) => (
                 <img
                   key={p.slug}
@@ -318,17 +318,18 @@ export default function Home() {
               ))}
             </div>
             <div className="flex flex-col gap-4 p-6 md:p-8">
-              <Eyebrow>{home.bundle.eyebrow}</Eyebrow>
+              <Eyebrow tone="dark">{home.bundle.eyebrow}</Eyebrow>
               <h2 className="text-h2">{home.bundle.title}</h2>
-              <p className="max-w-prose text-fg-muted">{home.bundle.text}</p>
+              <p className="max-w-prose text-primary-fg/80">{home.bundle.text}</p>
               <div className="mt-2 flex flex-wrap items-center justify-between gap-4">
                 <Price
                   cents={home.bundle.price}
                   compareAt={home.bundle.compareAt}
                   grams={home.bundle.grams}
                   size="lg"
+                  tone="dark"
                 />
-                <Button variant="outline">{home.bundle.cta}</Button>
+                <Button variant="dark">{home.bundle.cta}</Button>
               </div>
             </div>
           </article>

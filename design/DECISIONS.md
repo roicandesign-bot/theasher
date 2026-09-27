@@ -30,3 +30,5 @@
 - 2026-09-16 · Con l'annullamento sono usciti anche la pagina `/negozio` con i filtri e i wireframe nella mappa, perché erano nello stesso pacchetto · si possono rifare sulla grafica attuale quando Lorenzo lo chiede
 - 2026-09-17 · Animazioni sobrie: comparsa allo scroll una volta sola (componente `Reveal`), hover che solleva le card, cambio pagina in dissolvenza da 180 ms · movimento solo su opacità e spostamento, tutto disattivato con «riduci movimento» di sistema
 - 2026-09-17 · Cambiando pagina si riparte sempre dall’alto · prima restava a metà scroll come in un’app, non come in un sito
+- 2026-09-27 · Card categoria (Hash, CBD Flower) e bundle Discovery Box con fondo giallo e scritte nere, bottone nero · scelta di Lorenzo: il giallo passa da accento a superficie in questi tre blocchi
+- 2026-09-27 · Aggiunta variante `tone="dark"` al prezzo, da usare sui fondi gialli · il prezzo resta leggibile senza colori fuori palette
