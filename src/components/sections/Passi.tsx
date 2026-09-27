@@ -1,4 +1,5 @@
 import { Container } from '@/components/ui/Container'
+import { cn } from '@/lib/cn'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 
@@ -8,17 +9,25 @@ export function Passi({
   titolo,
   passi,
   tone = 'default',
+  colonne = 4,
 }: {
   eyebrow: string
   titolo: string
   passi: { titolo: string; testo: string }[]
   tone?: 'default' | 'alt'
+  /** Colonne su desktop: 4 per quattro passi, 3 per sei */
+  colonne?: 3 | 4
 }) {
   return (
     <Section tone={tone}>
       <Container>
         <SectionHeader eyebrow={eyebrow} title={titolo} />
-        <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ol
+          className={cn(
+            'mt-10 grid gap-x-5 gap-y-10 sm:grid-cols-2',
+            colonne === 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4',
+          )}
+        >
           {passi.map((p, i) => (
             <li key={p.titolo}>
               <Reveal delay={i * 80} className="h-full">

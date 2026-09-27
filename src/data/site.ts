@@ -54,7 +54,8 @@ export const site = {
       { label: 'Analisi di laboratorio', to: '/analisi' },
       { label: 'Domande frequenti', to: '/faq' },
       { label: 'Contatti', to: '/contatti' },
-      { label: 'Diventa distributore', to: '/diventa-distributore' },
+      { label: 'Franchising', to: '/franchising' },
+      { label: 'Diventa rivenditore', to: '/diventa-distributore' },
     ],
     legal: [
       { label: 'Spedizioni', to: '/spedizioni' },

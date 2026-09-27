@@ -286,7 +286,7 @@ export const distributore = {
   requisiti: [
     'Partita IVA attiva e attività coerente con la vendita di prodotti CBD',
     'Conformità alle regole del proprio Paese sulla vendita al pubblico',
-    'Rispetto del prezzo minimo consigliato, anche online',
+    'Rispetto degli standard del marchio e della comunicazione, anche online',
     'Magazzino proprio: non lavoriamo in dropshipping',
   ],
   faq: [
@@ -315,51 +315,139 @@ export const distributore = {
 
 export const franchising = {
   eyebrow: 'Franchising The Hasher',
-  titolo: 'Apri il tuo The Hasher.',
-  lead: 'Un negozio con il nostro marchio, il nostro prodotto e un produttore alle spalle. Si entra con un investimento bassissimo, e il 60 % di ogni vendita resta a te.',
+  titolo: 'Own The Hasher.',
+  lead: 'Tu costruisci il tuo business. Noi costruiamo la macchina dietro: brand, prodotti esclusivi, supply chain, tecnologia e marketing. E sul tuo venduto non prendiamo royalty.',
   numeri: [
-    { valore: '60\u00A0%', etichetta: 'di ogni vendita resta a te' },
-    { valore: '24–72\u00A0h', etichetta: 'riassortimento, sempre' },
-    { valore: '1', etichetta: 'negozio The Hasher per zona: l’esclusiva è tua' },
+    { valore: '60\u00A0%', etichetta: 'margine sul venduto del tuo negozio' },
+    { valore: '0\u00A0%', etichetta: 'royalty sul venduto' },
+    { valore: '24–72\u00A0h', etichetta: 'riassortimento, ovunque in Europa' },
   ],
+  manifesto:
+    'Non guadagniamo perché possiedi un nostro negozio. Guadagniamo quando il tuo negozio vende.',
   modello: {
     eyebrow: 'Il modello',
     titolo: 'Il 60 % è tuo. Punto.',
     testo:
-      'Su ogni vendita del negozio, il 60 % resta a te. Il 40 % copre il prodotto, che ti riforniamo noi a ciclo continuo. Niente costi nascosti sul venduto: i conti li fai in un minuto.',
+      'Su ogni vendita il 60 % resta al negozio. Il 40 % è il prodotto, che ti riforniamo noi: la casa madre guadagna vendendo prodotto alla rete, non tassando il tuo scontrino. Se vendi tanto, cresciamo insieme.',
     ripartizione: [
-      { quota: '60 %', chi: 'A te', cosa: 'Il tuo guadagno su ogni scontrino' },
+      { quota: '60 %', chi: 'Al negozio', cosa: 'Il tuo margine su ogni scontrino' },
       { quota: '40 %', chi: 'Al prodotto', cosa: 'Merce, riassortimento e logistica' },
     ],
   },
-  inclusi: [
+  /** Condizioni di lancio: ipotesi da validare coi conti del negozio pilota. */
+  condizioni: [
+    { voce: 'Fee d’ingresso', valore: '7.500 – 15.000 €' },
+    { voce: 'Royalty sul venduto', valore: '0 %' },
+    { voce: 'Fondo marketing di rete', valore: '1 – 2 %' },
+    { voce: 'Starter pack (stock iniziale)', valore: '10.000 – 25.000 €' },
+    { voce: 'Durata del contratto', valore: '5 anni' },
+    { voce: 'Territorio', valore: 'Esclusiva a performance' },
+  ],
+  formati: [
     {
-      titolo: 'Insegna e arredo',
-      testo: 'Progetto del negozio, insegna, espositori e vetrina The Hasher. Arrivi e apri.',
-    },
-    {
-      titolo: 'Esclusiva di zona',
-      testo: 'Nella tua area il marchio è solo tuo. Nessun altro The Hasher a due passi.',
-    },
-    {
-      titolo: 'Formazione',
+      nome: 'Corner',
+      mq: '10–20 m²',
       testo:
-        'Prodotto, vendita, normativa: formiamo te e chi lavora con te, prima e dopo l’apertura.',
+        'Shop-in-shop o chiosco dentro un’attività esistente. L’investimento più basso, perfetto per aprire un territorio.',
     },
     {
-      titolo: 'Marketing e social',
-      testo:
-        'Campagne, contenuti e social del brand li gestiamo noi. Tu porti la gente in negozio.',
+      nome: 'Store',
+      mq: '50–100 m²',
+      testo: 'Il negozio The Hasher standard: premium retail e community. Il cuore della rete.',
+      evidenza: true,
     },
     {
-      titolo: 'Lotti riservati',
-      testo: 'Drop in anteprima e lotti limitati riservati ai negozi The Hasher.',
-    },
-    {
-      titolo: 'Referente dedicato',
-      testo: 'Una persona del gruppo che ti segue dall’apertura in poi, con un numero diretto.',
+      nome: 'Flagship',
+      mq: '100–250 m²',
+      testo: 'Città principali: retail, eventi, merchandise ed esperienza di marca.',
     },
   ],
+  mockup: [
+    { titolo: 'Esterno', testo: 'Facciata nera, insegna gialla illuminata' },
+    { titolo: 'Interno', testo: 'Scaffali retroilluminati, bancone monolitico' },
+    { titolo: 'Bancone', testo: 'Vetrina prodotto e analisi a portata di mano' },
+    { titolo: 'Corner', testo: 'Il modulo The Hasher dentro un negozio esistente' },
+  ],
+  /** Le linee che esistono solo nella rete. */
+  linee: ['TH Original', 'TH Black Label', 'TH Drops', 'TH Reserve', 'TH Collabs'],
+  ecosistema: {
+    eyebrow: 'Il sistema',
+    titolo: 'Tutto quello che da solo non avresti.',
+    testo:
+      'Non compri un’insegna: compri un negozio già progettato per funzionare. E più resti nella rete, più il vantaggio cresce.',
+    voci: [
+      {
+        titolo: 'Prodotti esclusivi',
+        testo:
+          'Cultivar, formulazioni, formati e collaborazioni prodotti per The Hasher. Fuori dalla rete non esistono.',
+      },
+      {
+        titolo: 'The Hasher Club',
+        testo:
+          'Una sola fedeltà nazionale: punti, livelli, drop in anteprima ed eventi. I clienti di tutta la rete entrano anche da te.',
+      },
+      {
+        titolo: 'L’e-commerce vende per te',
+        testo:
+          'Un solo sito nazionale. I clienti che acquisisci restano legati al tuo negozio: se comprano online, una quota è tua.',
+      },
+      {
+        titolo: 'Potere d’acquisto',
+        testo:
+          'La rete compra a tonnellate, tu paghi come un grande. E con i rebate annuali, più cresci meno paghi.',
+      },
+      {
+        titolo: 'Marketing nazionale',
+        testo:
+          'Campagne, creator, social, foto e materiali per il punto vendita, pronti. Tu porti la gente dentro.',
+      },
+      {
+        titolo: 'Tecnologia inclusa',
+        testo:
+          'Cassa, CRM, fedeltà e riassortimento automatico collegati: vedi i tuoi numeri ogni giorno.',
+      },
+      {
+        titolo: 'Manuale e formazione',
+        testo:
+          'Apertura, vendita, stock, clienti, KPI, merchandising: il know-how della rete, scritto e insegnato.',
+      },
+      {
+        titolo: 'Compliance per Paese',
+        testo:
+          'Ogni prodotto è verificato per il tuo mercato prima di arrivarti. Il lavoro normativo lo facciamo noi.',
+      },
+    ],
+  },
+  rebate: [
+    { soglia: '100.000 €', valore: '1 %' },
+    { soglia: '200.000 €', valore: '2 %' },
+    { soglia: '350.000 €', valore: '3 %' },
+    { soglia: '500.000 €', valore: '4 %' },
+  ],
+  territorio: {
+    titolo: 'Territorio protetto, se lo meriti.',
+    testo:
+      'La tua zona è esclusiva finché mantieni gli standard: fatturato, qualità del negozio, recensioni, stock, formazione. Se li superi, hai la priorità sulla seconda apertura.',
+  },
+  carriera: [
+    { livello: 'Partner', cosa: '1 negozio' },
+    { livello: 'Multi-Store', cosa: 'da 2 a 4 negozi' },
+    { livello: 'Area Partner', cosa: 'sviluppo di una provincia o regione' },
+    { livello: 'Master Partner', cosa: 'sviluppo di un intero Paese' },
+  ],
+  founder: {
+    eyebrow: 'Founder Program',
+    titolo: 'I primi 20 partner.',
+    testo:
+      'Chi entra per primo costruisce la rete con noi, e ha condizioni migliori per sempre, finché resta e rispetta gli standard.',
+    posti: 20,
+    vantaggi: [
+      'Fee d’ingresso ridotta',
+      'Rebate maggiorato sugli acquisti',
+      'Priorità nella scelta del territorio',
+      'Budget marketing dedicato all’apertura',
+    ],
+  },
   starter: {
     eyebrow: 'Starter pack',
     titolo: 'Parti a bomba.',
@@ -367,8 +455,8 @@ export const franchising = {
       'Niente mesi di rodaggio con lo scaffale mezzo vuoto. Il giorno dell’apertura hai il catalogo completo, già confezionato e prezzato, pronto da vendere.',
     contenuto: [
       'Tutte e quattro le famiglie: fiori, hash, estratti, oli',
-      'Le referenze più vendute in ogni coltivazione e lavorazione',
-      'Formati da vetrina e da banco, già con il prezzo consigliato',
+      'Le linee esclusive TH, disponibili solo nella rete',
+      'Formati da vetrina e da banco, con il prezzo consigliato',
       'Espositori, vetrofanie e materiale per il punto vendita',
       'Certificato di analisi per ogni lotto',
       'Primo riassortimento in 72 ore',
@@ -383,51 +471,81 @@ export const franchising = {
   calcolo: {
     eyebrow: 'Fai i conti',
     titolo: 'Quanto ti resta.',
-    testo: 'Sposta la barra su quanto pensi di vendere al mese.',
+    testo:
+      'Sposta la barra su quanto pensi di vendere al mese. Zero royalty: non togliamo niente da qui.',
     min: 3000,
     max: 60000,
     passo: 1000,
     iniziale: 15000,
-    nota: 'Esempio indicativo sul venduto IVA esclusa. Affitto, personale e costi del locale restano a carico del negozio.',
+    nota: 'Margine lordo indicativo sul venduto IVA esclusa. Affitto, personale, fondo marketing e costi del locale restano a carico del negozio.',
   },
-  passi: [
-    { titolo: 'Candidatura', testo: 'Compili il modulo qui sotto: due minuti.' },
+  selezione: [
+    { titolo: 'Candidatura', testo: 'Due minuti, qui sotto.' },
+    { titolo: 'Call conoscitiva', testo: 'Entro 48 ore: chi sei, dove, con che obiettivi.' },
     {
-      titolo: 'Valutazione',
-      testo: 'Ti chiamiamo entro 48 ore e valutiamo insieme zona, locale e tempi.',
+      titolo: 'Qualifica',
+      testo: 'Capitale disponibile e sostenibilità dei primi 12 mesi, senza giri di parole.',
     },
     {
-      titolo: 'Allestimento',
-      testo: 'Progettiamo il negozio, montiamo insegna ed espositori, consegniamo lo starter pack.',
+      titolo: 'Discovery day',
+      testo: 'Vieni a vedere la macchina: produzione, magazzino, negozio pilota.',
     },
-    { titolo: 'Apertura', testo: 'Alzi la serranda. Da lì il riassortimento arriva in 24–72 ore.' },
+    {
+      titolo: 'Territorio e business plan',
+      testo: 'Analizziamo la zona e costruiamo insieme il conto economico del tuo negozio.',
+    },
+    {
+      titolo: 'Contratto e apertura',
+      testo: 'Formazione, allestimento, starter pack. Alzi la serranda.',
+    },
   ],
-  requisiti: [
-    'Voglia di gestire un negozio in prima persona',
-    'Un locale in zona di passaggio, o la disponibilità a trovarlo con noi',
-    'Partita IVA (o l’intenzione di aprirla) nel Paese del negozio',
-    'Rispetto del marchio, dei prezzi consigliati e delle regole locali',
+  cerchiamo: [
+    'Imprenditori locali e gestori retail',
+    'Operatori horeca e commerciali forti',
+    'Proprietari di più punti vendita',
+    'Capitale sufficiente a sostenere i primi 12 mesi',
+  ],
+  citta: [
+    'Milano',
+    'Roma',
+    'Torino',
+    'Bologna',
+    'Firenze',
+    'Napoli',
+    'Verona',
+    'Padova',
+    'Genova',
+    'Bari',
+    'Palermo',
+    'Barcellona',
+    'Berlino',
+    'Parigi',
+    'Zurigo',
   ],
   faq: [
     {
       q: 'Quanto costa aprire?',
-      a: 'Poco, rispetto a qualunque franchising del settore: lo starter pack e l’allestimento li costruiamo sulla tua zona e sul tuo locale. Il piano con tutte le cifre arriva dopo la prima chiamata, nero su bianco.',
+      a: 'La fee d’ingresso parte da 7.500 € e dipende dal formato. A parte ci sono l’allestimento del locale e lo starter pack, costruiti sulla tua zona: il piano con tutte le cifre arriva prima della firma, nero su bianco.',
+    },
+    {
+      q: 'Davvero zero royalty?',
+      a: 'Sì: sul tuo venduto non prendiamo percentuali. La casa madre guadagna vendendoti il prodotto. C’è solo un fondo marketing dell’1–2 %, speso sulla rete e rendicontato.',
     },
     {
       q: 'Come funziona il 60 %?',
-      a: 'Su ogni vendita del negozio il 60 % resta a te. Il 40 % copre il prodotto che ti riforniamo. Le spese del locale (affitto, personale, utenze) sono tue, come in ogni negozio.',
+      a: 'Su ogni vendita il 60 % è il tuo margine lordo, il 40 % copre il prodotto che ti riforniamo. Le spese del locale (affitto, personale, utenze) sono tue, come in ogni negozio.',
     },
     {
       q: 'Serve esperienza nel settore?',
-      a: 'No. Formiamo noi te e chi lavora con te. Ci serve una persona seria sul posto.',
+      a: 'No. Ti formiamo noi su prodotto, vendita e normativa. Ci serve una persona forte commercialmente e seria sul posto.',
     },
     {
-      q: 'Ho già un negozio: posso trasformarlo?',
-      a: 'Sì, se la zona è libera e il locale funziona. Valutiamo insieme il passaggio all’insegna The Hasher.',
+      q: 'E se un giorno volessi uscire?',
+      a: 'Alla scadenza puoi farlo. Ma perderesti le linee esclusive, i clienti del Club, le vendite online attribuite al tuo negozio e i rebate. È per questo che i partner restano: non per il contratto, per la convenienza.',
     },
     {
-      q: 'Cosa succede se finisco la merce?',
-      a: 'Non succede: il riassortimento parte in giornata e arriva in 24–72 ore, ovunque in Europa.',
+      q: 'Cosa si può vendere nel mio Paese?',
+      a: 'Solo i prodotti approvati per il tuo mercato. Le regole sul CBD cambiano per categoria e Paese: la verifica la facciamo noi prima di spedirti qualunque cosa.',
     },
   ],
 }

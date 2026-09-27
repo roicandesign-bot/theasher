@@ -200,7 +200,7 @@ export const sitemap: PageGroup[] = [
       },
       {
         name: 'Franchising',
-        what: 'Negozio col marchio The Hasher: 60 % del venduto, starter pack, candidatura',
+        what: 'Own The Hasher: 0 % royalty, 60 % al negozio, formati, Club, carriera, Founder Program, candidatura',
         status: 'fatta',
         to: '/franchising',
         fromLorenzo: true,

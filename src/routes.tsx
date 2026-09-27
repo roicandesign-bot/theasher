@@ -20,6 +20,7 @@ import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Sitemap from './pages/Sitemap'
 import Stato from './pages/Stato'
+import Strategia from './pages/Strategia'
 import Styleguide from './pages/Styleguide'
 
 /**
@@ -61,6 +62,7 @@ export const routes: AppRoute[] = [
   },
   { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
   { path: '/prezzi', label: 'Analisi prezzi', component: Prezzi, inNav: false },
+  { path: '/strategia', label: 'Piano di crescita', component: Strategia, inNav: false },
   { path: '/azienda', label: 'L’azienda', component: About, inNav: false },
   { path: '/blog', label: 'Blog', component: BlogList, inNav: false },
   {
