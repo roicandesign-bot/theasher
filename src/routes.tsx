@@ -1,5 +1,7 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
+import { AccountAddresses, AccountHome, AccountOrderDetail, AccountOrders } from './pages/Account'
+import Auth from './pages/Auth'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import OrderConfirmed from './pages/OrderConfirmed'
@@ -49,6 +51,19 @@ export const routes: AppRoute[] = [
   },
   { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
   { path: '/prezzi', label: 'Analisi prezzi', component: Prezzi, inNav: false },
+  { path: '/accedi', label: 'Accedi', component: Auth, inNav: false },
+  { path: '/registrati', label: 'Registrati', component: Auth, inNav: false },
+  { path: '/password-dimenticata', label: 'Password dimenticata', component: Auth, inNav: false },
+  { path: '/account', label: 'Account', component: AccountHome, inNav: false },
+  { path: '/account/ordini', label: 'I miei ordini', component: AccountOrders, inNav: false },
+  {
+    path: '/account/ordini/:numero',
+    label: 'Dettaglio ordine',
+    component: AccountOrderDetail,
+    inNav: false,
+    screenshotPath: '/account/ordini/TH-2609-4471',
+  },
+  { path: '/account/indirizzi', label: 'Indirizzi', component: AccountAddresses, inNav: false },
   { path: '/mappa', label: 'Mappa del sito', component: Sitemap, inNav: false },
   { path: '/styleguide', label: 'Styleguide', component: Styleguide, inNav: false },
 ]

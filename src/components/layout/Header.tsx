@@ -1,6 +1,6 @@
 import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
@@ -60,9 +60,13 @@ export function Header() {
           <IconButton aria-label="Cerca" className="hidden sm:inline-grid">
             <Search className="size-5" />
           </IconButton>
-          <IconButton aria-label="Account" className="hidden lg:inline-grid">
+          <NavLink
+            to="/account"
+            aria-label="Account"
+            className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft lg:grid hocus:bg-surface-hover hocus:text-primary"
+          >
             <User className="size-5" />
-          </IconButton>
+          </NavLink>
           <IconButton
             aria-label={`Carrello, ${cart.count} articoli`}
             className="relative"
@@ -115,7 +119,12 @@ export function Header() {
               <Button variant="ghost" className="flex-1 ring-1 ring-line ring-inset">
                 <Search className="size-4" /> Cerca
               </Button>
-              <Button variant="ghost" className="flex-1 ring-1 ring-line ring-inset">
+              <Button
+                to="/account"
+                variant="ghost"
+                className="flex-1 ring-1 ring-line ring-inset"
+                onClick={() => setOpen(false)}
+              >
                 <User className="size-4" /> Account
               </Button>
             </div>
