@@ -51,7 +51,8 @@ export const home = {
   },
   story: {
     eyebrow: 'Dalla genetica al cliente',
-    title: 'Coltiviamo, produciamo, distribuiamo. Dal seme al tuo ordine.',
+    title: 'Dal seme al tuo ordine.',
+    kicker: 'Coltiviamo · Produciamo · Distribuiamo',
     text: 'Siamo produttori, distributori e venditori diretti. Seguiamo ogni passaggio: selezioniamo le migliori genetiche al mondo, le coltiviamo, ne estraiamo polline e materie prime, e da lì produciamo i nostri hash e i nostri estratti. Nessun intermediario, uno standard solo: il più alto, controllato passo per passo.',
     points: [
       { title: 'Genetiche selezionate', text: 'Le migliori al mondo, scelte una per una.' },
@@ -62,7 +63,7 @@ export const home = {
       },
       { title: 'Vendita diretta', text: 'Dalla pianta al cliente finale, senza passaggi inutili.' },
     ],
-    cta: 'Vedi le analisi',
+    cta: 'Vai allo shop',
     /** Le cinque tappe della filiera. Foto fornite dal brand, rilavorate in chiave The Hasher. */
     slides: [
       {
@@ -117,33 +118,26 @@ export const home = {
       'images/demo/cat-flower.jpg',
     ],
   },
-  lab: {
-    eyebrow: 'Analisi di laboratorio',
-    title: 'Ogni lotto, un certificato.',
-    text: 'I certificati completi si scaricano dalla pagina di ogni prodotto. I valori qui sotto sono dimostrativi: quelli reali verranno caricati dal team a ogni lotto.',
-    reports: [
+  spedizioni: {
+    eyebrow: 'Spedizioni',
+    title: 'Anonime, veloci, in tutta Europa.',
+    text: 'Fuori dalla scatola non c’è scritto niente: nessun logo, nessun riferimento al contenuto. Ordini entro le 14, parte in giornata.',
+    punti: [
       {
-        product: 'Lemon Haze',
-        batch: 'LH-2609',
-        cbd: '18,4 %',
-        thc: 'entro i limiti di legge',
-        date: '09/2026',
+        titolo: 'Packaging anonimo',
+        testo: 'Scatola neutra e sigillata. Nessuno sa cosa c’è dentro, nemmeno il corriere.',
       },
       {
-        product: 'Royal Hash',
-        batch: 'RH-2608',
-        cbd: '21,0 %',
-        thc: 'entro i limiti di legge',
-        date: '08/2026',
+        titolo: 'Consegna in 24–72 ore',
+        testo: 'Corriere espresso in tutta la UE, partenza in giornata dal lunedì al venerdì.',
       },
       {
-        product: 'Desert Gold',
-        batch: 'DG-2609',
-        cbd: '16,7 %',
-        thc: 'entro i limiti di legge',
-        date: '09/2026',
+        titolo: 'Tracciata e garantita',
+        testo: 'Codice di tracciamento su ogni ordine. Se il pacco non arriva, lo rispediamo.',
       },
     ],
+    nota: 'Spedizione gratuita sopra i 49 €.',
+    cta: 'Spedizioni e resi',
   },
   reviews: {
     eyebrow: 'Recensioni verificate · esempio',

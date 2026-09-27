@@ -40,59 +40,100 @@ export function Header() {
   }, [open])
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
-      <div className="container-content grid h-18 grid-cols-[1fr_auto_1fr] items-center md:h-20 lg:grid-cols-[auto_1fr_auto]">
-        {/* mobile: hamburger */}
-        <div className="flex items-center lg:hidden">
-          <IconButton
-            aria-label={open ? 'Chiudi menu' : 'Apri menu'}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            {open ? <X className="size-6" /> : <Menu className="size-6" />}
-          </IconButton>
-        </div>
-
-        {/* logo: centrato su mobile, a sinistra su desktop */}
-        <div className="flex justify-center lg:justify-start">
-          <Logo className="h-11 md:h-12" />
-        </div>
-
-        {/* desktop: menu */}
-        <nav className="hidden justify-center lg:flex" aria-label="Principale">
-          {site.nav.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              aria-current={attiva(item.to) ? 'page' : undefined}
-              className={cn(navLink, attiva(item.to) ? 'text-primary' : 'text-fg')}
+    <>
+      <header className="sticky top-0 z-40 border-b border-line bg-bg/90 backdrop-blur">
+        <div className="container-content grid h-18 grid-cols-[1fr_auto_1fr] items-center md:h-20 lg:grid-cols-[auto_1fr_auto]">
+          {/* mobile: hamburger */}
+          <div className="flex items-center lg:hidden">
+            <IconButton
+              aria-label={open ? 'Chiudi menu' : 'Apri menu'}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              onClick={() => setOpen((v) => !v)}
             >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+              {open ? <X className="size-6" /> : <Menu className="size-6" />}
+            </IconButton>
+          </div>
 
-        {/* icone */}
-        <div className="flex items-center justify-end gap-0.5">
-          <NavLink
-            to="/cerca"
-            aria-label="Cerca"
-            className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft sm:grid hocus:bg-surface-hover hocus:text-primary"
-          >
-            <Search className="size-5" />
-          </NavLink>
-          <NavLink
-            to="/account"
-            aria-label="Account"
-            className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft lg:grid hocus:bg-surface-hover hocus:text-primary"
-          >
-            <User className="size-5" />
-          </NavLink>
+          {/* logo: centrato su mobile, a sinistra su desktop */}
+          <div className="flex justify-center lg:justify-start">
+            <Logo className="h-11 md:h-12" />
+          </div>
+
+          {/* desktop: menu */}
+          <nav className="hidden justify-center lg:flex" aria-label="Principale">
+            {site.nav.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                aria-current={attiva(item.to) ? 'page' : undefined}
+                className={cn(navLink, attiva(item.to) ? 'text-primary' : 'text-fg')}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* icone */}
+          <div className="flex items-center justify-end gap-0.5">
+            <NavLink
+              to="/cerca"
+              aria-label="Cerca"
+              className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft sm:grid hocus:bg-surface-hover hocus:text-primary"
+            >
+              <Search className="size-5" />
+            </NavLink>
+            <NavLink
+              to="/account"
+              aria-label="Account"
+              className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft lg:grid hocus:bg-surface-hover hocus:text-primary"
+            >
+              <User className="size-5" />
+            </NavLink>
+            <IconButton
+              aria-label={`Carrello, ${cart.count} articoli`}
+              className="relative"
+              onClick={cart.open}
+            >
+              <ShoppingBag className="size-5" />
+              {cart.count > 0 && (
+                <span
+                  aria-hidden="true"
+                  className="absolute top-1 right-1 grid size-4.5 place-items-center rounded-full bg-primary text-[0.625rem] font-bold text-primary-fg"
+                >
+                  {cart.count}
+                </span>
+              )}
+            </IconButton>
+          </div>
+        </div>
+      </header>
+
+      {/*
+        Menu mobile a schermo intero. Sta fuori dall'header: un antenato con
+        backdrop-blur aggancia a sé gli elementi `fixed`, e il pannello finiva
+        alto quanto la barra, lasciando vedere la pagina sotto.
+      */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          'fixed inset-0 z-[55] flex flex-col bg-bg transition duration-300 ease-out-soft lg:hidden',
+          open ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0',
+        )}
+        aria-hidden={!open}
+      >
+        <div className="flex h-18 shrink-0 items-center justify-between border-b border-line px-gutter">
+          <IconButton aria-label="Chiudi menu" onClick={() => setOpen(false)}>
+            <X className="size-6" />
+          </IconButton>
+          <Logo className="h-10" />
           <IconButton
             aria-label={`Carrello, ${cart.count} articoli`}
             className="relative"
-            onClick={cart.open}
+            onClick={() => {
+              setOpen(false)
+              cart.open()
+            }}
           >
             <ShoppingBag className="size-5" />
             {cart.count > 0 && (
@@ -105,18 +146,11 @@ export function Header() {
             )}
           </IconButton>
         </div>
-      </div>
 
-      {/* menu mobile a schermo intero */}
-      <div
-        id="mobile-menu"
-        className={cn(
-          'fixed inset-x-0 top-18 bottom-0 z-30 flex flex-col bg-bg transition duration-300 ease-out-soft lg:hidden',
-          open ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0',
-        )}
-        aria-hidden={!open}
-      >
-        <nav className="container-content flex flex-1 flex-col gap-1 py-6" aria-label="Menu mobile">
+        <nav
+          className="container-content flex flex-1 flex-col gap-1 overflow-y-auto overscroll-contain py-6"
+          aria-label="Menu mobile"
+        >
           {site.nav.map((item) => (
             <Link
               key={item.label}
@@ -124,7 +158,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               aria-current={attiva(item.to) ? 'page' : undefined}
               className={cn(
-                'group flex items-center justify-between border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
+                'group flex items-center justify-between gap-4 border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
                 attiva(item.to) && 'text-primary',
               )}
             >
@@ -160,9 +194,9 @@ export function Header() {
               </Button>
             </div>
           </div>
-          <p className="mt-auto pt-6 label text-[0.6875rem] text-fg-muted">{site.claim}</p>
+          <p className="mt-auto pt-8 label text-[0.6875rem] text-fg-muted">{site.claim}</p>
         </nav>
       </div>
-    </header>
+    </>
   )
 }

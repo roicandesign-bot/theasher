@@ -66,3 +66,8 @@
 - 2026-09-27 · Blog portato a nove articoli con filtro per categoria (Guide, Cultura, Dietro le quinte, Legale, Prodotto) e contatori, come nel negozio · i sei nuovi pezzi usano le foto della filiera
 - 2026-09-27 · In home, sotto la newsletter, una sezione «Dal blog» con gli ultimi tre articoli
 - 2026-09-27 · La home si chiude con una banda gialla Instagram (handle, sei foto quadrate, bottone scuro) · posizione consigliata: ultima sezione prima del footer, così il giallo chiude la pagina senza rubare spazio al prodotto. Handle provvisorio @thehasher, da confermare
+- 2026-09-27 · Menu mobile rifatto e spostato fuori dall'header: un antenato con backdrop-blur aggancia a sé gli elementi `fixed`, per questo il pannello restava alto quanto la barra e lasciava vedere la pagina sotto · ora copre tutto lo schermo, ha la sua barra con logo, chiusura e carrello, e sta sopra il banner cookie
+- 2026-09-27 · Titolo della filiera accorciato a «Dal seme al tuo ordine.», con «Coltiviamo · Produciamo · Distribuiamo» come riga gialla sotto · il titolo lungo su tre righe era troppo pesante da telefono
+- 2026-09-27 · La filiera porta al negozio («Vai allo shop») invece che alle analisi
+- 2026-09-27 · In home la sezione «Ogni lotto, un certificato» è sostituita da «Spedizioni: anonime, veloci, in tutta Europa» (packaging anonimo, 24–72 ore, tracciata e garantita) · le analisi restano nella pagina dedicata e in ogni scheda prodotto
+- 2026-09-27 · La Discovery Box ha la cornice gialla continua attorno a tutto il box, non solo fra le tre foto

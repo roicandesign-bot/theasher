@@ -1,7 +1,17 @@
 // Home: InfoBar+Header (layout) → Hero split → Trust bar → Categorie Hash / CBD Flower →
 // Best seller (3 card) → New drop (banda gialla) → Story "Crafted with character" →
 // Analisi di laboratorio → Recensioni (esempio) → Bundle → Newsletter → FAQ → Footer (layout)
-import { ArrowRight, FlaskConical, Instagram, Leaf, Lock, Package, Star, Truck } from 'lucide-react'
+import {
+  ArrowRight,
+  FlaskConical,
+  Instagram,
+  Leaf,
+  Lock,
+  Package,
+  ShieldCheck,
+  Star,
+  Truck,
+} from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -224,6 +234,7 @@ export default function Home() {
           <div>
             <Eyebrow>{home.story.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-h2">{home.story.title}</h2>
+            <p className="mt-4 text-attivo text-primary">{home.story.kicker}</p>
             <p className="mt-5 max-w-prose text-lead text-fg-muted">{home.story.text}</p>
             <ul className="mt-8 grid gap-5 sm:grid-cols-2">
               {home.story.points.map((p) => (
@@ -233,51 +244,39 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <Button to="/analisi" variant="outline" className="mt-8">
+            <Button to="/negozio" variant="outline" className="mt-8">
               {home.story.cta} <ArrowRight className="size-4" />
             </Button>
           </div>
         </Container>
       </Section>
 
-      {/* ---------- Analisi di laboratorio ---------- */}
-      <Section id="lab" tone="alt" className="scroll-mt-24">
+      {/* ---------- Spedizioni ---------- */}
+      <Section id="spedizioni" tone="alt" className="scroll-mt-24">
         <Container>
           <SectionHeader
-            eyebrow={home.lab.eyebrow}
-            title={home.lab.title}
-            subtitle={home.lab.text}
+            eyebrow={home.spedizioni.eyebrow}
+            title={home.spedizioni.title}
+            subtitle={home.spedizioni.text}
+            action={{ label: home.spedizioni.cta, to: '/spedizioni' }}
           />
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {home.lab.reports.map((r, i) => (
-              <Reveal key={r.batch} delay={i * 80} className="h-full">
-                <Card className="flex flex-col gap-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <h3 className="text-h3">{r.product}</h3>
-                      <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">
-                        Lotto {r.batch} · {r.date}
-                      </p>
-                    </div>
-                    <FlaskConical className="size-6 shrink-0 text-primary" strokeWidth={1.5} />
-                  </div>
-                  <dl className="grid grid-cols-2 gap-3 border-t border-line pt-4 text-sm">
-                    <div>
-                      <dt className="label text-[0.6875rem] text-fg-muted">CBD</dt>
-                      <dd className="mt-1 text-2xl font-semibold text-primary">{r.cbd}</dd>
-                    </div>
-                    <div>
-                      <dt className="label text-[0.6875rem] text-fg-muted">THC</dt>
-                      <dd className="mt-1 text-sm">{r.thc}</dd>
-                    </div>
-                  </dl>
-                  <Badge variant="muted" className="self-start">
-                    Certificato PDF in pagina prodotto
-                  </Badge>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
+          <ul className="mt-10 grid gap-5 md:grid-cols-3">
+            {home.spedizioni.punti.map((p, i) => {
+              const Icon = [Package, Truck, ShieldCheck][i]!
+              return (
+                <li key={p.titolo}>
+                  <Reveal delay={i * 80} className="h-full">
+                    <Card className="flex h-full flex-col gap-4">
+                      <Icon className="size-7 text-primary" strokeWidth={1.5} />
+                      <h3 className="text-h3">{p.titolo}</h3>
+                      <p className="text-fg-muted">{p.testo}</p>
+                    </Card>
+                  </Reveal>
+                </li>
+              )
+            })}
+          </ul>
+          <p className="mt-6 label text-[0.75rem] text-primary">{home.spedizioni.nota}</p>
         </Container>
       </Section>
 
@@ -325,8 +324,8 @@ export default function Home() {
       {/* ---------- Bundle ---------- */}
       <Section className="pt-0">
         <Container>
-          <article className="grid overflow-hidden rounded-card bg-primary text-primary-fg md:grid-cols-[1fr_1.2fr]">
-            <div className="grid grid-cols-3 gap-px bg-primary-fg/20">
+          <article className="grid overflow-hidden rounded-card bg-primary text-primary-fg ring-2 ring-primary md:grid-cols-[1fr_1.2fr]">
+            <div className="m-0.5 grid grid-cols-3 gap-0.5 bg-primary">
               {treBestSeller.map((p) => (
                 <img
                   key={p.slug}
