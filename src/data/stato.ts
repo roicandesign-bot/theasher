@@ -5,7 +5,7 @@
 
 export const avanzamento = [
   { area: 'Identità e stile', done: 100, note: 'Palette, font, logo, componenti: pronti' },
-  { area: 'Pagine del sito', done: 9, note: '3 pagine pubbliche su 34' },
+  { area: 'Pagine del sito', done: 100, note: 'Tutte e 34 le pagine sono in piedi' },
   { area: 'Materiali del brand', done: 35, note: 'Logo e packaging sì, foto e testi legali no' },
   { area: 'Sviluppo vero', done: 0, note: 'Parte quando il disegno è approvato' },
 ]
@@ -62,6 +62,35 @@ export const fatto = [
     data: '27 set',
     titolo: 'Categorie e bundle in giallo',
     testo: 'Fondo giallo pieno con scritte nere su Hash, CBD Flower e Discovery Box.',
+  },
+  {
+    data: '27 set',
+    titolo: 'Analisi prezzi del mercato europeo',
+    testo:
+      'Fasce di prezzo per categoria di fiori e hash, scaglioni per formato, differenze tra Paesi e proposta di listino per The Hasher.',
+  },
+  {
+    data: '27 set',
+    titolo: 'Percorso d’acquisto completo',
+    testo:
+      'Negozio con filtri, carrello che funziona davvero con carrello a comparsa, checkout in tre passi e pagina di ordine confermato.',
+  },
+  {
+    data: '27 set',
+    titolo: 'Area cliente',
+    testo:
+      'Accesso, registrazione, riepilogo, storico ordini con tracking e riordino, rubrica indirizzi.',
+  },
+  {
+    data: '27 set',
+    titolo: 'Racconto e pagine di servizio',
+    testo:
+      'Azienda, journal con tre articoli, contatti, diventa distributore, analisi di laboratorio, domande frequenti, ricerca, preferiti e le sette pagine legali.',
+  },
+  {
+    data: '27 set',
+    titolo: 'Verifica 18+ e consensi',
+    testo: 'Controllo dell’età all’ingresso e banner cookie con scelta salvata.',
   },
 ]
 
@@ -160,8 +189,8 @@ export const roadmap = [
     fase: '1',
     titolo: 'Finire il disegno del sito',
     quando: '2-3 settimane',
-    cosa: 'Carrello, checkout, area cliente, azienda, journal, contatti, diventa distributore, pagine di servizio. Una alla volta, con le tue correzioni.',
-    serve: 'Nulla: si va avanti subito.',
+    cosa: 'Fatto: tutte le 34 pagine sono in piedi. Restano le tue correzioni a vista e le rifiniture.',
+    serve: 'Le tue correzioni guardando le pagine.',
     stato: 'ora' as const,
   },
   {

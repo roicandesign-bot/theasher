@@ -142,6 +142,19 @@ async function main() {
         continue
       }
       const context = await browser.newContext({ viewport, deviceScaleFactor: 1, locale: 'it-IT' })
+      // Negli screenshot età e consensi risultano già dati: altrimenti le finestre
+      // di verifica coprirebbero ogni pagina.
+      await context.addInitScript(() => {
+        try {
+          sessionStorage.setItem('hasher_age_ok', 'si')
+          localStorage.setItem(
+            'hasher_consensi',
+            JSON.stringify({ statistiche: true, marketing: true, versione: 1 }),
+          )
+        } catch {
+          /* niente */
+        }
+      })
       const page = await context.newPage()
       const consoleErrors = []
       page.on('pageerror', (e) => consoleErrors.push(e.message))

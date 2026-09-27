@@ -33,6 +33,7 @@ export default function Shop() {
   const categoria = params.get('categoria') as Categoria | null
   const profilo = params.get('profilo')
   const soloDisponibili = params.get('disponibili') === 'si'
+  const badge = params.get('badge') // 'New' | 'Best seller' | 'Limited drop'
   const ordine = (params.get('ordine') as Ordine) ?? 'novita'
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
@@ -48,15 +49,17 @@ export default function Shop() {
     if (categoria) list = list.filter((p) => p.category === categoria)
     if (profilo) list = list.filter((p) => p.aroma.includes(profilo))
     if (soloDisponibili) list = list.filter((p) => p.inStock)
+    if (badge) list = list.filter((p) => p.badges?.includes(badge as never))
     if (ordine === 'prezzo-basso') list = [...list].sort((a, b) => a.price - b.price)
     if (ordine === 'prezzo-alto') list = [...list].sort((a, b) => b.price - a.price)
     return list
-  }, [categoria, profilo, soloDisponibili, ordine])
+  }, [categoria, profilo, soloDisponibili, badge, ordine])
 
   const attivi = [
     categoria && { key: 'categoria', label: categorie[categoria] },
     profilo && { key: 'profilo', label: profilo },
     soloDisponibili && { key: 'disponibili', label: 'Solo disponibili' },
+    badge && { key: 'badge', label: badge },
   ].filter(Boolean) as { key: string; label: string }[]
 
   return (
@@ -64,7 +67,15 @@ export default function Shop() {
       <Section className="pb-8">
         <Container>
           <Eyebrow>Negozio</Eyebrow>
-          <h1 className="mt-4 text-h1">{categoria ? categorie[categoria] : 'Tutti i prodotti'}</h1>
+          <h1 className="mt-4 text-h1">
+            {badge === 'New'
+              ? 'New drops'
+              : badge === 'Best seller'
+                ? 'Best seller'
+                : categoria
+                  ? categorie[categoria]
+                  : 'Tutti i prodotti'}
+          </h1>
           <p className="mt-4 max-w-prose text-lead text-fg-muted">
             Selezione europea, un certificato di analisi per ogni lotto. Prezzo al grammo sempre
             visibile, così confronti senza fare i conti.
@@ -93,6 +104,19 @@ export default function Shop() {
                 {categorie[key]}
               </Chip>
             ))}
+            <span aria-hidden="true" className="mx-1 h-6 w-px shrink-0 bg-line" />
+            <Chip
+              active={badge === 'New'}
+              onClick={() => setFilter('badge', badge === 'New' ? null : 'New')}
+            >
+              New drops
+            </Chip>
+            <Chip
+              active={badge === 'Best seller'}
+              onClick={() => setFilter('badge', badge === 'Best seller' ? null : 'Best seller')}
+            >
+              Best seller
+            </Chip>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">

@@ -36,3 +36,8 @@
 - 2026-09-27 · `cn()` ora conosce le nostre dimensioni di testo (text-display, text-h1…): prima venivano scartate quando nella stessa classe c’era anche un colore · bug che rimpiccioliva i titoli costruiti con classi condizionali
 - 2026-09-27 · Pagina di lavoro `/prezzi`: analisi delle fasce di prezzo B2C europee per categoria (fiori e hash) e proposta di posizionamento per The Hasher · serve a fissare il listino con dati, non a sensazione
 - 2026-09-27 · Archivio foto e video Roican individuato su Google Drive (cartella condivisa, con Flowers, Hash ed Extractions) · i file non sono scaricabili da questa sessione: la rete blocca Drive e il download via connettore riempirebbe la memoria della sessione. Vanno allegati in chat o messi nel repo
+- 2026-09-27 · Carrello con stato condiviso nel prototipo (aggiungi, quantità, salva per dopo): resta solo UI, nessuna API · così Lorenzo può provare davvero il percorso d’acquisto
+- 2026-09-27 · Checkout su pagina isolata senza header e footer (flag `bare` nelle route) · al checkout non si esce dal percorso
+- 2026-09-27 · Categorie, New drops e Best seller sono il negozio filtrato, non pagine separate · una pagina sola da mantenere
+- 2026-09-27 · Le sette pagine legali nascono da un impianto comune, con avviso «bozza da far validare» dove serve · struttura pronta, testi da consulente
+- 2026-09-27 · Verifica 18+ e banner cookie attivi; lo script screenshot li pre-accetta · altrimenti coprirebbero ogni pagina catturata

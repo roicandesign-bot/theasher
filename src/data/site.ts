@@ -10,7 +10,7 @@ export const site = {
   nav: [
     { label: 'Hash', to: '/negozio?categoria=hash' },
     { label: 'CBD Flower', to: '/negozio?categoria=flower' },
-    { label: 'New Drops', to: '/#new-drop' },
+    { label: 'New Drops', to: '/negozio?badge=New' },
     { label: 'Azienda', to: '/azienda' },
     { label: 'Journal', to: '/journal' },
   ],

@@ -8,7 +8,7 @@
 | 2. Stile (token) | ✅ fatto    | Palette The Hasher, Anton + Archivo self-hosted, `/styleguide`                                |
 | 3. Componenti    | ✅ fatto    | Button pill, Badge, Price, Logo, Diamond, StrokePattern, ProductCard, InfoBar, Header, Footer |
 | 4. Pagine        | 🟡 in corso | Home fatta (12 sezioni); prossime: prodotto, categoria, carrello                              |
-| 5. Verifica      | ⬜ da fare  |                                                                                               |
+| 5. Verifica      | 🟡 in corso | Screenshot completi a 3 viewport; correzioni di Lorenzo da raccogliere                        |     |
 
 Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
