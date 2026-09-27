@@ -199,48 +199,132 @@ export const contatti = {
 }
 
 export const distributore = {
-  eyebrow: 'B2B',
-  titolo: 'Diventa distributore.',
-  lead: 'Cerchiamo pochi partner seri per Paese: negozi, catene, grossisti che vogliano una gamma corta, tracciata e con materiali già pronti.',
+  eyebrow: 'Rivenditori e distributori',
+  titolo: 'Distribuisci The Hasher.',
+  lead: 'Prezzi da produttore, prodotto già confezionato e pronto per lo scaffale, filiera nostra dal seme al pacco. Cerchiamo negozi e distributori in tutta Europa.',
+  numeri: [
+    { valore: '58\u00A0%', etichetta: 'margine massimo sul prezzo consigliato' },
+    { valore: '24–72\u00A0h', etichetta: 'consegna in tutta la UE' },
+    { valore: '500\u00A0€', etichetta: 'primo ordine minimo' },
+  ],
   offriamo: [
     {
-      titolo: 'Listino riservato',
+      titolo: 'Prezzi da produttore',
       testo:
-        'Prezzi a scaglioni dal primo ordine, con condizioni migliori sopra le soglie concordate.',
+        'Coltiviamo e produciamo noi: niente intermediari in mezzo. Le stesse condizioni dei nostri migliori clienti all’ingrosso.',
     },
     {
-      titolo: 'Esclusiva di zona',
+      titolo: 'Pronto per lo scaffale',
       testo:
-        'Dove ha senso, limitiamo il numero di rivenditori per area. Ne parliamo caso per caso.',
+        'Arriva confezionato, etichettato e con il lotto stampato. Lo apri, lo esponi, lo vendi.',
     },
     {
-      titolo: 'Materiali pronti',
+      titolo: 'Lotti tracciati',
       testo:
-        'Espositori, foto, testi e certificati: quello che serve per vendere senza inventare nulla.',
+        'Certificato di analisi per ogni lotto, scaricabile anche dai tuoi clienti. Zero sorprese ai controlli.',
     },
     {
-      titolo: 'Logistica europea',
-      testo: 'Spedizione in tutta la UE, lotti tracciati, documenti in ordine.',
+      titolo: 'Materiali di vendita',
+      testo:
+        'Espositore da banco, foto e video in chiave The Hasher, schede prodotto e formazione per chi vende.',
     },
+  ],
+  /** Tre livelli di partnership: il secondo è quello da spingere. */
+  livelli: [
+    {
+      nome: 'Rivenditore',
+      perChi: 'Negozi e shop online',
+      minimo: 'Primo ordine da 500 €',
+      margine: '40\u00A0%',
+      punti: [
+        'Tutta la gamma, formati da 1 g',
+        'Espositore da banco incluso',
+        'Riordino libero, senza minimo',
+      ],
+    },
+    {
+      nome: 'Distributore',
+      perChi: 'Grossisti e catene',
+      minimo: 'Da 2.500 € a ordine',
+      margine: '50\u00A0%',
+      evidenza: true,
+      punti: [
+        'Formati grandi fino a 100 g',
+        'Referente commerciale dedicato',
+        'Materiali marketing per i tuoi punti vendita',
+        'Pagamento a 30 giorni dopo il terzo ordine',
+      ],
+    },
+    {
+      nome: 'Partner di zona',
+      perChi: 'Esclusiva su un’area',
+      minimo: 'Da 10.000 € al mese',
+      margine: 'fino al 58\u00A0%',
+      punti: [
+        'Esclusiva regionale o nazionale',
+        'Prezzi da produttore, i più bassi del listino',
+        'Lotti riservati e drop in anteprima',
+        'Co-marketing e campagne condivise',
+      ],
+    },
+  ],
+  /** Prezzi indicativi al grammo, IVA esclusa. Da allineare al listino vero prima del lancio. */
+  listino: [
+    {
+      categoria: 'Fiori indoor',
+      pubblico: '8,17 €',
+      prezzi: ['4,90 €', '4,10 €', '3,45 €'],
+    },
+    {
+      categoria: 'Hash dry sift',
+      pubblico: '11,25 €',
+      prezzi: ['6,75 €', '5,60 €', '4,70 €'],
+    },
+    {
+      categoria: 'Hash frozen e static',
+      pubblico: '22,50 €',
+      prezzi: ['13,50 €', '11,20 €', '9,40 €'],
+    },
+    {
+      categoria: 'Estratti',
+      pubblico: '36,80 €',
+      prezzi: ['22,00 €', '18,40 €', '15,50 €'],
+    },
+  ],
+  passi: [
+    { titolo: 'Richiesta', testo: 'Compili il modulo qui sotto: due minuti.' },
+    {
+      titolo: 'Chiamata',
+      testo: 'Entro 48 ore ti richiamiamo: zona, volumi, gamma, livello giusto per te.',
+    },
+    {
+      titolo: 'Kit di prova',
+      testo: 'Ti mandiamo una selezione di campioni con il listino completo.',
+    },
+    { titolo: 'Primo ordine', testo: 'Parti con il livello concordato. Il resto lo facciamo noi.' },
   ],
   requisiti: [
     'Partita IVA attiva e attività coerente con la vendita di prodotti CBD',
     'Conformità alle regole del proprio Paese sulla vendita al pubblico',
-    'Ordine minimo iniziale concordato in fase di apertura',
-    'Nessuna vendita sotto il prezzo minimo consigliato',
+    'Rispetto del prezzo minimo consigliato, anche online',
+    'Magazzino proprio: non lavoriamo in dropshipping',
   ],
   faq: [
     {
       q: 'Qual è l’ordine minimo?',
-      a: 'Dipende dal Paese e dalla gamma scelta. Nella prima chiamata definiamo un minimo realistico, senza forzare magazzino che non ti serve.',
+      a: 'Per i rivenditori il primo ordine parte da 500 €, poi si riordina liberamente. Per distributori e partner di zona il minimo si concorda in base all’area.',
+    },
+    {
+      q: 'I prezzi del listino sono definitivi?',
+      a: 'Sono indicativi, IVA esclusa. Il listino completo, con tutti i formati e le promozioni del mese, arriva dopo la prima chiamata.',
+    },
+    {
+      q: 'Posso avere l’esclusiva sulla mia zona?',
+      a: 'Sì, con il livello Partner di zona. Valutiamo caso per caso in base a volumi e area: non la diamo a tutti, altrimenti non varrebbe niente.',
     },
     {
       q: 'Fate dropshipping?',
       a: 'No. Lavoriamo con chi tiene magazzino: è l’unico modo per garantire tempi e qualità di conservazione.',
-    },
-    {
-      q: 'Posso vendere online?',
-      a: 'Sì, alle condizioni concordate e nel rispetto delle regole del tuo Paese. Il prezzo minimo consigliato vale anche online.',
     },
     {
       q: 'Fornite i certificati di analisi?',

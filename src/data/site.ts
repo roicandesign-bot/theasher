@@ -24,7 +24,7 @@ export const site = {
         },
       ],
     },
-    { label: 'New Drops', to: '/negozio?badge=New' },
+    { label: 'Diventa rivenditore', to: '/diventa-distributore' },
     { label: 'Azienda', to: '/azienda' },
     { label: 'Blog', to: '/blog' },
   ],
