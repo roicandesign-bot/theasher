@@ -48,6 +48,11 @@ export function ProductCard({ product, className }: { product: Product; classNam
             </Link>
           </h3>
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
+          {(product.coltivazione ?? product.lavorazione) && (
+            <p className="mt-1.5 label text-[0.625rem] text-primary">
+              {product.coltivazione ?? product.lavorazione}
+            </p>
+          )}
         </div>
         <div className="flex items-end justify-between gap-3">
           <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />

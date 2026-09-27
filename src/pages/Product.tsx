@@ -130,7 +130,17 @@ export default function Product() {
             )}
             <Eyebrow>{categoryLabel}</Eyebrow>
             <h1 className="mt-3 text-h1">{product.name}</h1>
-            <p className="mt-3 label text-[0.75rem] text-fg-muted">{product.aroma.join(' / ')}</p>
+            <p className="mt-3 label text-[0.75rem] text-fg-muted">
+              {product.aroma.join(' / ')}
+              {(product.coltivazione ?? product.lavorazione) && (
+                <>
+                  {' · '}
+                  <span className="text-primary">
+                    {product.coltivazione ?? product.lavorazione}
+                  </span>
+                </>
+              )}
+            </p>
             <p className="mt-4 max-w-prose text-lead text-fg-muted">{product.short}</p>
           </div>
 

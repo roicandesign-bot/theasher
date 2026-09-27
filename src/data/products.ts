@@ -12,6 +12,26 @@ export type Variant = {
   inStock: boolean
 }
 
+/** Come è stato coltivato un fiore. Dal più pregiato al più economico. */
+export const coltivazioni = ['Indoor top', 'Indoor', 'Glasshouse', 'Greenhouse', 'Outdoor'] as const
+export type Coltivazione = (typeof coltivazioni)[number]
+
+/** Come è stato lavorato un hash o un estratto. */
+export const lavorazioni = [
+  'Frozen sift',
+  'Static sift',
+  'Ice-o-lator',
+  'Bubble ice',
+  'Charas',
+  'Super dry sift',
+  'Dry sift',
+  'Super pollen',
+  'Dry',
+  'Semidry',
+  'Rosin',
+] as const
+export type Lavorazione = (typeof lavorazioni)[number]
+
 export type Product = {
   slug: string
   name: string
@@ -29,6 +49,10 @@ export type Product = {
   /** Galleria della pagina prodotto (la prima è la principale) */
   gallery?: { src: string; alt: string }[]
   origin: string
+  /** Solo per i fiori: tipo di coltivazione */
+  coltivazione?: Coltivazione
+  /** Solo per hash ed estratti: tecnica di lavorazione */
+  lavorazione?: Lavorazione
   short: string
   /** Formati acquistabili */
   variants?: Variant[]
@@ -47,6 +71,7 @@ export type Product = {
 export const products: Product[] = [
   {
     slug: 'lemon-haze',
+    lavorazione: 'Dry sift',
     name: 'Lemon Haze',
     category: 'hash',
     aroma: ['Citrus', 'Earthy', 'Smooth'],
@@ -113,6 +138,7 @@ export const products: Product[] = [
   },
   {
     slug: 'royal-hash',
+    lavorazione: 'Dry',
     name: 'Royal Hash',
     category: 'hash',
     aroma: ['Classic', 'Rich', 'Refined'],
@@ -126,6 +152,7 @@ export const products: Product[] = [
   },
   {
     slug: 'desert-gold',
+    lavorazione: 'Super pollen',
     name: 'Desert Gold',
     category: 'hash',
     aroma: ['Sweet', 'Spicy', 'Complex'],
@@ -139,6 +166,7 @@ export const products: Product[] = [
   },
   {
     slug: 'ketama-gold',
+    lavorazione: 'Charas',
     name: 'Ketama Gold',
     category: 'hash',
     aroma: ['Woody', 'Sweet', 'Deep'],
@@ -152,6 +180,7 @@ export const products: Product[] = [
   },
   {
     slug: 'silver-haze-cbd',
+    coltivazione: 'Indoor',
     name: 'Silver Haze',
     category: 'flower',
     aroma: ['Fresh', 'Pine', 'Citrus'],
@@ -165,6 +194,7 @@ export const products: Product[] = [
   },
   {
     slug: 'amnesia-cbd',
+    coltivazione: 'Greenhouse',
     name: 'Amnesia CBD',
     category: 'flower',
     aroma: ['Sweet', 'Earthy', 'Floral'],

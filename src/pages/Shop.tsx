@@ -10,7 +10,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { products } from '@/data/products'
+import { coltivazioni, lavorazioni, products } from '@/data/products'
 import { cn } from '@/lib/cn'
 
 const categorie = {
@@ -27,6 +27,9 @@ const ordinamenti = {
 type Ordine = keyof typeof ordinamenti
 
 const profili = [...new Set(products.flatMap((p) => p.aroma))].sort()
+/** Mostra solo le voci che esistono davvero a catalogo. */
+const coltivazioniUsate = coltivazioni.filter((c) => products.some((p) => p.coltivazione === c))
+const lavorazioniUsate = lavorazioni.filter((l) => products.some((p) => p.lavorazione === l))
 
 export default function Shop() {
   const [params, setParams] = useSearchParams()
@@ -34,6 +37,8 @@ export default function Shop() {
   const profilo = params.get('profilo')
   const soloDisponibili = params.get('disponibili') === 'si'
   const badge = params.get('badge') // 'New' | 'Best seller' | 'Limited drop'
+  const coltivazione = params.get('coltivazione')
+  const lavorazione = params.get('lavorazione')
   const ordine = (params.get('ordine') as Ordine) ?? 'novita'
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
@@ -50,16 +55,20 @@ export default function Shop() {
     if (profilo) list = list.filter((p) => p.aroma.includes(profilo))
     if (soloDisponibili) list = list.filter((p) => p.inStock)
     if (badge) list = list.filter((p) => p.badges?.includes(badge as never))
+    if (coltivazione) list = list.filter((p) => p.coltivazione === coltivazione)
+    if (lavorazione) list = list.filter((p) => p.lavorazione === lavorazione)
     if (ordine === 'prezzo-basso') list = [...list].sort((a, b) => a.price - b.price)
     if (ordine === 'prezzo-alto') list = [...list].sort((a, b) => b.price - a.price)
     return list
-  }, [categoria, profilo, soloDisponibili, badge, ordine])
+  }, [categoria, profilo, soloDisponibili, badge, coltivazione, lavorazione, ordine])
 
   const attivi = [
     categoria && { key: 'categoria', label: categorie[categoria] },
     profilo && { key: 'profilo', label: profilo },
     soloDisponibili && { key: 'disponibili', label: 'Solo disponibili' },
     badge && { key: 'badge', label: badge },
+    coltivazione && { key: 'coltivazione', label: coltivazione },
+    lavorazione && { key: 'lavorazione', label: lavorazione },
   ].filter(Boolean) as { key: string; label: string }[]
 
   return (
@@ -117,6 +126,33 @@ export default function Shop() {
             >
               Best seller
             </Chip>
+          </div>
+
+          {/* Coltivazione (fiori) e lavorazione (hash): gli assi veri del catalogo */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            <span className="shrink-0 label text-[0.625rem] text-fg-muted">Coltivazione</span>
+            {coltivazioniUsate.map((c) => (
+              <Chip
+                key={c}
+                size="sm"
+                active={coltivazione === c}
+                onClick={() => setFilter('coltivazione', coltivazione === c ? null : c)}
+              >
+                {c}
+              </Chip>
+            ))}
+            <span aria-hidden="true" className="mx-1 h-6 w-px shrink-0 bg-line" />
+            <span className="shrink-0 label text-[0.625rem] text-fg-muted">Lavorazione</span>
+            {lavorazioniUsate.map((l) => (
+              <Chip
+                key={l}
+                size="sm"
+                active={lavorazione === l}
+                onClick={() => setFilter('lavorazione', lavorazione === l ? null : l)}
+              >
+                {l}
+              </Chip>
+            ))}
           </div>
 
           <div className="flex flex-wrap items-center gap-2">

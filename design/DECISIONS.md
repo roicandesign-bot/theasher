@@ -41,3 +41,5 @@
 - 2026-09-27 · Categorie, New drops e Best seller sono il negozio filtrato, non pagine separate · una pagina sola da mantenere
 - 2026-09-27 · Le sette pagine legali nascono da un impianto comune, con avviso «bozza da far validare» dove serve · struttura pronta, testi da consulente
 - 2026-09-27 · Verifica 18+ e banner cookie attivi; lo script screenshot li pre-accetta · altrimenti coprirebbero ogni pagina catturata
+- 2026-09-27 · Catalogo predisposto sui due assi che contano: coltivazione dei fiori (Indoor top, Indoor, Glasshouse, Greenhouse, Outdoor) e lavorazione di hash ed estratti (frozen sift, static sift, ice-o-lator, bubble ice, charas, super dry sift, dry sift, super pollen, dry, semidry, rosin) · quando arriva il catalogo vero basta assegnare i valori, filtri e schede sono già pronti
+- 2026-09-27 · roican.shop e Google Drive non sono raggiungibili dalle sessioni remote (policy di rete dell'ambiente) · i materiali vanno allegati in chat, messi nel repo, oppure il dominio va aggiunto tra quelli consentiti nelle impostazioni dell'ambiente
