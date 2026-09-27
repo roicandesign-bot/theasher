@@ -135,8 +135,10 @@ export default function Home() {
                 key={c.id}
                 id={c.id}
                 className={cn(
-                  'group relative grid h-full scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card ring-2 ring-primary',
-                  c.tone === 'giallo' ? 'bg-primary text-primary-fg' : 'bg-surface text-fg',
+                  'group relative grid h-full scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card',
+                  c.tone === 'giallo'
+                    ? 'bg-primary text-primary-fg ring-2 ring-primary'
+                    : 'bg-surface text-fg ring-1 ring-primary/25',
                 )}
               >
                 <div className="flex flex-col justify-between gap-6 p-6 md:p-8">

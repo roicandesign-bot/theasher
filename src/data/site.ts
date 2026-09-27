@@ -6,12 +6,24 @@ export const site = {
   name: 'The Hasher',
   claim: 'Good plants. Brighter days.',
   tagline: 'Premium CBD hash & CBD flower',
-  /** Le voci del menu puntano alle sezioni della home finché le pagine non esistono. */
+  /** Menu principale. `sotto` apre un sottomenu (tendina su desktop, elenco nel menu mobile). */
   nav: [
     { label: 'Home', to: '/' },
-    { label: 'Fiori', to: '/negozio?categoria=fiori' },
-    { label: 'Hash', to: '/negozio?categoria=hash' },
-    { label: 'Estratti', to: '/negozio?categoria=estratti' },
+    {
+      label: 'Shop',
+      to: '/negozio',
+      sotto: [
+        { label: 'Tutti i prodotti', to: '/negozio', img: 'images/demo/hero-products.jpg' },
+        { label: 'Fiori', to: '/negozio?categoria=fiori', img: 'images/demo/cat-flower.jpg' },
+        { label: 'Hash', to: '/negozio?categoria=hash', img: 'images/demo/cat-hash.jpg' },
+        { label: 'Estratti', to: '/negozio?categoria=estratti', img: 'images/demo/jar-hash.jpg' },
+        {
+          label: 'Oli',
+          to: '/negozio?categoria=estratti&metodo=Olio',
+          img: 'images/demo/packaging-family.jpg',
+        },
+      ],
+    },
     { label: 'New Drops', to: '/negozio?badge=New' },
     { label: 'Azienda', to: '/azienda' },
     { label: 'Blog', to: '/blog' },

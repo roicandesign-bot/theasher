@@ -151,6 +151,7 @@ async function main() {
             'hasher_consensi',
             JSON.stringify({ statistiche: true, marketing: true, versione: 1 }),
           )
+          localStorage.setItem('hasher_popup_sconto', 'si')
         } catch {
           /* niente */
         }

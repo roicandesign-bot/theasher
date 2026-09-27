@@ -71,3 +71,8 @@
 - 2026-09-27 · La filiera porta al negozio («Vai allo shop») invece che alle analisi
 - 2026-09-27 · In home la sezione «Ogni lotto, un certificato» è sostituita da «Spedizioni: anonime, veloci, in tutta Europa» (packaging anonimo, 24–72 ore, tracciata e garantita) · le analisi restano nella pagina dedicata e in ogni scheda prodotto
 - 2026-09-27 · La Discovery Box ha la cornice gialla continua attorno a tutto il box, non solo fra le tre foto
+- 2026-09-27 · Menu: al posto di Fiori/Hash/Estratti una voce Shop con sottomenu (Tutti i prodotti, Fiori, Hash, Estratti, Oli) · su telefono si apre dentro il menu, su desktop è una tendina
+- 2026-09-27 · Il sottomenu non è un elenco di testo ma una griglia di riquadri con la miniatura della categoria · primo tentativo bocciato perché grigio e anonimo
+- 2026-09-27 · «Oli» punta al negozio filtrato su estratti + metodo Olio: nessuna pagina in più da mantenere
+- 2026-09-27 · Cornice delle schede categoria scure portata a un filo di giallo al 25 %; resta piena solo sulla scheda gialla
+- 2026-09-27 · Popup «−5 % per 6 mesi» che invita a creare l'account con la newsletter: compare dopo dodici secondi, una volta sola, e solo dopo verifica dell'età e consensi · negli screenshot resta chiuso come le altre finestre

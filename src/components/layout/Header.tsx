@@ -1,9 +1,10 @@
-import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
+import { ChevronDown, Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
+import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
@@ -29,10 +30,13 @@ function useVoceAttiva() {
  */
 export function Header() {
   const [open, setOpen] = useState(false)
+  /** Sottomenu aperto nel menu mobile (label della voce) */
+  const [sotto, setSotto] = useState<string | null>(null)
   const cart = useCart()
   const attiva = useVoceAttiva()
 
   useEffect(() => {
+    if (!open) setSotto(null)
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
@@ -62,16 +66,62 @@ export function Header() {
 
           {/* desktop: menu */}
           <nav className="hidden justify-center lg:flex" aria-label="Principale">
-            {site.nav.map((item) => (
-              <Link
-                key={item.label}
-                to={item.to}
-                aria-current={attiva(item.to) ? 'page' : undefined}
-                className={cn(navLink, attiva(item.to) ? 'text-primary' : 'text-fg')}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {site.nav.map((item) =>
+              'sotto' in item && item.sotto ? (
+                <div key={item.label} className="group relative">
+                  <Link
+                    to={item.to}
+                    aria-current={attiva(item.to) ? 'page' : undefined}
+                    className={cn(
+                      navLink,
+                      'gap-1.5',
+                      attiva(item.to) || item.sotto.some((v) => attiva(v.to))
+                        ? 'text-primary'
+                        : 'text-fg',
+                    )}
+                  >
+                    {item.label}
+                    <ChevronDown
+                      aria-hidden="true"
+                      className="size-3.5 transition-transform duration-200 ease-out-soft group-hover:rotate-180"
+                    />
+                  </Link>
+                  <div className="invisible absolute top-full left-1/2 z-50 w-72 -translate-x-1/2 pt-2 opacity-0 transition duration-200 ease-out-soft group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                    <ul className="grid gap-1.5 rounded-card border border-line bg-bg p-2">
+                      {item.sotto.map((v) => (
+                        <li key={v.label}>
+                          <Link
+                            to={v.to}
+                            aria-current={attiva(v.to) ? 'page' : undefined}
+                            className={cn(
+                              'flex items-center gap-3 rounded-[0.75rem] p-1.5 transition duration-200 ease-out-soft hocus:bg-surface-hover',
+                              attiva(v.to) ? 'text-primary' : 'text-fg hocus:text-primary',
+                            )}
+                          >
+                            <img
+                              src={asset(v.img)}
+                              alt=""
+                              loading="lazy"
+                              className="size-10 shrink-0 rounded-[0.5rem] object-cover"
+                            />
+                            <span className="label text-[0.6875rem]">{v.label}</span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  aria-current={attiva(item.to) ? 'page' : undefined}
+                  className={cn(navLink, attiva(item.to) ? 'text-primary' : 'text-fg')}
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           {/* icone */}
@@ -151,26 +201,84 @@ export function Header() {
           className="container-content flex flex-1 flex-col gap-1 overflow-y-auto overscroll-contain py-6"
           aria-label="Menu mobile"
         >
-          {site.nav.map((item) => (
-            <Link
-              key={item.label}
-              to={item.to}
-              onClick={() => setOpen(false)}
-              aria-current={attiva(item.to) ? 'page' : undefined}
-              className={cn(
-                'group flex items-center justify-between gap-4 border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
-                attiva(item.to) && 'text-primary',
-              )}
-            >
-              {item.label}
-              <span
-                aria-hidden="true"
-                className="text-primary transition-transform duration-200 ease-out-soft group-hover:translate-x-1"
+          {site.nav.map((item) =>
+            'sotto' in item && item.sotto ? (
+              <div key={item.label} className="border-b border-line">
+                <button
+                  type="button"
+                  onClick={() => setSotto((v) => (v === item.label ? null : item.label))}
+                  aria-expanded={sotto === item.label}
+                  className={cn(
+                    'flex w-full items-center justify-between gap-4 py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
+                    (sotto === item.label || item.sotto.some((v) => attiva(v.to))) &&
+                      'text-primary',
+                  )}
+                >
+                  {item.label}
+                  <ChevronDown
+                    aria-hidden="true"
+                    className={cn(
+                      'size-6 shrink-0 text-primary transition-transform duration-300 ease-out-soft',
+                      sotto === item.label && 'rotate-180',
+                    )}
+                  />
+                </button>
+                <div
+                  className={cn(
+                    'grid transition-all duration-300 ease-out-soft',
+                    sotto === item.label
+                      ? 'grid-rows-[1fr] pb-4 opacity-100'
+                      : 'grid-rows-[0fr] opacity-0',
+                  )}
+                >
+                  <ul className="grid grid-cols-2 gap-2 overflow-hidden">
+                    {item.sotto.map((v, i) => (
+                      <li key={v.label} className={cn(i === 0 && 'col-span-2')}>
+                        <Link
+                          to={v.to}
+                          onClick={() => setOpen(false)}
+                          aria-current={attiva(v.to) ? 'page' : undefined}
+                          className={cn(
+                            'flex items-center gap-3 rounded-card bg-surface p-2 ring-1 transition duration-200 ease-out-soft ring-inset',
+                            attiva(v.to)
+                              ? 'text-primary ring-primary'
+                              : 'text-fg ring-line hocus:ring-primary',
+                          )}
+                        >
+                          <img
+                            src={asset(v.img)}
+                            alt=""
+                            loading="lazy"
+                            className="size-12 shrink-0 rounded-[0.625rem] object-cover"
+                          />
+                          <span className="label text-[0.75rem]">{v.label}</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                aria-current={attiva(item.to) ? 'page' : undefined}
+                className={cn(
+                  'group flex items-center justify-between gap-4 border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
+                  attiva(item.to) && 'text-primary',
+                )}
               >
-                →
-              </span>
-            </Link>
-          ))}
+                {item.label}
+                <span
+                  aria-hidden="true"
+                  className="text-primary transition-transform duration-200 ease-out-soft group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </Link>
+            ),
+          )}
           <div className="mt-6 flex flex-col gap-3">
             <Button to="/negozio" size="lg" onClick={() => setOpen(false)}>
               Shop the drop →

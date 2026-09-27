@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { matchPath, Route, Routes, useLocation } from 'react-router-dom'
 import { AgeGate } from './components/layout/AgeGate'
 import { CookieBanner } from './components/layout/CookieBanner'
+import { PopupSconto } from './components/layout/PopupSconto'
 import { CartDrawer } from './components/shop/CartDrawer'
 import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
@@ -63,6 +64,7 @@ export default function App() {
         <CartDrawer />
         <AgeGate />
         <CookieBanner />
+        <PopupSconto />
       </div>
     </CartProvider>
   )
