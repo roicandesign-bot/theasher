@@ -9,6 +9,7 @@ import Faq from './pages/Faq'
 import { JournalArticle, JournalList } from './pages/Journal'
 import LabTests from './pages/LabTests'
 import Search from './pages/Search'
+import TextPage from './pages/TextPage'
 import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
@@ -79,6 +80,13 @@ export const routes: AppRoute[] = [
   { path: '/faq', label: 'Domande frequenti', component: Faq, inNav: false },
   { path: '/cerca', label: 'Ricerca', component: Search, inNav: false },
   { path: '/preferiti', label: 'Preferiti', component: Wishlist, inNav: false },
+  { path: '/spedizioni', label: 'Spedizioni', component: TextPage, inNav: false },
+  { path: '/resi', label: 'Resi e rimborsi', component: TextPage, inNav: false },
+  { path: '/pagamenti', label: 'Pagamenti', component: TextPage, inNav: false },
+  { path: '/privacy', label: 'Privacy', component: TextPage, inNav: false },
+  { path: '/cookie', label: 'Cookie', component: TextPage, inNav: false },
+  { path: '/termini', label: 'Termini e condizioni', component: TextPage, inNav: false },
+  { path: '/legale', label: 'Informazioni legali', component: TextPage, inNav: false },
   { path: '/accedi', label: 'Accedi', component: Auth, inNav: false },
   { path: '/registrati', label: 'Registrati', component: Auth, inNav: false },
   { path: '/password-dimenticata', label: 'Password dimenticata', component: Auth, inNav: false },

@@ -40,10 +40,13 @@ export const site = {
       { label: 'Diventa distributore', to: '/diventa-distributore' },
     ],
     legal: [
-      { label: 'Privacy', to: '/#faq' },
-      { label: 'Cookie', to: '/#faq' },
-      { label: 'Termini e condizioni', to: '/#faq' },
-      { label: 'Informazioni legali', to: '/#faq' },
+      { label: 'Spedizioni', to: '/spedizioni' },
+      { label: 'Resi e rimborsi', to: '/resi' },
+      { label: 'Pagamenti', to: '/pagamenti' },
+      { label: 'Privacy', to: '/privacy' },
+      { label: 'Cookie', to: '/cookie' },
+      { label: 'Termini e condizioni', to: '/termini' },
+      { label: 'Informazioni legali', to: '/legale' },
     ],
     socials: [
       { label: 'Instagram', href: 'https://instagram.com' },
