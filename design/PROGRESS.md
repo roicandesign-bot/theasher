@@ -32,6 +32,12 @@ Tassonomia completa a catalogo (37 prodotti demo): quattro linee (CBD, THC-X, CB
 colore, estratti per metodo di estrazione, tutti con i cannabinoidi dichiarati.
 Nomi, prezzi e foto sono demo: si sostituiscono con l'archivio vero senza toccare la struttura.
 
+## Foto
+
+La filiera in home usa cinque foto del brand rilavorate (`public/images/filiera/`, originali in
+`design/inputs/filiera/`, trattamento con `scripts/look-hasher.py`). Le foto prodotto sono ancora
+ritagli demo dai mockup.
+
 ## Prossima azione consigliata
 
 Foto e nomi veri dei prodotti (archivio Roican: va allegato in chat o sbloccato nelle impostazioni

@@ -63,32 +63,35 @@ export const home = {
       { title: 'Vendita diretta', text: 'Dalla pianta al cliente finale, senza passaggi inutili.' },
     ],
     cta: 'Vedi le analisi',
-    /** Le cinque tappe della filiera. `image` assente = foto ancora da fare. */
+    /** Le cinque tappe della filiera. Foto fornite dal brand, rilavorate in chiave The Hasher. */
     slides: [
       {
-        titolo: 'Semina',
-        testo: 'Si parte dalla genetica: semi selezionati, uno per uno, e messa a dimora.',
-        icona: 'semina',
+        titolo: 'Selezione e semina',
+        testo:
+          'Si parte dalla genetica: semi scelti uno per uno e messi a germinare in laboratorio.',
+        image: 'images/filiera/semina.jpg',
       },
       {
         titolo: 'Coltivazione indoor',
-        testo: 'Impianto nostro: luce, clima e nutrimento controllati ogni giorno.',
-        image: 'images/demo/flower-macro-2.jpg',
+        testo:
+          'Impianto nostro: luce, clima e nutrimento controllati ogni giorno fino alla fioritura.',
+        image: 'images/filiera/coltivazione.jpg',
+      },
+      {
+        titolo: 'Raccolta e lavorazione',
+        testo:
+          'Le cime si raccolgono, si rifilano e si asciugano: da qui escono fiori e materia prima.',
+        image: 'images/filiera/raccolta.jpg',
       },
       {
         titolo: 'Setacciatura',
-        testo: 'I fiori passano sui setacci: quello che scende è kif, resina pura.',
-        image: 'images/demo/hash-macro.jpg',
+        testo: 'I fiori passano sui setacci: quello che scende è kif, la resina pura della pianta.',
+        image: 'images/filiera/setacciatura.jpg',
       },
       {
         titolo: 'Pressatura',
-        testo: 'La resina viene pressata a freddo: prende corpo, profumo e consistenza.',
-        image: 'images/demo/hash-texture.jpg',
-      },
-      {
-        titolo: 'Il prodotto finito',
-        testo: 'Mousse, dry sift, estratti: tutto nasce dalle nostre genetiche.',
-        image: 'images/demo/royal-hash.jpg',
+        testo: 'La resina viene pressata a freddo: nasce il panetto, dalle nostre genetiche.',
+        image: 'images/filiera/pressatura.jpg',
       },
     ],
   },

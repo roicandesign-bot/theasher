@@ -1,18 +1,14 @@
-import { ArrowLeft, ArrowRight, Scissors, Sprout, Sun } from 'lucide-react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { home } from '@/data/home'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
-
-const icone = { semina: Sprout, indoor: Sun, setaccio: Scissors } as const
-type Icona = keyof typeof icone
 
 const slides = home.story.slides
 
 /**
  * Le cinque tappe della filiera, una alla volta.
  * Scorre da sola ogni sei secondi; frecce e puntini per andare avanti a mano.
- * Dove la foto non c'è ancora, resta un riquadro con l'icona del passaggio.
  */
 export function Filiera() {
   const [i, setI] = useState(0)
@@ -36,16 +32,12 @@ export function Filiera() {
             n === i ? 'opacity-100' : 'opacity-0',
           )}
         >
-          {'image' in s && s.image ? (
-            <img
-              src={asset(s.image)}
-              alt={`${s.titolo}: ${s.testo}`}
-              loading="lazy"
-              className="size-full object-cover"
-            />
-          ) : (
-            <Placeholder icona={('icona' in s ? s.icona : 'semina') as Icona} />
-          )}
+          <img
+            src={asset(s.image)}
+            alt={`${s.titolo}: ${s.testo}`}
+            loading="lazy"
+            className="size-full object-cover"
+          />
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/80 to-transparent p-6 pt-16">
             <p className="label text-[0.625rem] text-primary">
               {n + 1} / {slides.length} · {s.titolo}
@@ -103,18 +95,5 @@ function Freccia({
     >
       {children}
     </button>
-  )
-}
-
-/** Riquadro di attesa: la foto di questo passaggio va ancora scattata. */
-function Placeholder({ icona }: { icona: Icona }) {
-  const Icon = icone[icona]
-  return (
-    <div className="grid size-full place-items-center bg-gradient-to-br from-primary/20 via-surface to-bg">
-      <div className="flex flex-col items-center gap-3 text-fg-subtle">
-        <Icon className="size-12 text-primary/70" strokeWidth={1.25} />
-        <span className="label text-[0.625rem]">Foto da fare</span>
-      </div>
-    </div>
   )
 }

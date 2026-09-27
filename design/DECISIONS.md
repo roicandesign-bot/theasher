@@ -60,3 +60,5 @@
 - 2026-09-27 · Il contorno giallo della scheda prodotto al passaggio del mouse gira tutta la scheda, foto compresa (ring esterno al posto di quello interno)
 - 2026-09-27 · Tolta la cornice nera attorno alla foto del new drop
 - 2026-09-27 · Sezione racconto riscritta sulla filiera: produttori, distributori e venditori diretti, dalla genetica al cliente finale; al posto della foto singola uno slider delle cinque tappe (semina, coltivazione indoor, setacciatura, pressatura, prodotto finito) · le foto di semina e coltivazione vanno ancora scattate: al loro posto un riquadro «Foto da fare»
+- 2026-09-27 · Le cinque foto della filiera arrivano dal brand e vengono rilavorate in chiave The Hasher: colore quasi tolto, ombre schiacciate sul nero, giallo acido solo sulle alte luci, vignettatura e grana · così le foto chiare da laboratorio non stonano sul fondo nero. Trattamento ripetibile con `scripts/look-hasher.py`, originali in `design/inputs/filiera/`
+- 2026-09-27 · Le tappe della filiera diventano: selezione e semina, coltivazione indoor, raccolta e lavorazione, setacciatura, pressatura · seguono le foto fornite
