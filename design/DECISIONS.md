@@ -48,3 +48,6 @@
 - 2026-09-27 · Ogni voce dei filtri mostra quanti prodotti ci sono dietro e si spegne quando sono zero · si evita il vicolo cieco «nessun risultato»
 - 2026-09-27 · Cambiando famiglia i filtri che non c'entrano vengono tolti da soli (es. la coltivazione sparisce passando all'hash) · niente filtri invisibili che tagliano i risultati
 - 2026-09-27 · I cannabinoidi diventano un filtro unico (CBD, THC-X, CBG, CBN, THC) più tre fasce di concentrazione, al posto di cinque cursori numerici · una scelta sola, comprensibile da telefono
+- 2026-09-27 · Linee madri portate a quattro (CBD, THC-X, CBG, CBN) più l'etichetta THC free per i lotti certificati 0,0 % · sono le cinque pillole della seconda riga del negozio, tutte visibili a 390 px senza scorrere
+- 2026-09-27 · Aggiunti cinque prodotti demo a dominanza CBG e CBN (fiore, hash, isolati, olio notte) · senza prodotti i filtri nuovi resterebbero vuoti
+- 2026-09-27 · La percentuale mostrata segue il filtro: se cerchi CBG vedi il CBG, non il cannabinoide più alto · due bozze a confronto per dove metterla (nel titolo o come sottotitolo giallo), scelta di Lorenzo

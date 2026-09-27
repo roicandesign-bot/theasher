@@ -15,6 +15,7 @@ import {
   metodiEstratto,
   metodiHash,
   products,
+  senzaThc,
   tipiFiore,
   totaleAttivi,
   type Cannabinoide,
@@ -46,6 +47,8 @@ export type Filtri = {
   cannabinoide: Cannabinoide | null
   forza: Forza | null
   badge: string | null
+  /** Solo lotti certificati 0,0 % di THC */
+  thcFree: boolean
   disponibili: boolean
   ordine: Ordine
 }
@@ -129,6 +132,7 @@ export function leggiFiltri(params: URLSearchParams): Filtri {
     cannabinoide: valido(cannabinoidi, params.get('cannabinoide')),
     forza: valido(forze, params.get('forza')),
     badge: valido(['New', 'Best seller', 'Limited drop'] as const, params.get('badge')),
+    thcFree: params.get('thcfree') === 'si',
     disponibili: params.get('disponibili') === 'si',
     ordine: valido(Object.keys(ordinamenti) as readonly Ordine[], params.get('ordine')) ?? 'novita',
   }
@@ -145,6 +149,7 @@ export function corrisponde(p: Product, f: Filtri) {
   if (f.cannabinoide && !haCannabinoide(p, f.cannabinoide)) return false
   if (f.forza && forzaDi(p) !== f.forza) return false
   if (f.badge && !p.badges?.includes(f.badge as never)) return false
+  if (f.thcFree && !senzaThc(p)) return false
   if (f.disponibili && !p.inStock) return false
   return true
 }
@@ -171,6 +176,7 @@ export function conta(f: Filtri, patch: Partial<Filtri>) {
 export function attiviDi(f: Filtri) {
   const lista: { key: string; label: string }[] = []
   for (const a of assi) if (f[a]) lista.push({ key: a, label: String(f[a]) })
+  if (f.thcFree) lista.push({ key: 'thcfree', label: 'THC free' })
   if (f.badge) lista.push({ key: 'badge', label: f.badge })
   if (f.disponibili) lista.push({ key: 'disponibili', label: 'Solo disponibili' })
   return lista

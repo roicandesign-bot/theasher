@@ -8,6 +8,7 @@ import {
   formatQuantita,
   productPath,
   tagLavorazione,
+  type Cannabinoide,
   type Product,
 } from '@/data/products'
 import { useCart } from '@/lib/cart'
@@ -18,8 +19,21 @@ import { cn } from '@/lib/cn'
  * Card prodotto: foto, badge, nome (Anton), profilo aromatico, prezzo + prezzo/g,
  * disponibilità e "Aggiungi al carrello" a contorno. Solo UI.
  */
-export function ProductCard({ product, className }: { product: Product; className?: string }) {
+export function ProductCard({
+  product,
+  evidenzia,
+  percentuale = 'titolo',
+  className,
+}: {
+  product: Product
+  /** Cannabinoide da mostrare al posto del principale (segue il filtro) */
+  evidenzia?: Cannabinoide | null
+  /** Dove finisce la percentuale: dopo il nome (A) o come sottotitolo giallo (B) */
+  percentuale?: 'titolo' | 'sottotitolo'
+  className?: string
+}) {
   const { add } = useCart()
+  const attivo = attivoPrincipale(product, evidenzia)
   return (
     <article
       className={cn(
@@ -49,18 +63,21 @@ export function ProductCard({ product, className }: { product: Product; classNam
       </Link>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div>
-          <h3 className="text-h3">
+          <h3 className="text-h3 text-pretty">
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
               {product.name}
             </Link>
-          </h3>
-          <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
-          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 label text-[0.625rem]">
-            <span className="text-primary">{tagLavorazione(product)}</span>
-            {attivoPrincipale(product) && (
-              <span className="text-fg-muted">{attivoPrincipale(product)}</span>
+            {attivo && percentuale === 'titolo' && (
+              <span className="text-primary"> — {attivo}</span>
             )}
-          </p>
+          </h3>
+          {attivo && percentuale === 'sottotitolo' && (
+            <p className="mt-2 text-[0.875rem] font-bold tracking-attivo text-primary uppercase">
+              {attivo}
+            </p>
+          )}
+          <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
+          <p className="mt-1.5 label text-[0.625rem] text-fg-muted">{tagLavorazione(product)}</p>
         </div>
         <div className="flex items-end justify-between gap-3">
           <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />

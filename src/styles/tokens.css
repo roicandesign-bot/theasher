@@ -79,6 +79,7 @@
 
   --tracking-eyebrow: 0.14em;
   --tracking-label: 0.08em;
+  --tracking-attivo: 0.26em;
 
   /* ---------- Spaziature di layout ---------- */
   --spacing-section: clamp(3.5rem, 2.5rem + 4vw, 7rem); /* py-section */

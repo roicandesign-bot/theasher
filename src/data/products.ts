@@ -15,8 +15,8 @@ export type Variant = {
   inStock: boolean
 }
 
-/** Le due categorie madri. Entrambe restano entro i limiti di legge sul THC. */
-export const linee = ['CBD', 'THC-X'] as const
+/** Le categorie madri: il cannabinoide che guida il prodotto. Tutte entro i limiti di legge sul THC. */
+export const linee = ['CBD', 'THC-X', 'CBG', 'CBN'] as const
 export type Linea = (typeof linee)[number]
 
 /** Le tre famiglie di prodotto. */
@@ -98,6 +98,8 @@ export type Product = {
   grams: number
   /** Unità mostrata accanto alla quantità (g di default) */
   unita?: 'g' | 'ml'
+  /** Lotto certificato 0,0 % di THC */
+  thcFree?: boolean
   badges?: Array<'New' | 'Best seller' | 'Limited drop'>
   inStock: boolean
   image: string
@@ -619,6 +621,7 @@ export const products: Product[] = [
     linea: 'CBD',
     category: 'estratti',
     metodo: 'Terpsolate',
+    thcFree: true,
     aroma: ['Mandarino', 'Puro', 'Esplosivo'],
     attivi: { cbd: 88.3 },
     price: 3990,
@@ -666,6 +669,7 @@ export const products: Product[] = [
     linea: 'CBD',
     category: 'estratti',
     metodo: 'Isolato',
+    thcFree: true,
     aroma: ['Neutro', 'Pulito', 'Inodore'],
     attivi: { cbd: 99.1 },
     price: 1990,
@@ -707,6 +711,92 @@ export const products: Product[] = [
     image: 'images/demo/hash-texture.jpg',
     origin: 'Estrazione europea',
     short: 'La lastra più concentrata del catalogo, sulla linea THC-X.',
+  },
+
+  /* ---------------- CBG e CBN ---------------- */
+  {
+    slug: 'white-cbg',
+    name: 'White CBG',
+    linea: 'CBG',
+    category: 'fiori',
+    coltivazione: 'Glasshouse',
+    tipoFiore: 'Big Bud',
+    aroma: ['Erbaceo', 'Agrumato', 'Delicato'],
+    attivi: { cbg: 14.6, cbd: 1.4 },
+    price: 2290,
+    grams: 3.5,
+    badges: ['New'],
+    inStock: true,
+    image: 'images/demo/cat-flower.jpg',
+    origin: 'Coltivazione glasshouse europea',
+    short: 'Cime chiarissime a dominanza CBG. Profumo leggero, effetto lucido.',
+  },
+  {
+    slug: 'golden-cbg-hash',
+    name: 'Golden CBG',
+    linea: 'CBG',
+    category: 'hash',
+    metodo: 'Dry sift',
+    consistenza: 'Duro',
+    colore: 'Giallo',
+    aroma: ['Terroso', 'Dolce', 'Pulito'],
+    attivi: { cbg: 28.4, cbd: 2.2 },
+    price: 2690,
+    grams: 3.5,
+    inStock: true,
+    image: 'images/demo/desert-gold.jpg',
+    origin: 'Selezione europea',
+    short: 'Il primo hash della linea CBG: grana asciutta, colore paglia, naso pulito.',
+  },
+  {
+    slug: 'isolato-cbg-98',
+    name: 'Isolato CBG 98 %',
+    linea: 'CBG',
+    category: 'estratti',
+    metodo: 'Isolato',
+    thcFree: true,
+    aroma: ['Neutro', 'Pulito', 'Inodore'],
+    attivi: { cbg: 98.2 },
+    price: 2490,
+    grams: 1,
+    inStock: true,
+    image: 'images/demo/packaging-family.jpg',
+    origin: 'Estrazione europea',
+    short: 'Cristallo di CBG puro, certificato 0,0 % di THC. Base per formulazioni.',
+  },
+  {
+    slug: 'olio-cbn-notte',
+    name: 'Olio CBN Notte 10 %',
+    linea: 'CBN',
+    category: 'estratti',
+    metodo: 'Olio',
+    unita: 'ml',
+    thcFree: true,
+    aroma: ['Erbaceo', 'Scuro', 'Morbido'],
+    attivi: { cbn: 10.2, cbd: 5.1 },
+    price: 3690,
+    grams: 10,
+    badges: ['New'],
+    inStock: true,
+    image: 'images/demo/jar-hash.jpg',
+    origin: 'Estrazione europea',
+    short: 'Dieci millilitri a dominanza CBN, senza THC. Contagocce graduato.',
+  },
+  {
+    slug: 'isolato-cbn-97',
+    name: 'Isolato CBN 97 %',
+    linea: 'CBN',
+    category: 'estratti',
+    metodo: 'Isolato',
+    thcFree: true,
+    aroma: ['Neutro', 'Pulito', 'Inodore'],
+    attivi: { cbn: 97.4 },
+    price: 2890,
+    grams: 1,
+    inStock: true,
+    image: 'images/demo/packaging-family.jpg',
+    origin: 'Estrazione europea',
+    short: 'Cristallo di CBN puro, certificato 0,0 % di THC.',
   },
 ]
 
@@ -753,12 +843,25 @@ export function formatQuantita(p: Product) {
   return `${numero(p.grams)} ${p.unita ?? 'g'}`
 }
 
-/** Etichetta del cannabinoide principale, es. "CBD 18,4 %". */
-export function attivoPrincipale(p: Product) {
+/**
+ * Etichetta del cannabinoide principale, es. "CBD 18,4 %".
+ * Se si sta filtrando per un cannabinoide, mostra quello: così la percentuale
+ * in pagina è sempre quella che l'utente sta cercando.
+ */
+export function attivoPrincipale(p: Product, preferito?: Cannabinoide | null) {
+  if (preferito) {
+    const v = p.attivi[chiaveAttivo[preferito]] ?? 0
+    if (v > 0) return `${preferito} ${numero(v)} %`
+  }
   const top = cannabinoidi
     .map((c) => ({ c, v: p.attivi[chiaveAttivo[c]] ?? 0 }))
     .sort((a, b) => b.v - a.v)[0]
   return top && top.v > 0 ? `${top.c} ${numero(top.v)} %` : null
+}
+
+/** Lotti certificati senza THC: è un'etichetta, non l'assenza di dichiarazione. */
+export function senzaThc(p: Product) {
+  return p.thcFree === true
 }
 
 /** Tag di lavorazione mostrato sulle card: coltivazione per i fiori, metodo per il resto. */

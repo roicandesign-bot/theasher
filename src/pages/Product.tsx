@@ -136,7 +136,12 @@ export default function Product() {
               </div>
             )}
             <Eyebrow>{categoryLabel}</Eyebrow>
-            <h1 className="mt-3 text-h1">{product.name}</h1>
+            <h1 className="mt-3 text-h1 text-pretty">
+              {product.name}
+              {attivoPrincipale(product) && (
+                <span className="text-primary"> — {attivoPrincipale(product)}</span>
+              )}
+            </h1>
             <p className="mt-3 label text-[0.75rem] text-fg-muted">
               {product.aroma.join(' / ')}
               {tagLavorazione(product) && (
@@ -145,7 +150,6 @@ export default function Product() {
                   <span className="text-primary">{tagLavorazione(product)}</span>
                 </>
               )}
-              {attivoPrincipale(product) && <>{` · ${attivoPrincipale(product)}`}</>}
             </p>
             <p className="mt-4 max-w-prose text-lead text-fg-muted">{product.short}</p>
           </div>

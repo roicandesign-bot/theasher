@@ -27,7 +27,7 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Catalogo
 
-Tassonomia completa a catalogo (32 prodotti demo): due linee (CBD, THC-X) × tre famiglie
+Tassonomia completa a catalogo (37 prodotti demo): quattro linee (CBD, THC-X, CBG, CBN) più l'etichetta THC free × tre famiglie
 (Fiori, Hash, Estratti). Fiori per coltivazione e tipologia, hash per lavorazione, consistenza e
 colore, estratti per metodo di estrazione, tutti con i cannabinoidi dichiarati.
 Nomi, prezzi e foto sono demo: si sostituiscono con l'archivio vero senza toccare la struttura.
