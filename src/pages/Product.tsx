@@ -25,7 +25,14 @@ import { ProductGallery } from '@/components/ui/ProductGallery'
 import { QuantityInput } from '@/components/ui/QuantityInput'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import { findProduct, products, type Variant } from '@/data/products'
+import {
+  attivoPrincipale,
+  categorie,
+  findProduct,
+  products,
+  tagLavorazione,
+  type Variant,
+} from '@/data/products'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
 import { cn } from '@/lib/cn'
@@ -91,7 +98,7 @@ export default function Product() {
   const total = variant.price * quantity
   const missingForFreeShipping = site.freeShippingFrom - total
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3)
-  const categoryLabel = product.category === 'hash' ? 'Hash' : 'CBD Flower'
+  const categoryLabel = `${categorie[product.category]} ${product.linea}`
 
   return (
     <>
@@ -103,7 +110,7 @@ export default function Product() {
           </Link>
           <span aria-hidden="true">/</span>
           <Link
-            to={`/#${product.category === 'hash' ? 'hash' : 'cbd-flower'}`}
+            to={`/negozio?categoria=${product.category}`}
             className="transition hocus:text-primary"
           >
             {categoryLabel}
@@ -132,14 +139,13 @@ export default function Product() {
             <h1 className="mt-3 text-h1">{product.name}</h1>
             <p className="mt-3 label text-[0.75rem] text-fg-muted">
               {product.aroma.join(' / ')}
-              {(product.coltivazione ?? product.lavorazione) && (
+              {tagLavorazione(product) && (
                 <>
                   {' · '}
-                  <span className="text-primary">
-                    {product.coltivazione ?? product.lavorazione}
-                  </span>
+                  <span className="text-primary">{tagLavorazione(product)}</span>
                 </>
               )}
+              {attivoPrincipale(product) && <>{` · ${attivoPrincipale(product)}`}</>}
             </p>
             <p className="mt-4 max-w-prose text-lead text-fg-muted">{product.short}</p>
           </div>

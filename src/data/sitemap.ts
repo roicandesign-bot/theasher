@@ -40,16 +40,28 @@ export const sitemap: PageGroup[] = [
         to: '/negozio',
       },
       {
+        name: 'Categoria Fiori',
+        what: 'Solo fiori, filtrabili per coltivazione e tipologia',
+        status: 'fatta',
+        to: '/negozio?categoria=fiori',
+      },
+      {
         name: 'Categoria Hash',
-        what: 'Solo hash, filtrabile per formato, aroma, prezzo',
+        what: 'Solo hash, per lavorazione, consistenza e colore',
         status: 'fatta',
         to: '/negozio?categoria=hash',
       },
       {
-        name: 'Categoria CBD Flower',
-        what: 'Solo fiori, stessi filtri',
+        name: 'Categoria Estratti',
+        what: 'Solo estratti, per metodo di estrazione',
         status: 'fatta',
-        to: '/negozio?categoria=flower',
+        to: '/negozio?categoria=estratti',
+      },
+      {
+        name: 'Linea THC-X',
+        what: 'Tutta la linea THC-X, nelle tre famiglie',
+        status: 'fatta',
+        to: '/negozio?linea=THC-X',
       },
       {
         name: 'New Drops',

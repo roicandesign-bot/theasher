@@ -2,25 +2,37 @@
 
 > Aggiornato da Claude a fine di ogni step. `/inizia` legge questo file.
 
-| Step             | Stato       | Note                                                                                          |
-| ---------------- | ----------- | --------------------------------------------------------------------------------------------- |
-| 1. Brief         | ✅ fatto    | Dalla richiesta del brand + brand manual (`docs/`)                                            |
-| 2. Stile (token) | ✅ fatto    | Palette The Hasher, Anton + Archivo self-hosted, `/styleguide`                                |
-| 3. Componenti    | ✅ fatto    | Button pill, Badge, Price, Logo, Diamond, StrokePattern, ProductCard, InfoBar, Header, Footer |
-| 4. Pagine        | 🟡 in corso | Home fatta (12 sezioni); prossime: prodotto, categoria, carrello                              |
-| 5. Verifica      | 🟡 in corso | Screenshot completi a 3 viewport; correzioni di Lorenzo da raccogliere                        |     |
+| Step             | Stato       | Note                                                                                              |
+| ---------------- | ----------- | ------------------------------------------------------------------------------------------------- |
+| 1. Brief         | ✅ fatto    | Dalla richiesta del brand + brand manual (`docs/`)                                                |
+| 2. Stile (token) | ✅ fatto    | Palette The Hasher, Anton + Archivo self-hosted, `/styleguide`                                    |
+| 3. Componenti    | ✅ fatto    | Button, Badge, Chip, Price, Logo, Diamond, StrokePattern, ProductCard, InfoBar, Header, Footer    |
+| 4. Pagine        | ✅ v1       | 34 route pronte: home, negozio, prodotto, carrello, checkout, account, racconto, servizio, legale |
+| 5. Verifica      | 🟡 in corso | Screenshot a 3 viewport a ogni modifica; correzioni di Lorenzo da raccogliere                     |
+| + Animazioni     | ✅ fatto    | Reveal all'ingresso, transizioni, rispetto di «riduci animazioni»                                 |
 
 Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Pagine
 
-| Pagina              | Route         | Stato               | Ultima verifica           |
-| ------------------- | ------------- | ------------------- | ------------------------- |
-| Home                | `/`           | ✅ v1               | 2026-09-14 (390/834/1440) |
-| Resoconto e roadmap | `/stato`      | ✅ pagina di lavoro | 2026-09-27                |
-| Mappa del sito      | `/mappa`      | ✅ pagina di lavoro | 2026-09-15                |
-| Styleguide          | `/styleguide` | ✅                  | 2026-09-14                |
+| Gruppo                                 | Route                                                        | Stato                | Ultima verifica |
+| -------------------------------------- | ------------------------------------------------------------ | -------------------- | --------------- |
+| Home                                   | `/`                                                          | ✅ v2 (tre famiglie) | 2026-09-27      |
+| Negozio e prodotto                     | `/negozio`, `/prodotto/:slug`                                | ✅ v2 (filtri nuovi) | 2026-09-27      |
+| Acquisto                               | `/carrello`, `/checkout`, `/ordine/:numero`                  | ✅ v1                | 2026-09-27      |
+| Area cliente                           | `/accedi`, `/registrati`, `/account`, `/account/*`           | ✅ v1                | 2026-09-27      |
+| Racconto                               | `/azienda`, `/journal`, `/contatti`, `/diventa-distributore` | ✅ v1                | 2026-09-27      |
+| Servizio e legale                      | `/analisi`, `/faq`, `/cerca`, `/preferiti`, 7 pagine legali  | ✅ v1                | 2026-09-27      |
+| Pagine di lavoro (non per il pubblico) | `/stato`, `/prezzi`, `/mappa`, `/styleguide`                 | ✅                   | 2026-09-27      |
+
+## Catalogo
+
+Tassonomia completa a catalogo (32 prodotti demo): due linee (CBD, THC-X) × tre famiglie
+(Fiori, Hash, Estratti). Fiori per coltivazione e tipologia, hash per lavorazione, consistenza e
+colore, estratti per metodo di estrazione, tutti con i cannabinoidi dichiarati.
+Nomi, prezzi e foto sono demo: si sostituiscono con l'archivio vero senza toccare la struttura.
 
 ## Prossima azione consigliata
 
-Guarda `/mappa`: 3 pagine pronte, 31 da costruire. Prossime nell’ordine: categoria Hash, carrello, checkout. La parte tecnica (`docs/`, decisioni 1–10) passa a Vishu.
+Foto e nomi veri dei prodotti (archivio Roican: va allegato in chat o sbloccato nelle impostazioni
+di rete dell'ambiente). Poi listino definitivo a partire da `/prezzi`.

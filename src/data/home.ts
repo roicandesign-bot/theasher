@@ -20,6 +20,13 @@ export const home = {
   ],
   categories: [
     {
+      id: 'fiori',
+      title: 'Fiori',
+      lines: ['Natural terpenes.', 'Real flavours.'],
+      cta: 'Esplora fiori',
+      image: 'images/demo/cat-flower.jpg',
+    },
+    {
       id: 'hash',
       title: 'Hash',
       lines: ['Rich aromas.', 'Smooth character.'],
@@ -27,11 +34,11 @@ export const home = {
       image: 'images/demo/cat-hash.jpg',
     },
     {
-      id: 'cbd-flower',
-      title: 'CBD Flower',
-      lines: ['Natural terpenes.', 'Real flavours.'],
-      cta: 'Esplora flower',
-      image: 'images/demo/cat-flower.jpg',
+      id: 'estratti',
+      title: 'Estratti',
+      lines: ['Pure resin.', 'Full spectrum.'],
+      cta: 'Esplora estratti',
+      image: 'images/demo/jar-hash.jpg',
     },
   ],
   newDrop: {

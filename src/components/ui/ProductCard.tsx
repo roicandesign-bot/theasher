@@ -2,7 +2,14 @@ import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Price } from '@/components/ui/Price'
-import { productPath, type Product } from '@/data/products'
+import {
+  attivoPrincipale,
+  etichettaCategoria,
+  formatQuantita,
+  productPath,
+  tagLavorazione,
+  type Product,
+} from '@/data/products'
 import { useCart } from '@/lib/cart'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
@@ -26,7 +33,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
       >
         <img
           src={asset(product.image)}
-          alt={`${product.name}, ${product.category === 'hash' ? 'hash CBD' : 'fiore CBD'}`}
+          alt={`${product.name}, ${etichettaCategoria(product)}`}
           loading="lazy"
           className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
@@ -48,15 +55,16 @@ export function ProductCard({ product, className }: { product: Product; classNam
             </Link>
           </h3>
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
-          {(product.coltivazione ?? product.lavorazione) && (
-            <p className="mt-1.5 label text-[0.625rem] text-primary">
-              {product.coltivazione ?? product.lavorazione}
-            </p>
-          )}
+          <p className="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 label text-[0.625rem]">
+            <span className="text-primary">{tagLavorazione(product)}</span>
+            {attivoPrincipale(product) && (
+              <span className="text-fg-muted">{attivoPrincipale(product)}</span>
+            )}
+          </p>
         </div>
         <div className="flex items-end justify-between gap-3">
           <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />
-          <span className="label text-[0.6875rem] text-fg-muted">{product.grams} g</span>
+          <span className="label text-[0.6875rem] text-fg-muted">{formatQuantita(product)}</span>
         </div>
         <div className="mt-auto flex flex-col gap-2.5 pt-1">
           <Badge variant={product.inStock ? 'stock' : 'soldout'} className="px-0">

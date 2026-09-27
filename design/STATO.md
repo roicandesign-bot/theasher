@@ -2,7 +2,7 @@
 
 > Claude: leggi questo file all'inizio di ogni sessione insieme a `PROGRESS.md`.
 > Aggiornalo quando cambia qualcosa di strutturale (non a ogni pagina: per quello c'è PROGRESS).
-> Ultimo aggiornamento: 2026-09-14
+> Ultimo aggiornamento: 2026-09-27
 
 ## Chi c'è
 
@@ -45,3 +45,12 @@ Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, see
 ## Prossimo passo
 
 Approvazione delle decisioni → milestone **M0 Fondazione** sul branch `claude/the-hasher-ecommerce-o8r9lt`, poi merge su `main` a fine milestone approvata.
+
+## Catalogo e filtri (2026-09-27)
+
+La tassonomia del catalogo è quella data da Lorenzo e vive in `src/data/products.ts`:
+linee **CBD** e **THC-X**, famiglie **Fiori / Hash / Estratti**, poi coltivazione e tipologia per i
+fiori, lavorazione, consistenza e colore per l'hash, metodo di estrazione per gli estratti,
+più i cannabinoidi dichiarati sul lotto. La logica dei filtri sta in `src/lib/filtri.ts`,
+il pannello in `src/components/shop/FilterSheet.tsx`: aggiungere un asse vuol dire aggiungere
+una voce in quei due file, non rifare la pagina.

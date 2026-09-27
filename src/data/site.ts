@@ -8,8 +8,9 @@ export const site = {
   tagline: 'Premium CBD hash & CBD flower',
   /** Le voci del menu puntano alle sezioni della home finché le pagine non esistono. */
   nav: [
+    { label: 'Fiori', to: '/negozio?categoria=fiori' },
     { label: 'Hash', to: '/negozio?categoria=hash' },
-    { label: 'CBD Flower', to: '/negozio?categoria=flower' },
+    { label: 'Estratti', to: '/negozio?categoria=estratti' },
     { label: 'New Drops', to: '/negozio?badge=New' },
     { label: 'Azienda', to: '/azienda' },
     { label: 'Journal', to: '/journal' },
@@ -26,8 +27,10 @@ export const site = {
   payments: ['Carta', 'Bonifico', 'Apple Pay', 'Google Pay'],
   footer: {
     shop: [
+      { label: 'Fiori', to: '/negozio?categoria=fiori' },
       { label: 'Hash', to: '/negozio?categoria=hash' },
-      { label: 'CBD Flower', to: '/negozio?categoria=flower' },
+      { label: 'Estratti', to: '/negozio?categoria=estratti' },
+      { label: 'Linea THC-X', to: '/negozio?linea=THC-X' },
       { label: 'New Drops', to: '/#new-drop' },
       { label: 'Best seller', to: '/#best-seller' },
     ],

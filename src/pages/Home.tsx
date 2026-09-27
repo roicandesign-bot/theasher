@@ -15,11 +15,15 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
 import { home } from '@/data/home'
-import { bestSellers, newDrop } from '@/data/products'
+import { bestSellers, formatQuantita, newDrop } from '@/data/products'
+
 import { asset } from '@/lib/asset'
 import { formatPrice } from '@/lib/money'
 
 const trustIcons = [FlaskConical, Truck, Lock, Package]
+
+/** In home ne mostriamo tre: la lista completa sta nel negozio. */
+const treBestSeller = bestSellers.slice(0, 3)
 
 export default function Home() {
   return (
@@ -103,13 +107,13 @@ export default function Home() {
 
       {/* ---------- Categorie ---------- */}
       <Section className="py-12 md:py-16">
-        <Container className="grid gap-5 md:grid-cols-2">
+        <Container className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {home.categories.map((c, i) => (
-            <Reveal key={c.id} delay={i * 80}>
+            <Reveal key={c.id} delay={i * 80} className="h-full">
               <article
                 key={c.id}
                 id={c.id}
-                className="group relative grid scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-primary text-primary-fg"
+                className="group relative grid h-full scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-primary text-primary-fg"
               >
                 <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
                   <div>
@@ -121,7 +125,7 @@ export default function Home() {
                     </p>
                   </div>
                   <Button
-                    to={`/negozio?categoria=${c.id === 'hash' ? 'hash' : 'flower'}`}
+                    to={`/negozio?categoria=${c.id}`}
                     variant="dark"
                     size="sm"
                     className="self-start"
@@ -129,12 +133,12 @@ export default function Home() {
                     {c.cta} <ArrowRight className="size-4" />
                   </Button>
                 </div>
-                <div className="w-36 sm:w-52 md:w-44 lg:w-60">
+                <div className="relative w-32 sm:w-40 lg:w-44">
                   <img
                     src={asset(c.image)}
                     alt=""
                     loading="lazy"
-                    className="size-full object-cover transition duration-500 ease-out-soft group-hover:scale-[1.04]"
+                    className="absolute inset-0 size-full object-cover transition duration-500 ease-out-soft group-hover:scale-[1.04]"
                   />
                 </div>
               </article>
@@ -152,7 +156,7 @@ export default function Home() {
             action={{ label: 'Vedi tutti', to: '/negozio' }}
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {bestSellers.map((p, i) => (
+            {treBestSeller.map((p, i) => (
               <Reveal key={p.slug} delay={i * 80} className="h-full">
                 <ProductCard product={p} className="h-full" />
               </Reveal>
@@ -169,7 +173,7 @@ export default function Home() {
             <Eyebrow tone="dark">{home.newDrop.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-display">{newDrop.name}</h2>
             <p className="mt-3 label text-[0.75rem] text-primary-fg/70">
-              {newDrop.aroma.join(' / ')} · {newDrop.grams} g · lotto limitato
+              {newDrop.aroma.join(' / ')} · {formatQuantita(newDrop)} · lotto limitato
             </p>
             <p className="mt-5 max-w-md text-lead text-primary-fg/80">{home.newDrop.text}</p>
             <div className="mt-7 flex flex-wrap items-center gap-4">
@@ -312,7 +316,7 @@ export default function Home() {
         <Container>
           <article className="grid overflow-hidden rounded-card bg-primary text-primary-fg md:grid-cols-[1fr_1.2fr]">
             <div className="grid grid-cols-3 gap-px bg-primary-fg/20">
-              {bestSellers.map((p) => (
+              {treBestSeller.map((p) => (
                 <img
                   key={p.slug}
                   src={asset(p.image)}
