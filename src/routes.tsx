@@ -1,6 +1,10 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
+import Cart from './pages/Cart'
+import Checkout from './pages/Checkout'
+import OrderConfirmed from './pages/OrderConfirmed'
 import Prezzi from './pages/Prezzi'
+import Shop from './pages/Shop'
 import Product from './pages/Product'
 import Sitemap from './pages/Sitemap'
 import Stato from './pages/Stato'
@@ -20,10 +24,22 @@ export type AppRoute = {
   component: ComponentType
   inNav?: boolean
   screenshotPath?: string
+  /** Pagina isolata: niente barra 18+, header e footer del sito (es. checkout) */
+  bare?: boolean
 }
 
 export const routes: AppRoute[] = [
   { path: '/', label: 'Home', component: Home },
+  { path: '/negozio', label: 'Negozio', component: Shop, inNav: false },
+  { path: '/carrello', label: 'Carrello', component: Cart, inNav: false },
+  { path: '/checkout', label: 'Checkout', component: Checkout, inNav: false, bare: true },
+  {
+    path: '/ordine/:numero',
+    label: 'Ordine confermato',
+    component: OrderConfirmed,
+    inNav: false,
+    screenshotPath: '/ordine/TH-2609-4471',
+  },
   {
     path: '/prodotto/:slug',
     label: 'Prodotto',

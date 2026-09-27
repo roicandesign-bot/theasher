@@ -39,7 +39,7 @@ export default function Home() {
               {home.hero.lead}
             </p>
             <div className="mt-7 flex fade-up flex-wrap gap-3 [animation-delay:180ms]">
-              <Button to="/#best-seller" size="lg">
+              <Button to="/negozio" size="lg">
                 {home.hero.cta} <ArrowRight className="size-4" />
               </Button>
             </div>
@@ -120,7 +120,12 @@ export default function Home() {
                       {c.lines[1]}
                     </p>
                   </div>
-                  <Button to={`/#${c.id}`} variant="dark" size="sm" className="self-start">
+                  <Button
+                    to={`/negozio?categoria=${c.id === 'hash' ? 'hash' : 'flower'}`}
+                    variant="dark"
+                    size="sm"
+                    className="self-start"
+                  >
                     {c.cta} <ArrowRight className="size-4" />
                   </Button>
                 </div>
@@ -144,7 +149,7 @@ export default function Home() {
           <SectionHeader
             eyebrow="Best seller"
             title="I più scelti."
-            action={{ label: 'Vedi tutti', to: '/#hash' }}
+            action={{ label: 'Vedi tutti', to: '/negozio' }}
           />
           <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bestSellers.map((p, i) => (

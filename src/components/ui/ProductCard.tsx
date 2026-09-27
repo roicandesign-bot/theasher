@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Price } from '@/components/ui/Price'
 import { productPath, type Product } from '@/data/products'
+import { useCart } from '@/lib/cart'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
@@ -11,6 +12,7 @@ import { cn } from '@/lib/cn'
  * disponibilità e "Aggiungi al carrello" a contorno. Solo UI.
  */
 export function ProductCard({ product, className }: { product: Product; className?: string }) {
+  const { add } = useCart()
   return (
     <article
       className={cn(
@@ -55,7 +57,12 @@ export function ProductCard({ product, className }: { product: Product; classNam
           <Badge variant={product.inStock ? 'stock' : 'soldout'} className="px-0">
             {product.inStock ? 'Disponibile' : 'Esaurito — avvisami'}
           </Badge>
-          <Button variant="outline" size="sm" className="w-full">
+          <Button
+            variant="outline"
+            size="sm"
+            className="w-full"
+            onClick={() => product.inStock && add(product)}
+          >
             {product.inStock ? 'Aggiungi al carrello' : 'Avvisami al restock'}
           </Button>
         </div>

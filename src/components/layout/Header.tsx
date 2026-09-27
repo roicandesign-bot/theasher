@@ -6,6 +6,7 @@ import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
 import { cn } from '@/lib/cn'
 import { site } from '@/data/site'
+import { useCart } from '@/lib/cart'
 
 const navLink =
   'label inline-flex h-11 items-center rounded-button px-3 text-fg transition hocus:text-primary'
@@ -16,6 +17,7 @@ const navLink =
  */
 export function Header() {
   const [open, setOpen] = useState(false)
+  const cart = useCart()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -61,14 +63,18 @@ export function Header() {
           <IconButton aria-label="Account" className="hidden lg:inline-grid">
             <User className="size-5" />
           </IconButton>
-          <IconButton aria-label={`Carrello, ${site.cartCount} articoli`} className="relative">
+          <IconButton
+            aria-label={`Carrello, ${cart.count} articoli`}
+            className="relative"
+            onClick={cart.open}
+          >
             <ShoppingBag className="size-5" />
-            {site.cartCount > 0 && (
+            {cart.count > 0 && (
               <span
                 aria-hidden="true"
                 className="absolute top-1 right-1 grid size-4.5 place-items-center rounded-full bg-primary text-[0.625rem] font-bold text-primary-fg"
               >
-                {site.cartCount}
+                {cart.count}
               </span>
             )}
           </IconButton>
@@ -102,7 +108,7 @@ export function Header() {
             </Link>
           ))}
           <div className="mt-6 flex flex-col gap-3">
-            <Button to="/#best-seller" size="lg" onClick={() => setOpen(false)}>
+            <Button to="/negozio" size="lg" onClick={() => setOpen(false)}>
               Shop the drop →
             </Button>
             <div className="flex gap-2">

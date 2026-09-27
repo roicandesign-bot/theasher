@@ -27,6 +27,7 @@ import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { findProduct, products, type Variant } from '@/data/products'
 import { site } from '@/data/site'
+import { useCart } from '@/lib/cart'
 import { cn } from '@/lib/cn'
 import { formatPrice } from '@/lib/money'
 
@@ -54,6 +55,7 @@ const reviews = [
 export default function Product() {
   const { slug } = useParams()
   const product = findProduct(slug)
+  const { add } = useCart()
 
   const variants: Variant[] = product.variants ?? [
     {
@@ -182,7 +184,12 @@ export default function Product() {
             </Badge>
             <div className="flex flex-wrap gap-3">
               <QuantityInput value={quantity} onChange={setQuantity} />
-              <Button size="lg" className="flex-1" disabled={!variant.inStock}>
+              <Button
+                size="lg"
+                className="flex-1"
+                disabled={!variant.inStock}
+                onClick={() => add(product, variant.label, quantity)}
+              >
                 {variant.inStock ? 'Aggiungi al carrello' : 'Avvisami al restock'}
                 <ArrowRight className="size-4" />
               </Button>
@@ -458,7 +465,11 @@ export default function Product() {
               <span className="text-[0.6875rem] font-normal text-fg-muted">{variant.label}</span>
             </p>
           </div>
-          <Button className="ml-auto shrink-0" disabled={!variant.inStock}>
+          <Button
+            className="ml-auto shrink-0"
+            disabled={!variant.inStock}
+            onClick={() => add(product, variant.label, quantity)}
+          >
             {variant.inStock ? 'Aggiungi' : 'Avvisami'}
           </Button>
         </div>

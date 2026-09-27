@@ -1,16 +1,20 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react'
 import { useEffect } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { matchPath, Route, Routes, useLocation } from 'react-router-dom'
+import { CartDrawer } from './components/shop/CartDrawer'
 import { Footer } from './components/layout/Footer'
 import { Header } from './components/layout/Header'
 import { InfoBar } from './components/layout/InfoBar'
 import { Button } from './components/ui/Button'
 import { Eyebrow } from './components/ui/Eyebrow'
 import { routes } from './routes'
+import { CartProvider } from './lib/cart'
 
 export default function App() {
   const location = useLocation()
   const reduced = useReducedMotion()
+  // Il checkout (e ogni route "bare") va senza barra, header e footer: niente vie di fuga.
+  const isBare = routes.some((r) => r.bare && matchPath(r.path, location.pathname))
 
   // Cambiando pagina si riparte dall'alto, come in un sito normale.
   // Doppio giro: il primo subito, il secondo dopo che la nuova pagina è stata disegnata.
@@ -25,35 +29,38 @@ export default function App() {
   }, [location.pathname])
 
   return (
-    <div className="flex min-h-svh flex-col">
-      <a
-        href="#contenuto"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-button focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-fg"
-      >
-        Vai al contenuto
-      </a>
-      <InfoBar />
-      <Header />
-      <main id="contenuto" className="flex-1">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={location.pathname}
-            initial={reduced ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={reduced ? undefined : { opacity: 0 }}
-            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Routes location={location}>
-              {routes.map(({ path, component: Page }) => (
-                <Route key={path} path={path} element={<Page />} />
-              ))}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer />
-    </div>
+    <CartProvider>
+      <div className="flex min-h-svh flex-col">
+        <a
+          href="#contenuto"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-button focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-fg"
+        >
+          Vai al contenuto
+        </a>
+        {!isBare && <InfoBar />}
+        {!isBare && <Header />}
+        <main id="contenuto" className="flex-1">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={location.pathname}
+              initial={reduced ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={reduced ? undefined : { opacity: 0 }}
+              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Routes location={location}>
+                {routes.map(({ path, component: Page }) => (
+                  <Route key={path} path={path} element={<Page />} />
+                ))}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        {!isBare && <Footer />}
+        <CartDrawer />
+      </div>
+    </CartProvider>
   )
 }
 
