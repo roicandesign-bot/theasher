@@ -8,6 +8,7 @@ export const site = {
   tagline: 'Premium CBD hash & CBD flower',
   /** Le voci del menu puntano alle sezioni della home finché le pagine non esistono. */
   nav: [
+    { label: 'Home', to: '/' },
     { label: 'Fiori', to: '/negozio?categoria=fiori' },
     { label: 'Hash', to: '/negozio?categoria=hash' },
     { label: 'Estratti', to: '/negozio?categoria=estratti' },

@@ -72,6 +72,16 @@
 }
 
 /* Etichetta del brand: condensata, maiuscola, spaziata (badge, eyebrow, nav) */
+/* Scorrimento continuo della barra informativa in alto. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
 /* Sottotitolo del cannabinoide sulle schede e sulla pagina prodotto: giallo, grassetto, molto spaziato. */
 @utility text-attivo {
   @apply text-[0.875rem] font-bold tracking-attivo uppercase;

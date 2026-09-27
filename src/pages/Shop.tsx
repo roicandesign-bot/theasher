@@ -94,14 +94,14 @@ export default function Shop() {
                     'flex flex-col items-center justify-center gap-0.5 rounded-button py-2 label text-[0.6875rem] transition duration-200 ease-out-soft md:px-6',
                     filtri.categoria === t.id
                       ? 'bg-primary text-primary-fg'
-                      : 'text-fg-muted hocus:text-fg',
+                      : 'text-primary hocus:bg-surface-hover',
                   )}
                 >
                   {t.label}
                   <span
                     className={cn(
                       'text-[0.625rem]',
-                      filtri.categoria === t.id ? 'text-primary-fg/60' : 'text-fg-subtle',
+                      filtri.categoria === t.id ? 'text-primary-fg/60' : 'text-fg-muted',
                     )}
                   >
                     {contaCategoria(filtri, t.id)}

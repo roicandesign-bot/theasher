@@ -33,7 +33,7 @@ export function ProductCard({
   return (
     <article
       className={cn(
-        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft ring-inset hover:-translate-y-1 hover:ring-primary/40',
+        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft hover:-translate-y-1 hover:ring-2 hover:ring-primary',
         className,
       )}
     >

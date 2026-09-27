@@ -21,6 +21,7 @@ export const home = {
   categories: [
     {
       id: 'fiori',
+      tone: 'scuro',
       title: 'Fiori',
       lines: ['Natural terpenes.', 'Real flavours.'],
       cta: 'Esplora fiori',
@@ -28,6 +29,7 @@ export const home = {
     },
     {
       id: 'hash',
+      tone: 'giallo',
       title: 'Hash',
       lines: ['Rich aromas.', 'Smooth character.'],
       cta: 'Esplora hash',
@@ -35,6 +37,7 @@ export const home = {
     },
     {
       id: 'estratti',
+      tone: 'scuro',
       title: 'Estratti',
       lines: ['Pure resin.', 'Full spectrum.'],
       cta: 'Esplora estratti',
@@ -47,16 +50,47 @@ export const home = {
     cta: 'Scopri il drop',
   },
   story: {
-    eyebrow: 'Crafted with character',
-    title: 'Selezionato in Europa, spiegato senza giri di parole.',
-    text: 'Scegliamo pochi prodotti e li conosciamo uno per uno: origine, lotto, analisi. Il resto è packaging nero, giallo acido e nessuna promessa che non possiamo mantenere.',
+    eyebrow: 'Dalla genetica al cliente',
+    title: 'Coltiviamo, produciamo, distribuiamo. Dal seme al tuo ordine.',
+    text: 'Siamo produttori, distributori e venditori diretti. Seguiamo ogni passaggio: selezioniamo le migliori genetiche al mondo, le coltiviamo, ne estraiamo polline e materie prime, e da lì produciamo i nostri hash e i nostri estratti. Nessun intermediario, uno standard solo: il più alto, controllato passo per passo.',
     points: [
-      { title: 'Selezione europea', text: 'Produttori scelti di persona, filiera corta.' },
-      { title: 'Lotti tracciati', text: 'Ogni confezione riporta il lotto e il suo certificato.' },
-      { title: 'Zero cliché', text: 'Niente foglie, niente fumo: parla il prodotto.' },
+      { title: 'Genetiche selezionate', text: 'Le migliori al mondo, scelte una per una.' },
+      { title: 'Coltivazione nostra', text: 'Indoor, glasshouse e outdoor seguiti da noi.' },
+      {
+        title: 'Estrazione e produzione',
+        text: 'Polline, resine, hash ed estratti dalle nostre piante.',
+      },
+      { title: 'Vendita diretta', text: 'Dalla pianta al cliente finale, senza passaggi inutili.' },
     ],
     cta: 'Vedi le analisi',
-    image: 'images/demo/landscape.jpg',
+    /** Le cinque tappe della filiera. `image` assente = foto ancora da fare. */
+    slides: [
+      {
+        titolo: 'Semina',
+        testo: 'Si parte dalla genetica: semi selezionati, uno per uno, e messa a dimora.',
+        icona: 'semina',
+      },
+      {
+        titolo: 'Coltivazione indoor',
+        testo: 'Impianto nostro: luce, clima e nutrimento controllati ogni giorno.',
+        image: 'images/demo/flower-macro-2.jpg',
+      },
+      {
+        titolo: 'Setacciatura',
+        testo: 'I fiori passano sui setacci: quello che scende è kif, resina pura.',
+        image: 'images/demo/hash-macro.jpg',
+      },
+      {
+        titolo: 'Pressatura',
+        testo: 'La resina viene pressata a freddo: prende corpo, profumo e consistenza.',
+        image: 'images/demo/hash-texture.jpg',
+      },
+      {
+        titolo: 'Il prodotto finito',
+        testo: 'Mousse, dry sift, estratti: tutto nasce dalle nostre genetiche.',
+        image: 'images/demo/royal-hash.jpg',
+      },
+    ],
   },
   lab: {
     eyebrow: 'Analisi di laboratorio',

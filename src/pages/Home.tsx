@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
+import { Filiera } from '@/components/sections/Filiera'
 import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Input } from '@/components/ui/Input'
@@ -18,6 +19,7 @@ import { home } from '@/data/home'
 import { bestSellers, formatQuantita, newDrop } from '@/data/products'
 
 import { asset } from '@/lib/asset'
+import { cn } from '@/lib/cn'
 import { formatPrice } from '@/lib/money'
 
 const trustIcons = [FlaskConical, Truck, Lock, Package]
@@ -113,12 +115,20 @@ export default function Home() {
               <article
                 key={c.id}
                 id={c.id}
-                className="group relative grid h-full scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card bg-primary text-primary-fg"
+                className={cn(
+                  'group relative grid h-full scroll-mt-28 grid-cols-[1fr_auto] overflow-hidden rounded-card ring-2 ring-primary',
+                  c.tone === 'giallo' ? 'bg-primary text-primary-fg' : 'bg-surface text-fg',
+                )}
               >
                 <div className="flex flex-col justify-between gap-6 p-6 md:p-8">
                   <div>
                     <h2 className="text-h2">{c.title}</h2>
-                    <p className="mt-3 label text-[0.75rem] text-primary-fg/70">
+                    <p
+                      className={cn(
+                        'mt-3 label text-[0.75rem]',
+                        c.tone === 'giallo' ? 'text-primary-fg/70' : 'text-fg-muted',
+                      )}
+                    >
                       {c.lines[0]}
                       <br />
                       {c.lines[1]}
@@ -126,7 +136,7 @@ export default function Home() {
                   </div>
                   <Button
                     to={`/negozio?categoria=${c.id}`}
-                    variant="dark"
+                    variant={c.tone === 'giallo' ? 'dark' : 'outline'}
                     size="sm"
                     className="self-start"
                   >
@@ -183,7 +193,7 @@ export default function Home() {
               <p className="text-2xl font-semibold">{formatPrice(newDrop.price)}</p>
             </div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card ring-4 ring-bg lg:aspect-square">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-card lg:aspect-square">
             <img
               src={asset(newDrop.image)}
               alt={`${newDrop.name}, hash CBD in lotto limitato`}
@@ -198,23 +208,15 @@ export default function Home() {
         </Container>
       </Section>
 
-      {/* ---------- Story ---------- */}
+      {/* ---------- Story: la filiera ---------- */}
       <Section id="story" className="scroll-mt-24">
         <Container className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-          <div className="relative aspect-[2/1] overflow-hidden rounded-card ring-1 ring-line ring-inset lg:aspect-[5/4]">
-            <img
-              src={asset(home.story.image)}
-              alt="Paesaggio montano in bianco e nero"
-              loading="lazy"
-              className="size-full object-cover grayscale"
-            />
-            <Diamond className="absolute top-5 right-5 size-6" />
-          </div>
+          <Filiera />
           <div>
             <Eyebrow>{home.story.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-h2">{home.story.title}</h2>
             <p className="mt-5 max-w-prose text-lead text-fg-muted">{home.story.text}</p>
-            <ul className="mt-8 grid gap-5 sm:grid-cols-3">
+            <ul className="mt-8 grid gap-5 sm:grid-cols-2">
               {home.story.points.map((p) => (
                 <li key={p.title} className="border-t border-line pt-4">
                   <p className="label text-[0.75rem] text-primary">{p.title}</p>

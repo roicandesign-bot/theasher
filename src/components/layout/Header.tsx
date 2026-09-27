@@ -1,6 +1,6 @@
 import { Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
@@ -9,7 +9,19 @@ import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
 
 const navLink =
-  'label inline-flex h-11 items-center rounded-button px-3 text-fg transition hocus:text-primary'
+  'label inline-flex h-11 items-center rounded-button px-3 transition hocus:text-primary'
+
+/** La voce del menu che corrisponde alla pagina aperta (anche con i filtri nell'indirizzo). */
+function useVoceAttiva() {
+  const { pathname, search } = useLocation()
+  const params = new URLSearchParams(search)
+  return (to: string) => {
+    const [percorso, query] = to.split('?')
+    if (percorso !== pathname) return false
+    if (!query) return [...params.keys()].length === 0
+    return [...new URLSearchParams(query).entries()].every(([k, v]) => params.get(k) === v)
+  }
+}
 
 /**
  * Header sticky nero: logo, menu, ricerca, account, carrello.
@@ -18,6 +30,7 @@ const navLink =
 export function Header() {
   const [open, setOpen] = useState(false)
   const cart = useCart()
+  const attiva = useVoceAttiva()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -49,7 +62,12 @@ export function Header() {
         {/* desktop: menu */}
         <nav className="hidden justify-center lg:flex" aria-label="Principale">
           {site.nav.map((item) => (
-            <Link key={item.label} to={item.to} className={navLink}>
+            <Link
+              key={item.label}
+              to={item.to}
+              aria-current={attiva(item.to) ? 'page' : undefined}
+              className={cn(navLink, attiva(item.to) ? 'text-primary' : 'text-fg')}
+            >
               {item.label}
             </Link>
           ))}
@@ -104,7 +122,11 @@ export function Header() {
               key={item.label}
               to={item.to}
               onClick={() => setOpen(false)}
-              className="group flex items-center justify-between border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary"
+              aria-current={attiva(item.to) ? 'page' : undefined}
+              className={cn(
+                'group flex items-center justify-between border-b border-line py-4 font-display text-h3 uppercase transition duration-200 ease-out-soft hocus:text-primary',
+                attiva(item.to) && 'text-primary',
+              )}
             >
               {item.label}
               <span

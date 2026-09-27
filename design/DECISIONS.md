@@ -53,3 +53,10 @@
 - 2026-09-27 · La percentuale mostrata segue il filtro: se cerchi CBG vedi il CBG, non il cannabinoide più alto · due bozze a confronto per dove metterla (nel titolo o come sottotitolo giallo), scelta di Lorenzo
 - 2026-09-27 · Scelta di Lorenzo: la percentuale va come sottotitolo giallo sotto il nome, in grassetto e molto spaziato, nel formato «CBD: +31%» · la sigla è spaziata, il valore resta compatto; arrotondiamo all'intero sotto, così il lotto contiene sempre almeno quel valore
 - 2026-09-27 · Nuovo stile di testo `text-attivo` (token `--tracking-attivo`) e componente `Attivo` · un unico posto per il sottotitolo del cannabinoide, documentato nella Styleguide
+- 2026-09-27 · La barra gialla in alto scorre in continuo (due tracce identiche, nessuno stacco); ferma con «riduci animazioni» · richiesta di Lorenzo
+- 2026-09-27 · La voce di menu della pagina aperta è gialla, filtri nell'indirizzo compresi; aggiunta la voce Home · serve a capire sempre dove si è
+- 2026-09-27 · Nelle linguette del negozio il nome della categoria non selezionata è giallo, il contatore resta grigio · la selezionata è gialla piena
+- 2026-09-27 · Schede categoria in home: una sola piena di giallo (Hash), le altre due scure, contorno giallo di 2 px su tutte · la versione tutta gialla non convinceva
+- 2026-09-27 · Il contorno giallo della scheda prodotto al passaggio del mouse gira tutta la scheda, foto compresa (ring esterno al posto di quello interno)
+- 2026-09-27 · Tolta la cornice nera attorno alla foto del new drop
+- 2026-09-27 · Sezione racconto riscritta sulla filiera: produttori, distributori e venditori diretti, dalla genetica al cliente finale; al posto della foto singola uno slider delle cinque tappe (semina, coltivazione indoor, setacciatura, pressatura, prodotto finito) · le foto di semina e coltivazione vanno ancora scattate: al loro posto un riquadro «Foto da fare»
