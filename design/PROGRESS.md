@@ -14,10 +14,12 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Pagine
 
-| Pagina     | Route         | Stato | Ultima verifica           |
-| ---------- | ------------- | ----- | ------------------------- |
-| Home       | `/`           | ✅ v1 | 2026-09-14 (390/834/1440) |
-| Styleguide | `/styleguide` | ✅    | 2026-09-14                |
+| Pagina              | Route         | Stato               | Ultima verifica           |
+| ------------------- | ------------- | ------------------- | ------------------------- |
+| Home                | `/`           | ✅ v1               | 2026-09-14 (390/834/1440) |
+| Resoconto e roadmap | `/stato`      | ✅ pagina di lavoro | 2026-09-27                |
+| Mappa del sito      | `/mappa`      | ✅ pagina di lavoro | 2026-09-15                |
+| Styleguide          | `/styleguide` | ✅                  | 2026-09-14                |
 
 ## Prossima azione consigliata
 

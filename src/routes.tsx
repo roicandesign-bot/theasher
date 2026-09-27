@@ -2,6 +2,7 @@ import type { ComponentType } from 'react'
 import Home from './pages/Home'
 import Product from './pages/Product'
 import Sitemap from './pages/Sitemap'
+import Stato from './pages/Stato'
 import Styleguide from './pages/Styleguide'
 
 /**
@@ -29,6 +30,7 @@ export const routes: AppRoute[] = [
     inNav: false,
     screenshotPath: '/prodotto/lemon-haze',
   },
+  { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
   { path: '/mappa', label: 'Mappa del sito', component: Sitemap, inNav: false },
   { path: '/styleguide', label: 'Styleguide', component: Styleguide, inNav: false },
 ]

@@ -32,3 +32,5 @@
 - 2026-09-17 · Cambiando pagina si riparte sempre dall’alto · prima restava a metà scroll come in un’app, non come in un sito
 - 2026-09-27 · Card categoria (Hash, CBD Flower) e bundle Discovery Box con fondo giallo e scritte nere, bottone nero · scelta di Lorenzo: il giallo passa da accento a superficie in questi tre blocchi
 - 2026-09-27 · Aggiunta variante `tone="dark"` al prezzo, da usare sui fondi gialli · il prezzo resta leggibile senza colori fuori palette
+- 2026-09-27 · Pagina di lavoro `/stato`: resoconto di quello che è fatto, di quello che manca fuori dal sito e roadmap in cinque tappe · Lorenzo ha un quadro unico da aprire dal telefono
+- 2026-09-27 · `cn()` ora conosce le nostre dimensioni di testo (text-display, text-h1…): prima venivano scartate quando nella stessa classe c’era anche un colore · bug che rimpiccioliva i titoli costruiti con classi condizionali
