@@ -24,6 +24,7 @@ export const site = {
         },
       ],
     },
+    { label: 'Franchising', to: '/franchising' },
     { label: 'Diventa rivenditore', to: '/diventa-distributore' },
     { label: 'Azienda', to: '/azienda' },
     { label: 'Blog', to: '/blog' },

@@ -36,7 +36,6 @@ export function Header() {
   const attiva = useVoceAttiva()
 
   useEffect(() => {
-    if (!open) setSotto(null)
     document.body.style.overflow = open ? 'hidden' : ''
     return () => {
       document.body.style.overflow = ''
@@ -53,7 +52,10 @@ export function Header() {
               aria-label={open ? 'Chiudi menu' : 'Apri menu'}
               aria-expanded={open}
               aria-controls="mobile-menu"
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => {
+                setOpen((v) => !v)
+                setSotto(null)
+              }}
             >
               {open ? <X className="size-6" /> : <Menu className="size-6" />}
             </IconButton>

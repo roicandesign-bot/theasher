@@ -6,6 +6,7 @@ import Auth from './pages/Auth'
 import Contact from './pages/Contact'
 import Distributor from './pages/Distributor'
 import Faq from './pages/Faq'
+import Franchising from './pages/Franchising'
 import { BlogArticle, BlogList } from './pages/Blog'
 import LabTests from './pages/LabTests'
 import Search from './pages/Search'
@@ -70,6 +71,7 @@ export const routes: AppRoute[] = [
     screenshotPath: '/blog/indoor-glasshouse-outdoor',
   },
   { path: '/contatti', label: 'Contatti', component: Contact, inNav: false },
+  { path: '/franchising', label: 'Franchising', component: Franchising, inNav: false },
   {
     path: '/diventa-distributore',
     label: 'Diventa distributore',

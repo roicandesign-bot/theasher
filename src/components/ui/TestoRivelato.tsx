@@ -16,7 +16,8 @@ export function TestoRivelato({ text, className }: { text: string; className?: s
         <span
           // le parole possono ripetersi: serve anche la posizione
           key={`${parola}-${i}`}
-          className="inline-flex overflow-hidden align-bottom"
+          // spazio sopra e sotto dentro la maschera: accenti (À, Ù) e virgole non vengono tagliati
+          className="-mt-[0.18em] -mb-[0.1em] inline-flex overflow-hidden pt-[0.18em] pb-[0.1em] align-bottom"
         >
           <motion.span
             className="inline-block"

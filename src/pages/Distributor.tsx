@@ -1,13 +1,16 @@
-// Rivenditori e distributori: promessa → perché conviene → livelli → listino indicativo
-// → come funziona → requisiti e richiesta → FAQ. Pagina di acquisizione B2B.
+// Rivenditori e distributori: promessa → chi c'è dietro → due formule (+ rimando al franchising)
+// → listino indicativo → come funziona → richiesta → FAQ. Pagina di acquisizione B2B.
 import { ArrowRight, Check } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Consenso, Numeri, Requisiti } from '@/components/sections/B2B'
+import { FaqLista } from '@/components/sections/FaqLista'
+import { GruppoForza } from '@/components/sections/GruppoForza'
+import { Passi } from '@/components/sections/Passi'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
-import { Card } from '@/components/ui/Card'
+import { Campo, selectCls } from '@/components/ui/Campo'
 import { Container } from '@/components/ui/Container'
-import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
-import { Input } from '@/components/ui/Input'
 import { Parallax } from '@/components/ui/Parallax'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
@@ -15,9 +18,6 @@ import { TestoRivelato } from '@/components/ui/TestoRivelato'
 import { distributore } from '@/data/contenuti'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
-
-const selectCls =
-  'h-12 rounded-input bg-bg-alt px-4 text-base text-fg ring-1 ring-line ring-inset focus:ring-2 focus:ring-primary focus:outline-none'
 
 export default function Distributor() {
   return (
@@ -36,23 +36,13 @@ export default function Distributor() {
                 Richiedi il listino <ArrowRight className="size-4" />
               </Button>
               <a
-                href="#livelli"
+                href="#formule"
                 className="inline-flex h-12 items-center rounded-button px-6 label text-[0.75rem] ring-2 ring-primary-fg transition duration-200 ease-out-soft ring-inset hocus:bg-primary-fg hocus:text-primary"
               >
-                Vedi i livelli
+                Vedi le formule
               </a>
             </div>
-            <dl className="mt-10 grid grid-cols-3 gap-4 border-t border-primary-fg/20 pt-6">
-              {distributore.numeri.map((n) => (
-                <div key={n.etichetta}>
-                  <dt className="sr-only">{n.etichetta}</dt>
-                  <dd className="font-display text-[clamp(1.5rem,1rem+2vw,2.5rem)] leading-none uppercase">
-                    {n.valore}
-                  </dd>
-                  <dd className="mt-2 text-xs text-primary-fg/70">{n.etichetta}</dd>
-                </div>
-              ))}
-            </dl>
+            <Numeri numeri={distributore.numeri} />
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-card lg:aspect-square">
             <Parallax distanza={32} className="size-full">
@@ -66,33 +56,15 @@ export default function Distributor() {
         </Container>
       </Section>
 
-      {/* ---------- Perché conviene ---------- */}
-      <Section>
-        <Container>
-          <SectionHeader eyebrow="Perché conviene" title="Dal produttore al tuo scaffale." />
-          <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {distributore.offriamo.map((o, i) => (
-              <li key={o.titolo}>
-                <Reveal delay={i * 60} className="h-full">
-                  <Card className="flex h-full flex-col gap-3">
-                    <Diamond className="size-4" />
-                    <p className="font-display text-h3 uppercase">{o.titolo}</p>
-                    <p className="text-sm text-fg-muted">{o.testo}</p>
-                  </Card>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </Section>
+      <GruppoForza />
 
-      {/* ---------- Livelli di partnership ---------- */}
-      <Section id="livelli" tone="alt" className="scroll-mt-24">
+      {/* ---------- Formule ---------- */}
+      <Section id="formule" tone="alt" className="scroll-mt-24">
         <Container>
           <SectionHeader
-            eyebrow="Livelli"
-            title="Scegli come partire."
-            subtitle="Tre livelli, stesso prodotto. Cambia quanto muovi, e quanto ti resta in tasca."
+            eyebrow="Formule"
+            title="Scegli come entrare."
+            subtitle="Stesso prodotto, stessa forza dietro. Cambia quanto muovi, e quanto ti resta in tasca."
           />
           <ul className="mt-10 grid gap-5 lg:grid-cols-3">
             {distributore.livelli.map((l, i) => (
@@ -177,6 +149,34 @@ export default function Distributor() {
                 </Reveal>
               </li>
             ))}
+
+            {/* rimando al franchising */}
+            <li>
+              <Reveal delay={160} className="h-full">
+                <Link
+                  to="/franchising"
+                  className="group flex h-full flex-col justify-between gap-6 rounded-card border-2 border-dashed border-primary/40 p-6 transition duration-300 ease-out-soft md:p-8 hocus:border-primary"
+                >
+                  <div>
+                    <p className="label text-[0.6875rem] text-fg-muted">
+                      Un negozio col nostro marchio
+                    </p>
+                    <h3 className="mt-2 text-h2">Franchising</h3>
+                    <p className="mt-4 font-display text-[clamp(2.5rem,2rem+2vw,3.5rem)] leading-none text-primary uppercase">
+                      60&nbsp;%
+                    </p>
+                    <p className="mt-3 text-sm text-fg-muted">
+                      di ogni vendita resta a te. Insegna The Hasher, esclusiva di zona, starter
+                      pack con il catalogo completo.
+                    </p>
+                  </div>
+                  <span className="flex items-center gap-2 label text-[0.75rem] text-primary">
+                    Scopri il franchising
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </span>
+                </Link>
+              </Reveal>
+            </li>
           </ul>
         </Container>
       </Section>
@@ -203,7 +203,7 @@ export default function Distributor() {
                         </span>
                       </p>
                     </div>
-                    <dl className="mt-5 grid grid-cols-3 gap-2">
+                    <dl className="mt-5 grid grid-cols-2 gap-2">
                       {distributore.livelli.map((l, n) => (
                         <div
                           key={l.nome}
@@ -237,48 +237,17 @@ export default function Distributor() {
         </Container>
       </Section>
 
-      {/* ---------- Come funziona ---------- */}
-      <Section tone="alt">
-        <Container>
-          <SectionHeader eyebrow="Come funziona" title="Quattro passi, niente burocrazia." />
-          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {distributore.passi.map((p, i) => (
-              <li key={p.titolo}>
-                <Reveal delay={i * 80} className="h-full">
-                  <div className="flex h-full flex-col gap-3 border-t-2 border-primary pt-5">
-                    <span className="font-display text-[3.5rem] leading-none text-primary">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <p className="text-h3">{p.titolo}</p>
-                    <p className="text-sm text-fg-muted">{p.testo}</p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </Section>
+      <Passi
+        eyebrow="Come funziona"
+        titolo="Quattro passi, niente burocrazia."
+        passi={distributore.passi}
+        tone="alt"
+      />
 
       {/* ---------- Requisiti + modulo ---------- */}
       <Section id="richiesta" className="scroll-mt-24">
         <Container className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
-          <div>
-            <Eyebrow>Requisiti</Eyebrow>
-            <h2 className="mt-3 text-h2">Chi cerchiamo.</h2>
-            <ul className="mt-6 flex flex-col gap-4">
-              {distributore.requisiti.map((r) => (
-                <li key={r} className="flex items-start gap-3">
-                  <Check className="mt-0.5 size-5 shrink-0 text-primary" />
-                  <span className="text-fg-muted">{r}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8 text-sm text-fg-muted">
-              Le regole di vendita cambiano da Paese a Paese: prima di aprire un nuovo mercato
-              verifichiamo insieme cosa è ammesso dove operi.
-            </p>
-          </div>
-
+          <Requisiti voci={distributore.requisiti} />
           <form
             className="flex flex-col gap-5 rounded-card bg-surface p-6 ring-1 ring-line ring-inset md:p-8"
             onSubmit={(e) => e.preventDefault()}
@@ -301,12 +270,12 @@ export default function Distributor() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="flex flex-col gap-2">
-                <label htmlFor="b-livello" className="label text-[0.625rem] text-fg-muted">
-                  Livello che ti interessa
+                <label htmlFor="b-formula" className="label text-[0.625rem] text-fg-muted">
+                  Formula
                 </label>
                 <select
-                  id="b-livello"
-                  name="livello"
+                  id="b-formula"
+                  name="formula"
                   className={selectCls}
                   defaultValue="Distributore"
                 >
@@ -321,30 +290,14 @@ export default function Distributor() {
                   Volume mensile stimato
                 </label>
                 <select id="b-volume" name="volume" className={selectCls}>
-                  <option>Fino a 1.000 €</option>
-                  <option>1.000 – 5.000 €</option>
+                  <option>Fino a 2.000 €</option>
+                  <option>2.000 – 5.000 €</option>
                   <option>5.000 – 20.000 €</option>
                   <option>Oltre 20.000 €</option>
                 </select>
               </div>
             </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="b-note" className="label text-[0.625rem] text-fg-muted">
-                Note
-              </label>
-              <textarea
-                id="b-note"
-                name="note"
-                rows={3}
-                className="rounded-input bg-bg-alt px-4 py-3 text-base text-fg ring-1 ring-line transition ring-inset placeholder:text-fg-subtle focus:ring-2 focus:ring-primary focus:outline-none"
-                placeholder="Che tipo di attività hai, quanti punti vendita, che gamma ti interessa"
-              />
-            </div>
-            <label className="flex items-start gap-3 text-sm text-fg-muted">
-              <input type="checkbox" required className="mt-1 size-4 accent-primary" />
-              Dichiaro di operare nel rispetto delle norme del mio Paese e accetto l’informativa
-              privacy.
-            </label>
+            <Consenso />
             <Button type="submit" size="lg" className="self-start">
               Richiedi il listino <ArrowRight className="size-4" />
             </Button>
@@ -355,46 +308,7 @@ export default function Distributor() {
         </Container>
       </Section>
 
-      {/* ---------- FAQ B2B ---------- */}
-      <Section tone="alt">
-        <Container className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <Eyebrow>Domande frequenti</Eyebrow>
-            <h2 className="mt-3 text-h2">Prima che tu lo chieda.</h2>
-          </div>
-          <div className="divide-y divide-line border-y border-line">
-            {distributore.faq.map((f) => (
-              <details key={f.q} name="faq-b2b" className="group">
-                <summary className="flex cursor-pointer items-center justify-between gap-4 py-5 font-semibold transition hocus:text-primary">
-                  {f.q}
-                  <span
-                    aria-hidden="true"
-                    className="grid size-8 shrink-0 place-items-center rounded-full text-primary ring-1 ring-line transition duration-300 ease-out-soft group-open:rotate-45 group-open:bg-primary group-open:text-primary-fg"
-                  >
-                    +
-                  </span>
-                </summary>
-                <p className="max-w-prose fade-in pb-6 text-fg-muted">{f.a}</p>
-              </details>
-            ))}
-          </div>
-        </Container>
-      </Section>
+      <FaqLista nome="faq-b2b" faq={distributore.faq} />
     </>
-  )
-}
-
-function Campo({
-  id,
-  label,
-  ...rest
-}: { id: string; label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="label text-[0.625rem] text-fg-muted">
-        {label}
-      </label>
-      <Input id={id} name={id} {...rest} />
-    </div>
   )
 }

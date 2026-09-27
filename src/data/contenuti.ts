@@ -198,54 +198,62 @@ export const contatti = {
   motivi: ['Un ordine', 'Un prodotto', 'Spedizione o reso', 'Diventare rivenditore', 'Altro'],
 }
 
-export const distributore = {
-  eyebrow: 'Rivenditori e distributori',
-  titolo: 'Distribuisci The Hasher.',
-  lead: 'Prezzi da produttore, prodotto già confezionato e pronto per lo scaffale, filiera nostra dal seme al pacco. Cerchiamo negozi e distributori in tutta Europa.',
-  numeri: [
-    { valore: '58\u00A0%', etichetta: 'margine massimo sul prezzo consigliato' },
-    { valore: '24–72\u00A0h', etichetta: 'consegna in tutta la UE' },
-    { valore: '500\u00A0€', etichetta: 'primo ordine minimo' },
-  ],
-  offriamo: [
+/** La forza del gruppo dietro il brand: la usano sia la pagina rivenditori sia il franchising. */
+export const gruppo = {
+  eyebrow: 'Chi c’è dietro',
+  titolo: 'Un produttore, non un intermediario.',
+  testo:
+    'The Hasher è il brand retail di un gruppo che coltiva, estrae, confeziona e spedisce ogni giorno a negozi e grossisti in tutta Europa. Per te vuol dire una cosa sola: non resti mai senza merce, e la paghi meno di chiunque altro.',
+  punti: [
+    {
+      titolo: 'Produciamo noi',
+      testo:
+        'Coltivazioni indoor, glasshouse e outdoor, laboratorio di estrazione e confezionamento interni. Controlliamo ogni passaggio.',
+    },
+    {
+      titolo: 'Catalogo sterminato',
+      testo:
+        'Fiori, hash, estratti e oli in tutte le coltivazioni e lavorazioni, linee CBD, THC-X, CBG e CBN. Sempre disponibili.',
+    },
     {
       titolo: 'Prezzi da produttore',
       testo:
-        'Coltiviamo e produciamo noi: niente intermediari in mezzo. Le stesse condizioni dei nostri migliori clienti all’ingrosso.',
+        'Nessun passaggio in mezzo: le stesse condizioni dei nostri clienti più grandi all’ingrosso.',
     },
     {
-      titolo: 'Pronto per lo scaffale',
+      titolo: 'Logistica veloce',
       testo:
-        'Arriva confezionato, etichettato e con il lotto stampato. Lo apri, lo esponi, lo vendi.',
-    },
-    {
-      titolo: 'Lotti tracciati',
-      testo:
-        'Certificato di analisi per ogni lotto, scaricabile anche dai tuoi clienti. Zero sorprese ai controlli.',
-    },
-    {
-      titolo: 'Materiali di vendita',
-      testo:
-        'Espositore da banco, foto e video in chiave The Hasher, schede prodotto e formazione per chi vende.',
+        'Magazzini pronti e spedizione espressa: riforniamo ovunque in Europa, in qualsiasi momento, in 24–72 ore.',
     },
   ],
-  /** Tre livelli di partnership: il secondo è quello da spingere. */
+}
+
+export const distributore = {
+  eyebrow: 'Rivenditori e distributori',
+  titolo: 'Distribuisci The Hasher.',
+  lead: 'Prezzi da produttore, catalogo completo già confezionato, riassortimento in 24–72 ore in tutta Europa. Vendi il nostro prodotto nel tuo negozio o nella tua rete.',
+  numeri: [
+    { valore: '50\u00A0%', etichetta: 'margine massimo sul prezzo consigliato' },
+    { valore: '24–72\u00A0h', etichetta: 'riassortimento ovunque in Europa' },
+    { valore: '100\u00A0%', etichetta: 'prodotto nostro, dal seme al pacco' },
+  ],
   livelli: [
     {
       nome: 'Rivenditore',
       perChi: 'Negozi e shop online',
-      minimo: 'Primo ordine da 500 €',
+      minimo: 'Primo ordine da 1.500 €',
       margine: '40\u00A0%',
       punti: [
-        'Tutta la gamma, formati da 1 g',
+        'Tutta la gamma, prodotto già confezionato',
         'Espositore da banco incluso',
         'Riordino libero, senza minimo',
+        'Certificato di analisi per ogni lotto',
       ],
     },
     {
       nome: 'Distributore',
       perChi: 'Grossisti e catene',
-      minimo: 'Da 2.500 € a ordine',
+      minimo: 'Da 5.000 € a ordine',
       margine: '50\u00A0%',
       evidenza: true,
       punti: [
@@ -255,53 +263,25 @@ export const distributore = {
         'Pagamento a 30 giorni dopo il terzo ordine',
       ],
     },
-    {
-      nome: 'Partner di zona',
-      perChi: 'Esclusiva su un’area',
-      minimo: 'Da 10.000 € al mese',
-      margine: 'fino al 58\u00A0%',
-      punti: [
-        'Esclusiva regionale o nazionale',
-        'Prezzi da produttore, i più bassi del listino',
-        'Lotti riservati e drop in anteprima',
-        'Co-marketing e campagne condivise',
-      ],
-    },
   ],
   /** Prezzi indicativi al grammo, IVA esclusa. Da allineare al listino vero prima del lancio. */
   listino: [
-    {
-      categoria: 'Fiori indoor',
-      pubblico: '8,17 €',
-      prezzi: ['4,90 €', '4,10 €', '3,45 €'],
-    },
-    {
-      categoria: 'Hash dry sift',
-      pubblico: '11,25 €',
-      prezzi: ['6,75 €', '5,60 €', '4,70 €'],
-    },
-    {
-      categoria: 'Hash frozen e static',
-      pubblico: '22,50 €',
-      prezzi: ['13,50 €', '11,20 €', '9,40 €'],
-    },
-    {
-      categoria: 'Estratti',
-      pubblico: '36,80 €',
-      prezzi: ['22,00 €', '18,40 €', '15,50 €'],
-    },
+    { categoria: 'Fiori indoor', pubblico: '8,17 €', prezzi: ['4,90 €', '4,10 €'] },
+    { categoria: 'Hash dry sift', pubblico: '11,25 €', prezzi: ['6,75 €', '5,60 €'] },
+    { categoria: 'Hash frozen e static', pubblico: '22,50 €', prezzi: ['13,50 €', '11,20 €'] },
+    { categoria: 'Estratti', pubblico: '36,80 €', prezzi: ['22,00 €', '18,40 €'] },
   ],
   passi: [
     { titolo: 'Richiesta', testo: 'Compili il modulo qui sotto: due minuti.' },
     {
       titolo: 'Chiamata',
-      testo: 'Entro 48 ore ti richiamiamo: zona, volumi, gamma, livello giusto per te.',
+      testo: 'Entro 48 ore ti richiamiamo: zona, volumi, gamma, formula giusta per te.',
     },
     {
       titolo: 'Kit di prova',
       testo: 'Ti mandiamo una selezione di campioni con il listino completo.',
     },
-    { titolo: 'Primo ordine', testo: 'Parti con il livello concordato. Il resto lo facciamo noi.' },
+    { titolo: 'Primo ordine', testo: 'Parti con la formula concordata. Il resto lo facciamo noi.' },
   ],
   requisiti: [
     'Partita IVA attiva e attività coerente con la vendita di prodotti CBD',
@@ -312,15 +292,15 @@ export const distributore = {
   faq: [
     {
       q: 'Qual è l’ordine minimo?',
-      a: 'Per i rivenditori il primo ordine parte da 500 €, poi si riordina liberamente. Per distributori e partner di zona il minimo si concorda in base all’area.',
+      a: 'Per i rivenditori il primo ordine parte da 1.500 €, poi si riordina liberamente. Per i distributori il minimo è di 5.000 € a ordine.',
     },
     {
       q: 'I prezzi del listino sono definitivi?',
       a: 'Sono indicativi, IVA esclusa. Il listino completo, con tutti i formati e le promozioni del mese, arriva dopo la prima chiamata.',
     },
     {
-      q: 'Posso avere l’esclusiva sulla mia zona?',
-      a: 'Sì, con il livello Partner di zona. Valutiamo caso per caso in base a volumi e area: non la diamo a tutti, altrimenti non varrebbe niente.',
+      q: 'Posso aprire un negozio con il vostro marchio?',
+      a: 'Sì, con il franchising: insegna The Hasher, esclusiva di zona e il 60 % del venduto a te. Trovi tutto nella pagina dedicata.',
     },
     {
       q: 'Fate dropshipping?',
@@ -329,6 +309,125 @@ export const distributore = {
     {
       q: 'Fornite i certificati di analisi?',
       a: 'Sempre, per ogni lotto, in formato scaricabile. Sono parte del prodotto, non un extra.',
+    },
+  ],
+}
+
+export const franchising = {
+  eyebrow: 'Franchising The Hasher',
+  titolo: 'Apri il tuo The Hasher.',
+  lead: 'Un negozio con il nostro marchio, il nostro prodotto e un produttore alle spalle. Si entra con un investimento bassissimo, e il 60 % di ogni vendita resta a te.',
+  numeri: [
+    { valore: '60\u00A0%', etichetta: 'di ogni vendita resta a te' },
+    { valore: '24–72\u00A0h', etichetta: 'riassortimento, sempre' },
+    { valore: '1', etichetta: 'negozio The Hasher per zona: l’esclusiva è tua' },
+  ],
+  modello: {
+    eyebrow: 'Il modello',
+    titolo: 'Il 60 % è tuo. Punto.',
+    testo:
+      'Su ogni vendita del negozio, il 60 % resta a te. Il 40 % copre il prodotto, che ti riforniamo noi a ciclo continuo. Niente costi nascosti sul venduto: i conti li fai in un minuto.',
+    ripartizione: [
+      { quota: '60 %', chi: 'A te', cosa: 'Il tuo guadagno su ogni scontrino' },
+      { quota: '40 %', chi: 'Al prodotto', cosa: 'Merce, riassortimento e logistica' },
+    ],
+  },
+  inclusi: [
+    {
+      titolo: 'Insegna e arredo',
+      testo: 'Progetto del negozio, insegna, espositori e vetrina The Hasher. Arrivi e apri.',
+    },
+    {
+      titolo: 'Esclusiva di zona',
+      testo: 'Nella tua area il marchio è solo tuo. Nessun altro The Hasher a due passi.',
+    },
+    {
+      titolo: 'Formazione',
+      testo:
+        'Prodotto, vendita, normativa: formiamo te e chi lavora con te, prima e dopo l’apertura.',
+    },
+    {
+      titolo: 'Marketing e social',
+      testo:
+        'Campagne, contenuti e social del brand li gestiamo noi. Tu porti la gente in negozio.',
+    },
+    {
+      titolo: 'Lotti riservati',
+      testo: 'Drop in anteprima e lotti limitati riservati ai negozi The Hasher.',
+    },
+    {
+      titolo: 'Referente dedicato',
+      testo: 'Una persona del gruppo che ti segue dall’apertura in poi, con un numero diretto.',
+    },
+  ],
+  starter: {
+    eyebrow: 'Starter pack',
+    titolo: 'Parti a bomba.',
+    testo:
+      'Niente mesi di rodaggio con lo scaffale mezzo vuoto. Il giorno dell’apertura hai il catalogo completo, già confezionato e prezzato, pronto da vendere.',
+    contenuto: [
+      'Tutte e quattro le famiglie: fiori, hash, estratti, oli',
+      'Le referenze più vendute in ogni coltivazione e lavorazione',
+      'Formati da vetrina e da banco, già con il prezzo consigliato',
+      'Espositori, vetrofanie e materiale per il punto vendita',
+      'Certificato di analisi per ogni lotto',
+      'Primo riassortimento in 72 ore',
+    ],
+    famiglie: [
+      { nome: 'Fiori', img: 'images/demo/cat-flower.jpg' },
+      { nome: 'Hash', img: 'images/demo/cat-hash.jpg' },
+      { nome: 'Estratti', img: 'images/demo/jar-hash.jpg' },
+      { nome: 'Oli', img: 'images/demo/packaging-family.jpg' },
+    ],
+  },
+  calcolo: {
+    eyebrow: 'Fai i conti',
+    titolo: 'Quanto ti resta.',
+    testo: 'Sposta la barra su quanto pensi di vendere al mese.',
+    min: 3000,
+    max: 60000,
+    passo: 1000,
+    iniziale: 15000,
+    nota: 'Esempio indicativo sul venduto IVA esclusa. Affitto, personale e costi del locale restano a carico del negozio.',
+  },
+  passi: [
+    { titolo: 'Candidatura', testo: 'Compili il modulo qui sotto: due minuti.' },
+    {
+      titolo: 'Valutazione',
+      testo: 'Ti chiamiamo entro 48 ore e valutiamo insieme zona, locale e tempi.',
+    },
+    {
+      titolo: 'Allestimento',
+      testo: 'Progettiamo il negozio, montiamo insegna ed espositori, consegniamo lo starter pack.',
+    },
+    { titolo: 'Apertura', testo: 'Alzi la serranda. Da lì il riassortimento arriva in 24–72 ore.' },
+  ],
+  requisiti: [
+    'Voglia di gestire un negozio in prima persona',
+    'Un locale in zona di passaggio, o la disponibilità a trovarlo con noi',
+    'Partita IVA (o l’intenzione di aprirla) nel Paese del negozio',
+    'Rispetto del marchio, dei prezzi consigliati e delle regole locali',
+  ],
+  faq: [
+    {
+      q: 'Quanto costa aprire?',
+      a: 'Poco, rispetto a qualunque franchising del settore: lo starter pack e l’allestimento li costruiamo sulla tua zona e sul tuo locale. Il piano con tutte le cifre arriva dopo la prima chiamata, nero su bianco.',
+    },
+    {
+      q: 'Come funziona il 60 %?',
+      a: 'Su ogni vendita del negozio il 60 % resta a te. Il 40 % copre il prodotto che ti riforniamo. Le spese del locale (affitto, personale, utenze) sono tue, come in ogni negozio.',
+    },
+    {
+      q: 'Serve esperienza nel settore?',
+      a: 'No. Formiamo noi te e chi lavora con te. Ci serve una persona seria sul posto.',
+    },
+    {
+      q: 'Ho già un negozio: posso trasformarlo?',
+      a: 'Sì, se la zona è libera e il locale funziona. Valutiamo insieme il passaggio all’insegna The Hasher.',
+    },
+    {
+      q: 'Cosa succede se finisco la merce?',
+      a: 'Non succede: il riassortimento parte in giornata e arriva in 24–72 ore, ovunque in Europa.',
     },
   ],
 }

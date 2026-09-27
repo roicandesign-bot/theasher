@@ -192,10 +192,17 @@ export const sitemap: PageGroup[] = [
         fromLorenzo: true,
       },
       {
-        name: 'Diventa distributore',
-        what: 'Richiesta B2B: requisiti, P. IVA, listino riservato',
+        name: 'Diventa rivenditore',
+        what: 'Rivenditori e distributori: formule, listino indicativo, richiesta',
         status: 'fatta',
         to: '/diventa-distributore',
+        fromLorenzo: true,
+      },
+      {
+        name: 'Franchising',
+        what: 'Negozio col marchio The Hasher: 60 % del venduto, starter pack, candidatura',
+        status: 'fatta',
+        to: '/franchising',
         fromLorenzo: true,
       },
       {
