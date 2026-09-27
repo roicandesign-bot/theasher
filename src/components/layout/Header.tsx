@@ -57,9 +57,13 @@ export function Header() {
 
         {/* icone */}
         <div className="flex items-center justify-end gap-0.5">
-          <IconButton aria-label="Cerca" className="hidden sm:inline-grid">
+          <NavLink
+            to="/cerca"
+            aria-label="Cerca"
+            className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft sm:grid hocus:bg-surface-hover hocus:text-primary"
+          >
             <Search className="size-5" />
-          </IconButton>
+          </NavLink>
           <NavLink
             to="/account"
             aria-label="Account"
@@ -116,7 +120,12 @@ export function Header() {
               Shop the drop →
             </Button>
             <div className="flex gap-2">
-              <Button variant="ghost" className="flex-1 ring-1 ring-line ring-inset">
+              <Button
+                to="/cerca"
+                variant="ghost"
+                className="flex-1 ring-1 ring-line ring-inset"
+                onClick={() => setOpen(false)}
+              >
                 <Search className="size-4" /> Cerca
               </Button>
               <Button

@@ -218,7 +218,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <Button to="/#lab" variant="outline" className="mt-8">
+            <Button to="/analisi" variant="outline" className="mt-8">
               {home.story.cta} <ArrowRight className="size-4" />
             </Button>
           </div>

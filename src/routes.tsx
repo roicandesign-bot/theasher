@@ -1,7 +1,15 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
 import { AccountAddresses, AccountHome, AccountOrderDetail, AccountOrders } from './pages/Account'
+import About from './pages/About'
 import Auth from './pages/Auth'
+import Contact from './pages/Contact'
+import Distributor from './pages/Distributor'
+import Faq from './pages/Faq'
+import { JournalArticle, JournalList } from './pages/Journal'
+import LabTests from './pages/LabTests'
+import Search from './pages/Search'
+import Wishlist from './pages/Wishlist'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import OrderConfirmed from './pages/OrderConfirmed'
@@ -51,6 +59,26 @@ export const routes: AppRoute[] = [
   },
   { path: '/stato', label: 'Resoconto', component: Stato, inNav: false },
   { path: '/prezzi', label: 'Analisi prezzi', component: Prezzi, inNav: false },
+  { path: '/azienda', label: 'L’azienda', component: About, inNav: false },
+  { path: '/journal', label: 'Journal', component: JournalList, inNav: false },
+  {
+    path: '/journal/:slug',
+    label: 'Articolo',
+    component: JournalArticle,
+    inNav: false,
+    screenshotPath: '/journal/come-si-legge-un-certificato',
+  },
+  { path: '/contatti', label: 'Contatti', component: Contact, inNav: false },
+  {
+    path: '/diventa-distributore',
+    label: 'Diventa distributore',
+    component: Distributor,
+    inNav: false,
+  },
+  { path: '/analisi', label: 'Analisi di laboratorio', component: LabTests, inNav: false },
+  { path: '/faq', label: 'Domande frequenti', component: Faq, inNav: false },
+  { path: '/cerca', label: 'Ricerca', component: Search, inNav: false },
+  { path: '/preferiti', label: 'Preferiti', component: Wishlist, inNav: false },
   { path: '/accedi', label: 'Accedi', component: Auth, inNav: false },
   { path: '/registrati', label: 'Registrati', component: Auth, inNav: false },
   { path: '/password-dimenticata', label: 'Password dimenticata', component: Auth, inNav: false },

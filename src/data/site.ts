@@ -11,7 +11,8 @@ export const site = {
     { label: 'Hash', to: '/negozio?categoria=hash' },
     { label: 'CBD Flower', to: '/negozio?categoria=flower' },
     { label: 'New Drops', to: '/#new-drop' },
-    { label: 'About', to: '/#story' },
+    { label: 'Azienda', to: '/azienda' },
+    { label: 'Journal', to: '/journal' },
   ],
   infoBar: {
     age: '18+',
@@ -31,10 +32,12 @@ export const site = {
       { label: 'Best seller', to: '/#best-seller' },
     ],
     info: [
-      { label: 'La nostra storia', to: '/#story' },
-      { label: 'Analisi di laboratorio', to: '/#lab' },
-      { label: 'Spedizioni e resi', to: '/#faq' },
-      { label: 'Domande frequenti', to: '/#faq' },
+      { label: 'L’azienda', to: '/azienda' },
+      { label: 'Journal', to: '/journal' },
+      { label: 'Analisi di laboratorio', to: '/analisi' },
+      { label: 'Domande frequenti', to: '/faq' },
+      { label: 'Contatti', to: '/contatti' },
+      { label: 'Diventa distributore', to: '/diventa-distributore' },
     ],
     legal: [
       { label: 'Privacy', to: '/#faq' },
