@@ -61,8 +61,8 @@ export const fotoFamiglia: Record<Categoria | 'tutto', string> = {
   cannagar: 'images/prodotti/cannagar-royal.jpg',
   vape: 'images/prodotti/vape-amnesia-thcx.jpg',
   edibles: 'images/prodotti/edibles-mango.jpg',
-  semi: 'images/prodotti/semi-gelato-41.jpg',
-  cloni: 'images/prodotti/cloni-silver-haze.jpg',
+  semi: 'images/prodotti/semi-gorilla-glue.jpg',
+  cloni: 'images/prodotti/cloni-lemon-haze.jpg',
 }
 
 /** Il reparto Merch: accessori per fumatori e merch. Ha una pagina sua, fuori dal negozio. */

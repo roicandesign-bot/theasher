@@ -217,11 +217,8 @@ PACK = [
     dict(file='preroll-purple-punch', linea='THC-X', contiene='CONTIENE 40%', nome=['PURPLE', 'PUNCH'], tipo='PRE-ROLL', genetica='INDICA', formato='2G', con_preroll=True),
     # edibles (le gommose sono in busta: scripts/busta-gummies.py)
     dict(file='edibles-lemon-drop', linea='CBD', contiene='25 MG A PEZZO', nome=['LEMON', 'DROP'], tipo='CARAMELLE', genetica='20 PEZZI', formato='20PZ'),
-    # semi
-    dict(file='semi-gelato-41', linea='CBD', contiene='FEMMINIZZATI', nome=['GELATO', '41'], tipo='SEMI', genetica='IBRIDA', formato='3PZ'),
-    dict(file='semi-amnesia-auto', linea='CBD', contiene='AUTOFIORENTI', nome=['AMNESIA', 'AUTO'], tipo='SEMI', genetica='SATIVA', formato='5PZ'),
-    dict(file='semi-white-cbg', linea='CBG', contiene='FEMMINIZZATI', nome=['WHITE', 'CBG'], tipo='SEMI', genetica='IBRIDA', formato='3PZ'),
-    # oli
+    # semi: buste vere in scripts/busta-semi.py
+    # oli: la foto finale con la boccetta la fa scripts/boccetta-olio.py (usa queste righe per la scatola)
     dict(file='olio-full-spectrum', linea='CBD', contiene='CONTIENE 20%', nome=['FULL', 'SPECTRUM'], tipo='OLIO', genetica='CONTAGOCCE', formato='10ML'),
     dict(file='olio-cbn-notte', linea='CBN', contiene='CONTIENE 10%', nome=['NOTTE'], tipo='OLIO', genetica='THC FREE', formato='10ML'),
     # cannagar
@@ -230,9 +227,7 @@ PACK = [
     dict(file='cannagar-mimosa', linea='THC-X', contiene='CONTIENE 42%', nome=['MIMOSA'], tipo='CANNAGAR', genetica='CON HASH', formato='4G'),
     # linea THC-A
     dict(file='preroll-og-kush-thca', linea='THC-A', contiene='CONTIENE 26%', nome=['OG', 'KUSH'], tipo='PRE-ROLL', genetica='IBRIDA', formato='1G', con_preroll=True),
-    # cloni
-    dict(file='cloni-silver-haze', linea='CBD', contiene='TALEA RADICATA', nome=['SILVER', 'HAZE'], tipo='CLONE', genetica='SATIVA', formato='1PZ'),
-    dict(file='cloni-mimosa', linea='CBD', contiene='TALEA RADICATA', nome=['MIMOSA'], tipo='CLONE', genetica='SATIVA', formato='1PZ'),
+    # cloni: vaschetta vera in scripts/vaschetta-cloni.py
 ]
 
 if __name__ == '__main__':
