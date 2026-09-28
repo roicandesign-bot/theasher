@@ -35,7 +35,13 @@ type CommonProps = {
 type ButtonProps = CommonProps &
   ButtonHTMLAttributes<HTMLButtonElement> & { to?: undefined; href?: undefined }
 type LinkProps = CommonProps & { to: string; href?: undefined; onClick?: () => void }
-type AnchorProps = CommonProps & { href: string; to?: undefined; target?: string; rel?: string }
+type AnchorProps = CommonProps & {
+  href: string
+  to?: undefined
+  target?: string
+  rel?: string
+  onClick?: () => void
+}
 
 /**
  * Bottone unico per tutto il sito (pill, etichetta maiuscola).
@@ -53,9 +59,9 @@ export function Button(props: ButtonProps | LinkProps | AnchorProps) {
     )
   }
   if ('href' in props && props.href !== undefined) {
-    const { href, target, rel } = props
+    const { href, target, rel, onClick } = props
     return (
-      <a href={href} target={target} rel={rel} className={classes}>
+      <a href={href} target={target} rel={rel} className={classes} onClick={onClick}>
         {children}
       </a>
     )

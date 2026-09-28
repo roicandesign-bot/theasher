@@ -1,6 +1,8 @@
-// Rivenditori e distributori: promessa → chi c'è dietro → due formule (+ rimando al franchising)
+// Ambassador, rivenditori e distributori: promessa → chi c'è dietro → tre formule (+ rimando al franchising)
+// → programma ambassador
 // → listino indicativo → come funziona → richiesta → FAQ. Pagina di acquisizione B2B.
 import { ArrowRight, Check } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Consenso, Numeri, Requisiti } from '@/components/sections/B2B'
 import { FaqLista } from '@/components/sections/FaqLista'
@@ -19,7 +21,12 @@ import { distributore } from '@/data/contenuti'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
+/** Solo chi compra prodotto ha un prezzo al grammo nel listino. */
+const acquirenti = distributore.livelli.filter((l) => 'acquista' in l && l.acquista)
+
 export default function Distributor() {
+  const [formula, setFormula] = useState('Distributore')
+  const ambassador = formula === 'Ambassador'
   return (
     <>
       {/* ---------- Promessa ---------- */}
@@ -64,7 +71,7 @@ export default function Distributor() {
           <SectionHeader
             eyebrow="Formule"
             title="Scegli come entrare."
-            subtitle="Stesso prodotto, stessa forza dietro. Cambia quanto muovi, e quanto ti resta in tasca."
+            subtitle="Tre formule, stesso prodotto e stessa forza dietro. Dal tuo pubblico sui social al magazzino di un grossista."
           />
           <ul className="mt-10 grid gap-5 lg:grid-cols-3">
             {distributore.livelli.map((l, i) => (
@@ -101,7 +108,7 @@ export default function Distributor() {
                           l.evidenza ? 'text-primary-fg/70' : 'text-fg-muted',
                         )}
                       >
-                        Il tuo margine
+                        {'etichetta' in l && l.etichetta ? l.etichetta : 'Il tuo margine'}
                       </p>
                       <p
                         className={cn(
@@ -140,6 +147,7 @@ export default function Distributor() {
                     </ul>
                     <Button
                       href="#richiesta"
+                      onClick={() => setFormula(l.nome)}
                       variant={l.evidenza ? 'dark' : 'outline'}
                       className="mt-auto"
                     >
@@ -149,37 +157,34 @@ export default function Distributor() {
                 </Reveal>
               </li>
             ))}
-
-            {/* rimando al franchising */}
-            <li>
-              <Reveal delay={160} className="h-full">
-                <Link
-                  to="/franchising"
-                  className="group flex h-full flex-col justify-between gap-6 rounded-card border-2 border-dashed border-primary/40 p-6 transition duration-300 ease-out-soft md:p-8 hocus:border-primary"
-                >
-                  <div>
-                    <p className="label text-[0.6875rem] text-fg-muted">
-                      Un negozio col nostro marchio
-                    </p>
-                    <h3 className="mt-2 text-h2">Franchising</h3>
-                    <p className="mt-4 font-display text-[clamp(2.5rem,2rem+2vw,3.5rem)] leading-none text-primary uppercase">
-                      60&nbsp;%
-                    </p>
-                    <p className="mt-3 text-sm text-fg-muted">
-                      di ogni vendita resta a te. Insegna The Hasher, esclusiva di zona, starter
-                      pack con il catalogo completo.
-                    </p>
-                  </div>
-                  <span className="flex items-center gap-2 label text-[0.75rem] text-primary">
-                    Scopri il franchising
-                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </Reveal>
-            </li>
           </ul>
+
+          {/* rimando al franchising */}
+          <Reveal delay={120}>
+            <Link
+              to="/franchising"
+              className="group mt-5 flex flex-col gap-4 rounded-card border-2 border-dashed border-primary/40 p-6 transition duration-300 ease-out-soft md:flex-row md:items-center md:justify-between md:p-8 hocus:border-primary"
+            >
+              <div className="flex flex-wrap items-baseline gap-x-6 gap-y-2">
+                <h3 className="text-h2">Franchising</h3>
+                <p className="font-display text-[clamp(2rem,1.6rem+1.5vw,3rem)] leading-none text-primary uppercase">
+                  60&nbsp;% a te
+                </p>
+                <p className="w-full text-sm text-fg-muted md:w-auto md:max-w-md">
+                  Vuoi un negozio col nostro marchio? Insegna The Hasher, esclusiva di zona, 0 %
+                  royalty e lo starter pack col catalogo completo.
+                </p>
+              </div>
+              <span className="flex shrink-0 items-center gap-2 label text-[0.75rem] text-primary">
+                Scopri il franchising
+                <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </span>
+            </Link>
+          </Reveal>
         </Container>
       </Section>
+
+      <ProgrammaAmbassador onScegli={() => setFormula('Ambassador')} />
 
       {/* ---------- Listino indicativo ---------- */}
       <Section>
@@ -204,7 +209,7 @@ export default function Distributor() {
                       </p>
                     </div>
                     <dl className="mt-5 grid grid-cols-2 gap-2">
-                      {distributore.livelli.map((l, n) => (
+                      {acquirenti.map((l, n) => (
                         <div
                           key={l.nome}
                           className={cn(
@@ -253,53 +258,90 @@ export default function Distributor() {
             onSubmit={(e) => e.preventDefault()}
           >
             <div>
-              <p className="text-h3">Richiedi il listino</p>
-              <p className="mt-2 text-sm text-fg-muted">Ti richiamiamo entro 48 ore lavorative.</p>
+              <p className="text-h3">
+                {ambassador ? 'Candidati come ambassador' : 'Richiedi il listino'}
+              </p>
+              <p className="mt-2 text-sm text-fg-muted">
+                {ambassador
+                  ? 'Valutiamo il tuo profilo e ti rispondiamo entro 48 ore.'
+                  : 'Ti richiamiamo entro 48 ore lavorative.'}
+              </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Campo id="b-azienda" label="Ragione sociale" required />
-              <Campo id="b-piva" label="Partita IVA" required />
+            <div className="flex flex-col gap-2">
+              <label htmlFor="b-formula" className="label text-[0.625rem] text-fg-muted">
+                Formula
+              </label>
+              <select
+                id="b-formula"
+                name="formula"
+                className={selectCls}
+                value={formula}
+                onChange={(e) => setFormula(e.target.value)}
+              >
+                {distributore.livelli.map((l) => (
+                  <option key={l.nome}>{l.nome}</option>
+                ))}
+                <option>Non so ancora</option>
+              </select>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Campo id="b-ref" label="Referente" autoComplete="name" required />
-              <Campo id="b-email" label="Email" type="email" autoComplete="email" required />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Campo id="b-tel" label="Telefono / WhatsApp" type="tel" autoComplete="tel" />
-              <Campo id="b-paese" label="Paese e zona" required />
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="b-formula" className="label text-[0.625rem] text-fg-muted">
-                  Formula
-                </label>
-                <select
-                  id="b-formula"
-                  name="formula"
-                  className={selectCls}
-                  defaultValue="Distributore"
-                >
-                  {distributore.livelli.map((l) => (
-                    <option key={l.nome}>{l.nome}</option>
-                  ))}
-                  <option>Non so ancora</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="b-volume" className="label text-[0.625rem] text-fg-muted">
-                  Volume mensile stimato
-                </label>
-                <select id="b-volume" name="volume" className={selectCls}>
-                  <option>Fino a 2.000 €</option>
-                  <option>2.000 – 5.000 €</option>
-                  <option>5.000 – 20.000 €</option>
-                  <option>Oltre 20.000 €</option>
-                </select>
-              </div>
-            </div>
+            {ambassador ? (
+              <>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo id="b-nome" label="Nome e cognome" autoComplete="name" required />
+                  <Campo id="b-email" label="Email" type="email" autoComplete="email" required />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo
+                    id="b-social"
+                    label="Profilo social principale"
+                    placeholder="@iltuoprofilo"
+                    required
+                  />
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="b-follower" className="label text-[0.625rem] text-fg-muted">
+                      Follower
+                    </label>
+                    <select id="b-follower" name="follower" className={selectCls}>
+                      <option>Meno di 5.000</option>
+                      <option>5.000 – 50.000</option>
+                      <option>50.000 – 250.000</option>
+                      <option>Oltre 250.000</option>
+                    </select>
+                  </div>
+                </div>
+                <Campo id="b-canali" label="Altri canali (TikTok, YouTube, Telegram…)" />
+              </>
+            ) : (
+              <>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo id="b-azienda" label="Ragione sociale" required />
+                  <Campo id="b-piva" label="Partita IVA" required />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo id="b-ref" label="Referente" autoComplete="name" required />
+                  <Campo id="b-email" label="Email" type="email" autoComplete="email" required />
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <Campo id="b-tel" label="Telefono / WhatsApp" type="tel" autoComplete="tel" />
+                  <Campo id="b-paese" label="Paese e zona" required />
+                </div>
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="b-volume" className="label text-[0.625rem] text-fg-muted">
+                    Volume mensile stimato
+                  </label>
+                  <select id="b-volume" name="volume" className={selectCls}>
+                    <option>Fino a 2.000 €</option>
+                    <option>2.000 – 5.000 €</option>
+                    <option>5.000 – 20.000 €</option>
+                    <option>Oltre 20.000 €</option>
+                  </select>
+                </div>
+              </>
+            )}
             <Consenso />
             <Button type="submit" size="lg" className="self-start">
-              Richiedi il listino <ArrowRight className="size-4" />
+              {ambassador ? 'Invia la candidatura' : 'Richiedi il listino'}{' '}
+              <ArrowRight className="size-4" />
             </Button>
             <Badge variant="muted" className="self-start">
               Prototipo: il modulo non invia nulla
@@ -310,5 +352,58 @@ export default function Distributor() {
 
       <FaqLista nome="faq-b2b" faq={distributore.faq} />
     </>
+  )
+}
+
+/** Il programma ambassador: come funziona e i tre livelli. */
+function ProgrammaAmbassador({ onScegli }: { onScegli: () => void }) {
+  const amb = distributore.ambassador
+  return (
+    <Section id="ambassador" className="scroll-mt-24">
+      <Container className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        <div>
+          <Eyebrow>{amb.eyebrow}</Eyebrow>
+          <h2 className="mt-3 text-h2">
+            <TestoRivelato text={amb.titolo} />
+          </h2>
+          <p className="mt-5 max-w-prose text-lead text-fg-muted">{amb.testo}</p>
+          <ul className="mt-8 grid grid-cols-3 gap-2">
+            {amb.livelli.map((l, i) => (
+              <li
+                key={l.nome}
+                className={cn(
+                  'rounded-card p-4',
+                  i === 2 ? 'bg-primary text-primary-fg' : 'bg-surface ring-1 ring-line ring-inset',
+                )}
+              >
+                <p className="font-display text-h3 uppercase">{l.nome}</p>
+                <p className={cn('mt-1 text-xs', i === 2 ? 'text-primary-fg/80' : 'text-fg-muted')}>
+                  {l.cosa}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-3 text-xs text-fg-subtle">{amb.nota}</p>
+          <Button href="#richiesta" size="lg" className="mt-8" onClick={onScegli}>
+            Diventa ambassador <ArrowRight className="size-4" />
+          </Button>
+        </div>
+        <ol className="grid gap-4 sm:grid-cols-2">
+          {amb.passi.map((p, i) => (
+            <li key={p.titolo}>
+              <Reveal delay={i * 80} className="h-full">
+                <div className="flex h-full flex-col gap-3 rounded-card bg-surface p-5 ring-1 ring-line ring-inset">
+                  <span className="font-display text-[2.75rem] leading-none text-primary">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-h3">{p.titolo}</p>
+                  <p className="text-sm text-fg-muted">{p.testo}</p>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </Section>
   )
 }

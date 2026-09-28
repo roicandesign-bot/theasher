@@ -1,36 +1,176 @@
 /** Contenuti editoriali del sito. Testi realistici da rivedere prima del lancio. */
 
+/** Pagina L'azienda: racconto a capitoli, dalla genetica al cliente. Foto demo, da sostituire. */
 export const azienda = {
-  eyebrow: 'Chi siamo',
-  titolo: 'Pochi prodotti, conosciuti uno per uno.',
-  lead: 'The Hasher nasce da una convinzione semplice: nel CBD europeo c’è troppa scelta e troppa poca chiarezza. Noi facciamo il contrario.',
-  paragrafi: [
-    'Selezioniamo in Europa da produttori con cui lavoriamo da più raccolti, non da listini che cambiano ogni mese. Ogni lotto passa da un laboratorio indipendente prima di entrare in magazzino, e il certificato è pubblico: sta nella pagina del prodotto, con il numero stampato sulla confezione.',
-    'Il resto è packaging nero, giallo acido e nessuna promessa che non possiamo mantenere. Non raccontiamo effetti, non usiamo parole mediche, non mettiamo foglie sulle scatole. Parla il prodotto.',
-  ],
-  valori: [
-    {
-      titolo: 'Selezione corta',
-      testo: 'Preferiamo dieci referenze che conosciamo a cento che non abbiamo mai visto.',
-    },
-    {
-      titolo: 'Lotti tracciati',
-      testo: 'Numero di lotto su ogni confezione, certificato scaricabile da chiunque.',
-    },
-    {
-      titolo: 'Zero cliché',
-      testo: 'Niente fumo, niente foglie, niente linguaggio da farmacia.',
-    },
-    {
-      titolo: 'Filiera europea',
-      testo: 'Produttori scelti di persona, filiera corta, rapporti lunghi.',
-    },
-  ],
+  hero: {
+    eyebrow: 'L’azienda',
+    titolo: 'Figli di chi coltiva.',
+    lead: 'The Hasher nasce dentro un gruppo che coltiva, estrae, produce e spedisce cannabis light in tutta Europa. Non compriamo da nessuno: facciamo tutto noi, dal seme al barattolo.',
+    img: 'images/filiera/coltivazione.jpg',
+    alt: 'Coltivazione indoor del gruppo: file di piante in fioritura sotto le luci',
+  },
   numeri: [
-    { valore: '3', etichetta: 'raccolti con gli stessi produttori' },
-    { valore: '100 %', etichetta: 'dei lotti analizzati' },
-    { valore: '48–72 h', etichetta: 'spedizione in UE' },
+    {
+      valore: 'IT · CH · CZ',
+      etichetta: 'coltivazioni in Italia, Svizzera, Repubblica Ceca e nel mondo',
+    },
+    { valore: '300+', etichetta: 'prodotti a catalogo, in arrivo sul sito' },
+    { valore: '<24\u00A0h', etichetta: 'restock urgenti per la rete' },
+    { valore: '100\u00A0%', etichetta: 'filiera tracciata da un solo gestionale' },
   ],
+  manifesto: 'Non compriamo da nessuno. Produciamo.',
+  /** La linea del tempo: un capitolo per passaggio della filiera. */
+  capitoli: [
+    {
+      n: '01',
+      eyebrow: 'Le radici',
+      titolo: 'Tutto parte da una genetica.',
+      testo:
+        'The Hasher è figlia di un gruppo che coltiva su scala industriale in Italia, Svizzera e Repubblica Ceca, e lavora con coltivatori in tutto il mondo. Tonnellate di fiori ogni anno, a partire da genetiche selezionate una per una.',
+      etichette: ['Italia', 'Svizzera', 'Repubblica Ceca', 'Nel mondo'],
+      img: 'images/filiera/semina.jpg',
+      alt: 'Selezione dei semi in laboratorio',
+    },
+    {
+      n: '02',
+      eyebrow: 'La coltivazione',
+      titolo: 'Quattro modi di coltivare.',
+      testo:
+        'Outdoor, greenhouse, glasshouse e indoor: ogni clima dà un fiore diverso, e ogni fiore ha il suo prodotto. Per questo il catalogo copre tutte le fasce, dal fiore di tutti i giorni alle cime da collezione.',
+      etichette: ['Outdoor', 'Greenhouse', 'Glasshouse', 'Indoor'],
+      img: 'images/filiera/raccolta.jpg',
+      alt: 'Raccolta e lavorazione dei fiori in impianto',
+    },
+    {
+      n: '03',
+      eyebrow: 'Il recupero',
+      titolo: 'Niente si butta.',
+      testo:
+        'Quando i fiori vengono puliti e rifilati, restano foglie e residui ricchi di resina. Non finiscono nel cestino: vanno al nostro laboratorio, che li trasforma in materia prima.',
+      img: 'images/filiera/setacciatura.jpg',
+      alt: 'Setacciatura dei residui di fiore: la resina cade dal setaccio',
+    },
+    {
+      n: '04',
+      eyebrow: 'Il laboratorio',
+      titolo: 'Rosin full spectrum.',
+      testo:
+        'Dagli scarti delle pulizie il lab estrae rosin full spectrum e le altre materie prime che fanno da base a tutto il resto. Il rosin nasce solo da calore e pressione, senza solventi.',
+      etichette: ['Rosin full spectrum', 'Kif e resine', 'Basi per gli oli'],
+      img: 'images/filiera/pressatura.jpg',
+      alt: 'Pressatura della resina in laboratorio',
+    },
+    {
+      n: '05',
+      eyebrow: 'La produzione',
+      titolo: 'Le nostre formule.',
+      testo:
+        'Da quelle basi, con formule nostre, nascono hash, estratti e oli. Ogni lotto ha il suo numero e il suo certificato, dalla pianta al barattolo.',
+      etichette: ['Hash', 'Estratti', 'Oli'],
+      img: 'images/franchising/bancone.jpg',
+      alt: 'Barattoli e scatole The Hasher in vetrina',
+    },
+    {
+      n: '06',
+      eyebrow: 'Il controllo',
+      titolo: 'Tutto sotto controllo.',
+      testo:
+        'Un unico gestionale segue la filiera intera: coltivazione, controllo qualità del fiore, produzione di hash ed estratti, ordini, magazzino della casa madre, spedizioni e riassortimento. Per noi e per ogni affiliato.',
+      pannello: true,
+    },
+    {
+      n: '07',
+      eyebrow: 'La rete',
+      titolo: 'Dalla casa madre a te.',
+      testo:
+        'Dal magazzino centrale riforniamo rivenditori, distributori e negozi in franchising in tutta Europa. Per i restock urgenti, la merce arriva in meno di 24 ore.',
+      etichette: ['Rivenditori', 'Distributori', 'Franchising'],
+      img: 'images/franchising/esterno.jpg',
+      alt: 'Un negozio The Hasher con la vetrina illuminata',
+    },
+    {
+      n: '08',
+      eyebrow: 'Oggi',
+      titolo: 'The Hasher.',
+      testo:
+        'Il brand che porta tutto questo al cliente finale. Oltre 300 prodotti a catalogo, che arrivano sul sito uno alla volta. I prezzi migliori del mercato, perché il produttore siamo noi.',
+      img: 'images/franchising/interno.jpg',
+      alt: 'L’interno di un negozio The Hasher',
+    },
+  ],
+  /** Pannello dimostrativo del gestionale: dati finti, solo per far vedere l'idea. */
+  gestionale: {
+    fasi: ['Coltivazione', 'Controllo qualità', 'Produzione', 'Magazzino', 'Spedizione'],
+    lotti: [
+      { lotto: 'LH-2609', prodotto: 'Lemon Haze', fase: 2, stato: 'In produzione' },
+      { lotto: 'TC-2611', prodotto: 'Tropicana Cookies', fase: 1, stato: 'QC superato' },
+      { lotto: 'RH-2604', prodotto: 'Royal Hash', fase: 3, stato: '1.240 pz' },
+      { lotto: 'GL-2612', prodotto: 'Gelato 41', fase: 4, stato: 'Spedito · 22 h' },
+    ],
+    kpi: [
+      { valore: '184', etichetta: 'ordini oggi' },
+      { valore: '98 %', etichetta: 'evasi in 24 h' },
+      { valore: '312', etichetta: 'referenze attive' },
+    ],
+  },
+  qualita: [
+    {
+      titolo: 'Naturale',
+      testo:
+        'Fiori, hash e rosin al 100 % naturali: niente additivi, niente aromi aggiunti. Solo materia prima di altissima qualità.',
+    },
+    {
+      titolo: 'Standard altissimi',
+      testo:
+        'Ogni lotto passa dal controllo qualità del fiore prima di diventare prodotto. Quello che non supera il controllo non esce.',
+    },
+    {
+      titolo: 'Catalogo immenso',
+      testo:
+        'Più di 300 referenze tra fiori, hash, estratti e oli, in tutte le coltivazioni e le lavorazioni.',
+    },
+    {
+      titolo: 'Prezzi da produttore',
+      testo:
+        'Nessun intermediario tra il campo e il barattolo: i prezzi migliori del mercato, per te e per la rete.',
+    },
+  ],
+  shop: {
+    eyebrow: 'Dallo shop',
+    titolo: 'Assaggia la filiera.',
+    testo: 'Tutto quello che hai letto, in barattolo. Spedizione anonima in tutta Europa.',
+    categorie: [
+      { nome: 'Fiori', to: '/negozio?categoria=fiori', img: 'images/demo/cat-flower.jpg' },
+      { nome: 'Hash', to: '/negozio?categoria=hash', img: 'images/demo/cat-hash.jpg' },
+      { nome: 'Estratti', to: '/negozio?categoria=estratti', img: 'images/demo/jar-hash.jpg' },
+    ],
+  },
+  rete: {
+    eyebrow: 'Lavora con noi',
+    titolo: 'Entra nella rete.',
+    porte: [
+      {
+        nome: 'Ambassador',
+        testo: 'Porta The Hasher al tuo pubblico e guadagna su ogni vendita.',
+        to: '/diventa-distributore#formule',
+      },
+      {
+        nome: 'Rivenditore',
+        testo: 'Il nostro catalogo nel tuo negozio, a prezzi da produttore.',
+        to: '/diventa-distributore#formule',
+      },
+      {
+        nome: 'Distributore',
+        testo: 'Formati grandi e condizioni da grossista per la tua rete.',
+        to: '/diventa-distributore#formule',
+      },
+      {
+        nome: 'Franchising',
+        testo: 'Apri il tuo The Hasher: 0 % royalty, 60 % a te.',
+        to: '/franchising',
+      },
+    ],
+  },
 }
 
 export const blog = [
@@ -229,16 +369,30 @@ export const gruppo = {
 }
 
 export const distributore = {
-  eyebrow: 'Rivenditori e distributori',
-  titolo: 'Distribuisci The Hasher.',
-  lead: 'Prezzi da produttore, catalogo completo già confezionato, riassortimento in 24–72 ore in tutta Europa. Vendi il nostro prodotto nel tuo negozio o nella tua rete.',
+  eyebrow: 'Ambassador · Rivenditori · Distributori',
+  titolo: 'Porta The Hasher ovunque.',
+  lead: 'Col tuo pubblico, nel tuo negozio o nella tua rete: prezzi da produttore, oltre 300 prodotti già confezionati e restock urgenti in meno di 24 ore.',
   numeri: [
     { valore: '50\u00A0%', etichetta: 'margine massimo sul prezzo consigliato' },
-    { valore: '24–72\u00A0h', etichetta: 'riassortimento ovunque in Europa' },
-    { valore: '100\u00A0%', etichetta: 'prodotto nostro, dal seme al pacco' },
+    { valore: '<24\u00A0h', etichetta: 'restock urgenti in tutta Europa' },
+    { valore: '300+', etichetta: 'prodotti a catalogo' },
   ],
   livelli: [
     {
+      nome: 'Ambassador',
+      perChi: 'Creator, influencer, community',
+      etichetta: 'La tua commissione',
+      margine: '10–15\u00A0%',
+      minimo: 'Nessun investimento',
+      punti: [
+        'Codice sconto personale per il tuo pubblico',
+        'Commissione su ogni vendita dal tuo codice',
+        'Kit prodotti e drop in anteprima',
+        'Foto e contenuti pronti da pubblicare',
+      ],
+    },
+    {
+      acquista: true,
       nome: 'Rivenditore',
       perChi: 'Negozi e shop online',
       minimo: 'Primo ordine da 1.500 €',
@@ -252,6 +406,7 @@ export const distributore = {
     },
     {
       nome: 'Distributore',
+      acquista: true,
       perChi: 'Grossisti e catene',
       minimo: 'Da 5.000 € a ordine',
       margine: '50\u00A0%',
@@ -283,6 +438,28 @@ export const distributore = {
     },
     { titolo: 'Primo ordine', testo: 'Parti con la formula concordata. Il resto lo facciamo noi.' },
   ],
+  /** Il programma ambassador, raccontato a parte nella pagina. */
+  ambassador: {
+    eyebrow: 'Programma ambassador',
+    titolo: 'Il tuo pubblico, la tua commissione.',
+    testo:
+      'Cerchiamo creator e influencer che vogliono spingere The Hasher sui social e sul sito. Nessun investimento, nessun magazzino: condividi il tuo codice, i tuoi follower hanno uno sconto, tu guadagni su ogni ordine.',
+    passi: [
+      { titolo: 'Ti candidi', testo: 'Profilo social e numeri: valutiamo in 48 ore.' },
+      { titolo: 'Ricevi il kit', testo: 'Prodotti, foto e il tuo codice personale.' },
+      {
+        titolo: 'Pubblichi',
+        testo: 'Racconti il prodotto al tuo modo, con le nostre linee guida.',
+      },
+      { titolo: 'Guadagni', testo: 'Commissione su ogni vendita, pagata ogni mese.' },
+    ],
+    livelli: [
+      { nome: 'Member', cosa: 'Codice sconto e commissione base' },
+      { nome: 'Pro', cosa: 'Commissione più alta, drop in anteprima' },
+      { nome: 'Elite', cosa: 'Collab dedicate e budget per contenuti' },
+    ],
+    nota: 'Percentuali indicative: commissione e sconto definitivi in base al profilo e ai risultati.',
+  },
   requisiti: [
     'Partita IVA attiva e attività coerente con la vendita di prodotti CBD',
     'Conformità alle regole del proprio Paese sulla vendita al pubblico',
@@ -290,6 +467,10 @@ export const distributore = {
     'Magazzino proprio: non lavoriamo in dropshipping',
   ],
   faq: [
+    {
+      q: 'Come funziona il programma ambassador?',
+      a: 'Ti candidi con il tuo profilo social, ricevi un kit prodotti e un codice personale. Il tuo pubblico ha uno sconto, tu una commissione su ogni ordine fatto col tuo codice, sul sito. Nessun investimento e nessun magazzino.',
+    },
     {
       q: 'Qual è l’ordine minimo?',
       a: 'Per i rivenditori il primo ordine parte da 1.500 €, poi si riordina liberamente. Per i distributori il minimo è di 5.000 € a ordine.',
@@ -301,6 +482,10 @@ export const distributore = {
     {
       q: 'Posso aprire un negozio con il vostro marchio?',
       a: 'Sì, con il franchising: insegna The Hasher, esclusiva di zona e il 60 % del venduto a te. Trovi tutto nella pagina dedicata.',
+    },
+    {
+      q: 'Quanto ci mette un restock?',
+      a: 'Di norma 24–72 ore in tutta Europa. Per le urgenze la merce parte subito e arriva in meno di 24 ore.',
     },
     {
       q: 'Fate dropshipping?',
