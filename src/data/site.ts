@@ -24,10 +24,10 @@ export const site = {
         },
       ],
     },
-    { label: 'Franchising', to: '/franchising' },
     { label: 'Diventa rivenditore', to: '/diventa-distributore' },
-    { label: 'Azienda', to: '/azienda' },
+    { label: 'Franchising', to: '/franchising' },
     { label: 'Blog', to: '/blog' },
+    { label: 'Azienda', to: '/azienda' },
   ],
   infoBar: {
     age: '18+',

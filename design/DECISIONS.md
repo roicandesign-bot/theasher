@@ -96,3 +96,4 @@
 - 2026-09-27 · Tolto il «prezzo minimo» imposto ai rivenditori: un prezzo di rivendita minimo è una restrizione di concorrenza. Restano i prezzi consigliati
 - 2026-09-27 · Mockup del negozio generati con Higgsfield (esterno, interno, bancone, corner) usando logo e packaging veri come riferimento · non scaricabili da questa sessione (cloudfront bloccato dalla rete): in pagina restano riquadri «Render in approvazione» finché Lorenzo non approva e rimanda le foto
 - 2026-09-28 · Render del negozio approvati da Lorenzo: esterno, interno, bancone (il corner no). L'esterno apre la pagina franchising, interno e bancone illustrano «Il tuo negozio» con una riga che li dichiara render di progetto · originali in design/inputs/negozio/
+- 2026-09-28 · Ordine del menu deciso da Lorenzo: Home, Shop, Diventa rivenditore, Franchising, Blog, Azienda
