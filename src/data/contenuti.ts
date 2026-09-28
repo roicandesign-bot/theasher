@@ -362,11 +362,24 @@ export const franchising = {
       testo: 'Città principali: retail, eventi, merchandise ed esperienza di marca.',
     },
   ],
+  /** Render approvati da Lorenzo (settembre 2026). L'esterno apre la pagina. */
+  esterno: {
+    img: 'images/franchising/esterno.jpg',
+    alt: 'Mockup di un negozio The Hasher: facciata nera, insegna gialla illuminata, vetrina con prodotti e abbigliamento',
+  },
   mockup: [
-    { titolo: 'Esterno', testo: 'Facciata nera, insegna gialla illuminata' },
-    { titolo: 'Interno', testo: 'Scaffali retroilluminati, bancone monolitico' },
-    { titolo: 'Bancone', testo: 'Vetrina prodotto e analisi a portata di mano' },
-    { titolo: 'Corner', testo: 'Il modulo The Hasher dentro un negozio esistente' },
+    {
+      titolo: 'Interno',
+      testo: 'Scaffali retroilluminati, logo al neon, bancone monolitico',
+      img: 'images/franchising/interno.jpg',
+      alt: 'Mockup dell’interno di un negozio The Hasher: pareti nere, scaffali con luce gialla, logo al neon dietro il bancone',
+    },
+    {
+      titolo: 'Bancone',
+      testo: 'Vetrina prodotto, packaging nero e giallo',
+      img: 'images/franchising/bancone.jpg',
+      alt: 'Mockup del bancone The Hasher: vetrina in vetro con barattoli e scatole nere col logo giallo',
+    },
   ],
   /** Le linee che esistono solo nella rete. */
   linee: ['TH Original', 'TH Black Label', 'TH Drops', 'TH Reserve', 'TH Collabs'],

@@ -14,7 +14,6 @@ import {
   Scale,
   ShoppingCart,
   Sparkles,
-  Store,
 } from 'lucide-react'
 import { useState } from 'react'
 import { Consenso, Numeri } from '@/components/sections/B2B'
@@ -79,11 +78,12 @@ export default function Franchising() {
             </div>
             <Numeri numeri={f.numeri} />
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-card lg:aspect-square">
+          <div className="relative aspect-[3/2] overflow-hidden rounded-card lg:aspect-[4/3]">
             <Parallax distanza={32} className="size-full">
               <img
-                src={asset('images/demo/hero-products.jpg')}
-                alt="Prodotti The Hasher esposti: barattolo di hash e busta di fiori"
+                src={asset(f.esterno.img)}
+                alt={f.esterno.alt}
+                fetchPriority="high"
                 className="size-full scale-[1.1] object-cover"
               />
             </Parallax>
@@ -176,26 +176,31 @@ export default function Franchising() {
             title="Progettato per funzionare."
             subtitle="Tre formati per tre capacità di investimento. Stessa identità, stesso prodotto, stessa macchina dietro."
           />
-          <ul className="mt-10 grid grid-cols-2 gap-3 lg:grid-cols-4">
+          <ul className="mt-10 grid gap-3 lg:grid-cols-[1.6fr_1fr]">
             {f.mockup.map((m, i) => (
               <li key={m.titolo}>
-                <Reveal delay={i * 70}>
-                  <figure className="relative aspect-[4/5] overflow-hidden rounded-card bg-gradient-to-br from-primary/15 via-surface to-bg ring-1 ring-line">
-                    <div className="grid size-full place-items-center">
-                      <Store className="size-10 text-primary/60" strokeWidth={1.25} />
-                    </div>
-                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/70 to-transparent p-4 pt-12">
+                <Reveal delay={i * 90} className="h-full">
+                  <figure className="group relative aspect-[3/2] h-full overflow-hidden rounded-card ring-1 ring-line lg:aspect-auto">
+                    <Parallax distanza={i === 0 ? 28 : 18} className="size-full">
+                      <img
+                        src={asset(m.img)}
+                        alt={m.alt}
+                        loading="lazy"
+                        className="size-full scale-[1.08] object-cover transition duration-700 ease-out-soft group-hover:scale-[1.12]"
+                      />
+                    </Parallax>
+                    <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-bg via-bg/70 to-transparent p-5 pt-16">
                       <p className="font-display text-h3 uppercase">{m.titolo}</p>
-                      <p className="mt-1 text-xs text-fg-muted">{m.testo}</p>
+                      <p className="mt-1 text-sm text-fg-muted">{m.testo}</p>
                     </figcaption>
-                    <Badge variant="muted" className="absolute top-3 left-3">
-                      Render in approvazione
-                    </Badge>
                   </figure>
                 </Reveal>
               </li>
             ))}
           </ul>
+          <p className="mt-3 text-xs text-fg-subtle">
+            Render di progetto: arredi e allestimento definitivi su misura del locale.
+          </p>
 
           <ul className="mt-10 grid gap-5 lg:grid-cols-3">
             {f.formati.map((fo, i) => (
