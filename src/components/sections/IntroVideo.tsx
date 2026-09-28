@@ -1,4 +1,4 @@
-import { ChevronDown, Pause, Play } from 'lucide-react'
+import { ArrowDown, Pause, Play } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
@@ -42,14 +42,21 @@ export function IntroVideo() {
 
   const taglio = verticale ? TAGLI.verticale : TAGLI.orizzontale
 
+  const chiudi = () => {
+    setInPausa(true)
+    document.getElementById('dopo-intro')?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+    })
+  }
+
   return (
     <section aria-label="The Hasher in 12 secondi" className="relative bg-bg">
       <div
         className={cn(
           'relative mx-auto w-full overflow-hidden',
           verticale
-            ? 'aspect-[9/16] max-h-[calc(100svh-4.5rem)]'
-            : 'aspect-video max-h-[calc(100svh-5rem)]',
+            ? 'aspect-[9/16] max-h-[calc(100svh-7rem)]'
+            : 'aspect-video max-h-[calc(100svh-7.5rem)]',
         )}
       >
         <video
@@ -78,13 +85,18 @@ export function IntroVideo() {
           {inPausa ? <Play className="size-4" /> : <Pause className="size-4" />}
         </button>
 
-        <a
-          href="#dopo-intro"
-          className="absolute bottom-4 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 label text-[0.625rem] text-fg-muted transition md:flex hocus:text-primary"
+        {/* cerchio con freccia: chiude l'intro (ferma il video) e porta giù al sito */}
+        <button
+          type="button"
+          onClick={chiudi}
+          aria-label="Chiudi l’intro e scorri al sito"
+          className="group absolute bottom-5 left-1/2 grid size-14 -translate-x-1/2 place-items-center rounded-full bg-bg/50 text-primary ring-2 ring-primary backdrop-blur transition duration-300 ease-out-soft ring-inset md:bottom-8 md:size-16 hocus:bg-primary hocus:text-primary-fg"
         >
-          Scorri
-          <ChevronDown aria-hidden="true" className="size-4 animate-bounce" />
-        </a>
+          <ArrowDown
+            aria-hidden="true"
+            className="size-6 transition-transform duration-300 ease-out-soft group-hover:translate-y-0.5 motion-safe:animate-bounce"
+          />
+        </button>
       </div>
       <div id="dopo-intro" className="scroll-mt-20" />
     </section>
