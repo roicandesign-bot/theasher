@@ -6,6 +6,7 @@ import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
+import { coloriAttivi, stileFamiglia } from '@/lib/coloriFamiglie'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
 
@@ -22,6 +23,12 @@ function useVoceAttiva() {
     if (!query) return [...params.keys()].length === 0
     return [...new URLSearchParams(query).entries()].every(([k, v]) => params.get(k) === v)
   }
+}
+
+/** La famiglia a cui porta una voce del menu (…?categoria=preroll → preroll), per la prova colori. */
+function famigliaDi(to: string) {
+  const [percorso, query] = to.split('?')
+  return percorso === '/negozio' && query ? new URLSearchParams(query).get('categoria') : null
 }
 
 /**
@@ -155,9 +162,17 @@ export function Header() {
                             to={v.to}
                             aria-current={attiva(v.to) ? 'page' : undefined}
                             onClick={() => setTendina(null)}
+                            style={coloriAttivi() ? stileFamiglia(famigliaDi(v.to)) : undefined}
                             className="group/voce flex flex-col gap-3"
                           >
-                            <span className="block aspect-[4/3] overflow-hidden rounded-card ring-1 ring-line transition duration-300 ease-out-soft group-hover/voce:ring-2 group-hover/voce:ring-primary">
+                            <span
+                              className={cn(
+                                'block aspect-[4/3] overflow-hidden rounded-card ring-1 ring-line transition duration-300 ease-out-soft group-hover/voce:ring-2',
+                                coloriAttivi() && famigliaDi(v.to)
+                                  ? 'group-hover/voce:ring-(--fam)'
+                                  : 'group-hover/voce:ring-primary',
+                              )}
+                            >
                               <img
                                 src={asset(v.img)}
                                 alt=""
@@ -168,13 +183,30 @@ export function Header() {
                             <span
                               className={cn(
                                 'flex items-center justify-between gap-2 label text-[0.75rem] transition',
-                                attiva(v.to)
-                                  ? 'text-primary'
-                                  : 'text-fg group-hover/voce:text-primary',
+                                coloriAttivi() && famigliaDi(v.to)
+                                  ? 'text-(--fam)'
+                                  : attiva(v.to)
+                                    ? 'text-primary'
+                                    : 'text-fg group-hover/voce:text-primary',
                               )}
                             >
-                              {v.label}
-                              <span aria-hidden="true" className="text-primary">
+                              <span className="flex items-center gap-2">
+                                {coloriAttivi() && famigliaDi(v.to) && (
+                                  <span
+                                    aria-hidden="true"
+                                    className="size-2 rounded-full bg-(--fam)"
+                                  />
+                                )}
+                                {v.label}
+                              </span>
+                              <span
+                                aria-hidden="true"
+                                className={
+                                  coloriAttivi() && famigliaDi(v.to)
+                                    ? 'text-(--fam)'
+                                    : 'text-primary'
+                                }
+                              >
                                 →
                               </span>
                             </span>
@@ -358,7 +390,18 @@ export function Header() {
                             loading="lazy"
                             className="size-12 shrink-0 rounded-[0.625rem] object-cover"
                           />
-                          <span className="label text-[0.75rem]">{v.label}</span>
+                          <span
+                            style={coloriAttivi() ? stileFamiglia(famigliaDi(v.to)) : undefined}
+                            className={cn(
+                              'flex items-center gap-2 label text-[0.75rem]',
+                              coloriAttivi() && famigliaDi(v.to) && 'text-(--fam)',
+                            )}
+                          >
+                            {coloriAttivi() && famigliaDi(v.to) && (
+                              <span aria-hidden="true" className="size-2 rounded-full bg-(--fam)" />
+                            )}
+                            {v.label}
+                          </span>
                         </Link>
                       </li>
                     ))}

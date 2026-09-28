@@ -32,6 +32,20 @@
   --color-warning: #fbbf24;
   --color-danger: #ff5c5c;
 
+  /* ---------- Colori delle famiglie (PROVA, attivi solo con ?colori=si) ----------
+     Un colore per famiglia per distinguerle a colpo d'occhio. Il giallo resta del brand:
+     logo, prezzi, pulsanti. Tutti leggibili su nero (contrasto ≥ 7:1). */
+  --color-fam-fiori: #4ade80; /* verde */
+  --color-fam-hash: #d9925b; /* caramello */
+  --color-fam-estratti: #ffb224; /* ambra */
+  --color-fam-preroll: #ff5c6c; /* rosso */
+  --color-fam-cannagar: #b98cff; /* viola */
+  --color-fam-vape: #3cc4ff; /* azzurro */
+  --color-fam-oli: #ffe08a; /* oro chiaro */
+  --color-fam-edibles: #ff6fcf; /* rosa */
+  --color-fam-semi: #efe8da; /* avorio */
+  --color-fam-cloni: #2dd4bf; /* turchese */
+
   /* ---------- Scala neutra (placeholder, superfici, pattern) ---------- */
   --color-brand-50: #f5f5f0;
   --color-brand-100: #e5e5df;

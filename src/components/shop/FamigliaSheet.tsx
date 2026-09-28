@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { categorie, fotoFamiglia, gruppiFamiglie, type Categoria } from '@/data/products'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
+import { coloriAttivi, stileFamiglia } from '@/lib/coloriFamiglie'
 
 type Props = {
   open: boolean
@@ -41,9 +42,16 @@ export function FamigliaSheet({ open, scelta, conta, onScegli, onClose }: Props)
           onScegli(id)
           onClose()
         }}
+        style={coloriAttivi() ? stileFamiglia(id) : undefined}
         className={cn(
           'flex w-full items-center gap-3 rounded-card bg-surface p-2 text-left ring-1 transition duration-200 ease-out-soft ring-inset disabled:opacity-40',
-          attiva ? 'text-primary ring-2 ring-primary' : 'text-fg ring-line hocus:ring-primary',
+          coloriAttivi() && id
+            ? attiva
+              ? 'text-(--fam) ring-2 ring-(--fam)'
+              : 'text-fg ring-line hocus:ring-(--fam)'
+            : attiva
+              ? 'text-primary ring-2 ring-primary'
+              : 'text-fg ring-line hocus:ring-primary',
         )}
       >
         <img
@@ -53,7 +61,17 @@ export function FamigliaSheet({ open, scelta, conta, onScegli, onClose }: Props)
           className="size-14 shrink-0 rounded-[0.625rem] object-cover"
         />
         <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-          <span className="label text-[0.8125rem]">{label}</span>
+          <span
+            className={cn(
+              'flex items-center gap-2 label text-[0.8125rem]',
+              coloriAttivi() && id && 'text-(--fam)',
+            )}
+          >
+            {coloriAttivi() && id && (
+              <span aria-hidden="true" className="size-2 rounded-full bg-(--fam)" />
+            )}
+            {label}
+          </span>
           <span className="text-xs text-fg-muted">
             {n} {n === 1 ? 'prodotto' : 'prodotti'}
           </span>

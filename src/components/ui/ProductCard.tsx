@@ -6,6 +6,7 @@ import { NomeProdotto } from '@/components/ui/NomeProdotto'
 import { Price } from '@/components/ui/Price'
 import {
   etichettaCategoria,
+  nomiCategoria,
   formatQuantita,
   productPath,
   tagLavorazione,
@@ -16,6 +17,7 @@ import {
 import { useCart } from '@/lib/cart'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
+import { coloriAttivi, stileFamiglia } from '@/lib/coloriFamiglie'
 
 /**
  * Card prodotto: foto, badge, nome (Anton), profilo aromatico, prezzo + prezzo/g,
@@ -35,10 +37,13 @@ export function ProductCard({
   className?: string
 }) {
   const { add } = useCart()
+  const colore = coloriAttivi() && product.reparto !== 'merch'
   return (
     <article
+      style={colore ? stileFamiglia(product.category) : undefined}
       className={cn(
-        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft hover:-translate-y-1 hover:ring-2 hover:ring-primary',
+        'group flex flex-col overflow-hidden rounded-card bg-surface ring-1 ring-line transition duration-300 ease-out-soft hover:-translate-y-1 hover:ring-2',
+        colore ? 'hover:ring-(--fam)' : 'hover:ring-primary',
         className,
       )}
     >
@@ -72,8 +77,15 @@ export function ProductCard({
           </span>
         )}
       </Link>
+      {colore && <div aria-hidden="true" className="h-1 bg-(--fam)" />}
       <div className={cn('flex flex-col gap-3 p-4', grande ? 'lg:p-6' : 'flex-1')}>
         <div>
+          {colore && (
+            <p className="mb-2 flex items-center gap-1.5 label text-[0.625rem] text-(--fam)">
+              <span aria-hidden="true" className="size-1.5 rounded-full bg-(--fam)" />
+              {nomiCategoria[product.category]}
+            </p>
+          )}
           <h3 className={cn('text-pretty', grande ? 'text-h2' : 'text-h3')}>
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
               <NomeProdotto nome={product.name} />

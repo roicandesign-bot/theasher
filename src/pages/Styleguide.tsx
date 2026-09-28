@@ -12,8 +12,9 @@ import { Price } from '@/components/ui/Price'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
-import { products } from '@/data/products'
+import { categorie, products, type Categoria } from '@/data/products'
 import { cn } from '@/lib/cn'
+import { nomiColori } from '@/lib/coloriFamiglie'
 
 /**
  * STYLEGUIDE VIVENTE: mostra i token di src/styles/tokens.css e i componenti così come sono.
@@ -207,6 +208,25 @@ export default function Styleguide() {
               <div key={name} className="overflow-hidden rounded-card ring-1 ring-line ring-inset">
                 <div className={`h-16 bg-${name}`} />
                 <p className="bg-surface px-3 py-2 font-mono text-xs">{name}</p>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="mt-12 text-h3">Colori delle famiglie (prova)</h3>
+          <p className="mt-2 max-w-prose text-pretty text-fg-muted">
+            Attivi solo con <span className="font-mono text-fg">?colori=si</span> nell’indirizzo:
+            puntino, nome e riga sopra la card. Il giallo resta il colore del brand.
+          </p>
+          <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {(Object.keys(categorie) as Categoria[]).map((c) => (
+              <div key={c} className="overflow-hidden rounded-card ring-1 ring-line ring-inset">
+                <div className="h-16" style={{ background: `var(--color-fam-${c})` }} />
+                <p className="bg-surface px-3 py-2 font-mono text-xs">
+                  fam-{c}
+                  <span className="block text-fg-muted">
+                    {categorie[c]} · {nomiColori[c]}
+                  </span>
+                </p>
               </div>
             ))}
           </div>

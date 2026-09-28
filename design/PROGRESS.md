@@ -45,6 +45,13 @@ ritagli demo dai mockup.
   per struttura, voci e tono. I testi restano nostri (non copiati) e vanno validati dal legale.
   Da ricordare a Lorenzo quando si lavora su pagine legali, FAQ o banner cookie.
 
+## In attesa di una scelta di Lorenzo
+
+- **Colori per famiglia**: prova attiva con `/negozio?colori=si`, tavola in
+  `design/screenshots/prova-colori-famiglie.png`. Se va bene diventa il default, se no si toglie.
+- **Nome del reparto**: Merch (online) oppure Accessori / Headshop / Supply.
+- **Video di apertura v2** in cima alla home: conferma o correzioni.
+
 ## Prossima azione consigliata
 
 Foto e nomi veri dei prodotti (archivio Roican: va allegato in chat o sbloccato nelle impostazioni

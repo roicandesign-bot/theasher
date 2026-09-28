@@ -21,6 +21,7 @@ import {
   type Categoria,
 } from '@/data/products'
 import { cn } from '@/lib/cn'
+import { coloriAttivi, stileFamiglia } from '@/lib/coloriFamiglie'
 import {
   applica,
   attiviDi,
@@ -103,7 +104,13 @@ export default function Shop() {
           >
             <span className="flex min-w-0 items-baseline gap-2">
               <span className="label text-[0.625rem] text-fg-muted">Famiglia</span>
-              <span className="truncate label text-[0.8125rem] text-primary">
+              <span
+                style={coloriAttivi() ? stileFamiglia(filtri.categoria) : undefined}
+                className={cn(
+                  'truncate label text-[0.8125rem]',
+                  coloriAttivi() && filtri.categoria ? 'text-(--fam)' : 'text-primary',
+                )}
+              >
                 {filtri.categoria ? categorie[filtri.categoria] : 'Tutto'}
               </span>
               <span className="text-xs text-fg-muted">
@@ -146,6 +153,7 @@ export default function Shop() {
                     <Linguetta
                       key={c}
                       label={categorie[c]}
+                      famiglia={c}
                       n={contaCategoria(filtri, c)}
                       attiva={filtri.categoria === c}
                       onClick={() => setCategoria(c)}
@@ -320,29 +328,45 @@ function BottoneFiltri({
 
 function Linguetta({
   label,
+  famiglia,
   n,
   attiva,
   onClick,
   className,
 }: {
   label: string
+  /** con la prova colori attiva, la linguetta prende il colore della famiglia */
+  famiglia?: string
   n: number
   attiva: boolean
   onClick: () => void
   className?: string
 }) {
+  const colore = coloriAttivi() && famiglia
   return (
     <button
       type="button"
       aria-pressed={attiva}
       onClick={onClick}
+      style={colore ? stileFamiglia(famiglia) : undefined}
       className={cn(
         'flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-button px-1 py-2 label text-[0.6875rem] transition duration-200 ease-out-soft',
-        attiva ? 'bg-primary text-primary-fg' : 'text-primary hocus:bg-surface-hover',
+        attiva
+          ? colore
+            ? 'bg-(--fam) text-primary-fg'
+            : 'bg-primary text-primary-fg'
+          : colore
+            ? 'text-(--fam) hocus:bg-surface-hover'
+            : 'text-primary hocus:bg-surface-hover',
         className,
       )}
     >
-      {label}
+      <span className="flex items-center gap-1.5">
+        {colore && !attiva && (
+          <span aria-hidden="true" className="size-1.5 rounded-full bg-(--fam)" />
+        )}
+        {label}
+      </span>
       <span className={cn('text-[0.625rem]', attiva ? 'text-primary-fg/60' : 'text-fg-muted')}>
         {n}
       </span>
