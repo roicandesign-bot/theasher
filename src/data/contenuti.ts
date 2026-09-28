@@ -145,7 +145,7 @@ export const azienda = {
     categorie: [
       { nome: 'Fiori', to: '/negozio?categoria=fiori', img: 'images/demo/cat-flower.jpg' },
       { nome: 'Hash', to: '/negozio?categoria=hash', img: 'images/demo/cat-hash.jpg' },
-      { nome: 'Estratti', to: '/negozio?categoria=estratti', img: 'images/demo/jar-hash.jpg' },
+      { nome: 'Estratti', to: '/negozio?categoria=estratti', img: 'images/filiera/pressatura.jpg' },
     ],
   },
   rete: {
@@ -665,7 +665,7 @@ export const franchising = {
     famiglie: [
       { nome: 'Fiori', img: 'images/demo/cat-flower.jpg' },
       { nome: 'Hash', img: 'images/demo/cat-hash.jpg' },
-      { nome: 'Estratti', img: 'images/demo/jar-hash.jpg' },
+      { nome: 'Estratti', img: 'images/filiera/pressatura.jpg' },
       { nome: 'Oli', img: 'images/demo/packaging-family.jpg' },
     ],
   },

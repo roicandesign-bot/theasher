@@ -41,7 +41,7 @@ export const home = {
       title: 'Estratti',
       lines: ['Pure resin.', 'Full spectrum.'],
       cta: 'Esplora estratti',
-      image: 'images/demo/jar-hash.jpg',
+      image: 'images/filiera/pressatura.jpg',
     },
   ],
   newDrop: {
