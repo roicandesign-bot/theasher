@@ -15,15 +15,15 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 
 ## Pagine
 
-| Gruppo                                 | Route                                                        | Stato                | Ultima verifica |
-| -------------------------------------- | ------------------------------------------------------------ | -------------------- | --------------- |
-| Home                                   | `/`                                                          | ✅ v2 (tre famiglie) | 2026-09-27      |
+| Gruppo                                 | Route                                                        | Stato                                              | Ultima verifica |
+| -------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------- | --------------- |
+| Home                                   | `/`                                                          | ✅ v2 (tre famiglie)                               | 2026-09-27      |
 | Negozio e prodotto                     | `/negozio`, `/prodotto/:slug`                                | ✅ v3 (barra unica, 4 colonne, scheda in evidenza) | 2026-09-28      |
-| Acquisto                               | `/carrello`, `/checkout`, `/ordine/:numero`                  | ✅ v1                | 2026-09-27      |
-| Area cliente                           | `/accedi`, `/registrati`, `/account`, `/account/*`           | ✅ v1                | 2026-09-27      |
-| Racconto                               | `/azienda`, `/journal`, `/contatti`, `/diventa-distributore` | ✅ v1                | 2026-09-27      |
-| Servizio e legale                      | `/analisi`, `/faq`, `/cerca`, `/preferiti`, 7 pagine legali  | ✅ v1                | 2026-09-27      |
-| Pagine di lavoro (non per il pubblico) | `/stato`, `/prezzi`, `/mappa`, `/styleguide`                 | ✅                   | 2026-09-27      |
+| Acquisto                               | `/carrello`, `/checkout`, `/ordine/:numero`                  | ✅ v1                                              | 2026-09-27      |
+| Area cliente                           | `/accedi`, `/registrati`, `/account`, `/account/*`           | ✅ v1                                              | 2026-09-27      |
+| Racconto                               | `/azienda`, `/journal`, `/contatti`, `/diventa-distributore` | ✅ v1                                              | 2026-09-27      |
+| Servizio e legale                      | `/analisi`, `/faq`, `/cerca`, `/preferiti`, 7 pagine legali  | ✅ v1                                              | 2026-09-27      |
+| Pagine di lavoro (non per il pubblico) | `/stato`, `/prezzi`, `/mappa`, `/styleguide`                 | ✅                                                 | 2026-09-27      |
 
 ## Catalogo
 

@@ -107,3 +107,4 @@
 - 2026-09-28 · Griglia negozio a 4 colonne su schermi larghi (3 su portatile, 2 su tablet) con una scheda «In evidenza» alta due righe sulla colonna di destra: prende il primo Limited drop, altrimenti il primo New, e appare solo se ci sono almeno 5 risultati
 - 2026-09-28 · Campo `imageGrande` nel prodotto: la scheda grande usa una foto ad alta risoluzione (per ora pressatura della filiera su Ketama Gold) perché le foto demo sono troppo piccole e sgranavano
 - 2026-09-28 · Menu Shop su desktop orizzontale a tutta larghezza sotto l'header: cinque riquadri con foto (Tutti, Fiori, Hash, Estratti, Oli), sfondo pieno, resta aperto passando col mouse
+- 2026-09-28 · Menu Shop su desktop: col mouse si apre passandoci sopra, ma un clic su «Shop» lo apre e lo chiude; si chiude anche cliccando fuori, con Esc o scegliendo una voce. «Shop» non porta più direttamente al negozio: ci si arriva da «Tutti i prodotti» dentro il menu. Su tablet (tocco) si apre solo col clic

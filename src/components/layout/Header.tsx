@@ -1,5 +1,5 @@
 import { ChevronDown, Menu, Search, ShoppingBag, User, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
@@ -32,6 +32,9 @@ export function Header() {
   const [open, setOpen] = useState(false)
   /** Sottomenu aperto nel menu mobile (label della voce) */
   const [sotto, setSotto] = useState<string | null>(null)
+  /** Menu a tendina aperto su desktop (label della voce) */
+  const [tendina, setTendina] = useState<string | null>(null)
+  const tendinaRef = useRef<HTMLDivElement>(null)
   const cart = useCart()
   const attiva = useVoceAttiva()
   const navigate = useNavigate()
@@ -42,6 +45,27 @@ export function Header() {
       document.body.style.overflow = ''
     }
   }, [open])
+
+  // La tendina desktop si chiude cliccando fuori, con Esc o portando il focus altrove.
+  useEffect(() => {
+    if (!tendina) return
+    const fuori = (e: Event) => {
+      if (!tendinaRef.current?.contains(e.target as Node)) setTendina(null)
+    }
+    const esc = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      setTendina(null)
+      tendinaRef.current?.querySelector('button')?.focus()
+    }
+    document.addEventListener('pointerdown', fuori)
+    document.addEventListener('focusin', fuori)
+    document.addEventListener('keydown', esc)
+    return () => {
+      document.removeEventListener('pointerdown', fuori)
+      document.removeEventListener('focusin', fuori)
+      document.removeEventListener('keydown', esc)
+    }
+  }, [tendina])
 
   return (
     <>
@@ -74,14 +98,25 @@ export function Header() {
           >
             {site.nav.map((item) =>
               'sotto' in item && item.sotto ? (
-                <div key={item.label} className="group flex items-center self-stretch">
-                  <Link
-                    to={item.to}
-                    aria-current={attiva(item.to) ? 'page' : undefined}
+                <div
+                  key={item.label}
+                  ref={tendina === item.label ? tendinaRef : undefined}
+                  className="flex items-center self-stretch"
+                  // col mouse si apre passandoci sopra; al tocco solo col clic
+                  onPointerEnter={(e) => e.pointerType === 'mouse' && setTendina(item.label)}
+                  onPointerLeave={(e) => e.pointerType === 'mouse' && setTendina(null)}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={tendina === item.label}
+                    aria-controls={`tendina-${item.label}`}
+                    onClick={() => setTendina((v) => (v === item.label ? null : item.label))}
                     className={cn(
                       navLink,
                       'gap-1.5',
-                      attiva(item.to) || item.sotto.some((v) => attiva(v.to))
+                      tendina === item.label ||
+                        attiva(item.to) ||
+                        item.sotto.some((v) => attiva(v.to))
                         ? 'text-primary'
                         : 'text-fg',
                     )}
@@ -89,16 +124,28 @@ export function Header() {
                     {item.label}
                     <ChevronDown
                       aria-hidden="true"
-                      className="size-3.5 transition-transform duration-200 ease-out-soft group-hover:rotate-180"
+                      className={cn(
+                        'size-3.5 transition-transform duration-200 ease-out-soft',
+                        tendina === item.label && 'rotate-180',
+                      )}
                     />
-                  </Link>
-                  <div className="invisible absolute inset-x-0 top-full z-50 border-b border-line bg-bg opacity-0 shadow-2xl shadow-bg transition duration-200 ease-out-soft group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  </button>
+                  <div
+                    id={`tendina-${item.label}`}
+                    className={cn(
+                      'absolute inset-x-0 top-full z-50 border-b border-line bg-bg shadow-2xl shadow-bg transition duration-200 ease-out-soft',
+                      tendina === item.label
+                        ? 'visible opacity-100'
+                        : 'pointer-events-none invisible opacity-0',
+                    )}
+                  >
                     <ul className="container-content grid grid-cols-5 gap-4 py-6">
                       {item.sotto.map((v) => (
                         <li key={v.label}>
                           <Link
                             to={v.to}
                             aria-current={attiva(v.to) ? 'page' : undefined}
+                            onClick={() => setTendina(null)}
                             className="group/voce flex flex-col gap-3"
                           >
                             <span className="block aspect-[4/3] overflow-hidden rounded-card ring-1 ring-line transition duration-300 ease-out-soft group-hover/voce:ring-2 group-hover/voce:ring-primary">
