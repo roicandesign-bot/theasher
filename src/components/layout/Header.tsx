@@ -68,10 +68,13 @@ export function Header() {
           </div>
 
           {/* desktop: menu */}
-          <nav className="hidden justify-center lg:flex" aria-label="Principale">
+          <nav
+            className="hidden items-center justify-center self-stretch lg:flex"
+            aria-label="Principale"
+          >
             {site.nav.map((item) =>
               'sotto' in item && item.sotto ? (
-                <div key={item.label} className="group relative">
+                <div key={item.label} className="group flex items-center self-stretch">
                   <Link
                     to={item.to}
                     aria-current={attiva(item.to) ? 'page' : undefined}
@@ -89,25 +92,36 @@ export function Header() {
                       className="size-3.5 transition-transform duration-200 ease-out-soft group-hover:rotate-180"
                     />
                   </Link>
-                  <div className="invisible absolute top-full left-1/2 z-50 w-72 -translate-x-1/2 pt-2 opacity-0 transition duration-200 ease-out-soft group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
-                    <ul className="grid gap-1.5 rounded-card border border-line bg-bg p-2">
+                  <div className="invisible absolute inset-x-0 top-full z-50 border-b border-line bg-bg opacity-0 shadow-2xl shadow-bg transition duration-200 ease-out-soft group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                    <ul className="container-content grid grid-cols-5 gap-4 py-6">
                       {item.sotto.map((v) => (
                         <li key={v.label}>
                           <Link
                             to={v.to}
                             aria-current={attiva(v.to) ? 'page' : undefined}
-                            className={cn(
-                              'flex items-center gap-3 rounded-[0.75rem] p-1.5 transition duration-200 ease-out-soft hocus:bg-surface-hover',
-                              attiva(v.to) ? 'text-primary' : 'text-fg hocus:text-primary',
-                            )}
+                            className="group/voce flex flex-col gap-3"
                           >
-                            <img
-                              src={asset(v.img)}
-                              alt=""
-                              loading="lazy"
-                              className="size-10 shrink-0 rounded-[0.5rem] object-cover"
-                            />
-                            <span className="label text-[0.6875rem]">{v.label}</span>
+                            <span className="block aspect-[4/3] overflow-hidden rounded-card ring-1 ring-line transition duration-300 ease-out-soft group-hover/voce:ring-2 group-hover/voce:ring-primary">
+                              <img
+                                src={asset(v.img)}
+                                alt=""
+                                loading="lazy"
+                                className="size-full object-cover transition duration-500 ease-out-soft group-hover/voce:scale-105"
+                              />
+                            </span>
+                            <span
+                              className={cn(
+                                'flex items-center justify-between gap-2 label text-[0.75rem] transition',
+                                attiva(v.to)
+                                  ? 'text-primary'
+                                  : 'text-fg group-hover/voce:text-primary',
+                              )}
+                            >
+                              {v.label}
+                              <span aria-hidden="true" className="text-primary">
+                                →
+                              </span>
+                            </span>
                           </Link>
                         </li>
                       ))}

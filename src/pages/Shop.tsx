@@ -37,6 +37,15 @@ export default function Shop() {
   const [pannello, setPannello] = useState(false)
   const filtri = leggiFiltri(params)
   const mostrati = applica(filtri)
+  const evidenzia = filtri.cannabinoide ?? (filtri.linea as Cannabinoide | null)
+  /** Una scheda grande su due righe: un lotto limitato, se c'è, altrimenti una novità. */
+  const inEvidenza =
+    mostrati.length >= 5
+      ? (mostrati.find((p) => p.badges?.includes('Limited drop')) ??
+        mostrati.find((p) => p.badges?.includes('New')) ??
+        null)
+      : null
+  const resto = inEvidenza ? mostrati.filter((p) => p !== inEvidenza) : mostrati
   const attivi = attiviDi(filtri)
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
@@ -78,97 +87,103 @@ export default function Shop() {
         </Container>
       </Section>
 
-      {/* Barra dei filtri: due righe fisse, tutto il resto nel pannello */}
+      {/* Barra dei filtri. Telefono: due righe. Desktop: una barra unica, famiglie | linee. */}
       <div className="sticky top-18 z-20 border-y border-line bg-bg/95 backdrop-blur md:top-20">
-        <Container className="flex flex-col gap-2 py-3">
-          {/* Riga 1: le tre famiglie, l'ordinamento e il bottone dei filtri */}
-          <div className="flex items-center gap-2">
-            <div className="grid flex-1 grid-cols-4 gap-1 rounded-button bg-bg-alt p-1 md:flex md:flex-none">
-              {linguette.map((t) => (
-                <button
-                  key={t.label}
-                  type="button"
-                  aria-pressed={filtri.categoria === t.id}
-                  onClick={() => setCategoria(t.id)}
-                  className={cn(
-                    'flex flex-col items-center justify-center gap-0.5 rounded-button py-2 label text-[0.6875rem] transition duration-200 ease-out-soft md:px-6',
-                    filtri.categoria === t.id
-                      ? 'bg-primary text-primary-fg'
-                      : 'text-primary hocus:bg-surface-hover',
-                  )}
-                >
-                  {t.label}
-                  <span
+        <Container className="flex flex-col gap-2 py-3 lg:flex-row lg:items-center lg:gap-3">
+          <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-0 lg:rounded-button lg:bg-bg-alt lg:p-1">
+            {/* le famiglie (+ filtri, su telefono) */}
+            <div className="flex items-center gap-2">
+              <div
+                role="group"
+                aria-label="Famiglie di prodotto"
+                className="grid flex-1 grid-cols-4 gap-1 rounded-button bg-bg-alt p-1 lg:flex lg:flex-none lg:bg-transparent lg:p-0"
+              >
+                {linguette.map((t) => (
+                  <button
+                    key={t.label}
+                    type="button"
+                    aria-pressed={filtri.categoria === t.id}
+                    onClick={() => setCategoria(t.id)}
                     className={cn(
-                      'text-[0.625rem]',
-                      filtri.categoria === t.id ? 'text-primary-fg/60' : 'text-fg-muted',
+                      'flex flex-col items-center justify-center gap-0.5 rounded-button py-2 label text-[0.6875rem] transition duration-200 ease-out-soft md:px-5',
+                      filtri.categoria === t.id
+                        ? 'bg-primary text-primary-fg'
+                        : 'text-primary hocus:bg-surface-hover',
                     )}
                   >
-                    {contaCategoria(filtri, t.id)}
-                  </span>
-                </button>
-              ))}
+                    {t.label}
+                    <span
+                      className={cn(
+                        'text-[0.625rem]',
+                        filtri.categoria === t.id ? 'text-primary-fg/60' : 'text-fg-muted',
+                      )}
+                    >
+                      {contaCategoria(filtri, t.id)}
+                    </span>
+                  </button>
+                ))}
+              </div>
+              <BottoneFiltri
+                attivi={contaAttivi(filtri)}
+                onClick={() => setPannello(true)}
+                className="lg:hidden"
+              />
             </div>
 
-            <label className="ml-auto hidden items-center gap-2 md:flex">
-              <span className="label text-[0.625rem] text-fg-muted">Ordina</span>
-              <select
-                value={filtri.ordine}
-                onChange={(e) => setFilter('ordine', e.target.value)}
-                className="h-10 rounded-input bg-bg-alt px-3 text-sm text-fg ring-1 ring-line ring-inset focus:ring-2 focus:ring-primary focus:outline-none"
-              >
-                {(Object.keys(ordinamenti) as Ordine[]).map((k) => (
-                  <option key={k} value={k}>
-                    {ordinamenti[k]}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {/* separatore: da qui in poi le linee */}
+            <span aria-hidden="true" className="mx-3 hidden h-8 w-px bg-line lg:block" />
+            <span className="mr-2 hidden label text-[0.5625rem] text-fg-subtle xl:inline">
+              Linea
+            </span>
 
-            <button
-              type="button"
-              onClick={() => setPannello(true)}
-              aria-label="Apri i filtri"
-              className={cn(
-                'inline-flex h-11 shrink-0 items-center gap-2 rounded-button px-3.5 label text-[0.6875rem] transition duration-200 ease-out-soft sm:px-4',
-                'ring-1 ring-inset',
-                contaAttivi(filtri) > 0
-                  ? 'text-primary ring-primary'
-                  : 'text-fg ring-line hocus:ring-line-strong',
-              )}
+            {/* le linee e i lotti senza THC */}
+            <div
+              role="group"
+              aria-label="Linee"
+              className="grid grid-cols-5 gap-1.5 lg:flex lg:gap-1"
             >
-              <SlidersHorizontal aria-hidden="true" className="size-4" strokeWidth={1.75} />
-              <span className="hidden sm:inline">Filtri</span>
-              {contaAttivi(filtri) > 0 && (
-                <span className="grid size-5 place-items-center rounded-full bg-primary text-[0.625rem] text-primary-fg">
-                  {contaAttivi(filtri)}
-                </span>
-              )}
-            </button>
-          </div>
-
-          {/* Riga 2: le linee madri e i lotti senza THC */}
-          <div className="grid grid-cols-5 gap-1.5 md:flex md:gap-2">
-            {linee.map((l) => (
+              {linee.map((l) => (
+                <Chip
+                  key={l}
+                  size="sm"
+                  className="w-full justify-center px-1 lg:w-auto lg:px-3.5"
+                  active={filtri.linea === l}
+                  onClick={() => setFilter('linea', filtri.linea === l ? null : l)}
+                >
+                  {l}
+                </Chip>
+              ))}
               <Chip
-                key={l}
                 size="sm"
-                className="w-full justify-center px-1 md:w-auto md:px-4"
-                active={filtri.linea === l}
-                onClick={() => setFilter('linea', filtri.linea === l ? null : l)}
+                className="w-full justify-center px-1 lg:w-auto lg:px-3.5"
+                active={filtri.thcFree}
+                onClick={() => setFilter('thcfree', filtri.thcFree ? null : 'si')}
               >
-                {l}
+                THC free
               </Chip>
-            ))}
-            <Chip
-              size="sm"
-              className="w-full justify-center px-1 md:w-auto md:px-4"
-              active={filtri.thcFree}
-              onClick={() => setFilter('thcfree', filtri.thcFree ? null : 'si')}
-            >
-              THC free
-            </Chip>
+            </div>
           </div>
+
+          {/* ordinamento (solo schermi larghi) e filtri */}
+          <label className="ml-auto hidden items-center gap-2 xl:flex">
+            <span className="label text-[0.625rem] text-fg-muted">Ordina</span>
+            <select
+              value={filtri.ordine}
+              onChange={(e) => setFilter('ordine', e.target.value)}
+              className="h-10 rounded-input bg-bg-alt px-3 text-sm text-fg ring-1 ring-line ring-inset focus:ring-2 focus:ring-primary focus:outline-none"
+            >
+              {(Object.keys(ordinamenti) as Ordine[]).map((k) => (
+                <option key={k} value={k}>
+                  {ordinamenti[k]}
+                </option>
+              ))}
+            </select>
+          </label>
+          <BottoneFiltri
+            attivi={contaAttivi(filtri)}
+            onClick={() => setPannello(true)}
+            className="hidden lg:ml-auto lg:inline-flex xl:ml-0"
+          />
         </Container>
       </div>
 
@@ -203,14 +218,20 @@ export default function Shop() {
           </div>
 
           {mostrati.length > 0 ? (
-            <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {mostrati.map((p, i) => (
-                <Reveal key={p.slug} delay={Math.min(i, 5) * 60} className="h-full">
+            <div className="mt-8 grid grid-flow-row-dense gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {inEvidenza && (
+                <Reveal className="h-full sm:col-span-2 lg:col-span-1 lg:col-start-3 lg:row-span-2 lg:row-start-1 xl:col-start-4">
                   <ProductCard
-                    product={p}
-                    evidenzia={filtri.cannabinoide ?? (filtri.linea as Cannabinoide | null)}
+                    product={inEvidenza}
+                    grande
+                    evidenzia={evidenzia}
                     className="h-full"
                   />
+                </Reveal>
+              )}
+              {resto.map((p, i) => (
+                <Reveal key={p.slug} delay={Math.min(i, 5) * 60} className="h-full">
+                  <ProductCard product={p} evidenzia={evidenzia} className="h-full" />
                 </Reveal>
               ))}
             </div>
@@ -239,5 +260,36 @@ export default function Shop() {
         onReset={() => setParams(new URLSearchParams())}
       />
     </>
+  )
+}
+
+function BottoneFiltri({
+  attivi,
+  onClick,
+  className,
+}: {
+  attivi: number
+  onClick: () => void
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Apri i filtri"
+      className={cn(
+        'inline-flex h-11 shrink-0 items-center gap-2 rounded-button px-3.5 label text-[0.6875rem] ring-1 transition duration-200 ease-out-soft ring-inset sm:px-4',
+        attivi > 0 ? 'text-primary ring-primary' : 'text-fg ring-line hocus:ring-line-strong',
+        className,
+      )}
+    >
+      <SlidersHorizontal aria-hidden="true" className="size-4" strokeWidth={1.75} />
+      <span className="hidden sm:inline">Filtri</span>
+      {attivi > 0 && (
+        <span className="grid size-5 place-items-center rounded-full bg-primary text-[0.625rem] text-primary-fg">
+          {attivi}
+        </span>
+      )}
+    </button>
   )
 }

@@ -18,7 +18,7 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 | Gruppo                                 | Route                                                        | Stato                | Ultima verifica |
 | -------------------------------------- | ------------------------------------------------------------ | -------------------- | --------------- |
 | Home                                   | `/`                                                          | ✅ v2 (tre famiglie) | 2026-09-27      |
-| Negozio e prodotto                     | `/negozio`, `/prodotto/:slug`                                | ✅ v2 (filtri nuovi) | 2026-09-27      |
+| Negozio e prodotto                     | `/negozio`, `/prodotto/:slug`                                | ✅ v3 (barra unica, 4 colonne, scheda in evidenza) | 2026-09-28      |
 | Acquisto                               | `/carrello`, `/checkout`, `/ordine/:numero`                  | ✅ v1                | 2026-09-27      |
 | Area cliente                           | `/accedi`, `/registrati`, `/account`, `/account/*`           | ✅ v1                | 2026-09-27      |
 | Racconto                               | `/azienda`, `/journal`, `/contatti`, `/diventa-distributore` | ✅ v1                | 2026-09-27      |

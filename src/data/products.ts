@@ -103,6 +103,8 @@ export type Product = {
   badges?: Array<'New' | 'Best seller' | 'Limited drop'>
   inStock: boolean
   image: string
+  /** Foto ad alta risoluzione per la scheda grande in evidenza (se manca, si usa `image`) */
+  imageGrande?: string
   /** Galleria della pagina prodotto (la prima è la principale) */
   gallery?: { src: string; alt: string }[]
   origin: string
@@ -258,6 +260,7 @@ export const products: Product[] = [
     badges: ['New', 'Limited drop'],
     inStock: true,
     image: 'images/demo/hash-bricks.jpg',
+    imageGrande: 'images/filiera/pressatura.jpg',
     origin: 'Selezione europea',
     short: 'Lotto limitato. Pressatura tradizionale, profilo legnoso e profondo.',
   },

@@ -22,11 +22,14 @@ import { cn } from '@/lib/cn'
 export function ProductCard({
   product,
   evidenzia,
+  grande = false,
   className,
 }: {
   product: Product
   /** Cannabinoide da mostrare al posto del principale (segue il filtro) */
   evidenzia?: Cannabinoide | null
+  /** Scheda in evidenza: occupa due righe della griglia, foto che riempie l'altezza */
+  grande?: boolean
   className?: string
 }) {
   const { add } = useCart()
@@ -39,14 +42,24 @@ export function ProductCard({
     >
       <Link
         to={productPath(product.slug)}
-        className="relative block aspect-[4/3] overflow-hidden bg-brand-800"
+        className={cn(
+          'relative block overflow-hidden bg-brand-800',
+          grande
+            ? 'aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:min-h-[20rem] lg:flex-1'
+            : 'aspect-[4/3]',
+        )}
       >
         <img
-          src={asset(product.image)}
+          src={asset(grande && product.imageGrande ? product.imageGrande : product.image)}
           alt={`${product.name}, ${etichettaCategoria(product)}`}
           loading="lazy"
           className="size-full object-cover transition duration-500 group-hover:scale-[1.03]"
         />
+        {grande && (
+          <span className="absolute top-3 right-3 rounded-badge bg-bg/80 px-2 py-1 label text-[0.625rem] text-primary backdrop-blur">
+            In evidenza
+          </span>
+        )}
         {product.badges && (
           <span className="absolute top-3 left-3 flex gap-1.5">
             {product.badges.map((b) => (
@@ -57,9 +70,9 @@ export function ProductCard({
           </span>
         )}
       </Link>
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className={cn('flex flex-col gap-3 p-4', grande ? 'lg:p-6' : 'flex-1')}>
         <div>
-          <h3 className="text-h3 text-pretty">
+          <h3 className={cn('text-pretty', grande ? 'text-h2' : 'text-h3')}>
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
               {product.name}
             </Link>
@@ -67,6 +80,7 @@ export function ProductCard({
           <Attivo product={product} evidenzia={evidenzia} className="mt-2" />
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
           <p className="mt-1.5 label text-[0.625rem] text-fg-muted">{tagLavorazione(product)}</p>
+          {grande && <p className="mt-3 text-sm text-pretty text-fg-muted">{product.short}</p>}
         </div>
         <div className="flex items-end justify-between gap-3">
           <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />
