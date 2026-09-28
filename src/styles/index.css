@@ -128,3 +128,11 @@
     transform: none;
   }
 }
+
+/* Striscia che scorre in orizzontale senza barra visibile (famiglie del negozio) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

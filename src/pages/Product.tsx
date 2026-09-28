@@ -26,7 +26,16 @@ import { ProductGallery } from '@/components/ui/ProductGallery'
 import { QuantityInput } from '@/components/ui/QuantityInput'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section, SectionHeader } from '@/components/ui/Section'
-import { categorie, findProduct, products, tagLavorazione, type Variant } from '@/data/products'
+import {
+  findProduct,
+  formatQuantita,
+  nomiCategoria,
+  pathCategoria,
+  products,
+  tagLavorazione,
+  unitaPrezzo,
+  type Variant,
+} from '@/data/products'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
 import { cn } from '@/lib/cn'
@@ -60,7 +69,7 @@ export default function Product() {
 
   const variants: Variant[] = product.variants ?? [
     {
-      label: `${String(product.grams).replace('.', ',')} g`,
+      label: formatQuantita(product),
       grams: product.grams,
       price: product.price,
       inStock: product.inStock,
@@ -91,8 +100,14 @@ export default function Product() {
   const gallery = product.gallery ?? [{ src: product.image, alt: product.name }]
   const total = variant.price * quantity
   const missingForFreeShipping = site.freeShippingFrom - total
-  const related = products.filter((p) => p.slug !== product.slug).slice(0, 3)
-  const categoryLabel = `${categorie[product.category]} ${product.linea}`
+  const unita = unitaPrezzo(product)
+  const related = products
+    .filter((p) => p.slug !== product.slug && p.reparto === product.reparto)
+    .sort(
+      (a, b) => Number(b.category === product.category) - Number(a.category === product.category),
+    )
+    .slice(0, 3)
+  const categoryLabel = `${nomiCategoria[product.category]}${product.linea ? ` ${product.linea}` : ''}`
 
   return (
     <>
@@ -103,10 +118,7 @@ export default function Product() {
             Home
           </Link>
           <span aria-hidden="true">/</span>
-          <Link
-            to={`/negozio?categoria=${product.category}`}
-            className="transition hocus:text-primary"
-          >
+          <Link to={pathCategoria(product)} className="transition hocus:text-primary">
             {categoryLabel}
           </Link>
           <span aria-hidden="true">/</span>
@@ -148,7 +160,8 @@ export default function Product() {
             <Price
               cents={variant.price}
               compareAt={variant.compareAt}
-              grams={variant.grams}
+              grams={unita ? variant.grams : undefined}
+              unita={unita ?? undefined}
               size="lg"
             />
             <p className="mt-2 text-xs text-fg-muted">
@@ -158,7 +171,9 @@ export default function Product() {
 
           {/* Formati */}
           <fieldset>
-            <legend className="label text-[0.75rem] text-fg-muted">Formato</legend>
+            <legend className="label text-[0.75rem] text-fg-muted">
+              {product.category === 'abbigliamento' ? 'Taglia' : 'Formato'}
+            </legend>
             <div className="mt-3 grid grid-cols-2 gap-2.5 sm:grid-cols-4">
               {variants.map((v, i) => (
                 <button
@@ -178,7 +193,9 @@ export default function Product() {
                 >
                   <span className="label text-[0.8125rem]">{v.label}</span>
                   <span className="text-[0.6875rem] text-fg-muted">
-                    {formatPrice(Math.round(v.price / v.grams))}/g
+                    {unita
+                      ? `${formatPrice(Math.round(v.price / v.grams))}/${unita}`
+                      : formatPrice(v.price)}
                   </span>
                 </button>
               ))}

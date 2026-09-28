@@ -1,5 +1,5 @@
 import { createContext, useContext, useMemo, useState, type ReactNode } from 'react'
-import { products, type Product } from '@/data/products'
+import { formatQuantita, products, unitaPrezzo, type Product } from '@/data/products'
 
 export type CartLine = {
   /** slug del prodotto + etichetta formato: identifica la riga */
@@ -9,6 +9,8 @@ export type CartLine = {
   image: string
   formato: string
   grams: number
+  /** unità del prezzo unitario; null per ciò che si vende a pezzi */
+  unita: 'g' | 'ml' | null
   /** prezzo unitario in centesimi */
   price: number
   quantity: number
@@ -40,7 +42,7 @@ const CartContext = createContext<CartState | null>(null)
 function lineFrom(slug: string, formato?: string, quantity = 1): CartLine {
   const p = products.find((x) => x.slug === slug)!
   const variant = p.variants?.find((v) => v.label === formato) ?? p.variants?.[0]
-  const label = variant?.label ?? `${String(p.grams).replace('.', ',')} g`
+  const label = variant?.label ?? formatQuantita(p)
   return {
     id: `${p.slug}--${label}`,
     slug: p.slug,
@@ -48,6 +50,7 @@ function lineFrom(slug: string, formato?: string, quantity = 1): CartLine {
     image: p.image,
     formato: label,
     grams: variant?.grams ?? p.grams,
+    unita: unitaPrezzo(p),
     price: variant?.price ?? p.price,
     quantity,
   }

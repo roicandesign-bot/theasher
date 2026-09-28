@@ -1,7 +1,7 @@
-// Negozio: intestazione → barra compatta (categoria, linea, filtri) → griglia prodotti.
+// Negozio: intestazione → barra compatta (famiglia, linea, filtri) → griglia prodotti.
 // Tutti gli altri filtri stanno nel pannello. I filtri vivono nell'indirizzo: la pagina è condivisibile.
 import { SlidersHorizontal, X } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FilterSheet } from '@/components/shop/FilterSheet'
 import { Badge } from '@/components/ui/Badge'
@@ -27,9 +27,7 @@ import {
 
 const linguette: { id: Categoria | null; label: string }[] = [
   { id: null, label: 'Tutto' },
-  { id: 'fiori', label: 'Fiori' },
-  { id: 'hash', label: 'Hash' },
-  { id: 'estratti', label: 'Estratti' },
+  ...(Object.keys(categorie) as Categoria[]).map((id) => ({ id, label: categorie[id] })),
 ]
 
 export default function Shop() {
@@ -47,6 +45,18 @@ export default function Shop() {
       : null
   const resto = inEvidenza ? mostrati.filter((p) => p !== inEvidenza) : mostrati
   const attivi = attiviDi(filtri)
+
+  // Su telefono le famiglie scorrono: quella scelta deve restare in vista.
+  const famiglieRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const striscia = famiglieRef.current
+    const scelta = striscia?.querySelector<HTMLElement>('[aria-pressed="true"]')
+    if (!striscia || !scelta || striscia.scrollWidth <= striscia.clientWidth) return
+    striscia.scrollTo({
+      left: scelta.offsetLeft - (striscia.clientWidth - scelta.offsetWidth) / 2,
+      behavior: 'smooth',
+    })
+  }, [filtri.categoria])
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
   const setFilter = (key: string, value: string | null) => {
@@ -81,22 +91,23 @@ export default function Shop() {
           <Eyebrow>Negozio</Eyebrow>
           <h1 className="mt-4 text-h1">{titolo}</h1>
           <p className="mt-4 max-w-prose text-lead text-fg-muted">
-            Due linee, tre famiglie: fiori, hash, estratti. Un certificato di analisi per ogni lotto
-            e il prezzo al grammo sempre in chiaro.
+            Quattro linee, nove famiglie: dai fiori all’hash, dai preroll ai semi. Un certificato di
+            analisi per ogni lotto e il prezzo sempre in chiaro.
           </p>
         </Container>
       </Section>
 
-      {/* Barra dei filtri. Telefono: due righe. Desktop: una barra unica, famiglie | linee. */}
+      {/* Barra dei filtri. Telefono e portatile: due righe. Schermi larghi: una barra unica, famiglie | linee. */}
       <div className="sticky top-18 z-20 border-y border-line bg-bg/95 backdrop-blur md:top-20">
-        <Container className="flex flex-col gap-2 py-3 lg:flex-row lg:items-center lg:gap-3">
-          <div className="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-0 lg:rounded-button lg:bg-bg-alt lg:p-1">
-            {/* le famiglie (+ filtri, su telefono) */}
-            <div className="flex items-center gap-2">
+        <Container className="flex flex-col gap-2 py-3 xl:flex-row xl:items-center xl:gap-3">
+          <div className="flex min-w-0 flex-col gap-2 xl:flex-row xl:items-center xl:gap-0 xl:rounded-button xl:bg-bg-alt xl:p-1">
+            {/* le famiglie (+ filtri, sotto gli schermi larghi) */}
+            <div className="flex min-w-0 items-center gap-2">
               <div
+                ref={famiglieRef}
                 role="group"
                 aria-label="Famiglie di prodotto"
-                className="grid flex-1 grid-cols-4 gap-1 rounded-button bg-bg-alt p-1 lg:flex lg:flex-none lg:bg-transparent lg:p-0"
+                className="relative no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto rounded-button bg-bg-alt p-1 xl:flex-none xl:bg-transparent xl:p-0"
               >
                 {linguette.map((t) => (
                   <button
@@ -105,7 +116,7 @@ export default function Shop() {
                     aria-pressed={filtri.categoria === t.id}
                     onClick={() => setCategoria(t.id)}
                     className={cn(
-                      'flex flex-col items-center justify-center gap-0.5 rounded-button py-2 label text-[0.6875rem] transition duration-200 ease-out-soft md:px-5',
+                      'flex shrink-0 flex-col items-center justify-center gap-0.5 rounded-button px-3.5 py-2 label text-[0.6875rem] transition duration-200 ease-out-soft xl:px-2.5 2xl:px-3.5',
                       filtri.categoria === t.id
                         ? 'bg-primary text-primary-fg'
                         : 'text-primary hocus:bg-surface-hover',
@@ -126,27 +137,24 @@ export default function Shop() {
               <BottoneFiltri
                 attivi={contaAttivi(filtri)}
                 onClick={() => setPannello(true)}
-                className="lg:hidden"
+                className="xl:hidden"
               />
             </div>
 
             {/* separatore: da qui in poi le linee */}
-            <span aria-hidden="true" className="mx-3 hidden h-8 w-px bg-line lg:block" />
-            <span className="mr-2 hidden label text-[0.5625rem] text-fg-subtle xl:inline">
-              Linea
-            </span>
+            <span aria-hidden="true" className="mx-2.5 hidden h-8 w-px shrink-0 bg-line xl:block" />
 
             {/* le linee e i lotti senza THC */}
             <div
               role="group"
               aria-label="Linee"
-              className="grid grid-cols-5 gap-1.5 lg:flex lg:gap-1"
+              className="grid grid-cols-5 gap-1.5 md:flex md:gap-1"
             >
               {linee.map((l) => (
                 <Chip
                   key={l}
                   size="sm"
-                  className="w-full justify-center px-1 lg:w-auto lg:px-3.5"
+                  className="w-full justify-center px-1 md:w-auto md:px-3.5 xl:px-3"
                   active={filtri.linea === l}
                   onClick={() => setFilter('linea', filtri.linea === l ? null : l)}
                 >
@@ -155,7 +163,7 @@ export default function Shop() {
               ))}
               <Chip
                 size="sm"
-                className="w-full justify-center px-1 lg:w-auto lg:px-3.5"
+                className="w-full justify-center px-1 md:w-auto md:px-3.5 xl:px-3"
                 active={filtri.thcFree}
                 onClick={() => setFilter('thcfree', filtri.thcFree ? null : 'si')}
               >
@@ -164,25 +172,10 @@ export default function Shop() {
             </div>
           </div>
 
-          {/* ordinamento (solo schermi larghi) e filtri */}
-          <label className="ml-auto hidden items-center gap-2 xl:flex">
-            <span className="label text-[0.625rem] text-fg-muted">Ordina</span>
-            <select
-              value={filtri.ordine}
-              onChange={(e) => setFilter('ordine', e.target.value)}
-              className="h-10 rounded-input bg-bg-alt px-3 text-sm text-fg ring-1 ring-line ring-inset focus:ring-2 focus:ring-primary focus:outline-none"
-            >
-              {(Object.keys(ordinamenti) as Ordine[]).map((k) => (
-                <option key={k} value={k}>
-                  {ordinamenti[k]}
-                </option>
-              ))}
-            </select>
-          </label>
           <BottoneFiltri
             attivi={contaAttivi(filtri)}
             onClick={() => setPannello(true)}
-            className="hidden lg:ml-auto lg:inline-flex xl:ml-0"
+            className="hidden xl:ml-auto xl:inline-flex"
           />
         </Container>
       </div>
@@ -215,6 +208,22 @@ export default function Shop() {
                 Azzera tutto
               </button>
             )}
+
+            {/* ordinamento: su telefono sta nel pannello dei filtri */}
+            <label className="ml-auto hidden items-center gap-2 md:flex">
+              <span className="label text-[0.625rem] text-fg-muted">Ordina</span>
+              <select
+                value={filtri.ordine}
+                onChange={(e) => setFilter('ordine', e.target.value)}
+                className="h-10 rounded-input bg-bg-alt px-3 text-sm text-fg ring-1 ring-line ring-inset focus:ring-2 focus:ring-primary focus:outline-none"
+              >
+                {(Object.keys(ordinamenti) as Ordine[]).map((k) => (
+                  <option key={k} value={k}>
+                    {ordinamenti[k]}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
           {mostrati.length > 0 ? (

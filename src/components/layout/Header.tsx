@@ -139,7 +139,12 @@ export function Header() {
                         : 'pointer-events-none invisible opacity-0',
                     )}
                   >
-                    <ul className="container-content grid grid-cols-5 gap-4 py-6">
+                    <ul
+                      className={cn(
+                        'container-content grid gap-4 py-6',
+                        item.sotto.length > 4 ? 'grid-cols-5 gap-y-5' : 'grid-cols-4',
+                      )}
+                    >
                       {item.sotto.map((v) => (
                         <li key={v.label}>
                           <Link

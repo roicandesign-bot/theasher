@@ -34,7 +34,8 @@ export function CartLineRow({ line, compact = false }: { line: CartLine; compact
               </Link>
             </h3>
             <p className="mt-1 label text-[0.625rem] text-fg-muted">
-              {line.formato} · {formatPrice(Math.round(line.price / line.grams))}/g
+              {line.formato}
+              {line.unita && ` · ${formatPrice(Math.round(line.price / line.grams))}/${line.unita}`}
             </p>
           </div>
           <p className="shrink-0 font-semibold text-primary">

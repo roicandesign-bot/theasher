@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/Input'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Section } from '@/components/ui/Section'
 import { blog } from '@/data/contenuti'
-import { categorie, products, tagLavorazione } from '@/data/products'
+import { nomiCategoria, products, tagLavorazione } from '@/data/products'
 
 const suggerimenti = ['Hash', 'Lemon Haze', 'Fiori', 'Lotto', 'Spedizione']
 
@@ -20,7 +20,7 @@ export default function Search() {
   const prodottiTrovati = useMemo(() => {
     if (!query) return []
     return products.filter((p) =>
-      `${p.name} ${categorie[p.category]} ${p.linea} ${tagLavorazione(p) ?? ''} ${p.aroma.join(
+      `${p.name} ${nomiCategoria[p.category]} ${p.linea ?? ''} ${tagLavorazione(p) ?? ''} ${p.aroma.join(
         ' ',
       )} ${p.short}`
         .toLowerCase()

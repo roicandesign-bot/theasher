@@ -1,13 +1,18 @@
 /**
  * CATALOGO DEMO del prototipo.
- * Tassonomia: due linee (CBD, THC-X) × tre categorie (Fiori, Hash, Estratti).
- * I fiori si distinguono per coltivazione e tipologia, hash ed estratti per metodo.
- * Prezzi in centesimi. Immagini: ritagli demo dai mockup del brand.
+ * Tassonomia: linee (CBD, THC-X, CBG, CBN) × famiglie (Fiori, Hash, Estratti, Oli, Preroll,
+ * Vape, Edibles, Semi, Cloni). I fiori si distinguono per coltivazione e tipologia,
+ * hash ed estratti per metodo, le altre famiglie per tipologia.
+ * Il reparto Gear (accessori e merch) sta in `gear.ts`; le famiglie nuove in `famiglie.ts`.
+ * Prezzi in centesimi. Immagini: ritagli demo dai mockup del brand e pack generati.
  */
+import { famiglie } from './famiglie'
+import { gear } from './gear'
 
 export type Variant = {
   /** Etichetta del formato, es. "3,5 g" */
   label: string
+  /** Quantità del formato nell'unità del prodotto (grammi, ml o pezzi) */
   grams: number
   /** in centesimi */
   price: number
@@ -19,9 +24,33 @@ export type Variant = {
 export const linee = ['CBD', 'THC-X', 'CBG', 'CBN'] as const
 export type Linea = (typeof linee)[number]
 
-/** Le tre famiglie di prodotto. */
-export const categorie = { fiori: 'Fiori', hash: 'Hash', estratti: 'Estratti' } as const
+/** Le famiglie del negozio. */
+export const categorie = {
+  fiori: 'Fiori',
+  hash: 'Hash',
+  estratti: 'Estratti',
+  oli: 'Oli',
+  preroll: 'Preroll',
+  vape: 'Vape',
+  edibles: 'Edibles',
+  semi: 'Semi',
+  cloni: 'Cloni',
+} as const
 export type Categoria = keyof typeof categorie
+
+/** Il reparto Gear: accessori per fumatori e merch. Ha una pagina sua, fuori dal negozio. */
+export const categorieGear = {
+  fumo: 'Per fumare',
+  abbigliamento: 'Abbigliamento',
+  skate: 'Skate e sticker',
+} as const
+export type CategoriaGear = keyof typeof categorieGear
+
+/** Nome di qualunque famiglia, del negozio o del Gear. */
+export const nomiCategoria: Record<Categoria | CategoriaGear, string> = {
+  ...categorie,
+  ...categorieGear,
+}
 
 /** Fiori: metodo di coltivazione, dal più pregiato al più economico. */
 export const coltivazioni = [
@@ -35,7 +64,7 @@ export const coltivazioni = [
 export type Coltivazione = (typeof coltivazioni)[number]
 
 /** Fiori: tipologia di prodotto finito. */
-export const tipiFiore = ['Big Bud', 'Small Bud', 'Trim', 'Prerolls'] as const
+export const tipiFiore = ['Big Bud', 'Small Bud', 'Trim'] as const
 export type TipoFiore = (typeof tipiFiore)[number]
 
 /** Hash: metodo di produzione ed estrazione. */
@@ -64,9 +93,18 @@ export const metodiEstratto = [
   'Piattella',
   'Budder',
   'Isolato',
-  'Olio',
 ] as const
 export type MetodoEstratto = (typeof metodiEstratto)[number]
+
+/** Tipologia delle altre famiglie (per i fiori c'è `tipiFiore`). */
+export const tipiPer = {
+  oli: ['Full spectrum', 'Broad spectrum'],
+  preroll: ['Singolo', 'Multipack'],
+  vape: ['Vape pen', 'Cartuccia'],
+  edibles: ['Gommose', 'Caramelle'],
+  semi: ['Femminizzati', 'Autofiorenti'],
+  cloni: ['Talea radicata'],
+} as const satisfies Partial<Record<Categoria, readonly string[]>>
 
 /** Hash: come si presenta al tatto. */
 export const consistenze = ['Morbido', 'Duro', 'Cremoso'] as const
@@ -85,9 +123,12 @@ export type Cannabinoide = (typeof cannabinoidi)[number]
 export type Product = {
   slug: string
   name: string
-  linea: Linea
-  category: Categoria
-  /** Profilo aromatico, tre parole */
+  /** Linea del cannabinoide. Manca solo nel reparto Gear. */
+  linea?: Linea
+  category: Categoria | CategoriaGear
+  /** Reparto: il Gear ha una pagina sua; senza reparto il prodotto sta nel negozio */
+  reparto?: 'gear'
+  /** Profilo aromatico, tre parole (per il Gear: tre caratteristiche) */
   aroma: [string, string, string]
   /** Cannabinoidi in percentuale sul lotto */
   attivi: Attivi
@@ -96,8 +137,12 @@ export type Product = {
   compareAt?: number
   /** Grammi del formato base */
   grams: number
-  /** Unità mostrata accanto alla quantità (g di default) */
-  unita?: 'g' | 'ml'
+  /** Unità della quantità: g di default, ml per oli e vape, pz per ciò che si vende a pezzi */
+  unita?: 'g' | 'ml' | 'pz'
+  /** Formato scritto a parole, al posto della quantità (es. "Taglie S–XL") */
+  formato?: string
+  /** Dose per pezzo, per gli edibles: diventa il sottotitolo giallo (es. "10 mg") */
+  dose?: string
   /** Lotto certificato 0,0 % di THC */
   thcFree?: boolean
   badges?: Array<'New' | 'Best seller' | 'Limited drop'>
@@ -112,6 +157,8 @@ export type Product = {
   coltivazione?: Coltivazione
   /** Solo fiori */
   tipoFiore?: TipoFiore
+  /** Tipologia per oli, preroll, vape, edibles, semi e cloni (vedi `tipiPer`) */
+  tipo?: string
   /** Hash ed estratti: metodo di lavorazione */
   metodo?: MetodoHash | MetodoEstratto
   /** Solo hash */
@@ -138,7 +185,7 @@ const conservazione =
 const avvertenze =
   'Prodotto riservato ai maggiori di 18 anni. Non destinato alla combustione. Tenere fuori dalla portata di bambini e animali domestici. Le informazioni riportate non costituiscono indicazioni mediche.'
 
-export const products: Product[] = [
+const base: Product[] = [
   /* ---------------- HASH ---------------- */
   {
     slug: 'lemon-haze',
@@ -491,19 +538,20 @@ export const products: Product[] = [
   },
   {
     slug: 'orange-bud-prerolls',
-    name: 'Orange Bud Prerolls',
+    name: 'Orange Bud Pre-roll',
     linea: 'CBD',
-    category: 'fiori',
+    category: 'preroll',
+    tipo: 'Multipack',
     coltivazione: 'Glasshouse',
-    tipoFiore: 'Prerolls',
     aroma: ['Arancia', 'Dolce', 'Leggero'],
-    attivi: { cbd: 13.1 },
+    attivi: { cbd: 16.2 },
     price: 1490,
-    grams: 4,
+    grams: 3,
+    formato: '3 × 1 g',
     inStock: true,
-    image: 'images/demo/packaging-family.jpg',
+    image: 'images/prodotti/preroll-orange-bud.jpg',
     origin: 'Coltivazione glasshouse europea',
-    short: 'Cinque coni pronti da 0,8 g. Tiraggio regolare, niente polvere.',
+    short: 'Tre coni pronti da 1 g. Tiraggio regolare, niente polvere.',
   },
   {
     slug: 'critical-outdoor',
@@ -687,15 +735,15 @@ export const products: Product[] = [
     slug: 'olio-full-spectrum-20',
     name: 'Olio Full Spectrum 20 %',
     linea: 'CBD',
-    category: 'estratti',
-    metodo: 'Olio',
+    category: 'oli',
+    tipo: 'Full spectrum',
     unita: 'ml',
     aroma: ['Erbaceo', 'Amaro', 'Pieno'],
     attivi: { cbd: 20, cbg: 2.2, cbn: 1.1, thc: 0.26 },
     price: 3490,
     grams: 10,
     inStock: true,
-    image: 'images/demo/packaging-family.jpg',
+    image: 'images/prodotti/olio-full-spectrum.jpg',
     origin: 'Estrazione europea',
     short: 'Dieci millilitri, spettro completo, contagocce graduato. CBG e CBN inclusi.',
   },
@@ -771,8 +819,8 @@ export const products: Product[] = [
     slug: 'olio-cbn-notte',
     name: 'Olio CBN Notte 10 %',
     linea: 'CBN',
-    category: 'estratti',
-    metodo: 'Olio',
+    category: 'oli',
+    tipo: 'Broad spectrum',
     unita: 'ml',
     thcFree: true,
     aroma: ['Erbaceo', 'Scuro', 'Morbido'],
@@ -781,7 +829,7 @@ export const products: Product[] = [
     grams: 10,
     badges: ['New'],
     inStock: true,
-    image: 'images/demo/jar-hash.jpg',
+    image: 'images/prodotti/olio-cbn-notte.jpg',
     origin: 'Estrazione europea',
     short: 'Dieci millilitri a dominanza CBN, senza THC. Contagocce graduato.',
   },
@@ -802,6 +850,9 @@ export const products: Product[] = [
     short: 'Cristallo di CBN puro, certificato 0,0 % di THC.',
   },
 ]
+
+/** Tutto il catalogo: negozio (famiglie storiche + nuove) e reparto Gear. */
+export const products: Product[] = [...base, ...famiglie, ...gear]
 
 /* ---------------- Helper di catalogo ---------------- */
 
@@ -841,9 +892,18 @@ export function forzaDi(p: Product): Forza {
 
 const numero = (v: number) => String(v).replace('.', ',')
 
-/** Quantità come si scrive in italiano: 3,5 g — 10 ml. */
+/** Quantità come si scrive in italiano: 3,5 g — 10 ml — 10 pz (o il formato a parole). */
 export function formatQuantita(p: Product) {
-  return `${numero(p.grams)} ${p.unita ?? 'g'}`
+  return p.formato ?? `${numero(p.grams)} ${p.unita ?? 'g'}`
+}
+
+/**
+ * Unità del prezzo unitario (€/g, €/ml), o null se non ha senso mostrarlo:
+ * chi compra una t-shirt o un pacco di semi non ragiona al pezzo.
+ */
+export function unitaPrezzo(p: Product): 'g' | 'ml' | null {
+  const u = p.unita ?? 'g'
+  return u === 'pz' ? null : u
 }
 
 /**
@@ -870,6 +930,7 @@ const etichettaAttivo = (c: Cannabinoide, v: number) => `${c}: +${Math.floor(v)}
  * Serve al sottotitolo giallo di schede e pagina prodotto.
  */
 export function attivoParti(p: Product, preferito?: Cannabinoide | null) {
+  if (p.dose && p.linea) return { sigla: p.linea, valore: p.dose }
   const label = attivoPrincipale(p, preferito)
   if (!label) return null
   const [sigla, valore] = label.split(': ')
@@ -881,15 +942,20 @@ export function senzaThc(p: Product) {
   return p.thcFree === true
 }
 
-/** Tag di lavorazione mostrato sulle card: coltivazione per i fiori, metodo per il resto. */
+/** Tag di lavorazione mostrato sulle card: coltivazione per i fiori, metodo o tipologia per il resto. */
 export function tagLavorazione(p: Product) {
-  return p.coltivazione ?? p.metodo
+  return p.coltivazione ?? p.metodo ?? p.tipo
 }
 
 /** Descrizione breve della categoria, per alt e briciole. */
 export function etichettaCategoria(p: Product) {
-  const base = { fiori: 'fiore', hash: 'hash', estratti: 'estratto' }[p.category]
-  return `${base} ${p.linea}`
+  const nome = nomiCategoria[p.category].toLowerCase()
+  return p.linea ? `${nome} ${p.linea}` : nome
+}
+
+/** Dove sta la famiglia del prodotto: negozio o Gear. */
+export function pathCategoria(p: Product) {
+  return `${p.reparto === 'gear' ? '/gear' : '/negozio'}?categoria=${p.category}`
 }
 
 export const bestSellers = products.filter((p) => p.badges?.includes('Best seller'))

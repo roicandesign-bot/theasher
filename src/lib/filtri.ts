@@ -4,6 +4,7 @@
  * Un filtro per asse: si tocca per attivare, si ritocca per togliere.
  */
 import {
+  categorie,
   cannabinoidi,
   colori,
   coltivazioni,
@@ -17,6 +18,7 @@ import {
   products,
   senzaThc,
   tipiFiore,
+  tipiPer,
   totaleAttivi,
   type Cannabinoide,
   type Categoria,
@@ -66,6 +68,22 @@ export const assi = [
 ] as const
 export type Asse = (typeof assi)[number]
 
+/** Il negozio mostra le famiglie; il reparto Gear ha una pagina sua. */
+export const catalogoShop = products.filter((p) => p.reparto !== 'gear')
+
+/** Famiglie con percentuali di cannabinoidi sul lotto: solo lì hanno senso cannabinoidi e forza. */
+const conPercentuali: (Categoria | null)[] = [
+  null,
+  'fiori',
+  'hash',
+  'estratti',
+  'oli',
+  'preroll',
+  'vape',
+]
+
+const tuttiITipi = [...tipiFiore, ...Object.values(tipiPer).flat()]
+
 export type Gruppo = {
   key: Asse
   titolo: string
@@ -84,13 +102,22 @@ export function gruppiPer(categoria: Categoria | null): Gruppo[] {
         nota: 'dal più pregiato',
         opzioni: coltivazioni,
       },
-      { key: 'tipo', titolo: 'Tipologia', opzioni: tipiFiore },
+      {
+        key: 'tipo',
+        titolo: 'Tipologia',
+        nota: categoria === null ? 'fiori' : undefined,
+        opzioni: tipiFiore,
+      },
     )
   }
   if (categoria === 'hash')
     lista.push({ key: 'metodo', titolo: 'Lavorazione', opzioni: metodiHash })
   if (categoria === 'estratti')
     lista.push({ key: 'metodo', titolo: 'Estrazione', opzioni: metodiEstratto })
+  if (categoria && categoria in tipiPer) {
+    const opzioni = tipiPer[categoria as keyof typeof tipiPer]
+    if (opzioni.length > 1) lista.push({ key: 'tipo', titolo: 'Tipologia', opzioni })
+  }
   if (categoria === null)
     lista.push({
       key: 'metodo',
@@ -103,15 +130,16 @@ export function gruppiPer(categoria: Categoria | null): Gruppo[] {
       { key: 'consistenza', titolo: 'Consistenza', opzioni: consistenze },
       { key: 'colore', titolo: 'Colore', opzioni: colori },
     )
-  lista.push(
-    {
-      key: 'cannabinoide',
-      titolo: 'Cannabinoidi',
-      nota: 'dichiarati sul lotto',
-      opzioni: cannabinoidi,
-    },
-    { key: 'forza', titolo: 'Concentrazione', opzioni: forze },
-  )
+  if (conPercentuali.includes(categoria))
+    lista.push(
+      {
+        key: 'cannabinoide',
+        titolo: 'Cannabinoidi',
+        nota: 'dichiarati sul lotto',
+        opzioni: cannabinoidi,
+      },
+      { key: 'forza', titolo: 'Concentrazione', opzioni: forze },
+    )
   return lista
 }
 
@@ -120,12 +148,15 @@ const valido = <T extends readonly string[]>(lista: T, v: string | null) =>
 
 /** Legge i filtri dall'indirizzo: la pagina resta condivisibile. */
 export function leggiFiltri(params: URLSearchParams): Filtri {
-  const categoria = valido(['fiori', 'hash', 'estratti'] as const, params.get('categoria'))
+  const categoria = valido(
+    Object.keys(categorie) as (keyof typeof categorie)[],
+    params.get('categoria'),
+  )
   return {
     categoria,
     linea: valido(linee, params.get('linea')),
     coltivazione: valido(coltivazioni, params.get('coltivazione')),
-    tipo: valido(tipiFiore, params.get('tipo')),
+    tipo: valido(tuttiITipi, params.get('tipo')),
     metodo: valido([...metodiHash, ...metodiEstratto], params.get('metodo')),
     consistenza: valido(consistenze, params.get('consistenza')),
     colore: valido(colori, params.get('colore')),
@@ -142,7 +173,7 @@ export function corrisponde(p: Product, f: Filtri) {
   if (f.categoria && p.category !== f.categoria) return false
   if (f.linea && p.linea !== f.linea) return false
   if (f.coltivazione && p.coltivazione !== f.coltivazione) return false
-  if (f.tipo && p.tipoFiore !== f.tipo) return false
+  if (f.tipo && (p.tipoFiore ?? p.tipo) !== f.tipo) return false
   if (f.metodo && p.metodo !== f.metodo) return false
   if (f.consistenza && p.consistenza !== f.consistenza) return false
   if (f.colore && p.colore !== f.colore) return false
@@ -163,13 +194,13 @@ const ordinatori: Record<Ordine, (a: Product, b: Product) => number> = {
 }
 
 export function applica(f: Filtri) {
-  return [...products.filter((p) => corrisponde(p, f))].sort(ordinatori[f.ordine])
+  return [...catalogoShop.filter((p) => corrisponde(p, f))].sort(ordinatori[f.ordine])
 }
 
 /** Quanti prodotti resterebbero cambiando un solo filtro: serve ai contatori. */
 export function conta(f: Filtri, patch: Partial<Filtri>) {
   const next = { ...f, ...patch }
-  return products.filter((p) => corrisponde(p, next)).length
+  return catalogoShop.filter((p) => corrisponde(p, next)).length
 }
 
 /** Filtri attivi oltre a categoria e ordinamento: si mostrano come pillole rimovibili. */
@@ -186,12 +217,16 @@ export function contaAttivi(f: Filtri) {
   return attiviDi(f).length
 }
 
-/** Cambiando categoria si tolgono gli assi che non c'entrano più. */
+/**
+ * Cambiando categoria si tolgono gli assi che non c'entrano più.
+ * La tipologia cambia significato da una famiglia all'altra: si toglie sempre,
+ * tranne tra «Tutto» e Fiori, che condividono le stesse opzioni.
+ */
 export function daPulire(categoria: Categoria | null): Asse[] {
-  if (categoria === 'fiori') return ['metodo', 'consistenza', 'colore']
-  if (categoria === 'hash') return ['coltivazione', 'tipo']
-  if (categoria === 'estratti') return ['coltivazione', 'tipo', 'consistenza', 'colore']
-  return []
+  const offerti = new Set(gruppiPer(categoria).map((g) => g.key))
+  const via = assi.filter((a) => !offerti.has(a))
+  if (categoria !== null && categoria !== 'fiori' && !via.includes('tipo')) via.push('tipo')
+  return via
 }
 
 /** Contatore delle linguette di categoria: tiene conto della pulizia degli assi. */

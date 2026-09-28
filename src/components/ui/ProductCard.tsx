@@ -8,6 +8,7 @@ import {
   formatQuantita,
   productPath,
   tagLavorazione,
+  unitaPrezzo,
   type Cannabinoide,
   type Product,
 } from '@/data/products'
@@ -79,11 +80,18 @@ export function ProductCard({
           </h3>
           <Attivo product={product} evidenzia={evidenzia} className="mt-2" />
           <p className="mt-1.5 label text-[0.6875rem] text-fg-muted">{product.aroma.join(' / ')}</p>
-          <p className="mt-1.5 label text-[0.625rem] text-fg-muted">{tagLavorazione(product)}</p>
+          {tagLavorazione(product) && (
+            <p className="mt-1.5 label text-[0.625rem] text-fg-muted">{tagLavorazione(product)}</p>
+          )}
           {grande && <p className="mt-3 text-sm text-pretty text-fg-muted">{product.short}</p>}
         </div>
         <div className="flex items-end justify-between gap-3">
-          <Price cents={product.price} compareAt={product.compareAt} grams={product.grams} />
+          <Price
+            cents={product.price}
+            compareAt={product.compareAt}
+            grams={unitaPrezzo(product) ? product.grams : undefined}
+            unita={unitaPrezzo(product) ?? undefined}
+          />
           <span className="label text-[0.6875rem] text-fg-muted">{formatQuantita(product)}</span>
         </div>
         <div className="mt-auto flex flex-col gap-2.5 pt-1">

@@ -7,8 +7,10 @@ type PriceProps = {
   cents: number
   /** prezzo precedente barrato, in centesimi */
   compareAt?: number
-  /** grammi del formato: mostra il prezzo al grammo */
+  /** quantità del formato: mostra il prezzo al grammo (o al ml) */
   grams?: number
+  /** unità del prezzo unitario */
+  unita?: 'g' | 'ml'
   size?: 'md' | 'lg'
   /** `dark` = da usare sui fondi gialli: prezzo e note in nero */
   tone?: 'primary' | 'dark'
@@ -20,6 +22,7 @@ export function Price({
   cents,
   compareAt,
   grams,
+  unita = 'g',
   size = 'md',
   tone = 'primary',
   className,
@@ -48,7 +51,7 @@ export function Price({
             onYellow ? 'text-primary-fg/70' : 'text-fg-muted',
           )}
         >
-          {formatPrice(Math.round(cents / grams))}/g
+          {formatPrice(Math.round(cents / grams))}/{unita}
         </span>
       )}
     </p>
