@@ -814,21 +814,63 @@ export const labTests = {
   ],
 }
 
+/** Domande frequenti: allineate a condizioni di vendita, avvertenze e privacy. */
 export const faqGenerali = [
   {
-    gruppo: 'Prodotti',
+    gruppo: 'Prodotti e legalità',
     voci: [
       {
-        q: 'I prodotti sono legali?',
-        a: 'Vendiamo hash e fiori CBD conformi alle normative dei Paesi in cui spediamo. Le regole cambiano da Paese a Paese: nel checkout mostriamo solo i prodotti disponibili per la tua destinazione.',
+        q: 'I vostri prodotti sono legali?',
+        a: 'Vengono da varietà di canapa iscritte nel Catalogo europeo, con THC entro i limiti di legge, e ogni lotto ha il suo certificato di analisi. Le regole però cambiano da Paese a Paese: per questo il catalogo si adatta al Paese di consegna e ti mostra solo ciò che possiamo spedirti. Se viaggi, verifica le norme del Paese di arrivo.',
       },
       {
-        q: 'Che differenza c’è tra hash e fiore?',
-        a: 'Il fiore è l’infiorescenza essiccata. L’hash è la resina separata dalla pianta e compattata. Cambiano aroma, consistenza e concentrazione.',
+        q: 'Cosa vuol dire «THC totale»?',
+        a: 'È il THC già presente più quello che si formerebbe scaldando il THC-A. È il valore che conta per la legge nella maggior parte dei Paesi, e lo trovi nel certificato di ogni lotto.',
       },
       {
-        q: 'Dove trovo le analisi?',
-        a: 'In ogni pagina prodotto e nella sezione Analisi di laboratorio, cercabili per numero di lotto.',
+        q: 'Che differenza c’è tra CBD, THC-X, THC-A, CBG e CBN?',
+        a: 'Sono cannabinoidi diversi. Il CBD è il più diffuso e non altera la percezione. CBG e CBN sono cannabinoidi minori, il CBN è quello delle nostre formule della sera. THC-X e THC-A sono linee più intense, vendute solo nei Paesi in cui sono consentite.',
+      },
+      {
+        q: 'Full spectrum, broad spectrum, isolato: cosa cambia?',
+        a: 'Il full spectrum contiene tutti i cannabinoidi e i terpeni della pianta, compreso THC entro i limiti di legge. Il broad spectrum li contiene tutti tranne il THC. L’isolato è un solo cannabinoide puro al 97–99 %.',
+      },
+      {
+        q: 'Dove trovo le analisi e come le leggo?',
+        a: 'In ogni pagina prodotto e nella sezione Analisi di laboratorio, cercando il numero di lotto stampato sulla confezione. Il certificato riporta ogni cannabinoide in percentuale, il THC totale, il laboratorio e la data.',
+      },
+      {
+        q: 'Perché il prodotto che ricevo non è identico alla foto?',
+        a: 'Sono prodotti naturali: colore, forma e profumo cambiano un po’ da un lotto all’altro. Fanno fede i valori del certificato del tuo lotto, non la foto.',
+      },
+    ],
+  },
+  {
+    gruppo: 'Uso e sicurezza',
+    voci: [
+      {
+        q: 'Il CBD fa «sballare»?',
+        a: 'No: il CBD non altera la percezione. Le linee THC-X e THC-A invece sono più intense: segui le dosi indicate e parti da una quantità minima.',
+      },
+      {
+        q: 'Posso risultare positivo a un test antidroga?',
+        a: 'Sì, può succedere. Anche i prodotti a norma contengono tracce di THC che possono accumularsi. Se fai test sul lavoro o per la patente, evita i nostri prodotti.',
+      },
+      {
+        q: 'Posso guidare dopo l’uso?',
+        a: 'Non guidare dopo l’uso di prodotti THC-X, THC-A o CBN, né quando ti senti meno lucido. Con il CBD resta il rischio del test positivo su strada.',
+      },
+      {
+        q: 'Prendo farmaci o sono in gravidanza: posso usarli?',
+        a: 'Chiedi prima al tuo medico. Il CBD può interagire con alcuni farmaci e l’uso è sconsigliato in gravidanza e allattamento. I nostri prodotti non sono medicinali.',
+      },
+      {
+        q: 'Posso portarli in viaggio?',
+        a: 'Dipende dal Paese di arrivo e da quelli che attraversi: un prodotto legale da noi può non esserlo altrove, e in aereo valgono anche le regole della compagnia. Nel dubbio, non portarli.',
+      },
+      {
+        q: 'Come si conservano?',
+        a: 'Al fresco, al buio e nella confezione chiusa. Fiori e hash tengono profumo e consistenza per mesi; oli ed edibles hanno la scadenza sulla confezione; i cloni vanno trapiantati entro 5 giorni.',
       },
     ],
   },
@@ -836,37 +878,100 @@ export const faqGenerali = [
     gruppo: 'Ordini e spedizioni',
     voci: [
       {
+        q: 'In quali Paesi spedite?',
+        a: 'Nei Paesi dell’Unione Europea in cui i prodotti sono vendibili. Scegli il Paese all’inizio: il catalogo mostra solo ciò che possiamo spedirti.',
+      },
+      {
         q: 'Quanto costa la spedizione e quanto ci mette?',
-        a: 'Spedizione tracciata in tutta la UE in 48–72 ore lavorative. Gratuita sopra la soglia indicata nel carrello; il costo esatto compare prima del pagamento.',
+        a: 'Standard tracciata da 5,90 €, express da 9,90 €, gratuita sopra la soglia indicata nel carrello. Ordini pagati entro le 13 partono in giornata; la consegna richiede 24–48 ore in Italia e 48–96 ore nel resto dell’UE.',
       },
       {
         q: 'Il pacco è discreto?',
-        a: 'Sì: confezione anonima, sigillata, senza riferimenti al contenuto all’esterno.',
+        a: 'Sì: confezione neutra e sigillata, senza loghi né riferimenti al contenuto. Fuori compare solo la ragione sociale del mittente.',
       },
       {
-        q: 'Posso ordinare senza registrarmi?',
-        a: 'Certo. Il checkout ospite è sempre disponibile; l’account si crea con un click dopo l’acquisto.',
+        q: 'Ci sono dazi o dogana?',
+        a: 'No: spediamo solo dentro l’Unione Europea, quindi niente dogana né costi aggiuntivi alla consegna. L’IVA è già inclusa nel prezzo.',
       },
       {
-        q: 'Come seguo il mio ordine?',
-        a: 'Ricevi il codice di tracciamento via email appena il pacco parte. Se hai un account lo trovi anche nell’area cliente.',
+        q: 'Posso ordinare senza account?',
+        a: 'Sì, il checkout ospite è sempre disponibile. L’account serve per lo sconto newsletter, i preferiti e lo storico ordini.',
+      },
+      {
+        q: 'Il pacco è arrivato danneggiato o non è arrivato.',
+        a: 'Fotografa il pacco prima di aprirlo e scrivici: lo sostituiamo. Se risulta consegnato ma non l’hai ricevuto, scrivici entro 7 giorni e apriamo noi la pratica con il corriere.',
       },
     ],
   },
   {
-    gruppo: 'Pagamenti e resi',
+    gruppo: 'Pagamenti',
     voci: [
       {
         q: 'Quali pagamenti accettate?',
-        a: 'Carta, bonifico bancario e wallet. I dati della carta non passano mai dai nostri sistemi.',
+        a: 'Carta, Apple Pay, Google Pay e bonifico. I dati della carta li gestisce un fornitore certificato: non passano dai nostri sistemi.',
       },
       {
+        q: 'Posso avere la fattura?',
+        a: 'Sì: inserisci i dati fiscali al checkout e la ricevi in formato elettronico.',
+      },
+      {
+        q: 'Ho pagato con bonifico: quando parte l’ordine?',
+        a: 'Quando l’accredito risulta sul nostro conto, di solito in 1–2 giorni lavorativi. Teniamo i prodotti da parte per 5 giorni.',
+      },
+    ],
+  },
+  {
+    gruppo: 'Resi e garanzia',
+    voci: [
+      {
         q: 'Posso restituire un prodotto?',
-        a: 'Entro 14 giorni, se la confezione è integra e sigillata. I prodotti aperti non sono restituibili per ragioni igieniche.',
+        a: 'Sì, entro 14 giorni dalla consegna se il sigillo è intatto. Semi, merch e accessori si restituiscono se integri e non usati. Tutti i dettagli nella pagina Resi, recesso e garanzia.',
+      },
+      {
+        q: 'Perché un prodotto aperto non si può restituire?',
+        a: 'Lo prevede la legge per i prodotti sigillati che, per motivi igienici e di salute, non si possono rivendere una volta aperti (art. 59 Codice del Consumo). Se però il prodotto è difettoso o non corrisponde al certificato, la garanzia vale anche se è aperto.',
+      },
+      {
+        q: 'E i cloni?',
+        a: 'Sono piante vive, quindi non c’è il recesso. Se una talea arriva senza radici, secca o malata, mandaci una foto entro 48 ore e la sostituiamo o la rimborsiamo.',
       },
       {
         q: 'Quando arriva il rimborso?',
-        a: 'Entro 14 giorni dalla ricezione del reso, sullo stesso metodo di pagamento usato per l’ordine.',
+        a: 'Entro 14 giorni dalla tua richiesta di recesso, sullo stesso metodo di pagamento. Possiamo attendere di ricevere il pacco o la prova della spedizione.',
+      },
+    ],
+  },
+  {
+    gruppo: 'Account, privacy e sconti',
+    voci: [
+      {
+        q: 'Come funziona lo sconto del 5%?',
+        a: 'Ti iscrivi alla newsletter e crei l’account: per 6 mesi hai il 5% su tutti gli ordini, applicato da solo al checkout. Non si somma ad altri codici.',
+      },
+      {
+        q: 'Come mi cancello dalla newsletter?',
+        a: 'Con il link in fondo a ogni email, oppure dall’area cliente. Basta un clic.',
+      },
+      {
+        q: 'Come cancello il mio account e i miei dati?',
+        a: 'Dall’area cliente o scrivendo a privacy@thehasher.com. Cancelliamo tutto tranne quello che la legge ci obbliga a tenere, come le fatture per 10 anni.',
+      },
+      {
+        q: 'Come cambio le preferenze sui cookie?',
+        a: 'Dal link «Preferenze cookie» in fondo a ogni pagina.',
+      },
+    ],
+  },
+  {
+    gruppo: 'Rivenditori',
+    voci: [
+      {
+        q: 'Come divento rivenditore?',
+        a: 'Compila il modulo nella pagina Diventa rivenditore: ti rispondiamo entro 48 ore con listino e condizioni.',
+      },
+      {
+        q: 'Devo vendere a un prezzo minimo?',
+        a: 'No. Ti diamo un prezzo di rivendita consigliato, ma i tuoi prezzi li decidi tu.',
       },
     ],
   },

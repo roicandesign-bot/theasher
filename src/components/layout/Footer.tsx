@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Diamond } from '@/components/ui/Diamond'
 import { Logo } from '@/components/ui/Logo'
 import { site } from '@/data/site'
+import { APRI_PREFERENZE_COOKIE } from '@/components/layout/CookieBanner'
 
 const columns = [
   { title: 'Shop', links: site.footer.shop },
@@ -63,7 +64,14 @@ export function Footer() {
       <div className="border-t border-line">
         <div className="container-content flex flex-col gap-3 py-6 text-xs text-fg-muted md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name}. {site.footer.seller}
+            © {new Date().getFullYear()} {site.name}. {site.footer.seller}{' '}
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event(APRI_PREFERENZE_COOKIE))}
+              className="ml-1 underline transition hocus:text-primary"
+            >
+              Preferenze cookie
+            </button>
           </p>
           <p className="label text-[0.6875rem] text-primary">{site.claim}</p>
         </div>

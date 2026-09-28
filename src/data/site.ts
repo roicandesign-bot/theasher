@@ -2,6 +2,7 @@
  * Dati statici del sito: nome, claim, menu, info bar, footer.
  * Solo contenuti. In fase di sviluppo arriveranno dal pannello admin.
  */
+import { titolare } from './legale'
 import { categorie, fotoFamiglia, type Categoria } from './products'
 
 /** Nome del reparto accessori e merch nel menu e nella sua pagina (alternative in design/MERCH.md). */
@@ -77,12 +78,15 @@ export const site = {
     ],
     legal: [
       { label: 'Spedizioni', to: '/spedizioni' },
-      { label: 'Resi e rimborsi', to: '/resi' },
+      { label: 'Resi e recesso', to: '/resi' },
       { label: 'Pagamenti', to: '/pagamenti' },
       { label: 'Privacy', to: '/privacy' },
       { label: 'Cookie', to: '/cookie' },
-      { label: 'Termini e condizioni', to: '/termini' },
-      { label: 'Informazioni legali', to: '/legale' },
+      { label: 'Condizioni di vendita', to: '/termini' },
+      { label: 'Avvertenze prodotti', to: '/avvertenze' },
+      { label: 'Sconti e promozioni', to: '/promozioni' },
+      { label: 'Condizioni rivenditori', to: '/condizioni-rivenditori' },
+      { label: 'Note legali', to: '/legale' },
     ],
     socials: [
       { label: 'Instagram', href: 'https://instagram.com/thehasher' },
@@ -90,7 +94,8 @@ export const site = {
       { label: 'YouTube', href: 'https://youtube.com' },
     ],
     /** Dati del venditore: placeholder da verificare */
-    seller: 'THE HASHER · Dati societari da verificare · thehasher.com',
+    /** Obbligatorio in ogni pagina: ragione sociale e partita IVA (art. 35 DPR 633/1972) */
+    seller: `${titolare.ragioneSociale} · P. IVA ${titolare.piva} · ${titolare.sede}`,
     note: 'Vendita riservata ai maggiori di 18 anni. Le informazioni sui prodotti non costituiscono indicazioni mediche.',
   },
 }

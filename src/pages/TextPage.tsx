@@ -23,8 +23,8 @@ export default function TextPage() {
           <p className="mt-5 text-lead text-fg-muted">{pagina.lead}</p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Badge variant="muted">Aggiornato: {pagina.aggiornato}</Badge>
-            {pagina.daValidare && (
-              <Badge variant="outline">Bozza da far validare da un consulente legale</Badge>
+            {pagina.daCompletare && (
+              <Badge variant="outline">Dati della società da inserire tra [ ]</Badge>
             )}
           </div>
         </Container>
@@ -59,7 +59,7 @@ export default function TextPage() {
               <h2 className="text-h3">{s.titolo}</h2>
               <div className="mt-4 flex flex-col gap-4 text-fg-muted">
                 {s.paragrafi.map((p) => (
-                  <p key={p.slice(0, 24)}>{p}</p>
+                  <p key={p.slice(0, 40)}>{p}</p>
                 ))}
                 {s.elenco && (
                   <ul className="flex flex-col gap-2">
