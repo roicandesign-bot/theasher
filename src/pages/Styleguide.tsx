@@ -13,6 +13,7 @@ import { ProductCard } from '@/components/ui/ProductCard'
 import { Section, SectionHeader } from '@/components/ui/Section'
 import { StrokePattern } from '@/components/ui/StrokePattern'
 import { products } from '@/data/products'
+import { cn } from '@/lib/cn'
 
 /**
  * STYLEGUIDE VIVENTE: mostra i token di src/styles/tokens.css e i componenti così come sono.
@@ -36,36 +37,111 @@ const semanticColors = [
   'danger',
 ]
 
+/** La gerarchia completa dei testi del sito, dal più grande al più piccolo. */
 const typeScale = [
-  { cls: 'text-display font-display uppercase', name: 'display · Anton', sample: 'New drop' },
-  { cls: 'text-h1 font-display uppercase', name: 'h1 · Anton', sample: 'Premium CBD.' },
-  { cls: 'text-h2 font-display uppercase', name: 'h2 · Anton', sample: 'Bold character.' },
-  { cls: 'text-h3 font-display uppercase', name: 'h3 · Anton', sample: 'Lemon Haze' },
   {
-    cls: 'text-lead',
-    name: 'lead · Archivo',
-    sample: 'Selected in Europe. Made for those who know.',
+    cls: 'text-display font-display uppercase',
+    name: 'Display',
+    font: 'Anton 400 · maiuscolo',
+    misure: '56 → 128 px · interlinea 0,9',
+    dove: 'Il titolo della home e dei drop',
+    sample: 'Premium CBD.',
+  },
+  {
+    cls: 'text-h1 font-display uppercase',
+    name: 'Titolo 1',
+    font: 'Anton 400 · maiuscolo',
+    misure: '48 → 88 px · interlinea 0,92',
+    dove: 'Il titolo di ogni pagina, uno solo',
+    sample: 'Condizioni di vendita',
+  },
+  {
+    cls: 'text-h2 font-display uppercase',
+    name: 'Titolo 2',
+    font: 'Anton 400 · maiuscolo',
+    misure: '36 → 60 px · interlinea 0,95',
+    dove: 'Titoli delle sezioni',
+    sample: 'Dal seme alla resina.',
+  },
+  {
+    cls: 'text-h3 font-display uppercase',
+    name: 'Titolo 3',
+    font: 'Anton 400 · maiuscolo',
+    misure: '24 → 32 px · interlinea 1',
+    dove: 'Nomi prodotto nelle schede, titoli dei box',
+    sample: 'Gorilla Glue Semi',
+  },
+  {
+    cls: 'text-lead text-fg-muted',
+    name: 'Sottotitolo',
+    font: 'Archivo 400',
+    misure: '17 → 20 px · interlinea 1,5',
+    dove: 'Sotto i titoli di pagina e di sezione',
+    sample: 'Cinque linee, dieci famiglie. Un certificato per ogni lotto.',
   },
   {
     cls: 'text-base',
-    name: 'base · Archivo',
-    sample: 'Hash e fiori CBD d’eccezione, selezionati in Europa.',
+    name: 'Testo',
+    font: 'Archivo 400',
+    misure: '16 px · interlinea 1,5',
+    dove: 'Paragrafi, descrizioni, testi legali',
+    sample: 'Hash e fiori CBD d’eccezione, lavorati da noi in Europa.',
   },
   {
     cls: 'text-sm text-fg-muted',
-    name: 'sm · Archivo',
-    sample: 'Spedizione tracciata in 48–72 ore.',
+    name: 'Testo piccolo',
+    font: 'Archivo 400',
+    misure: '14 px · interlinea 1,45',
+    dove: 'Note, dettagli, moduli, banner cookie',
+    sample: 'IVA inclusa. Spedizione calcolata al checkout.',
   },
-  { cls: 'label', name: 'label · Archivo condensato', sample: 'Citrus / Earthy / Smooth' },
   {
-    cls: 'label text-eyebrow text-primary',
-    name: 'eyebrow',
-    sample: 'Good plants. Brighter days.',
+    cls: 'text-price font-semibold text-primary',
+    name: 'Prezzo',
+    font: 'Archivo 600 · giallo',
+    misure: '22 px',
+    dove: 'Prezzi nelle schede e nel carrello',
+    sample: '29,90 €',
   },
   {
     cls: 'text-attivo text-primary',
-    name: 'text-attivo · cannabinoide',
+    name: 'Cannabinoide',
+    font: 'Archivo 700 · maiuscolo · giallo',
+    misure: '14 px · spaziatura 0,26 em',
+    dove: 'Il sottotitolo di ogni prodotto',
     sample: 'CBD: +31%',
+  },
+  {
+    cls: 'label text-eyebrow text-primary',
+    name: 'Occhiello',
+    font: 'Archivo 600 condensato 80 % · maiuscolo · giallo',
+    misure: '12 px · spaziatura 0,14 em',
+    dove: 'Sopra i titoli, con il rombo',
+    sample: 'Good plants. Brighter days.',
+  },
+  {
+    cls: 'label',
+    name: 'Etichetta',
+    font: 'Archivo 600 condensato 80 % · maiuscolo',
+    misure: '13 px · spaziatura 0,08 em',
+    dove: 'Menu, bottoni, schede del negozio',
+    sample: 'Aggiungi al carrello',
+  },
+  {
+    cls: 'label text-[0.6875rem] text-fg-muted',
+    name: 'Etichetta piccola',
+    font: 'Archivo 600 condensato 80 % · maiuscolo',
+    misure: '11 px · spaziatura 0,08 em',
+    dove: 'Badge, filtri, aromi, formati',
+    sample: 'Citrus / Earthy / Smooth',
+  },
+  {
+    cls: 'label text-[0.625rem] text-fg-muted',
+    name: 'Micro',
+    font: 'Archivo 600 condensato 80 % · maiuscolo',
+    misure: '10 px · spaziatura 0,08 em',
+    dove: 'Contatori, prezzo al grammo, note piccole',
+    sample: '8,54 €/g · 64 prodotti',
   },
 ]
 
@@ -138,24 +214,69 @@ export default function Styleguide() {
       </Section>
 
       {/* Tipografia */}
-      <Section tone="alt" className="py-12">
+      <Section id="tipografia" tone="alt" className="py-12">
         <Container>
           <h3 className="text-h3">Tipografia</h3>
           <p className="mt-2 max-w-prose text-sm text-fg-muted">
-            Anton per i titoli (maiuscolo, alto e compatto). Archivo per testo e interfaccia; in
-            versione condensata per etichette, badge e menu.
+            Due famiglie in tutto il sito, caricate dal sito stesso (nessun servizio esterno). Il
+            logo è un lettering disegnato, non un font.
           </p>
-          <div className="mt-6 flex flex-col gap-5">
-            {typeScale.map((t) => (
+
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-card bg-surface p-6 ring-1 ring-line ring-inset">
+              <p className="label text-[0.6875rem] text-primary">Titoli</p>
+              <p className="mt-3 font-display text-[4.5rem] leading-none uppercase">Anton</p>
+              <p className="mt-3 text-sm text-fg-muted">
+                Un solo peso (400), sempre maiuscolo. Alto e compatto: dà l’impatto dei titoli, dal
+                display al titolo 3.
+              </p>
+              <p className="mt-4 font-display text-2xl tracking-wide uppercase">
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ 0123456789
+              </p>
+            </div>
+            <div className="rounded-card bg-surface p-6 ring-1 ring-line ring-inset">
+              <p className="label text-[0.6875rem] text-primary">Testo e interfaccia</p>
+              <p className="mt-3 text-[4.5rem] leading-none font-bold">Archivo</p>
+              <p className="mt-3 text-sm text-fg-muted">
+                Variabile: peso da 100 a 900 e larghezza da 62 % a 125 %. Normale per i testi,
+                condensato all’80 % e maiuscolo per etichette, menu e bottoni.
+              </p>
+              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-lg">
+                <span className="font-normal">Regular 400</span>
+                <span className="font-semibold">Semibold 600</span>
+                <span className="font-bold">Bold 700</span>
+                <span className="label text-base">Condensato</span>
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 border-t border-line">
+            {typeScale.map((t, i) => (
               <div
                 key={t.name}
-                className="grid gap-1 border-b border-line pb-5 md:grid-cols-[12rem_1fr]"
+                className="grid gap-3 border-b border-line py-6 md:grid-cols-[17rem_1fr] md:gap-8"
               >
-                <p className="font-mono text-xs text-fg-muted">{t.name}</p>
-                <p className={t.cls}>{t.sample}</p>
+                <div className="flex gap-3">
+                  <span className="font-mono text-xs text-primary">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <p className="label text-[0.75rem]">{t.name}</p>
+                    <p className="text-xs text-fg-muted">{t.font}</p>
+                    <p className="font-mono text-xs text-fg-subtle">{t.misure}</p>
+                    <p className="text-xs text-fg-muted">{t.dove}</p>
+                  </div>
+                </div>
+                <p className={cn('min-w-0 self-center text-pretty', t.cls)}>{t.sample}</p>
               </div>
             ))}
           </div>
+
+          <p className="mt-6 max-w-prose text-xs text-fg-muted">
+            Solo nelle immagini dei pack: Archivo Black condensato per nomi e percentuali, come
+            sulle confezioni vere. Le misure con la freccia crescono con lo schermo, dal telefono al
+            computer.
+          </p>
         </Container>
       </Section>
 
