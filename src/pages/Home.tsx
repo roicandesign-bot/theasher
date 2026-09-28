@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
 import { Filiera } from '@/components/sections/Filiera'
+import { IntroVideo } from '@/components/sections/IntroVideo'
 import { StrisciaScorrevole } from '@/components/sections/StrisciaScorrevole'
 import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
@@ -54,6 +55,9 @@ export default function Home() {
   const { add } = useCart()
   return (
     <>
+      {/* ---------- Apertura: il video di 12 secondi ---------- */}
+      <IntroVideo />
+
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden">
         <StrokePattern className="opacity-[0.05]" position="110% 20%" scale="200%" />
