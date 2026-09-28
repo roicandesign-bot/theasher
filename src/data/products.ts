@@ -21,22 +21,34 @@ export type Variant = {
 }
 
 /** Le categorie madri: il cannabinoide che guida il prodotto. Tutte entro i limiti di legge sul THC. */
-export const linee = ['CBD', 'THC-X', 'CBG', 'CBN'] as const
+export const linee = ['CBD', 'THC-X', 'THC-A', 'CBG', 'CBN'] as const
 export type Linea = (typeof linee)[number]
 
-/** Le famiglie del negozio. */
+/** Le famiglie del negozio, nell'ordine della barra. */
 export const categorie = {
   fiori: 'Fiori',
   hash: 'Hash',
   estratti: 'Estratti',
-  oli: 'Oli',
   preroll: 'Preroll',
+  cannagar: 'Cannagar',
   vape: 'Vape',
+  oli: 'Oli',
   edibles: 'Edibles',
   semi: 'Semi',
   cloni: 'Cloni',
 } as const
 export type Categoria = keyof typeof categorie
+
+/**
+ * Le famiglie a gruppi, come nel disegno di Lorenzo: nella barra i gruppi sono separati
+ * da una riga, nel pannello su telefono hanno un titolo.
+ */
+export const gruppiFamiglie: { nome: string; famiglie: Categoria[] }[] = [
+  { nome: 'I classici', famiglie: ['fiori', 'hash', 'estratti'] },
+  { nome: 'Pronti all’uso', famiglie: ['preroll', 'cannagar', 'vape'] },
+  { nome: 'Oli ed edibles', famiglie: ['oli', 'edibles'] },
+  { nome: 'Da coltivare', famiglie: ['semi', 'cloni'] },
+]
 
 /** Foto di ogni famiglia: riquadri del menu e del pannello «Famiglia» su telefono. */
 export const fotoFamiglia: Record<Categoria | 'tutto', string> = {
@@ -46,7 +58,8 @@ export const fotoFamiglia: Record<Categoria | 'tutto', string> = {
   estratti: 'images/demo/jar-hash.jpg',
   oli: 'images/prodotti/olio-full-spectrum.jpg',
   preroll: 'images/prodotti/preroll-gelato-41.jpg',
-  vape: 'images/prodotti/vape-lemon-haze.jpg',
+  cannagar: 'images/prodotti/cannagar-royal.jpg',
+  vape: 'images/prodotti/vape-amnesia-thcx.jpg',
   edibles: 'images/prodotti/edibles-mango.jpg',
   semi: 'images/prodotti/semi-gelato-41.jpg',
   cloni: 'images/prodotti/cloni-silver-haze.jpg',
@@ -114,6 +127,7 @@ export type MetodoEstratto = (typeof metodiEstratto)[number]
 export const tipiPer = {
   oli: ['Full spectrum', 'Broad spectrum'],
   preroll: ['Singolo', 'Multipack'],
+  cannagar: ['Classico', 'Con hash'],
   vape: ['Vape pen', 'Cartuccia'],
   edibles: ['Gommose', 'Caramelle'],
   semi: ['Femminizzati', 'Autofiorenti'],
@@ -129,9 +143,9 @@ export const colori = ['Giallo', 'Marrone', 'Nero'] as const
 export type Colore = (typeof colori)[number]
 
 /** Cannabinoidi dichiarati sul lotto (percentuali). */
-export type Attivi = Partial<Record<'cbd' | 'thcx' | 'cbg' | 'cbn' | 'thc', number>>
+export type Attivi = Partial<Record<'cbd' | 'thcx' | 'thca' | 'cbg' | 'cbn' | 'thc', number>>
 
-export const cannabinoidi = ['CBD', 'THC-X', 'CBG', 'CBN', 'THC'] as const
+export const cannabinoidi = ['CBD', 'THC-X', 'THC-A', 'CBG', 'CBN', 'THC'] as const
 export type Cannabinoide = (typeof cannabinoidi)[number]
 
 export type Product = {
@@ -873,6 +887,7 @@ export const products: Product[] = [...base, ...famiglie, ...merch]
 const chiaveAttivo: Record<Cannabinoide, keyof Attivi> = {
   CBD: 'cbd',
   'THC-X': 'thcx',
+  'THC-A': 'thca',
   CBG: 'cbg',
   CBN: 'cbn',
   THC: 'thc',

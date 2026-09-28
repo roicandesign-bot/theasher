@@ -1,4 +1,4 @@
-# Pack The Hasher dalla bozza del preroll: cambia le scritte e mette il prodotto su sfondo scuro.
+# Pack The Hasher (scatola) dalla bozza del preroll: cambia le scritte e mette il prodotto su sfondo scuro.
 #
 # Uso: python3 scripts/pack-hasher.py
 # Legge design/inputs/preroll/pack-bozza.png e scrive le foto in public/images/prodotti/.
@@ -215,14 +215,8 @@ PACK = [
     dict(file='preroll-orange-bud', linea='CBD', contiene='CONTIENE 16%', nome=['ORANGE', 'BUD'], tipo='PRE-ROLL', genetica='SATIVA', formato='3X1G', con_preroll=True),
     dict(file='preroll-mimosa', linea='THC-X', contiene='CONTIENE 40%', nome=['MIMOSA'], tipo='PRE-ROLL', genetica='SATIVA', formato='2G', con_preroll=True),
     dict(file='preroll-purple-punch', linea='THC-X', contiene='CONTIENE 40%', nome=['PURPLE', 'PUNCH'], tipo='PRE-ROLL', genetica='INDICA', formato='2G', con_preroll=True),
-    # vape
-    dict(file='vape-lemon-haze', linea='CBD', contiene='CONTIENE 90%', nome=['LEMON', 'HAZE'], tipo='VAPE PEN', genetica='SATIVA', formato='1ML'),
-    dict(file='vape-zkittlez', linea='THC-X', contiene='CONTIENE 85%', nome=['ZKITTLEZ'], tipo='CARTUCCIA', genetica='IBRIDA', formato='1ML'),
-    dict(file='vape-notte', linea='CBN', contiene='CONTIENE 60%', nome=['NOTTE'], tipo='VAPE PEN', genetica='INDICA', formato='0,5ML'),
-    # edibles
-    dict(file='edibles-mango', linea='THC-X', contiene='10 MG A PEZZO', nome=['MANGO', 'KUSH'], tipo='GOMMOSE', genetica='10 PEZZI', formato='10PZ'),
-    dict(file='edibles-watermelon', linea='THC-X', contiene='10 MG A PEZZO', nome=['WATER', 'MELON'], tipo='GOMMOSE', genetica='10 PEZZI', formato='10PZ'),
-    dict(file='edibles-sour-apple', linea='CBD', contiene='25 MG A PEZZO', nome=['SOUR', 'APPLE'], tipo='CARAMELLE', genetica='20 PEZZI', formato='20PZ'),
+    # edibles (le gommose sono in busta: scripts/busta-gummies.py)
+    dict(file='edibles-lemon-drop', linea='CBD', contiene='25 MG A PEZZO', nome=['LEMON', 'DROP'], tipo='CARAMELLE', genetica='20 PEZZI', formato='20PZ'),
     # semi
     dict(file='semi-gelato-41', linea='CBD', contiene='FEMMINIZZATI', nome=['GELATO', '41'], tipo='SEMI', genetica='IBRIDA', formato='3PZ'),
     dict(file='semi-amnesia-auto', linea='CBD', contiene='AUTOFIORENTI', nome=['AMNESIA', 'AUTO'], tipo='SEMI', genetica='SATIVA', formato='5PZ'),
@@ -230,6 +224,12 @@ PACK = [
     # oli
     dict(file='olio-full-spectrum', linea='CBD', contiene='CONTIENE 20%', nome=['FULL', 'SPECTRUM'], tipo='OLIO', genetica='CONTAGOCCE', formato='10ML'),
     dict(file='olio-cbn-notte', linea='CBN', contiene='CONTIENE 10%', nome=['NOTTE'], tipo='OLIO', genetica='THC FREE', formato='10ML'),
+    # cannagar
+    dict(file='cannagar-gelato-41', linea='CBD', contiene='CONTIENE 21%', nome=['GELATO', '41'], tipo='CANNAGAR', genetica='CLASSICO', formato='3G'),
+    dict(file='cannagar-royal', linea='CBD', contiene='CONTIENE 28%', nome=['ROYAL'], tipo='CANNAGAR', genetica='CON HASH', formato='4G'),
+    dict(file='cannagar-mimosa', linea='THC-X', contiene='CONTIENE 42%', nome=['MIMOSA'], tipo='CANNAGAR', genetica='CON HASH', formato='4G'),
+    # linea THC-A
+    dict(file='preroll-og-kush-thca', linea='THC-A', contiene='CONTIENE 26%', nome=['OG', 'KUSH'], tipo='PRE-ROLL', genetica='IBRIDA', formato='1G', con_preroll=True),
     # cloni
     dict(file='cloni-silver-haze', linea='CBD', contiene='TALEA RADICATA', nome=['SILVER', 'HAZE'], tipo='CLONE', genetica='SATIVA', formato='1PZ'),
     dict(file='cloni-mimosa', linea='CBD', contiene='TALEA RADICATA', nome=['MIMOSA'], tipo='CLONE', genetica='SATIVA', formato='1PZ'),

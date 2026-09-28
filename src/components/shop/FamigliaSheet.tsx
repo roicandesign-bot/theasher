@@ -1,6 +1,6 @@
 import { Check, X } from 'lucide-react'
 import { useEffect } from 'react'
-import { categorie, fotoFamiglia, type Categoria } from '@/data/products'
+import { categorie, fotoFamiglia, gruppiFamiglie, type Categoria } from '@/data/products'
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
 
@@ -15,7 +15,7 @@ type Props = {
 
 /**
  * Scelta della famiglia su telefono e tablet: foglio dal basso con i riquadri foto,
- * come il sottomenu Shop. Un tocco sceglie e chiude.
+ * divisi negli stessi gruppi della barra su desktop. Un tocco sceglie e chiude.
  */
 export function FamigliaSheet({ open, scelta, conta, onScegli, onClose }: Props) {
   useEffect(() => {
@@ -29,14 +29,39 @@ export function FamigliaSheet({ open, scelta, conta, onScegli, onClose }: Props)
     }
   }, [open, onClose])
 
-  const voci: { id: Categoria | null; label: string; img: string }[] = [
-    { id: null, label: 'Tutto', img: fotoFamiglia.tutto },
-    ...(Object.keys(categorie) as Categoria[]).map((id) => ({
-      id,
-      label: categorie[id],
-      img: fotoFamiglia[id],
-    })),
-  ]
+  const riquadro = (id: Categoria | null, label: string, img: string) => {
+    const attiva = scelta === id
+    const n = conta(id)
+    return (
+      <button
+        type="button"
+        aria-pressed={attiva}
+        disabled={n === 0 && !attiva}
+        onClick={() => {
+          onScegli(id)
+          onClose()
+        }}
+        className={cn(
+          'flex w-full items-center gap-3 rounded-card bg-surface p-2 text-left ring-1 transition duration-200 ease-out-soft ring-inset disabled:opacity-40',
+          attiva ? 'text-primary ring-2 ring-primary' : 'text-fg ring-line hocus:ring-primary',
+        )}
+      >
+        <img
+          src={asset(img)}
+          alt=""
+          loading="lazy"
+          className="size-14 shrink-0 rounded-[0.625rem] object-cover"
+        />
+        <span className="flex min-w-0 flex-1 flex-col gap-0.5">
+          <span className="label text-[0.8125rem]">{label}</span>
+          <span className="text-xs text-fg-muted">
+            {n} {n === 1 ? 'prodotto' : 'prodotti'}
+          </span>
+        </span>
+        {attiva && <Check aria-hidden="true" className="mr-1 size-5 shrink-0" />}
+      </button>
+    )
+  }
 
   return (
     <>
@@ -69,45 +94,19 @@ export function FamigliaSheet({ open, scelta, conta, onScegli, onClose }: Props)
             <X className="size-5" />
           </button>
         </header>
-        <ul className="grid grid-cols-2 gap-2 overflow-y-auto px-5 pt-4 pb-8 md:grid-cols-3">
-          {voci.map((v) => {
-            const attiva = scelta === v.id
-            const n = conta(v.id)
-            return (
-              <li key={v.label} className={cn(v.id === null && 'col-span-2 md:col-span-3')}>
-                <button
-                  type="button"
-                  aria-pressed={attiva}
-                  disabled={n === 0 && !attiva}
-                  onClick={() => {
-                    onScegli(v.id)
-                    onClose()
-                  }}
-                  className={cn(
-                    'flex w-full items-center gap-3 rounded-card bg-surface p-2 text-left ring-1 transition duration-200 ease-out-soft ring-inset disabled:opacity-40',
-                    attiva
-                      ? 'text-primary ring-2 ring-primary'
-                      : 'text-fg ring-line hocus:ring-primary',
-                  )}
-                >
-                  <img
-                    src={asset(v.img)}
-                    alt=""
-                    loading="lazy"
-                    className="size-14 shrink-0 rounded-[0.625rem] object-cover"
-                  />
-                  <span className="flex min-w-0 flex-1 flex-col gap-0.5">
-                    <span className="label text-[0.8125rem]">{v.label}</span>
-                    <span className="text-xs text-fg-muted">
-                      {n} {n === 1 ? 'prodotto' : 'prodotti'}
-                    </span>
-                  </span>
-                  {attiva && <Check aria-hidden="true" className="mr-1 size-5 shrink-0" />}
-                </button>
-              </li>
-            )
-          })}
-        </ul>
+        <div className="flex flex-col gap-5 overflow-y-auto px-5 pt-4 pb-8">
+          {riquadro(null, 'Tutto', fotoFamiglia.tutto)}
+          {gruppiFamiglie.map((g) => (
+            <section key={g.nome}>
+              <h3 className="label text-[0.625rem] text-fg-subtle">{g.nome}</h3>
+              <ul className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-3">
+                {g.famiglie.map((c) => (
+                  <li key={c}>{riquadro(c, categorie[c], fotoFamiglia[c])}</li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
       </aside>
     </>
   )

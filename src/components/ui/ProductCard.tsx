@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Attivo } from '@/components/ui/Attivo'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
+import { NomeProdotto } from '@/components/ui/NomeProdotto'
 import { Price } from '@/components/ui/Price'
 import {
   etichettaCategoria,
@@ -75,7 +76,7 @@ export function ProductCard({
         <div>
           <h3 className={cn('text-pretty', grande ? 'text-h2' : 'text-h3')}>
             <Link to={productPath(product.slug)} className="transition hocus:text-primary">
-              {product.name}
+              <NomeProdotto nome={product.name} />
             </Link>
           </h3>
           <Attivo product={product} evidenzia={evidenzia} className="mt-2" />

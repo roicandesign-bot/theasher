@@ -119,3 +119,8 @@
 - 2026-09-28 · Foto del Gear: illustrazioni gialle sul fondo dei pack, con il logo vero (scripts/gear-illustrazioni.mjs), finché non arrivano foto o render approvati
 - 2026-09-28 · «Gear» non piace a Lorenzo: il reparto si chiama «Merch» (percorso /merch), con il nome in una sola costante (`nomeReparto`). Alternative mostrate: Accessori, Headshop, Supply
 - 2026-09-28 · Negozio su telefono e tablet: al posto delle due righe di pillole, due pulsanti grandi, «Famiglia» (apre un pannello con i riquadri foto delle famiglie) e «Filtri» (dentro anche le linee e «THC free»). Da 1024 px la barra resta com'era
+- 2026-09-28 · Barra del negozio come il disegno di Lorenzo: Tutto | Fiori · Hash · Estratti | Preroll · Cannagar · Vape | Oli · Edibles | Semi · Cloni, gruppi separati da una riga. Su desktop le linee passano sulla seconda riga (con 11 famiglie e 6 linee una riga sola non ci sta in 1200 px); su telefono il pannello «Famiglia» ha gli stessi gruppi con un titolo
+- 2026-09-28 · Nuova famiglia Cannagar (Classico / Con hash) e nuova linea THC-A. Prodotti THC-A con la nota «vendibile solo dove la legge lo consente»
+- 2026-09-28 · Gommose in busta dalla bozza Green Apple (scripts/busta-gummies.py): tre gusti, gommose ricolorate, scritta storpiata del bollino 18+ sostituita da «LAB TESTED». Le caramelle diventano Lemon Drop per non avere due gusti mela
+- 2026-09-28 · Vape e cartucce dai blister di Lorenzo (scripts/blister-vape.py): THC-X, THC-A, CBD full spectrum, CBD+CBN in gusti diversi. Della cartuccia si tiene solo il blister: quella sciolta ha il bocchino bianco che si confonde con lo sfondo
+- 2026-09-28 · Nomi prodotto: le sigle con trattino (THC-X, THC-A, CBD+CBN) non vanno mai a capo a metà

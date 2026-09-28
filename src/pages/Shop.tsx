@@ -1,7 +1,7 @@
 // Negozio: intestazione → barra compatta (famiglia, linea, filtri) → griglia prodotti.
 // Tutti gli altri filtri stanno nel pannello. I filtri vivono nell'indirizzo: la pagina è condivisibile.
 import { ChevronDown, SlidersHorizontal, X } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { FamigliaSheet } from '@/components/shop/FamigliaSheet'
 import { FilterSheet } from '@/components/shop/FilterSheet'
@@ -13,7 +13,13 @@ import { Eyebrow } from '@/components/ui/Eyebrow'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Reveal } from '@/components/ui/Reveal'
 import { Section } from '@/components/ui/Section'
-import { categorie, linee, type Cannabinoide, type Categoria } from '@/data/products'
+import {
+  categorie,
+  gruppiFamiglie,
+  linee,
+  type Cannabinoide,
+  type Categoria,
+} from '@/data/products'
 import { cn } from '@/lib/cn'
 import {
   applica,
@@ -25,11 +31,6 @@ import {
   ordinamenti,
   type Ordine,
 } from '@/lib/filtri'
-
-const linguette: { id: Categoria | null; label: string }[] = [
-  { id: null, label: 'Tutto' },
-  ...(Object.keys(categorie) as Categoria[]).map((id) => ({ id, label: categorie[id] })),
-]
 
 export default function Shop() {
   const [params, setParams] = useSearchParams()
@@ -47,18 +48,6 @@ export default function Shop() {
       : null
   const resto = inEvidenza ? mostrati.filter((p) => p !== inEvidenza) : mostrati
   const attivi = attiviDi(filtri)
-
-  // Su telefono le famiglie scorrono: quella scelta deve restare in vista.
-  const famiglieRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const striscia = famiglieRef.current
-    const scelta = striscia?.querySelector<HTMLElement>('[aria-pressed="true"]')
-    if (!striscia || !scelta || striscia.scrollWidth <= striscia.clientWidth) return
-    striscia.scrollTo({
-      left: scelta.offsetLeft - (striscia.clientWidth - scelta.offsetWidth) / 2,
-      behavior: 'smooth',
-    })
-  }, [filtri.categoria])
 
   /** Aggiorna un filtro nell'indirizzo; null lo toglie. */
   const setFilter = (key: string, value: string | null) => {
@@ -93,8 +82,8 @@ export default function Shop() {
           <Eyebrow>Negozio</Eyebrow>
           <h1 className="mt-4 text-h1">{titolo}</h1>
           <p className="mt-4 max-w-prose text-lead text-fg-muted">
-            Quattro linee, nove famiglie: dai fiori all’hash, dai preroll ai semi. Un certificato di
-            analisi per ogni lotto e il prezzo sempre in chiaro.
+            Cinque linee, dieci famiglie: dai fiori all’hash, dai cannagar ai semi. Un certificato
+            di analisi per ogni lotto e il prezzo sempre in chiaro.
           </p>
         </Container>
       </Section>
@@ -102,7 +91,7 @@ export default function Shop() {
       {/*
         Barra dei filtri.
         Telefono e tablet: due pulsanti, «Famiglia» e «Filtri» (le linee stanno nel pannello).
-        Portatile: famiglie e linee su due righe. Schermi larghi: una barra unica, famiglie | linee.
+        Portatile e desktop: famiglie a gruppi sulla prima riga, linee sulla seconda.
       */}
       <div className="sticky top-18 z-20 border-y border-line bg-bg/95 backdrop-blur md:top-20">
         <Container className="grid grid-cols-[1fr_auto] gap-2 py-3 lg:hidden">
@@ -130,84 +119,72 @@ export default function Shop() {
           />
         </Container>
 
-        <Container className="hidden py-3 lg:flex lg:flex-col lg:gap-2 xl:flex-row xl:items-center xl:gap-3">
-          <div className="flex min-w-0 flex-col gap-2 xl:flex-row xl:items-center xl:gap-0 xl:rounded-button xl:bg-bg-alt xl:p-1">
-            {/* le famiglie (+ filtri, sotto gli schermi larghi) */}
-            <div className="flex min-w-0 items-center gap-2">
-              <div
-                ref={famiglieRef}
-                role="group"
-                aria-label="Famiglie di prodotto"
-                className="relative no-scrollbar flex min-w-0 flex-1 gap-1 overflow-x-auto rounded-button bg-bg-alt p-1 xl:flex-none xl:bg-transparent xl:p-0"
-              >
-                {linguette.map((t) => (
-                  <button
-                    key={t.label}
-                    type="button"
-                    aria-pressed={filtri.categoria === t.id}
-                    onClick={() => setCategoria(t.id)}
-                    className={cn(
-                      'flex shrink-0 flex-col items-center justify-center gap-0.5 rounded-button px-3.5 py-2 label text-[0.6875rem] transition duration-200 ease-out-soft xl:px-2.5 2xl:px-3.5',
-                      filtri.categoria === t.id
-                        ? 'bg-primary text-primary-fg'
-                        : 'text-primary hocus:bg-surface-hover',
-                    )}
-                  >
-                    {t.label}
-                    <span
-                      className={cn(
-                        'text-[0.625rem]',
-                        filtri.categoria === t.id ? 'text-primary-fg/60' : 'text-fg-muted',
-                      )}
-                    >
-                      {contaCategoria(filtri, t.id)}
-                    </span>
-                  </button>
-                ))}
-              </div>
-              <BottoneFiltri
-                attivi={contaAttivi(filtri)}
-                onClick={() => setPannello(true)}
-                className="xl:hidden"
-              />
-            </div>
+        {/* Portatile e desktop: prima riga le famiglie a gruppi (disegno di Lorenzo), seconda le linee. */}
+        <Container className="hidden flex-col gap-2 py-3 lg:flex">
+          <div
+            role="group"
+            aria-label="Famiglie di prodotto"
+            className="flex items-stretch rounded-button bg-bg-alt p-1"
+          >
+            <Linguetta
+              label="Tutto"
+              n={contaCategoria(filtri, null)}
+              attiva={filtri.categoria === null}
+              onClick={() => setCategoria(null)}
+              className="flex-1"
+            />
+            {gruppiFamiglie.map((g) => (
+              <Fragment key={g.nome}>
+                <span aria-hidden="true" className="mx-1 my-1.5 w-px shrink-0 bg-line" />
+                <div
+                  role="group"
+                  aria-label={g.nome}
+                  className="flex basis-0 gap-0.5"
+                  style={{ flexGrow: g.famiglie.length }}
+                >
+                  {g.famiglie.map((c) => (
+                    <Linguetta
+                      key={c}
+                      label={categorie[c]}
+                      n={contaCategoria(filtri, c)}
+                      attiva={filtri.categoria === c}
+                      onClick={() => setCategoria(c)}
+                      className="flex-1"
+                    />
+                  ))}
+                </div>
+              </Fragment>
+            ))}
+          </div>
 
-            {/* separatore: da qui in poi le linee */}
-            <span aria-hidden="true" className="mx-2.5 hidden h-8 w-px shrink-0 bg-line xl:block" />
-
-            {/* le linee e i lotti senza THC */}
-            <div
-              role="group"
-              aria-label="Linee"
-              className="grid grid-cols-5 gap-1.5 md:flex md:gap-1"
-            >
+          <div className="flex items-center gap-3">
+            <span className="label text-[0.625rem] text-fg-subtle">Linea</span>
+            <div role="group" aria-label="Linee" className="flex flex-wrap gap-1.5">
               {linee.map((l) => (
                 <Chip
                   key={l}
                   size="sm"
-                  className="w-full justify-center px-1 md:w-auto md:px-3.5 xl:px-3"
                   active={filtri.linea === l}
                   onClick={() => setFilter('linea', filtri.linea === l ? null : l)}
                 >
                   {l}
                 </Chip>
               ))}
+              <span aria-hidden="true" className="mx-1 my-2 w-px bg-line" />
               <Chip
                 size="sm"
-                className="w-full justify-center px-1 md:w-auto md:px-3.5 xl:px-3"
                 active={filtri.thcFree}
                 onClick={() => setFilter('thcfree', filtri.thcFree ? null : 'si')}
               >
                 THC free
               </Chip>
             </div>
+            <BottoneFiltri
+              attivi={contaAttivi(filtri)}
+              onClick={() => setPannello(true)}
+              className="ml-auto"
+            />
           </div>
-
-          <BottoneFiltri
-            attivi={contaAttivi(filtri)}
-            onClick={() => setPannello(true)}
-            className="hidden xl:ml-auto xl:inline-flex"
-          />
         </Container>
       </div>
 
@@ -337,6 +314,38 @@ function BottoneFiltri({
           {attivi}
         </span>
       )}
+    </button>
+  )
+}
+
+function Linguetta({
+  label,
+  n,
+  attiva,
+  onClick,
+  className,
+}: {
+  label: string
+  n: number
+  attiva: boolean
+  onClick: () => void
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      aria-pressed={attiva}
+      onClick={onClick}
+      className={cn(
+        'flex min-w-0 flex-col items-center justify-center gap-0.5 rounded-button px-1 py-2 label text-[0.6875rem] transition duration-200 ease-out-soft',
+        attiva ? 'bg-primary text-primary-fg' : 'text-primary hocus:bg-surface-hover',
+        className,
+      )}
+    >
+      {label}
+      <span className={cn('text-[0.625rem]', attiva ? 'text-primary-fg/60' : 'text-fg-muted')}>
+        {n}
+      </span>
     </button>
   )
 }

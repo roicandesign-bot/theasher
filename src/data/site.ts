@@ -2,6 +2,8 @@
  * Dati statici del sito: nome, claim, menu, info bar, footer.
  * Solo contenuti. In fase di sviluppo arriveranno dal pannello admin.
  */
+import { categorie, fotoFamiglia, type Categoria } from './products'
+
 /** Nome del reparto accessori e merch nel menu e nella sua pagina (alternative in design/MERCH.md). */
 export const nomeReparto = 'Merch'
 
@@ -16,36 +18,12 @@ export const site = {
       label: 'Shop',
       to: '/negozio',
       sotto: [
-        { label: 'Tutti i prodotti', to: '/negozio', img: 'images/demo/hero-products.jpg' },
-        { label: 'Fiori', to: '/negozio?categoria=fiori', img: 'images/demo/cat-flower.jpg' },
-        { label: 'Hash', to: '/negozio?categoria=hash', img: 'images/demo/cat-hash.jpg' },
-        { label: 'Estratti', to: '/negozio?categoria=estratti', img: 'images/demo/jar-hash.jpg' },
-        {
-          label: 'Oli',
-          to: '/negozio?categoria=oli',
-          img: 'images/prodotti/olio-full-spectrum.jpg',
-        },
-        {
-          label: 'Preroll',
-          to: '/negozio?categoria=preroll',
-          img: 'images/prodotti/preroll-gelato-41.jpg',
-        },
-        {
-          label: 'Vape',
-          to: '/negozio?categoria=vape',
-          img: 'images/prodotti/vape-lemon-haze.jpg',
-        },
-        {
-          label: 'Edibles',
-          to: '/negozio?categoria=edibles',
-          img: 'images/prodotti/edibles-mango.jpg',
-        },
-        { label: 'Semi', to: '/negozio?categoria=semi', img: 'images/prodotti/semi-gelato-41.jpg' },
-        {
-          label: 'Cloni',
-          to: '/negozio?categoria=cloni',
-          img: 'images/prodotti/cloni-silver-haze.jpg',
-        },
+        { label: 'Tutti i prodotti', to: '/negozio', img: fotoFamiglia.tutto },
+        ...(Object.keys(categorie) as Categoria[]).map((c) => ({
+          label: categorie[c],
+          to: `/negozio?categoria=${c}`,
+          img: fotoFamiglia[c],
+        })),
       ],
     },
     {

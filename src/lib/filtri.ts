@@ -79,6 +79,7 @@ const conPercentuali: (Categoria | null)[] = [
   'estratti',
   'oli',
   'preroll',
+  'cannagar',
   'vape',
 ]
 

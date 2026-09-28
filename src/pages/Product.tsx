@@ -20,6 +20,7 @@ import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
 import { Diamond } from '@/components/ui/Diamond'
 import { Eyebrow } from '@/components/ui/Eyebrow'
+import { NomeProdotto } from '@/components/ui/NomeProdotto'
 import { Price } from '@/components/ui/Price'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { ProductGallery } from '@/components/ui/ProductGallery'
@@ -142,7 +143,9 @@ export default function Product() {
               </div>
             )}
             <Eyebrow>{categoryLabel}</Eyebrow>
-            <h1 className="mt-3 text-h1 text-pretty">{product.name}</h1>
+            <h1 className="mt-3 text-h1 text-pretty">
+              <NomeProdotto nome={product.name} />
+            </h1>
             <Attivo product={product} className="mt-3 text-[1.0625rem] md:text-[1.25rem]" />
             <p className="mt-3 label text-[0.75rem] text-fg-muted">
               {product.aroma.join(' / ')}

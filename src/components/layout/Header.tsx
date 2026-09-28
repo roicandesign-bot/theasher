@@ -142,7 +142,11 @@ export function Header() {
                     <ul
                       className={cn(
                         'container-content grid gap-4 py-6',
-                        item.sotto.length > 4 ? 'grid-cols-5 gap-y-5' : 'grid-cols-4',
+                        item.sotto.length > 10
+                          ? 'grid-cols-6 gap-y-5'
+                          : item.sotto.length > 4
+                            ? 'grid-cols-5 gap-y-5'
+                            : 'grid-cols-4',
                       )}
                     >
                       {item.sotto.map((v) => (
