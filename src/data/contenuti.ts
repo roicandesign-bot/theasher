@@ -1,6 +1,9 @@
 /** Contenuti editoriali del sito. Testi realistici da rivedere prima del lancio. */
 
-/** Pagina L'azienda: racconto a capitoli, dalla genetica al cliente. Foto demo, da sostituire. */
+/**
+ * Pagina L'azienda: racconto a capitoli, dalla genetica al cliente.
+ * Foto: render approvati da Lorenzo (28/09/2026) più la setacciatura, foto vera della filiera.
+ */
 export const azienda = {
   hero: {
     eyebrow: 'L’azienda',
@@ -28,8 +31,8 @@ export const azienda = {
       testo:
         'The Hasher è figlia di un gruppo che coltiva su scala industriale in Italia, Svizzera e Repubblica Ceca, e lavora con coltivatori in tutto il mondo. Tonnellate di fiori ogni anno, a partire da genetiche selezionate una per una.',
       etichette: ['Italia', 'Svizzera', 'Repubblica Ceca', 'Nel mondo'],
-      img: 'images/filiera/semina.jpg',
-      alt: 'Selezione dei semi in laboratorio',
+      img: 'images/azienda/campi.jpg',
+      alt: 'Campi di canapa all’aperto tra le colline, al tramonto',
     },
     {
       n: '02',
@@ -38,8 +41,8 @@ export const azienda = {
       testo:
         'Outdoor, greenhouse, glasshouse e indoor: ogni clima dà un fiore diverso, e ogni fiore ha il suo prodotto. Per questo il catalogo copre tutte le fasce, dal fiore di tutti i giorni alle cime da collezione.',
       etichette: ['Outdoor', 'Greenhouse', 'Glasshouse', 'Indoor'],
-      img: 'images/filiera/raccolta.jpg',
-      alt: 'Raccolta e lavorazione dei fiori in impianto',
+      img: 'images/azienda/serra.jpg',
+      alt: 'Glasshouse in Svizzera: file di piante in fioritura con le Alpi sullo sfondo',
     },
     {
       n: '03',
@@ -57,8 +60,8 @@ export const azienda = {
       testo:
         'Dagli scarti delle pulizie il lab estrae rosin full spectrum e le altre materie prime che fanno da base a tutto il resto. Il rosin nasce solo da calore e pressione, senza solventi.',
       etichette: ['Rosin full spectrum', 'Kif e resine', 'Basi per gli oli'],
-      img: 'images/filiera/pressatura.jpg',
-      alt: 'Pressatura della resina in laboratorio',
+      img: 'images/azienda/laboratorio.jpg',
+      alt: 'Laboratorio: la pressa per il rosin e i barattoli appena riempiti',
     },
     {
       n: '05',
@@ -67,8 +70,8 @@ export const azienda = {
       testo:
         'Da quelle basi, con formule nostre, nascono hash, estratti e oli. Ogni lotto ha il suo numero e il suo certificato, dalla pianta al barattolo.',
       etichette: ['Hash', 'Estratti', 'Oli'],
-      img: 'images/franchising/bancone.jpg',
-      alt: 'Barattoli e scatole The Hasher in vetrina',
+      img: 'images/azienda/controllo.jpg',
+      alt: 'Controllo qualità: una cima sotto la lente e la scheda del lotto sul tablet',
     },
     {
       n: '06',
@@ -85,8 +88,8 @@ export const azienda = {
       testo:
         'Dal magazzino centrale riforniamo rivenditori, distributori e negozi in franchising in tutta Europa. Per i restock urgenti, la merce arriva in meno di 24 ore.',
       etichette: ['Rivenditori', 'Distributori', 'Franchising'],
-      img: 'images/franchising/esterno.jpg',
-      alt: 'Un negozio The Hasher con la vetrina illuminata',
+      img: 'images/azienda/magazzino.jpg',
+      alt: 'Il magazzino della casa madre: scaffali di buste e scatole The Hasher pronte a partire',
     },
     {
       n: '08',
@@ -94,8 +97,8 @@ export const azienda = {
       titolo: 'The Hasher.',
       testo:
         'Il brand che porta tutto questo al cliente finale. Oltre 300 prodotti a catalogo, che arrivano sul sito uno alla volta. I prezzi migliori del mercato, perché il produttore siamo noi.',
-      img: 'images/franchising/interno.jpg',
-      alt: 'L’interno di un negozio The Hasher',
+      img: 'images/azienda/negozio.jpg',
+      alt: 'Un negozio The Hasher di sera, con l’insegna e la vetrina illuminate',
     },
   ],
   /** Pannello dimostrativo del gestionale: dati finti, solo per far vedere l'idea. */

@@ -254,12 +254,13 @@ function CapitoloVoce({ c, destra }: { c: Capitolo; destra: boolean }) {
           'img' in c &&
           c.img && (
             <div className="relative aspect-[4/3] overflow-hidden rounded-card ring-1 ring-line">
-              <Parallax distanza={30} className="size-full">
+              {/* la foto sborda di 30 px sopra e sotto: il parallasse non scopre mai la cornice */}
+              <Parallax distanza={30} className="absolute inset-x-0 -inset-y-[30px]">
                 <img
                   src={asset(c.img)}
                   alt={c.alt}
                   loading="lazy"
-                  className="size-full scale-[1.12] object-cover"
+                  className="size-full object-cover"
                 />
               </Parallax>
             </div>
