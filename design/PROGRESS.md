@@ -19,7 +19,7 @@ Legenda: ⬜ da fare · 🟡 in corso · ✅ fatto
 | -------------------------------------- | ------------------------------------------------------------ | -------------------------------- | --------------- |
 | Home                                   | `/`                                                          | ✅ v2 (tre famiglie)             | 2026-09-27      |
 | Negozio e prodotto                     | `/negozio`, `/prodotto/:slug`                                | ✅ v4 (9 famiglie, pack nuovi)   | 2026-09-28      |
-| Gear (accessori e merch)               | `/gear`                                                      | ✅ v1 (illustrazioni segnaposto) | 2026-09-28      |
+| Merch (accessori e merch)              | `/merch`                                                     | ✅ v1 (illustrazioni segnaposto) | 2026-09-28      |
 | Acquisto                               | `/carrello`, `/checkout`, `/ordine/:numero`                  | ✅ v1                            | 2026-09-27      |
 | Area cliente                           | `/accedi`, `/registrati`, `/account`, `/account/*`           | ✅ v1                            | 2026-09-27      |
 | Racconto                               | `/azienda`, `/journal`, `/contatti`, `/diventa-distributore` | ✅ v1                            | 2026-09-27      |

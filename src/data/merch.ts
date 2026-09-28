@@ -1,7 +1,7 @@
 /**
- * Reparto Gear: accessori per fumatori e merch The Hasher.
+ * Reparto Merch: accessori per fumatori e merch The Hasher.
  * Scelti tra gli oggetti più semplici da produrre: stampa del logo, quantitativi minimi bassi
- * (costi e quantità indicativi in design/GEAR.md). Foto: illustrazioni segnaposto.
+ * (costi e quantità indicativi in design/MERCH.md). Foto: illustrazioni segnaposto.
  */
 import type { Product } from './products'
 
@@ -13,9 +13,9 @@ const taglie = (prezzo: number, esaurite: string[] = []) =>
     inStock: !esaurite.includes(t),
   }))
 
-const pz = { unita: 'pz' as const, grams: 1, attivi: {}, reparto: 'gear' as const }
+const pz = { unita: 'pz' as const, grams: 1, attivi: {}, reparto: 'merch' as const }
 
-export const gear: Product[] = [
+export const merch: Product[] = [
   /* ---------------- Per fumare ---------------- */
   {
     ...pz,
@@ -28,7 +28,7 @@ export const gear: Product[] = [
     formato: 'Kit completo',
     badges: ['New'],
     inStock: true,
-    image: 'images/gear/roll-kit.jpg',
+    image: 'images/merch/roll-kit.jpg',
     origin: 'The Hasher',
     short:
       'Tutto per rollare in una scatola: grinder, cartine, filtri, clipper e vassoio. Il regalo facile.',
@@ -43,7 +43,7 @@ export const gear: Product[] = [
     formato: '1 pz',
     badges: ['Best seller'],
     inStock: true,
-    image: 'images/gear/grinder.jpg',
+    image: 'images/merch/grinder.jpg',
     origin: 'The Hasher',
     short:
       'Grinder in plastica rigida a tre parti, con il raccoglitore di polline. Logo inciso sul coperchio.',
@@ -57,7 +57,7 @@ export const gear: Product[] = [
     price: 190,
     formato: 'Libretto da 32',
     inStock: true,
-    image: 'images/gear/cartine.jpg',
+    image: 'images/merch/cartine.jpg',
     origin: 'The Hasher',
     short: 'Cartine lunghe e sottili, carta non sbiancata. Libretto nero con il logo in giallo.',
   },
@@ -70,7 +70,7 @@ export const gear: Product[] = [
     price: 150,
     formato: 'Libretto da 50',
     inStock: true,
-    image: 'images/gear/filtri.jpg',
+    image: 'images/merch/filtri.jpg',
     origin: 'The Hasher',
     short: 'Cinquanta filtri pretagliati in carta spessa. Si arrotolano in un attimo.',
   },
@@ -88,7 +88,7 @@ export const gear: Product[] = [
       { label: 'Pack da 4', grams: 4, price: 990, inStock: true },
     ],
     inStock: true,
-    image: 'images/gear/clipper.jpg',
+    image: 'images/merch/clipper.jpg',
     origin: 'The Hasher',
     short: 'L’accendino ricaricabile con il pressino nella pietrina. Stampato con il nostro logo.',
   },
@@ -101,7 +101,7 @@ export const gear: Product[] = [
     price: 890,
     formato: '1 pz',
     inStock: true,
-    image: 'images/gear/porta-clipper.jpg',
+    image: 'images/merch/porta-clipper.jpg',
     origin: 'The Hasher',
     short: 'Guscio in metallo per il Clipper, con moschettone. Non lo perdi più.',
   },
@@ -114,7 +114,7 @@ export const gear: Product[] = [
     price: 1490,
     formato: '1 pz',
     inStock: true,
-    image: 'images/gear/vassoio.jpg',
+    image: 'images/merch/vassoio.jpg',
     origin: 'The Hasher',
     short: 'Vassoio in metallo stampato, bordi rialzati: niente finisce sul tavolo.',
   },
@@ -127,7 +127,7 @@ export const gear: Product[] = [
     price: 490,
     formato: 'Pack da 6',
     inStock: true,
-    image: 'images/gear/coni.jpg',
+    image: 'images/merch/coni.jpg',
     origin: 'The Hasher',
     short: 'Sei coni già arrotolati con il filtro: si riempiono e si chiudono.',
   },
@@ -140,7 +140,7 @@ export const gear: Product[] = [
     price: 690,
     formato: 'Pack da 3',
     inStock: true,
-    image: 'images/gear/tubi.jpg',
+    image: 'images/merch/tubi.jpg',
     origin: 'The Hasher',
     short: 'Tre tubi con tappo a pressione: il preroll resta intero e l’odore resta dentro.',
   },
@@ -153,7 +153,7 @@ export const gear: Product[] = [
     price: 1290,
     formato: '1 pz',
     inStock: false,
-    image: 'images/gear/busta.jpg',
+    image: 'images/merch/busta.jpg',
     origin: 'The Hasher',
     short: 'Busta con strato ai carboni attivi e zip: in tasca, in borsa, in viaggio.',
   },
@@ -170,7 +170,7 @@ export const gear: Product[] = [
     variants: taglie(2900, ['XL']),
     badges: ['New'],
     inStock: true,
-    image: 'images/gear/t-shirt.jpg',
+    image: 'images/merch/t-shirt.jpg',
     origin: 'The Hasher',
     short: 'T-shirt nera oversize, logo sul petto e «Good plants. Brighter days.» sulla schiena.',
   },
@@ -184,7 +184,7 @@ export const gear: Product[] = [
     formato: 'Taglie S–XL',
     variants: taglie(5900),
     inStock: true,
-    image: 'images/gear/felpa.jpg',
+    image: 'images/merch/felpa.jpg',
     origin: 'The Hasher',
     short: 'Felpa con cappuccio, cotone pesante, logo ricamato in giallo acido.',
   },
@@ -197,7 +197,7 @@ export const gear: Product[] = [
     price: 2400,
     formato: 'Taglia unica',
     inStock: true,
-    image: 'images/gear/cappellino.jpg',
+    image: 'images/merch/cappellino.jpg',
     origin: 'The Hasher',
     short: 'Cappellino nero a sei spicchi, logo ricamato, chiusura regolabile.',
   },
@@ -213,7 +213,7 @@ export const gear: Product[] = [
     formato: '8,25″',
     badges: ['Limited drop'],
     inStock: true,
-    image: 'images/gear/skate.jpg',
+    image: 'images/merch/skate.jpg',
     origin: 'The Hasher',
     short: 'Tavola in acero canadese a sette strati, grafica The Hasher sotto. Serie numerata.',
   },
@@ -226,7 +226,7 @@ export const gear: Product[] = [
     price: 490,
     formato: '10 adesivi',
     inStock: true,
-    image: 'images/gear/sticker.jpg',
+    image: 'images/merch/sticker.jpg',
     origin: 'The Hasher',
     short: 'Dieci adesivi in vinile, resistenti all’acqua: skate, laptop, casco, frigo.',
   },

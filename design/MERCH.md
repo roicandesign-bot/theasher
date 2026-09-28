@@ -1,4 +1,4 @@
-# Gear e nuove famiglie: costi, quantitativi, avvertenze
+# Merch e nuove famiglie: costi, quantitativi, avvertenze
 
 Nota per Lorenzo, 28/09/2026. Costi e quantitativi sono **stime indicative** di mercato
 (fornitori europei e asiatici di oggetti promozionali e private label): servono per scegliere
@@ -6,10 +6,9 @@ da dove partire, poi vanno confermati con i preventivi veri.
 
 ## Il nome del reparto
 
-Scelto: **Gear** (in menu) con sottotitolo «accessori e merch». Tiene insieme attrezzi e
-vestiti in una parola sola, suona bene accanto a «Shop» e funziona in tutte le lingue.
-
-Alternative, se non convince: **Merch**, **Smoke Shop**, **Hasher Club**, **Essentials**.
+«Gear» scartato da Lorenzo. Online adesso: **Merch**. Alternative mostrate nel menu
+(`design/screenshots/nome-reparto-4-proposte.jpg`): **Accessori**, **Headshop**, **Supply**.
+Per cambiarlo basta una riga: `nomeReparto` in `src/data/site.ts`.
 
 ## Cosa produrre e quanto costa
 

@@ -7,7 +7,7 @@ import Contact from './pages/Contact'
 import Distributor from './pages/Distributor'
 import Faq from './pages/Faq'
 import Franchising from './pages/Franchising'
-import Gear from './pages/Gear'
+import Merch from './pages/Merch'
 import { BlogArticle, BlogList } from './pages/Blog'
 import LabTests from './pages/LabTests'
 import Search from './pages/Search'
@@ -45,7 +45,7 @@ export type AppRoute = {
 export const routes: AppRoute[] = [
   { path: '/', label: 'Home', component: Home },
   { path: '/negozio', label: 'Negozio', component: Shop, inNav: false },
-  { path: '/gear', label: 'Gear', component: Gear, inNav: false },
+  { path: '/merch', label: 'Merch', component: Merch, inNav: false },
   { path: '/carrello', label: 'Carrello', component: Cart, inNav: false },
   { path: '/checkout', label: 'Checkout', component: Checkout, inNav: false, bare: true },
   {

@@ -110,6 +110,17 @@ export function FilterSheet({ open, filtri, risultati, onClose, onSet, onReset }
             </Gruppo>
           ))}
 
+          <Gruppo titolo="Senza THC">
+            <Chip
+              size="sm"
+              count={conta(filtri, { thcFree: true })}
+              active={filtri.thcFree}
+              onClick={() => onSet('thcfree', filtri.thcFree ? null : 'si')}
+            >
+              THC free
+            </Chip>
+          </Gruppo>
+
           <Gruppo titolo="Selezioni">
             {(['New', 'Best seller', 'Limited drop'] as const).map((b) => {
               const attivo = filtri.badge === b

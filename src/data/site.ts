@@ -2,6 +2,9 @@
  * Dati statici del sito: nome, claim, menu, info bar, footer.
  * Solo contenuti. In fase di sviluppo arriveranno dal pannello admin.
  */
+/** Nome del reparto accessori e merch nel menu e nella sua pagina (alternative in design/MERCH.md). */
+export const nomeReparto = 'Merch'
+
 export const site = {
   name: 'The Hasher',
   claim: 'Good plants. Brighter days.',
@@ -46,17 +49,17 @@ export const site = {
       ],
     },
     {
-      label: 'Gear',
-      to: '/gear',
+      label: nomeReparto,
+      to: '/merch',
       sotto: [
-        { label: 'Tutto il Gear', to: '/gear', img: 'images/gear/roll-kit.jpg' },
-        { label: 'Per fumare', to: '/gear?categoria=fumo', img: 'images/gear/grinder.jpg' },
+        { label: 'Vedi tutto', to: '/merch', img: 'images/merch/roll-kit.jpg' },
+        { label: 'Per fumare', to: '/merch?categoria=fumo', img: 'images/merch/grinder.jpg' },
         {
           label: 'Abbigliamento',
-          to: '/gear?categoria=abbigliamento',
-          img: 'images/gear/t-shirt.jpg',
+          to: '/merch?categoria=abbigliamento',
+          img: 'images/merch/t-shirt.jpg',
         },
-        { label: 'Skate e sticker', to: '/gear?categoria=skate', img: 'images/gear/skate.jpg' },
+        { label: 'Skate e sticker', to: '/merch?categoria=skate', img: 'images/merch/skate.jpg' },
       ],
     },
     { label: 'Diventa rivenditore', to: '/diventa-distributore' },
@@ -80,7 +83,7 @@ export const site = {
       { label: 'Hash', to: '/negozio?categoria=hash' },
       { label: 'Estratti', to: '/negozio?categoria=estratti' },
       { label: 'Preroll', to: '/negozio?categoria=preroll' },
-      { label: 'Gear e merch', to: '/gear' },
+      { label: 'Merch e accessori', to: '/merch' },
       { label: 'Linea THC-X', to: '/negozio?linea=THC-X' },
       { label: 'New Drops', to: '/#new-drop' },
       { label: 'Best seller', to: '/#best-seller' },

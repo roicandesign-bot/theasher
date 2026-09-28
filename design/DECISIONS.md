@@ -117,3 +117,5 @@
 - 2026-09-28 · Pack di preroll, vape, edibles, semi, cloni e oli generati dalla bozza di Lorenzo con scripts/pack-hasher.py: stesse grafiche, scritte dal catalogo, scontorno e sfondo scuro con alone giallo e riflesso. «100% LEGAL» diventa «LAB TESTED»
 - 2026-09-28 · Nuovo reparto «Gear» (accessori e merch) con pagina /gear e voce di menu dopo Shop: Per fumare, Abbigliamento, Skate e sticker. 15 prodotti scelti tra i più semplici da produrre; costi e quantità indicativi in design/GEAR.md
 - 2026-09-28 · Foto del Gear: illustrazioni gialle sul fondo dei pack, con il logo vero (scripts/gear-illustrazioni.mjs), finché non arrivano foto o render approvati
+- 2026-09-28 · «Gear» non piace a Lorenzo: il reparto si chiama «Merch» (percorso /merch), con il nome in una sola costante (`nomeReparto`). Alternative mostrate: Accessori, Headshop, Supply
+- 2026-09-28 · Negozio su telefono e tablet: al posto delle due righe di pillole, due pulsanti grandi, «Famiglia» (apre un pannello con i riquadri foto delle famiglie) e «Filtri» (dentro anche le linee e «THC free»). Da 1024 px la barra resta com'era

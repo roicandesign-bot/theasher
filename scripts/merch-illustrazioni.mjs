@@ -1,10 +1,10 @@
 /**
- * Illustrazioni segnaposto del reparto Gear: oggetti disegnati in linea gialla,
- * logo vero stampato sopra, sullo stesso fondo scuro dei pack (design/inputs/gear/sfondo.jpg).
+ * Illustrazioni segnaposto del reparto Merch: oggetti disegnati in linea gialla,
+ * logo vero stampato sopra, sullo stesso fondo scuro dei pack (design/inputs/merch/sfondo.jpg).
  * Restano finché non arrivano le foto vere.
  *
- *   node scripts/gear-illustrazioni.mjs            # tutte
- *   node scripts/gear-illustrazioni.mjs grinder    # solo alcune
+ *   node scripts/merch-illustrazioni.mjs            # tutte
+ *   node scripts/merch-illustrazioni.mjs grinder    # solo alcune
  */
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
@@ -13,7 +13,7 @@ import { chromium } from 'playwright'
 
 const radice = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const url = (p) => pathToFileURL(resolve(radice, p)).href
-const uscita = resolve(radice, 'public/images/gear')
+const uscita = resolve(radice, 'public/images/merch')
 mkdirSync(uscita, { recursive: true })
 
 const Y = '#DFFF00'
@@ -184,7 +184,7 @@ const disegni = {
 
 const html = (svg) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face { font-family: Anton; src: url('${url('node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2')}'); }
-html,body{margin:0;width:1600px;height:1200px;overflow:hidden;background:#0a0a0a url('${url('design/inputs/gear/sfondo.jpg')}') center/cover}
+html,body{margin:0;width:1600px;height:1200px;overflow:hidden;background:#0a0a0a url('${url('design/inputs/merch/sfondo.jpg')}') center/cover}
 .oggetto{position:absolute;left:50%;top:70px;width:1040px;height:1040px;transform:translateX(-50%);
   filter:drop-shadow(0 30px 40px rgba(0,0,0,.65));
   -webkit-box-reflect: below -120px linear-gradient(transparent 82%, rgba(255,255,255,.10));}
@@ -193,7 +193,7 @@ html,body{margin:0;width:1600px;height:1200px;overflow:hidden;background:#0a0a0a
 const solo = process.argv.slice(2)
 const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
 const page = await browser.newPage({ viewport: { width: 1600, height: 1200 } })
-const tmp = resolve(radice, 'node_modules/.cache/gear')
+const tmp = resolve(radice, 'node_modules/.cache/merch')
 mkdirSync(tmp, { recursive: true })
 for (const [nome, svg] of Object.entries(disegni)) {
   if (solo.length && !solo.includes(nome)) continue

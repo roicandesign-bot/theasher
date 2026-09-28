@@ -1,8 +1,9 @@
 // Negozio: intestazione → barra compatta (famiglia, linea, filtri) → griglia prodotti.
 // Tutti gli altri filtri stanno nel pannello. I filtri vivono nell'indirizzo: la pagina è condivisibile.
-import { SlidersHorizontal, X } from 'lucide-react'
+import { ChevronDown, SlidersHorizontal, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { FamigliaSheet } from '@/components/shop/FamigliaSheet'
 import { FilterSheet } from '@/components/shop/FilterSheet'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -33,6 +34,7 @@ const linguette: { id: Categoria | null; label: string }[] = [
 export default function Shop() {
   const [params, setParams] = useSearchParams()
   const [pannello, setPannello] = useState(false)
+  const [sceltaFamiglia, setSceltaFamiglia] = useState(false)
   const filtri = leggiFiltri(params)
   const mostrati = applica(filtri)
   const evidenzia = filtri.cannabinoide ?? (filtri.linea as Cannabinoide | null)
@@ -97,9 +99,38 @@ export default function Shop() {
         </Container>
       </Section>
 
-      {/* Barra dei filtri. Telefono e portatile: due righe. Schermi larghi: una barra unica, famiglie | linee. */}
+      {/*
+        Barra dei filtri.
+        Telefono e tablet: due pulsanti, «Famiglia» e «Filtri» (le linee stanno nel pannello).
+        Portatile: famiglie e linee su due righe. Schermi larghi: una barra unica, famiglie | linee.
+      */}
       <div className="sticky top-18 z-20 border-y border-line bg-bg/95 backdrop-blur md:top-20">
-        <Container className="flex flex-col gap-2 py-3 xl:flex-row xl:items-center xl:gap-3">
+        <Container className="grid grid-cols-[1fr_auto] gap-2 py-3 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setSceltaFamiglia(true)}
+            aria-haspopup="dialog"
+            className="flex h-12 min-w-0 items-center justify-between gap-3 rounded-button bg-bg-alt px-4 ring-1 ring-line transition ring-inset hocus:ring-primary"
+          >
+            <span className="flex min-w-0 items-baseline gap-2">
+              <span className="label text-[0.625rem] text-fg-muted">Famiglia</span>
+              <span className="truncate label text-[0.8125rem] text-primary">
+                {filtri.categoria ? categorie[filtri.categoria] : 'Tutto'}
+              </span>
+              <span className="text-xs text-fg-muted">
+                {contaCategoria(filtri, filtri.categoria)}
+              </span>
+            </span>
+            <ChevronDown aria-hidden="true" className="size-4 shrink-0 text-primary" />
+          </button>
+          <BottoneFiltri
+            attivi={contaAttivi(filtri)}
+            onClick={() => setPannello(true)}
+            className="h-12"
+          />
+        </Container>
+
+        <Container className="hidden py-3 lg:flex lg:flex-col lg:gap-2 xl:flex-row xl:items-center xl:gap-3">
           <div className="flex min-w-0 flex-col gap-2 xl:flex-row xl:items-center xl:gap-0 xl:rounded-button xl:bg-bg-alt xl:p-1">
             {/* le famiglie (+ filtri, sotto gli schermi larghi) */}
             <div className="flex min-w-0 items-center gap-2">
@@ -260,6 +291,13 @@ export default function Shop() {
         </Container>
       </Section>
 
+      <FamigliaSheet
+        open={sceltaFamiglia}
+        scelta={filtri.categoria}
+        conta={(c) => contaCategoria(filtri, c)}
+        onScegli={setCategoria}
+        onClose={() => setSceltaFamiglia(false)}
+      />
       <FilterSheet
         open={pannello}
         filtri={filtri}
@@ -293,7 +331,7 @@ function BottoneFiltri({
       )}
     >
       <SlidersHorizontal aria-hidden="true" className="size-4" strokeWidth={1.75} />
-      <span className="hidden sm:inline">Filtri</span>
+      <span>Filtri</span>
       {attivi > 0 && (
         <span className="grid size-5 place-items-center rounded-full bg-primary text-[0.625rem] text-primary-fg">
           {attivi}

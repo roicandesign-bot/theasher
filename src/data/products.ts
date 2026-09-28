@@ -3,11 +3,11 @@
  * Tassonomia: linee (CBD, THC-X, CBG, CBN) × famiglie (Fiori, Hash, Estratti, Oli, Preroll,
  * Vape, Edibles, Semi, Cloni). I fiori si distinguono per coltivazione e tipologia,
  * hash ed estratti per metodo, le altre famiglie per tipologia.
- * Il reparto Gear (accessori e merch) sta in `gear.ts`; le famiglie nuove in `famiglie.ts`.
+ * Il reparto Merch (accessori e merch) sta in `merch.ts`; le famiglie nuove in `famiglie.ts`.
  * Prezzi in centesimi. Immagini: ritagli demo dai mockup del brand e pack generati.
  */
 import { famiglie } from './famiglie'
-import { gear } from './gear'
+import { merch } from './merch'
 
 export type Variant = {
   /** Etichetta del formato, es. "3,5 g" */
@@ -38,18 +38,32 @@ export const categorie = {
 } as const
 export type Categoria = keyof typeof categorie
 
-/** Il reparto Gear: accessori per fumatori e merch. Ha una pagina sua, fuori dal negozio. */
-export const categorieGear = {
+/** Foto di ogni famiglia: riquadri del menu e del pannello «Famiglia» su telefono. */
+export const fotoFamiglia: Record<Categoria | 'tutto', string> = {
+  tutto: 'images/demo/hero-products.jpg',
+  fiori: 'images/demo/cat-flower.jpg',
+  hash: 'images/demo/cat-hash.jpg',
+  estratti: 'images/demo/jar-hash.jpg',
+  oli: 'images/prodotti/olio-full-spectrum.jpg',
+  preroll: 'images/prodotti/preroll-gelato-41.jpg',
+  vape: 'images/prodotti/vape-lemon-haze.jpg',
+  edibles: 'images/prodotti/edibles-mango.jpg',
+  semi: 'images/prodotti/semi-gelato-41.jpg',
+  cloni: 'images/prodotti/cloni-silver-haze.jpg',
+}
+
+/** Il reparto Merch: accessori per fumatori e merch. Ha una pagina sua, fuori dal negozio. */
+export const categorieMerch = {
   fumo: 'Per fumare',
   abbigliamento: 'Abbigliamento',
   skate: 'Skate e sticker',
 } as const
-export type CategoriaGear = keyof typeof categorieGear
+export type CategoriaMerch = keyof typeof categorieMerch
 
-/** Nome di qualunque famiglia, del negozio o del Gear. */
-export const nomiCategoria: Record<Categoria | CategoriaGear, string> = {
+/** Nome di qualunque famiglia, del negozio o del Merch. */
+export const nomiCategoria: Record<Categoria | CategoriaMerch, string> = {
   ...categorie,
-  ...categorieGear,
+  ...categorieMerch,
 }
 
 /** Fiori: metodo di coltivazione, dal più pregiato al più economico. */
@@ -123,12 +137,12 @@ export type Cannabinoide = (typeof cannabinoidi)[number]
 export type Product = {
   slug: string
   name: string
-  /** Linea del cannabinoide. Manca solo nel reparto Gear. */
+  /** Linea del cannabinoide. Manca solo nel reparto Merch. */
   linea?: Linea
-  category: Categoria | CategoriaGear
-  /** Reparto: il Gear ha una pagina sua; senza reparto il prodotto sta nel negozio */
-  reparto?: 'gear'
-  /** Profilo aromatico, tre parole (per il Gear: tre caratteristiche) */
+  category: Categoria | CategoriaMerch
+  /** Reparto: il Merch ha una pagina sua; senza reparto il prodotto sta nel negozio */
+  reparto?: 'merch'
+  /** Profilo aromatico, tre parole (per il Merch: tre caratteristiche) */
   aroma: [string, string, string]
   /** Cannabinoidi in percentuale sul lotto */
   attivi: Attivi
@@ -851,8 +865,8 @@ const base: Product[] = [
   },
 ]
 
-/** Tutto il catalogo: negozio (famiglie storiche + nuove) e reparto Gear. */
-export const products: Product[] = [...base, ...famiglie, ...gear]
+/** Tutto il catalogo: negozio (famiglie storiche + nuove) e reparto Merch. */
+export const products: Product[] = [...base, ...famiglie, ...merch]
 
 /* ---------------- Helper di catalogo ---------------- */
 
@@ -953,9 +967,9 @@ export function etichettaCategoria(p: Product) {
   return p.linea ? `${nome} ${p.linea}` : nome
 }
 
-/** Dove sta la famiglia del prodotto: negozio o Gear. */
+/** Dove sta la famiglia del prodotto: negozio o Merch. */
 export function pathCategoria(p: Product) {
-  return `${p.reparto === 'gear' ? '/gear' : '/negozio'}?categoria=${p.category}`
+  return `${p.reparto === 'merch' ? '/merch' : '/negozio'}?categoria=${p.category}`
 }
 
 export const bestSellers = products.filter((p) => p.badges?.includes('Best seller'))

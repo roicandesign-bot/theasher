@@ -68,8 +68,8 @@ export const assi = [
 ] as const
 export type Asse = (typeof assi)[number]
 
-/** Il negozio mostra le famiglie; il reparto Gear ha una pagina sua. */
-export const catalogoShop = products.filter((p) => p.reparto !== 'gear')
+/** Il negozio mostra le famiglie; il reparto Merch ha una pagina sua. */
+export const catalogoShop = products.filter((p) => p.reparto !== 'merch')
 
 /** Famiglie con percentuali di cannabinoidi sul lotto: solo lì hanno senso cannabinoidi e forza. */
 const conPercentuali: (Categoria | null)[] = [
