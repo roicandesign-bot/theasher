@@ -1,6 +1,6 @@
 import { ChevronDown, Menu, Search, ShoppingBag, User, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/components/ui/IconButton'
 import { Logo } from '@/components/ui/Logo'
@@ -34,6 +34,7 @@ export function Header() {
   const [sotto, setSotto] = useState<string | null>(null)
   const cart = useCart()
   const attiva = useVoceAttiva()
+  const navigate = useNavigate()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -131,7 +132,7 @@ export function Header() {
             <NavLink
               to="/cerca"
               aria-label="Cerca"
-              className="hidden size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft sm:grid hocus:bg-surface-hover hocus:text-primary"
+              className="grid size-11 place-items-center rounded-full text-fg transition duration-200 ease-out-soft hocus:bg-surface-hover hocus:text-primary"
             >
               <Search className="size-5" />
             </NavLink>
@@ -203,6 +204,40 @@ export function Header() {
           className="container-content flex flex-1 flex-col gap-1 overflow-y-auto overscroll-contain py-6"
           aria-label="Menu mobile"
         >
+          <form
+            role="search"
+            className="relative mb-4"
+            onSubmit={(e) => {
+              e.preventDefault()
+              const q = new FormData(e.currentTarget).get('q')?.toString().trim() ?? ''
+              setOpen(false)
+              navigate(q ? `/cerca?q=${encodeURIComponent(q)}` : '/cerca')
+              e.currentTarget.reset()
+            }}
+          >
+            <label htmlFor="menu-cerca" className="sr-only">
+              Cerca nel sito
+            </label>
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-fg-muted"
+            />
+            <input
+              id="menu-cerca"
+              name="q"
+              type="search"
+              enterKeyHint="search"
+              autoComplete="off"
+              placeholder="Cerca prodotti, lotti, articoli"
+              className="h-12 w-full rounded-button bg-surface pr-24 pl-11 text-base text-fg ring-1 ring-line ring-inset placeholder:text-fg-subtle focus:ring-2 focus:ring-primary focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="absolute top-1/2 right-1.5 h-9 -translate-y-1/2 rounded-button bg-primary px-4 label text-[0.6875rem] text-primary-fg transition hocus:bg-primary/90"
+            >
+              Cerca
+            </button>
+          </form>
           {site.nav.map((item) =>
             'sotto' in item && item.sotto ? (
               <div key={item.label} className="border-b border-line">
@@ -285,24 +320,14 @@ export function Header() {
             <Button to="/negozio" size="lg" onClick={() => setOpen(false)}>
               Shop the drop →
             </Button>
-            <div className="flex gap-2">
-              <Button
-                to="/cerca"
-                variant="ghost"
-                className="flex-1 ring-1 ring-line ring-inset"
-                onClick={() => setOpen(false)}
-              >
-                <Search className="size-4" /> Cerca
-              </Button>
-              <Button
-                to="/account"
-                variant="ghost"
-                className="flex-1 ring-1 ring-line ring-inset"
-                onClick={() => setOpen(false)}
-              >
-                <User className="size-4" /> Account
-              </Button>
-            </div>
+            <Button
+              to="/account"
+              variant="ghost"
+              className="ring-1 ring-line ring-inset"
+              onClick={() => setOpen(false)}
+            >
+              <User className="size-4" /> Account
+            </Button>
           </div>
           <p className="mt-auto pt-8 label text-[0.6875rem] text-fg-muted">{site.claim}</p>
         </nav>

@@ -97,3 +97,5 @@
 - 2026-09-27 · Mockup del negozio generati con Higgsfield (esterno, interno, bancone, corner) usando logo e packaging veri come riferimento · non scaricabili da questa sessione (cloudfront bloccato dalla rete): in pagina restano riquadri «Render in approvazione» finché Lorenzo non approva e rimanda le foto
 - 2026-09-28 · Render del negozio approvati da Lorenzo: esterno, interno, bancone (il corner no). L'esterno apre la pagina franchising, interno e bancone illustrano «Il tuo negozio» con una riga che li dichiara render di progetto · originali in design/inputs/negozio/
 - 2026-09-28 · Ordine del menu deciso da Lorenzo: Home, Shop, Diventa rivenditore, Franchising, Blog, Azienda
+- 2026-09-28 · Ricerca: campo di ricerca direttamente in cima al menu mobile (si scrive e si va, invio o bottone giallo), lente visibile nell'header anche su telefono; tolto il bottone «Cerca» in fondo al menu · la ricerca non dipende più da un tasto in fondo allo schermo, vicino alla barra di Safari
+- 2026-09-28 · Pagina Ricerca: il campo segue sempre l'indirizzo · prima, ritornando su /cerca dal menu, il campo restava pieno ma i risultati sparivano

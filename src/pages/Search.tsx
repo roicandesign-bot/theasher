@@ -1,6 +1,6 @@
 // Ricerca: campo → suggerimenti → risultati → stato vuoto utile
 import { Search as SearchIcon, X } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
@@ -15,7 +15,6 @@ const suggerimenti = ['Hash', 'Lemon Haze', 'Fiori', 'Lotto', 'Spedizione']
 
 export default function Search() {
   const [params, setParams] = useSearchParams()
-  const [q, setQ] = useState(params.get('q') ?? '')
   const query = (params.get('q') ?? '').trim().toLowerCase()
 
   const prodottiTrovati = useMemo(() => {
@@ -49,7 +48,8 @@ export default function Search() {
             className="mt-8 flex max-w-xl gap-2"
             onSubmit={(e) => {
               e.preventDefault()
-              setParams(q.trim() ? { q: q.trim() } : {})
+              const q = new FormData(e.currentTarget).get('q')?.toString().trim() ?? ''
+              setParams(q ? { q } : {})
             }}
           >
             <div className="relative flex-1">
@@ -61,9 +61,13 @@ export default function Search() {
                 className="pointer-events-none absolute top-1/2 left-4 size-4 -translate-y-1/2 text-fg-muted"
               />
               <Input
+                // la chiave rinnova il campo quando cambia la ricerca nell'indirizzo
+                key={params.get('q') ?? ''}
                 id="q"
-                value={q}
-                onChange={(e) => setQ(e.target.value)}
+                name="q"
+                type="search"
+                enterKeyHint="search"
+                defaultValue={params.get('q') ?? ''}
                 placeholder="Prodotto, lotto, argomento"
                 className="pl-11"
                 autoFocus
@@ -81,10 +85,7 @@ export default function Search() {
                 <button
                   key={s}
                   type="button"
-                  onClick={() => {
-                    setQ(s)
-                    setParams({ q: s })
-                  }}
+                  onClick={() => setParams({ q: s })}
                   className="rounded-button px-3.5 py-2 label text-[0.6875rem] text-fg ring-1 ring-line transition ring-inset hocus:ring-primary"
                 >
                   {s}
@@ -103,10 +104,7 @@ export default function Search() {
             </p>
             <button
               type="button"
-              onClick={() => {
-                setQ('')
-                setParams({})
-              }}
+              onClick={() => setParams({})}
               className="inline-flex items-center gap-1.5 rounded-badge bg-bg-alt px-2 py-1 label text-[0.6875rem] transition hocus:text-primary"
             >
               Azzera <X className="size-3" />
