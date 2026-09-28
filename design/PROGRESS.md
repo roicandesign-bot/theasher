@@ -39,6 +39,12 @@ La filiera in home usa cinque foto del brand rilavorate (`public/images/filiera/
 `design/inputs/filiera/`, trattamento con `scripts/look-hasher.py`). Le foto prodotto sono ancora
 ritagli demo dai mockup.
 
+## Promemoria di Lorenzo
+
+- **Testi legali (privacy, cookie policy, FAQ, termini)**: prendere spunto da **Rollz** e **Califarm**
+  per struttura, voci e tono. I testi restano nostri (non copiati) e vanno validati dal legale.
+  Da ricordare a Lorenzo quando si lavora su pagine legali, FAQ o banner cookie.
+
 ## Prossima azione consigliata
 
 Foto e nomi veri dei prodotti (archivio Roican: va allegato in chat o sbloccato nelle impostazioni

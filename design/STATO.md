@@ -42,6 +42,10 @@ Il brand ha chiesto l'**e-commerce completo proprietario** (Next.js, PostgreSQL,
 
 Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, seed e test integration girano qui), Docker ha solo il client, `github.io` resta bloccato.
 
+## Promemoria
+
+- Privacy, cookie policy, FAQ e termini: spunto da **Rollz** e **Califarm** (chiesto da Lorenzo il 28/09/2026). Vedi `design/PROGRESS.md`.
+
 ## Prossimo passo
 
 Approvazione delle decisioni → milestone **M0 Fondazione** sul branch `claude/the-hasher-ecommerce-o8r9lt`, poi merge su `main` a fine milestone approvata.

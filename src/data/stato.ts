@@ -114,7 +114,7 @@ export const fuoriDalSito = [
     stato: 'da-fare' as const,
     chi: 'Consulente legale',
     testo:
-      'Privacy, cookie, termini di vendita, avvertenze di prodotto, età minima, regole per Paese. Nessuno di questi testi può essere inventato.',
+      'Privacy, cookie, FAQ, termini di vendita, avvertenze di prodotto, età minima, regole per Paese. Promemoria: prendere spunto da Rollz e Califarm per struttura e voci; i testi restano nostri e li valida il legale.',
   },
   {
     area: 'Pagamenti',
