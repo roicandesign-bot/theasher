@@ -1,0 +1,5130 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <title>The Hasher · Immagine coordinata</title>
+    <style>
+      /* Font del sito, dagli stessi file che usa il sito (pacchetti fontsource, licenza OFL 1.1) */
+      @font-face {
+        font-family: 'Anton';
+        src: url('../../node_modules/@fontsource/anton/files/anton-latin-400-normal.woff2')
+          format('woff2');
+      }
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../../node_modules/@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2')
+          format('woff2-variations');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+      }
+      @font-face {
+        font-family: 'Archivo';
+        src: url('../../node_modules/@fontsource-variable/archivo/files/archivo-latin-ext-wdth-normal.woff2')
+          format('woff2-variations');
+        font-weight: 100 900;
+        font-stretch: 62% 125%;
+        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+2212;
+      }
+
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+      :root {
+        --nero: #050505;
+        --sup: #0d0d0d;
+        --sup2: #141414;
+        --linea: #262626;
+        --linea2: #404040;
+        --giallo: #dfff00;
+        --bianco: #ffffff;
+        --grigio: #a3a3a3;
+        --grigio2: #737373;
+        --rosso: #ff5c5c;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: var(--nero);
+        color: var(--bianco);
+        font-family: 'Archivo', sans-serif;
+        font-size: 9pt;
+        line-height: 1.45;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        font-variant-numeric: tabular-nums;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      /* ---------- Pagina ---------- */
+      .pagina {
+        width: 297mm;
+        height: 210mm;
+        padding: 12mm 15mm 10mm;
+        position: relative;
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+        display: flex;
+        flex-direction: column;
+        background: var(--nero);
+      }
+      .testa {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 6mm;
+      }
+      .sez {
+        font-weight: 700;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 7.5pt;
+        color: var(--giallo);
+        display: flex;
+        align-items: center;
+        gap: 2mm;
+      }
+      .doc {
+        font-weight: 600;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 6.5pt;
+        color: var(--grigio2);
+      }
+      h1,
+      h2,
+      h3 {
+        font-family: 'Anton', sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        letter-spacing: 0.005em;
+      }
+      .titolo {
+        font-size: 30pt;
+        line-height: 0.95;
+        margin-top: 3mm;
+      }
+      .sotto {
+        margin-top: 2mm;
+        color: var(--grigio);
+        font-size: 10pt;
+        max-width: 190mm;
+      }
+      .corpo {
+        flex: 1;
+        min-height: 0;
+        margin-top: 6mm;
+        position: relative;
+      }
+      .piede {
+        display: flex;
+        justify-content: space-between;
+        border-top: 0.3mm solid var(--linea);
+        padding-top: 2.5mm;
+        margin-top: 4mm;
+        font-weight: 600;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-size: 6pt;
+        color: var(--grigio2);
+      }
+      .piede b {
+        color: var(--giallo);
+        font-weight: 700;
+      }
+
+      /* ---------- Mattoni ---------- */
+      .rombo {
+        width: 2.4mm;
+        height: 2.4mm;
+        flex: none;
+        display: inline-block;
+        background: var(--giallo);
+        clip-path: polygon(50% 0, 66% 34%, 100% 50%, 66% 66%, 50% 100%, 34% 66%, 0 50%, 34% 34%);
+      }
+      .rombo.nero {
+        background: var(--nero);
+      }
+      .et {
+        font-weight: 600;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 6.8pt;
+        color: var(--grigio);
+      }
+      .et.g {
+        color: var(--giallo);
+      }
+      .et.b {
+        color: var(--bianco);
+      }
+      h3 {
+        font-size: 13pt;
+        line-height: 1;
+      }
+      h4 {
+        font-weight: 700;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 7.5pt;
+        color: var(--giallo);
+        margin-bottom: 1.5mm;
+      }
+      p + p {
+        margin-top: 1.5mm;
+      }
+      .muto {
+        color: var(--grigio);
+      }
+      .piccolo {
+        font-size: 7.5pt;
+        line-height: 1.4;
+      }
+      .mono {
+        font-family: ui-monospace, 'DejaVu Sans Mono', monospace;
+        font-size: 7.5pt;
+        letter-spacing: 0.02em;
+      }
+      .card {
+        background: var(--sup);
+        border: 0.3mm solid var(--linea);
+        border-radius: 2.5mm;
+        padding: 4mm;
+      }
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5mm;
+      }
+      .g3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5mm;
+      }
+      .g4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 4mm;
+      }
+      .g5 {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 3.5mm;
+      }
+      .g6 {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 3mm;
+      }
+      .fila {
+        display: flex;
+        gap: 5mm;
+      }
+      .foto {
+        border-radius: 2mm;
+        overflow: hidden;
+        border: 0.3mm solid var(--linea);
+        background: var(--sup);
+        position: relative;
+      }
+      .foto img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .didas {
+        margin-top: 1.5mm;
+        font-size: 6.8pt;
+        color: var(--grigio);
+        line-height: 1.35;
+      }
+      .didas b {
+        color: var(--bianco);
+        font-weight: 600;
+      }
+      ul.lista {
+        list-style: none;
+      }
+      ul.lista li {
+        position: relative;
+        padding-left: 3.5mm;
+        margin-top: 1.2mm;
+      }
+      ul.lista li::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 1.6mm;
+        width: 1.6mm;
+        height: 1.6mm;
+        background: var(--giallo);
+        clip-path: polygon(50% 0, 66% 34%, 100% 50%, 66% 66%, 50% 100%, 34% 66%, 0 50%, 34% 34%);
+      }
+      ul.lista.no li::before {
+        background: var(--rosso);
+        clip-path: none;
+        width: 1.8mm;
+        height: 0.4mm;
+        top: 2.2mm;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th {
+        text-align: left;
+        font-weight: 600;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        font-size: 6.3pt;
+        color: var(--grigio2);
+        padding: 1.2mm 2mm 1.2mm 0;
+        border-bottom: 0.3mm solid var(--linea2);
+      }
+      td {
+        padding: 1.3mm 2mm 1.3mm 0;
+        border-bottom: 0.3mm solid var(--linea);
+        vertical-align: top;
+        font-size: 7.6pt;
+      }
+      .tratto {
+        position: absolute;
+        inset: 0;
+        background: var(--giallo);
+        -webkit-mask: url('img/logo-maschera.png') no-repeat;
+        mask: url('img/logo-maschera.png') no-repeat;
+        -webkit-mask-size: 260%;
+        mask-size: 260%;
+        -webkit-mask-position: 30% 40%;
+        mask-position: 30% 40%;
+      }
+      .tratto.nero {
+        background: var(--nero);
+      }
+      .num {
+        font-family: 'Anton', sans-serif;
+        font-size: 26pt;
+        line-height: 1;
+        color: var(--giallo);
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        font-weight: 700;
+        font-stretch: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 7pt;
+        height: 8mm;
+        padding: 0 5mm;
+        gap: 1.5mm;
+      }
+      .ok,
+      .ko {
+        position: absolute;
+        top: 1.5mm;
+        left: 1.5mm;
+        font-weight: 800;
+        font-stretch: 80%;
+        font-size: 6pt;
+        letter-spacing: 0.1em;
+        padding: 0.4mm 1.4mm;
+        border-radius: 0.8mm;
+        z-index: 2;
+      }
+      .ok {
+        background: var(--giallo);
+        color: var(--nero);
+      }
+      .ko {
+        background: var(--rosso);
+        color: var(--nero);
+      }
+      .segnaposto {
+        color: var(--grigio2);
+      }
+
+      /* ---------- Copertina ---------- */
+      .cover {
+        padding: 0;
+      }
+      .cover .tratto {
+        -webkit-mask-size: 210%;
+        mask-size: 210%;
+        -webkit-mask-position: 95% 30%;
+        mask-position: 95% 30%;
+        opacity: 0.9;
+      }
+      .cover .dentro {
+        position: relative;
+        height: 100%;
+        padding: 14mm 16mm 12mm;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(90deg, var(--nero) 44%, rgb(5 5 5 / 0) 76%);
+      }
+
+      /* ---------- Colori ---------- */
+      .campione {
+        border-radius: 2.5mm;
+        overflow: hidden;
+        border: 0.3mm solid var(--linea);
+        display: flex;
+        flex-direction: column;
+      }
+      .campione .c {
+        flex: 1;
+        min-height: 42mm;
+        padding: 3mm;
+        display: flex;
+        align-items: flex-end;
+      }
+      .campione .d {
+        background: var(--sup);
+        padding: 3mm;
+      }
+      .mini .c {
+        flex: none;
+        min-height: 0;
+        height: 14mm;
+      }
+      .riquadro {
+        position: relative;
+        height: 36mm;
+        border-radius: 2mm;
+        overflow: hidden;
+        border: 0.3mm solid var(--linea);
+        display: grid;
+        place-items: center;
+        background: var(--nero);
+      }
+      table.media td {
+        padding-top: 1.6mm;
+        padding-bottom: 1.6mm;
+      }
+      table.aria td {
+        padding-top: 2.3mm;
+        padding-bottom: 2.3mm;
+      }
+      .mini .d {
+        padding: 2mm 2.5mm;
+      }
+
+      /* ---------- Schermi ---------- */
+      .browser {
+        border-radius: 2mm;
+        overflow: hidden;
+        border: 0.3mm solid var(--linea2);
+        background: #1a1a1a;
+      }
+      .browser .barra {
+        height: 4.5mm;
+        display: flex;
+        align-items: center;
+        gap: 1.2mm;
+        padding: 0 2mm;
+        border-bottom: 0.3mm solid var(--linea);
+      }
+      .browser .barra i {
+        width: 1.6mm;
+        height: 1.6mm;
+        border-radius: 50%;
+        background: var(--linea2);
+      }
+      .browser .barra span {
+        margin-left: 2mm;
+        font-size: 5.5pt;
+        color: var(--grigio2);
+        font-family: ui-monospace, monospace;
+      }
+      .telefono {
+        border-radius: 6mm;
+        padding: 1.6mm;
+        background: #1c1c1c;
+        border: 0.3mm solid var(--linea2);
+      }
+      .telefono .schermo {
+        border-radius: 4.6mm;
+        overflow: hidden;
+        aspect-ratio: 390 / 844;
+      }
+      .telefono .schermo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      /* ---------- Social ---------- */
+      .post {
+        position: relative;
+        aspect-ratio: 1;
+        overflow: hidden;
+        background: var(--nero);
+        border: 0.3mm solid var(--linea);
+      }
+      .post img.sf {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .post .txt {
+        position: absolute;
+        left: 4%;
+        top: 4%;
+        font-family: 'Anton', sans-serif;
+        text-transform: uppercase;
+        color: var(--giallo);
+        line-height: 0.9;
+        font-size: 17pt;
+      }
+      .post .sub {
+        position: absolute;
+        left: 5%;
+        bottom: 5%;
+        font-weight: 700;
+        font-stretch: 80%;
+        letter-spacing: 0.25em;
+        font-size: 4.6pt;
+        text-transform: uppercase;
+      }
+      .velo {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgb(5 5 5 / 0.75), rgb(5 5 5 / 0) 45%);
+      }
+      .velo.basso {
+        background: linear-gradient(0deg, rgb(5 5 5 / 0.85), rgb(5 5 5 / 0) 55%);
+      }
+      .marca {
+        position: absolute;
+        width: 5mm;
+        height: 5mm;
+        border-radius: 50%;
+        background: var(--giallo);
+        color: var(--nero);
+        font-weight: 800;
+        font-size: 7pt;
+        display: grid;
+        place-items: center;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 0 0.6mm var(--nero);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ================= COPERTINA ================= -->
+    <section class="pagina cover">
+      <div class="tratto"></div>
+      <div class="dentro">
+        <div class="testa">
+          <span class="sez"><i class="rombo"></i>The Hasher · Premium CBD hash & CBD flower</span>
+          <span class="doc">Documento interno · v1 · 29 settembre 2026</span>
+        </div>
+        <div style="margin-top: auto; max-width: 150mm">
+          <img src="img/logo-acid-rifilato.png" alt="" style="width: 118mm" />
+          <h1 style="font-size: 50pt; line-height: 0.9; margin-top: 10mm">
+            Immagine<br />coordinata
+          </h1>
+          <p class="sotto" style="font-size: 11pt; margin-top: 4mm">
+            Logo, colori, caratteri, elementi grafici, fotografia, packaging, cancelleria,
+            spedizione, punto vendita, social, sito, video e merch. Tutto il sistema in un solo
+            documento, con le regole per usarlo senza sbagliare.
+          </p>
+        </div>
+        <div class="piede" style="margin-top: 12mm">
+          <span>Good plants. <b>Brighter days.</b></span
+          ><span>01</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= INDICE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>00 · Indice</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Cosa c'è in questo documento</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.45fr 1fr; gap: 10mm">
+        <div
+          style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; align-content: start"
+        >
+          <table>
+            <tr>
+              <th>Sezione</th>
+              <th style="text-align: right">Pag.</th>
+            </tr>
+            <tr>
+              <td>01 · Il brand</td>
+              <td style="text-align: right">03</td>
+            </tr>
+            <tr>
+              <td>02 · Tono di voce</td>
+              <td style="text-align: right">04</td>
+            </tr>
+            <tr>
+              <td>03 · Logo: le versioni</td>
+              <td style="text-align: right">05</td>
+            </tr>
+            <tr>
+              <td>04 · Logo: spazi e misure</td>
+              <td style="text-align: right">06</td>
+            </tr>
+            <tr>
+              <td>05 · Logo: usi vietati</td>
+              <td style="text-align: right">07</td>
+            </tr>
+            <tr>
+              <td>06 · Colori del brand</td>
+              <td style="text-align: right">08</td>
+            </tr>
+            <tr>
+              <td>07 · Colori di sistema</td>
+              <td style="text-align: right">09</td>
+            </tr>
+            <tr>
+              <td>08 · Caratteri</td>
+              <td style="text-align: right">10</td>
+            </tr>
+            <tr>
+              <td>09 · Gerarchia dei testi</td>
+              <td style="text-align: right">11</td>
+            </tr>
+            <tr>
+              <td>10 · Elementi grafici</td>
+              <td style="text-align: right">12</td>
+            </tr>
+            <tr>
+              <td>11 · Componenti del sito</td>
+              <td style="text-align: right">13</td>
+            </tr>
+            <tr>
+              <td>12 · Griglia, spazi, icone, movimento</td>
+              <td style="text-align: right">14</td>
+            </tr>
+            <tr>
+              <td>13 · Fotografia</td>
+              <td style="text-align: right">15</td>
+            </tr>
+            <tr>
+              <td>14 · Packaging: il fronte</td>
+              <td style="text-align: right">16</td>
+            </tr>
+            <tr>
+              <td>15 · Packaging: le famiglie</td>
+              <td style="text-align: right">17</td>
+            </tr>
+          </table>
+          <table>
+            <tr>
+              <th>Sezione</th>
+              <th style="text-align: right">Pag.</th>
+            </tr>
+            <tr>
+              <td>16 · Linee, famiglie, nomi</td>
+              <td style="text-align: right">18</td>
+            </tr>
+            <tr>
+              <td>17 · Cancelleria</td>
+              <td style="text-align: right">19</td>
+            </tr>
+            <tr>
+              <td>18 · Email e firma</td>
+              <td style="text-align: right">20</td>
+            </tr>
+            <tr>
+              <td>19 · Spedizione</td>
+              <td style="text-align: right">21</td>
+            </tr>
+            <tr>
+              <td>20 · Punto vendita</td>
+              <td style="text-align: right">22</td>
+            </tr>
+            <tr>
+              <td>21 · Social: il feed</td>
+              <td style="text-align: right">23</td>
+            </tr>
+            <tr>
+              <td>22 · Social: storie e regole</td>
+              <td style="text-align: right">24</td>
+            </tr>
+            <tr>
+              <td>23 · Sito: computer</td>
+              <td style="text-align: right">25</td>
+            </tr>
+            <tr>
+              <td>24 · Sito: telefono</td>
+              <td style="text-align: right">26</td>
+            </tr>
+            <tr>
+              <td>25 · Video di apertura</td>
+              <td style="text-align: right">27</td>
+            </tr>
+            <tr>
+              <td>26 · Merch</td>
+              <td style="text-align: right">28</td>
+            </tr>
+            <tr>
+              <td>27 · Il lavoro fin qui</td>
+              <td style="text-align: right">29</td>
+            </tr>
+            <tr>
+              <td>28 · File e kit di consegna</td>
+              <td style="text-align: right">30</td>
+            </tr>
+            <tr>
+              <td>29 · Cosa manca</td>
+              <td style="text-align: right">31</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card" style="align-self: start">
+          <h4>Come si usa</h4>
+          <ul class="lista piccolo">
+            <li>
+              Ogni pagina ha <b>regole</b> (cosa fare) e <b>divieti</b> (cosa non fare). I divieti
+              valgono per tutti: grafici, stampatori, social media manager, negozi affiliati.
+            </li>
+            <li>
+              I codici colore, le misure e i caratteri sono quelli <b>veri del sito</b> (file
+              <span class="mono">src/styles/tokens.css</span>): se cambiano lì, si aggiorna qui.
+            </li>
+            <li>
+              Le parti tra <span class="segnaposto">[parentesi quadre]</span> sono dati ancora da
+              fornire: ragione sociale, P. IVA, nomi e ruoli, telefoni.
+            </li>
+            <li>
+              Cancelleria, scatola di spedizione, sigillo, tessera Club, cartellino e post social
+              sono <b>proposte nuove</b> di questo documento: da approvare prima della stampa.
+            </li>
+            <li>
+              Foto prodotto e render sono <b>mockup</b>: servono a decidere, non vanno in stampa
+              come file di produzione.
+            </li>
+          </ul>
+          <h4 style="margin-top: 5mm">Stato</h4>
+          <p class="piccolo muto">
+            Versione 1 del 29/09/2026. Riprende il Visual Brand Manual originale (12 pagine) e lo
+            completa con tutto quello che è stato costruito dal 14 al 29 settembre: sito, catalogo,
+            packaging, video, pagine legali, rete B2B.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>02</span></div>
+    </section>
+
+    <!-- ================= 01 IL BRAND ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>01 · Il brand</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Carattere forte. Sistema chiaro.</h2>
+      <p class="sotto">
+        Un brand europeo di CBD premium: hash, fiori, estratti e le famiglie pronte all'uso, con una
+        firma calligrafica che si riconosce prima ancora di leggerla.
+      </p>
+      <div class="corpo" style="display: flex; flex-direction: column; gap: 5mm">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5mm">
+          <div class="card">
+            <h4>Posizionamento</h4>
+            <p>
+              Specialisti di hash e fiori CBD che uniscono il design da negozio europeo sicuro di sé
+              con una firma calligrafica unica. Premium nella cura, diretti nel modo di parlare.
+            </p>
+            <h4 style="margin-top: 4mm">Per chi</h4>
+            <p class="muto">
+              Adulti 18+ in Europa che conoscono il prodotto o cercano un marchio affidabile.
+              Arrivano da Instagram, ricerca e passaparola. Poi negozi, distributori, creator e
+              affiliati.
+            </p>
+            <h4 style="margin-top: 4mm">In 5 secondi devono capire</h4>
+            <ul class="lista piccolo">
+              <li>prodotto premium e legale</li>
+              <li>selezionato in Europa</li>
+              <li>analisi di laboratorio su ogni lotto</li>
+              <li>spedizione discreta in tutta la UE</li>
+              <li>prezzo chiaro, anche al grammo</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Personalità</h4>
+            <div class="g2" style="gap: 3mm; margin-top: 2mm">
+              <div>
+                <h3>Audace</h3>
+                <p class="piccolo muto">Titoli grandi, giallo acido, niente mezze misure.</p>
+              </div>
+              <div>
+                <h3>Selettivo</h3>
+                <p class="piccolo muto">Pochi prodotti scelti, ognuno con il suo lotto.</p>
+              </div>
+              <div>
+                <h3>Colto</h3>
+                <p class="piccolo muto">Conosce lavorazioni, genetiche e cultura.</p>
+              </div>
+              <div>
+                <h3>Diretto</h3>
+                <p class="piccolo muto">Frasi corte e concrete, promesse verificabili.</p>
+              </div>
+            </div>
+            <h4 style="margin-top: 5mm">Il principio</h4>
+            <p style="font-size: 10pt; line-height: 1.35">
+              Il <b>logo</b> porta l'emozione. La <b>griglia</b> porta le informazioni. La
+              <b>foto</b> prova la qualità. Il <b style="color: var(--giallo)">giallo acido</b> crea
+              il ricordo.
+            </p>
+          </div>
+          <div class="card" style="background: var(--giallo); color: var(--nero); border: 0">
+            <h4 style="color: var(--nero)">Claim ufficiali · in inglese, mai tradotti</h4>
+            <p
+              style="
+                font-family: Anton;
+                font-size: 22pt;
+                line-height: 0.95;
+                text-transform: uppercase;
+              "
+            >
+              Premium CBD.<br />Bold character.
+            </p>
+            <p
+              style="
+                font-family: Anton;
+                font-size: 15pt;
+                line-height: 1;
+                margin-top: 3mm;
+                text-transform: uppercase;
+              "
+            >
+              Good plants. Brighter days.
+            </p>
+            <table style="margin-top: 4mm">
+              <tr>
+                <td style="border-color: rgb(5 5 5 / 0.2)"><b>Shop the drop</b></td>
+                <td style="border-color: rgb(5 5 5 / 0.2)">bottone principale della home</td>
+              </tr>
+              <tr>
+                <td style="border-color: rgb(5 5 5 / 0.2)">
+                  <b>Selected in Europe. Made for those who know.</b>
+                </td>
+                <td style="border-color: rgb(5 5 5 / 0.2)">occhiello della home</td>
+              </tr>
+              <tr>
+                <td style="border-color: rgb(5 5 5 / 0.2)"><b>Plants · People · Purpose</b></td>
+                <td style="border-color: rgb(5 5 5 / 0.2)">fianco dei pack</td>
+              </tr>
+              <tr>
+                <td style="border-color: rgb(5 5 5 / 0.2)">
+                  <b>Sealed for a brighter tomorrow</b>
+                </td>
+                <td style="border-color: rgb(5 5 5 / 0.2)">sigillo delle confezioni</td>
+              </tr>
+            </table>
+            <p class="piccolo" style="margin-top: 3mm">
+              Tutto il resto (sito, schede, email, avvertenze) è in italiano e, più avanti, nella
+              lingua di ogni Paese.
+            </p>
+          </div>
+        </div>
+        <div
+          style="
+            flex: 1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3mm;
+          "
+        >
+          <div class="foto">
+            <img src="../../public/images/prodotti/cannagar-royal.jpg" alt="" />
+            <p class="et b" style="position: absolute; left: 2mm; bottom: 1.5mm">Prodotto</p>
+          </div>
+          <div class="foto">
+            <img src="../../public/images/filiera/pressatura.jpg" alt="" />
+            <p class="et b" style="position: absolute; left: 2mm; bottom: 1.5mm">Filiera</p>
+          </div>
+          <div class="foto">
+            <img src="img/home-hero.jpg" alt="" style="object-position: 30% 50%" />
+            <p class="et b" style="position: absolute; left: 2mm; bottom: 1.5mm">Sito</p>
+          </div>
+          <div class="foto">
+            <img src="../../public/images/franchising/esterno.jpg" alt="" />
+            <p class="et b" style="position: absolute; left: 2mm; bottom: 1.5mm">Negozio</p>
+          </div>
+          <div class="foto">
+            <img src="img/v08-chiusura.jpg" alt="" />
+            <p class="et b" style="position: absolute; left: 2mm; bottom: 1.5mm">Video</p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>03</span></div>
+    </section>
+
+    <!-- ================= 02 TONO DI VOCE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>02 · Tono di voce</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Diretto, sicuro, premium</h2>
+      <p class="sotto">
+        Mai medicale, mai infantile, mai aggressivo. Ogni frase deve poter essere dimostrata da un
+        certificato, un numero o una foto.
+      </p>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 6mm">
+        <div>
+          <table>
+            <tr>
+              <th style="width: 50%">Scriviamo così</th>
+              <th>Non così</th>
+            </tr>
+            <tr>
+              <td>«Note agrumate nette, fondo terroso, texture morbida e compatta.»</td>
+              <td class="muto">«Il miglior hash del mondo!!!»</td>
+            </tr>
+            <tr>
+              <td>«CBD: +18%» (arrotondato per difetto: il lotto contiene almeno quel valore)</td>
+              <td class="muto">«Ricchissimo di CBD», «potentissimo»</td>
+            </tr>
+            <tr>
+              <td>«Un certificato di analisi per ogni lotto.»</td>
+              <td class="muto">«Rilassa», «aiuta a dormire», «antinfiammatorio»</td>
+            </tr>
+            <tr>
+              <td>«Spedizione discreta in 24–72 ore, tracciata.»</td>
+              <td class="muto">«Arriva domani, garantito», timer e scorte finte</td>
+            </tr>
+            <tr>
+              <td>«Riservato ai maggiori di 18 anni.»</td>
+              <td class="muto">Linguaggio da ragazzi, emoji, riferimenti allo sballo</td>
+            </tr>
+            <tr>
+              <td>«Un produttore, non un intermediario.» (pagine B2B)</td>
+              <td class="muto">Nominare il gruppo produttore sulle pagine pubbliche</td>
+            </tr>
+            <tr>
+              <td>«100 % naturale» solo su fiori, hash e rosin</td>
+              <td class="muto">«100 % naturale» sul THC-X (è semisintetico)</td>
+            </tr>
+            <tr>
+              <td>«Il 60 % di ogni vendita resta al negozio.» (con le spese scritte chiare)</td>
+              <td class="muto">«Guadagni garantiti», «rendita sicura»</td>
+            </tr>
+            <tr>
+              <td>Recensioni solo da ordini consegnati</td>
+              <td class="muto">Recensioni inventate o comprate</td>
+            </tr>
+          </table>
+          <div class="g2" style="margin-top: 4mm; gap: 4mm">
+            <div class="card">
+              <h4>Parole nostre</h4>
+              <p class="piccolo">
+                lotto · certificato · filiera · drop · selezionato · lavorazione · setacciato ·
+                pressato · discreto · tracciato · premium · prezzo al grammo
+              </p>
+            </div>
+            <div class="card">
+              <h4 style="color: var(--rosso)">Parole vietate</h4>
+              <p class="piccolo">
+                sballo · fattanza · cura · terapia · rimedio · miracoloso · «legale al 100%» ·
+                «senza rischi» · «ultimi pezzi» se non è vero
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Scrittura dei numeri e delle sigle</h4>
+            <table>
+              <tr>
+                <td>Peso</td>
+                <td class="mono">3,5 g · 1 g · 10 ml · 20 pz</td>
+              </tr>
+              <tr>
+                <td>Prezzo</td>
+                <td class="mono">24,90 € · 7,11 €/g</td>
+              </tr>
+              <tr>
+                <td>Percentuale</td>
+                <td class="mono">CBD: +31% · Contiene 40%</td>
+              </tr>
+              <tr>
+                <td>Tempi</td>
+                <td class="mono">24–72 ore (lineetta, non trattino)</td>
+              </tr>
+              <tr>
+                <td>Sigle</td>
+                <td class="mono">THC-X · THC-A · CBD+CBN · CBG</td>
+              </tr>
+              <tr>
+                <td>Età</td>
+                <td class="mono">18+</td>
+              </tr>
+            </table>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Le sigle con trattino o più non vanno mai a capo a metà. Virgola decimale, spazio
+              prima dell'unità, euro dopo il numero.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Maiuscole</h4>
+            <p class="piccolo">
+              Maiuscolo solo per titoli (Anton) ed etichette (Archivo condensato). Paragrafi, email
+              e testi legali sempre in minuscolo normale. Nomi di prodotto in maiuscolo sul pack,
+              con iniziali maiuscole nel testo («Lemon Haze»).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>04</span></div>
+    </section>
+
+    <!-- ================= 03 LOGO VERSIONI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>03 · Logo</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">La firma calligrafica</h2>
+      <p class="sotto">
+        Il lettering è l'elemento che si riconosce per primo. Si usa sempre dal file originale, in
+        un solo colore piatto, mai ridisegnato né ricomposto con un font.
+      </p>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 5mm">
+        <div>
+          <div
+            style="
+              background: var(--nero);
+              border: 0.3mm solid var(--linea);
+              border-radius: 2.5mm;
+              height: 70mm;
+              display: grid;
+              place-items: center;
+            "
+          >
+            <img src="img/logo-acid-rifilato.png" alt="" style="width: 88mm" />
+          </div>
+          <p class="didas">
+            <b>Principale · giallo acido su nero.</b> Il 90 % degli usi: sito, pack, social,
+            insegna, merch.
+          </p>
+          <div class="g3" style="gap: 3mm; margin-top: 3mm">
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/prodotti/semi-og-kush.jpg" alt="" /><span class="ok"
+                >SÌ</span
+              >
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img
+                src="../../public/images/franchising/esterno.jpg"
+                alt=""
+                style="object-position: 50% 0%"
+              /><span class="ok">SÌ</span>
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/merch/cappellino.jpg" alt="" /><span class="ok"
+                >SÌ</span
+              >
+            </div>
+          </div>
+          <p class="didas">
+            <b>In uso:</b> sul pack, sull'insegna retroilluminata, ricamato sul merch.
+          </p>
+        </div>
+        <div>
+          <div
+            style="
+              background: var(--giallo);
+              border-radius: 2.5mm;
+              height: 40mm;
+              display: grid;
+              place-items: center;
+            "
+          >
+            <img src="img/logo-black-rifilato.png" alt="" style="width: 50mm" />
+          </div>
+          <p class="didas"><b>Inversa · nero su giallo.</b> Bande gialle, bottoni, sigillo.</p>
+          <div
+            style="
+              background: #fff;
+              border-radius: 2.5mm;
+              height: 30mm;
+              display: grid;
+              place-items: center;
+              margin-top: 4mm;
+            "
+          >
+            <img src="img/logo-black-rifilato.png" alt="" style="width: 40mm" />
+          </div>
+          <p class="didas">
+            <b>Nero su bianco.</b> Solo carta da lettera, fatture, documenti, timbri.
+          </p>
+        </div>
+        <div>
+          <div
+            style="
+              background: var(--sup2);
+              border-radius: 2.5mm;
+              border: 0.3mm solid var(--linea);
+              height: 40mm;
+              display: grid;
+              place-items: center;
+            "
+          >
+            <img src="img/logo-white-rifilato.png" alt="" style="width: 50mm" />
+          </div>
+          <p class="didas">
+            <b>Bianco su nero.</b> Quando il giallo non si può stampare: una tinta, incisioni,
+            ricami tono su tono.
+          </p>
+          <div class="card" style="margin-top: 4mm">
+            <h4>File disponibili oggi</h4>
+            <p class="mono" style="line-height: 1.6">
+              public/brand/logo-acid.png<br />public/brand/logo-black.png<br />public/brand/logo-white.png
+            </p>
+            <p class="piccolo muto" style="margin-top: 1.5mm">
+              PNG trasparente 1021×631 px, estratto dal file del brand.
+            </p>
+            <p class="piccolo" style="margin-top: 1.5mm; color: var(--rosso)">
+              Manca il vettoriale (SVG/EPS/PDF): va chiesto a chi ha disegnato il logo prima di
+              stampare insegne, ricami e fustelle.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>05</span></div>
+    </section>
+
+    <!-- ================= 04 LOGO SPAZI E MISURE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>04 · Logo: spazi e misure</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Aria intorno, mai troppo piccolo</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 8mm">
+        <div>
+          <div
+            style="
+              border: 0.3mm solid var(--linea);
+              border-radius: 2.5mm;
+              height: 110mm;
+              display: grid;
+              place-items: center;
+              background: var(--sup);
+            "
+          >
+            <div style="position: relative; padding: 13mm; border: 0.35mm dashed var(--giallo)">
+              <div style="position: relative; outline: 0.25mm solid var(--linea2)">
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 88mm" />
+              </div>
+              <span
+                class="et g"
+                style="position: absolute; top: 4mm; left: 50%; transform: translateX(-50%)"
+                >X</span
+              >
+              <span
+                class="et g"
+                style="position: absolute; bottom: 4mm; left: 50%; transform: translateX(-50%)"
+                >X</span
+              >
+              <span
+                class="et g"
+                style="position: absolute; left: 4.5mm; top: 50%; transform: translateY(-50%)"
+                >X</span
+              >
+              <span
+                class="et g"
+                style="position: absolute; right: 4.5mm; top: 50%; transform: translateY(-50%)"
+                >X</span
+              >
+            </div>
+          </div>
+          <p class="didas">
+            <b>Area di rispetto: X = un quarto dell'altezza del logo</b>, su tutti e quattro i lati.
+            Dentro quest'area non entrano testi, bordi, altri loghi o il taglio della pagina.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Misure minime</h4>
+            <table>
+              <tr>
+                <th>Supporto</th>
+                <th>Larghezza minima</th>
+              </tr>
+              <tr>
+                <td>Stampa (pack, biglietti, carta)</td>
+                <td><b>20 mm</b></td>
+              </tr>
+              <tr>
+                <td>Ricamo e incisione</td>
+                <td><b>35 mm</b> (verificare con il fornitore)</td>
+              </tr>
+              <tr>
+                <td>Schermo</td>
+                <td><b>56 px</b> (nel sito: 71 px su telefono)</td>
+              </tr>
+              <tr>
+                <td>Insegna esterna</td>
+                <td>da progetto, con file vettoriale</td>
+              </tr>
+            </table>
+            <div style="display: flex; align-items: flex-end; gap: 6mm; margin-top: 3mm">
+              <div>
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 20mm" />
+                <p class="et" style="margin-top: 1mm">20 mm</p>
+              </div>
+              <div>
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 35mm" />
+                <p class="et" style="margin-top: 1mm">35 mm</p>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Sotto la misura minima: il rombo</h4>
+            <div style="display: flex; gap: 4mm; align-items: center">
+              <div
+                style="
+                  width: 14mm;
+                  height: 14mm;
+                  border-radius: 3mm;
+                  background: var(--nero);
+                  border: 0.3mm solid var(--linea2);
+                  display: grid;
+                  place-items: center;
+                "
+              >
+                <i class="rombo" style="width: 8mm; height: 8mm"></i>
+              </div>
+              <div
+                style="
+                  width: 14mm;
+                  height: 14mm;
+                  border-radius: 50%;
+                  background: var(--nero);
+                  border: 0.3mm solid var(--linea2);
+                  display: grid;
+                  place-items: center;
+                  overflow: hidden;
+                "
+              >
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 12mm" />
+              </div>
+              <p class="piccolo muto">
+                Icona del sito (favicon): rombo giallo su nero. Avatar social: logo intero in un
+                cerchio nero, con area di rispetto piena.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Dove si mette</h4>
+            <ul class="lista piccolo">
+              <li>Sito: centrato su telefono, a sinistra su computer.</li>
+              <li>Pack: in alto, centrato sul fronte, sopra il rombo.</li>
+              <li>Documenti: in alto a sinistra, 30 mm di larghezza.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>06</span></div>
+    </section>
+
+    <!-- ================= 05 LOGO DIVIETI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>05 · Logo: usi vietati</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Dieci cose da non fare mai</h2>
+      <p class="sotto">
+        Dal manuale originale: niente contorno, niente ombra, niente sfumatura, niente secondo
+        colore, niente deformazioni, niente foglia. Più quello che succede davvero in stampa e sui
+        social.
+      </p>
+      <div class="corpo">
+        <div class="g5" style="gap: 4mm">
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <img
+                src="img/logo-acid-rifilato.png"
+                alt=""
+                style="
+                  width: 38mm;
+                  filter: drop-shadow(0.35mm 0 0 #fff) drop-shadow(-0.35mm 0 0 #fff)
+                    drop-shadow(0 0.35mm 0 #fff) drop-shadow(0 -0.35mm 0 #fff);
+                "
+              />
+            </div>
+            <p class="didas"><b>Contorno.</b> Nessun filetto attorno alle lettere.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <img
+                src="img/logo-acid-rifilato.png"
+                alt=""
+                style="
+                  width: 38mm;
+                  filter: drop-shadow(0 0 2.5mm #dfff00) drop-shadow(1.5mm 1.5mm 0 #5a6600);
+                "
+              />
+            </div>
+            <p class="didas"><b>Ombra o bagliore.</b> Solo il video può animarlo.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <div
+                style="
+                  width: 38mm;
+                  aspect-ratio: 950/562;
+                  background: linear-gradient(90deg, #dfff00, #ff5c6c, #3cc4ff);
+                  -webkit-mask: url('img/logo-acid-rifilato.png') center / contain no-repeat;
+                  mask: url('img/logo-acid-rifilato.png') center / contain no-repeat;
+                "
+              ></div>
+            </div>
+            <p class="didas"><b>Sfumature.</b> Un solo colore piatto.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <div
+                style="
+                  width: 38mm;
+                  aspect-ratio: 950/562;
+                  background: #3cc4ff;
+                  -webkit-mask: url('img/logo-acid-rifilato.png') center / contain no-repeat;
+                  mask: url('img/logo-acid-rifilato.png') center / contain no-repeat;
+                "
+              ></div>
+            </div>
+            <p class="didas">
+              <b>Altri colori.</b> Né quelli delle famiglie, né quelli di stagione.
+            </p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <img
+                src="img/logo-acid-rifilato.png"
+                alt=""
+                style="width: 34mm; transform: scale(1.45, 0.75)"
+              />
+            </div>
+            <p class="didas"><b>Deformazioni.</b> Si ingrandisce sempre in proporzione.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <img
+                src="img/logo-acid-rifilato.png"
+                alt=""
+                style="width: 34mm; transform: rotate(-14deg)"
+              />
+            </div>
+            <p class="didas">
+              <b>Rotazioni.</b> Sempre orizzontale; sui fianchi dei pack si usa il testo.
+            </p>
+          </div>
+          <div>
+            <div class="riquadro" style="background: #fff">
+              <span class="ko">NO</span>
+              <img src="img/logo-acid-rifilato.png" alt="" style="width: 38mm" />
+            </div>
+            <p class="didas"><b>Giallo su bianco.</b> Contrasto 1,1:1, non si legge.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <img
+                src="../../public/images/azienda/campi.jpg"
+                alt=""
+                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover"
+              />
+              <img
+                src="img/logo-acid-rifilato.png"
+                alt=""
+                style="
+                  position: absolute;
+                  inset: 0;
+                  margin: auto;
+                  width: 38mm;
+                  height: auto;
+                  object-fit: contain;
+                "
+              />
+            </div>
+            <p class="didas">
+              <b>Su foto confuse.</b> Solo su zone scure e calme, o su una velatura nera.
+            </p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <div style="display: flex; align-items: center; gap: 2mm">
+                <svg viewBox="0 0 40 40" style="width: 10mm; fill: #4ade80">
+                  <path
+                    d="M20 2c2 6 2 12 0 18 4-5 9-8 15-9-3 6-8 10-14 11 5 0 10 2 14 6-6 1-11 0-15-3v13h-1V26c-4 3-9 4-15 3 4-4 9-6 14-6-6-1-11-5-14-11 6 1 11 4 15 9-2-6-2-12 1-18z"
+                  />
+                </svg>
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 26mm" />
+              </div>
+            </div>
+            <p class="didas"><b>Foglie e simboli.</b> Niente foglia di cannabis, mai.</p>
+          </div>
+          <div>
+            <div class="riquadro">
+              <span class="ko">NO</span>
+              <span
+                style="
+                  font-family: 'Brush Script MT', 'URW Chancery L', cursive;
+                  font-style: italic;
+                  font-size: 22pt;
+                  color: var(--giallo);
+                "
+                >The Hasher</span
+              >
+            </div>
+            <p class="didas"><b>Riscritto con un font.</b> Il lettering è disegnato a mano.</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top: 5mm; display: flex; gap: 6mm; align-items: center">
+          <span class="ok" style="position: static">SÌ</span>
+          <p class="piccolo">
+            Logo dal file originale, un colore, proporzioni bloccate, area di rispetto libera, fondo
+            nero o giallo pieno. Nel dubbio: giallo su nero.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>07</span></div>
+    </section>
+
+    <!-- ================= 06 COLORI BRAND ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>06 · Colori del brand</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Tre colori. Nessuna eccezione.</h2>
+      <p class="sotto">
+        Il nero domina, il giallo acido guida azioni e informazioni che contano, il bianco fa
+        leggere. Niente gradienti decorativi, niente colori aggiunti.
+      </p>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1.05fr; gap: 5mm">
+        <div class="campione">
+          <div class="c" style="background: var(--giallo); color: var(--nero)">
+            <h3 style="font-size: 16pt">Acid Yellow</h3>
+          </div>
+          <div class="d piccolo">
+            <table>
+              <tr>
+                <td>HEX</td>
+                <td class="mono">#DFFF00</td>
+              </tr>
+              <tr>
+                <td>RGB</td>
+                <td class="mono">223 · 255 · 0</td>
+              </tr>
+              <tr>
+                <td>CMYK</td>
+                <td class="mono">13 · 0 · 100 · 0 *</td>
+              </tr>
+              <tr>
+                <td>Pantone</td>
+                <td>da campionare *</td>
+              </tr>
+            </table>
+            <p class="muto" style="margin-top: 2mm">
+              Logo, bottoni, prezzi, badge, bande di sezione. Mai per paragrafi lunghi.
+            </p>
+          </div>
+        </div>
+        <div class="campione">
+          <div
+            class="c"
+            style="
+              background: var(--nero);
+              color: var(--bianco);
+              border-bottom: 0.3mm solid var(--linea);
+            "
+          >
+            <h3 style="font-size: 16pt">Near Black</h3>
+          </div>
+          <div class="d piccolo">
+            <table>
+              <tr>
+                <td>HEX</td>
+                <td class="mono">#050505</td>
+              </tr>
+              <tr>
+                <td>RGB</td>
+                <td class="mono">5 · 5 · 5</td>
+              </tr>
+              <tr>
+                <td>CMYK</td>
+                <td class="mono">60 · 40 · 40 · 100 **</td>
+              </tr>
+              <tr>
+                <td>Carta</td>
+                <td>nero opaco, soft touch</td>
+              </tr>
+            </table>
+            <p class="muto" style="margin-top: 2mm">
+              Sfondo di tutto: pagine, pack, social, insegna. Il colore del marchio è il nero.
+            </p>
+          </div>
+        </div>
+        <div class="campione">
+          <div class="c" style="background: #fff; color: var(--nero)">
+            <h3 style="font-size: 16pt">White</h3>
+          </div>
+          <div class="d piccolo">
+            <table>
+              <tr>
+                <td>HEX</td>
+                <td class="mono">#FFFFFF</td>
+              </tr>
+              <tr>
+                <td>RGB</td>
+                <td class="mono">255 · 255 · 255</td>
+              </tr>
+              <tr>
+                <td>CMYK</td>
+                <td class="mono">0 · 0 · 0 · 0</td>
+              </tr>
+              <tr>
+                <td>Su nero</td>
+                <td>bianco coprente / serigrafia</td>
+              </tr>
+            </table>
+            <p class="muto" style="margin-top: 2mm">
+              Testi da leggere: descrizioni, dati di prodotto, avvertenze, legale.
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Proporzioni</h4>
+            <div
+              style="
+                display: flex;
+                height: 9mm;
+                border-radius: 1.5mm;
+                overflow: hidden;
+                border: 0.3mm solid var(--linea);
+              "
+            >
+              <div style="flex: 78; background: var(--nero)"></div>
+              <div style="flex: 12; background: var(--giallo)"></div>
+              <div style="flex: 10; background: #fff"></div>
+            </div>
+            <p class="piccolo muto" style="margin-top: 1.5mm">
+              Circa 78 % nero · 12 % giallo · 10 % bianco. Le bande gialle (categorie, Discovery
+              Box, Instagram, franchising) sono le uniche superfici gialle grandi.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Contrasti verificati (WCAG)</h4>
+            <table>
+              <tr>
+                <td>Giallo su nero</td>
+                <td><b>17,9:1</b></td>
+              </tr>
+              <tr>
+                <td>Nero su giallo</td>
+                <td><b>17,9:1</b></td>
+              </tr>
+              <tr>
+                <td>Bianco su nero</td>
+                <td><b>20,4:1</b></td>
+              </tr>
+              <tr>
+                <td>Giallo su bianco</td>
+                <td style="color: var(--rosso)"><b>1,1:1 · vietato</b></td>
+              </tr>
+            </table>
+          </div>
+          <p class="piccolo muto">
+            * Il giallo acido è fuori dalla gamma CMYK: in quadricromia esce più spento. Per pack,
+            insegne e merch va scelto un Pantone (probabilmente fluo) con lo stampatore, su mazzetta
+            fisica e prova di stampa.<br />** Nero ricco per grandi campiture; per testi piccoli
+            solo K 100.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>08</span></div>
+    </section>
+
+    <!-- ================= 07 COLORI DI SISTEMA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>07 · Colori di sistema</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Grigi, stati e famiglie</h2>
+      <p class="sotto">
+        Servono al sito e ai documenti per costruire superfici, bordi e messaggi. Non sono colori
+        del marchio: non vanno su pack, social o merch.
+      </p>
+      <div class="corpo">
+        <h4>Neutri dell'interfaccia</h4>
+        <div class="g4" style="grid-template-columns: repeat(8, 1fr); gap: 2.5mm">
+          <div class="campione mini">
+            <div class="c" style="background: #050505"></div>
+            <div class="d piccolo">
+              <b>bg</b><br /><span class="mono">#050505</span><br /><span class="muto">sfondo</span>
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #111111"></div>
+            <div class="d piccolo">
+              <b>bg-alt</b><br /><span class="mono">#111111</span><br /><span class="muto"
+                >sezioni, campi</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #0d0d0d"></div>
+            <div class="d piccolo">
+              <b>surface</b><br /><span class="mono">#0D0D0D</span><br /><span class="muto"
+                >schede, pannelli</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #171717"></div>
+            <div class="d piccolo">
+              <b>surface-hover</b><br /><span class="mono">#171717</span><br /><span class="muto"
+                >passaggio mouse</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #262626"></div>
+            <div class="d piccolo">
+              <b>line</b><br /><span class="mono">#262626</span><br /><span class="muto"
+                >bordi, divisori</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #404040"></div>
+            <div class="d piccolo">
+              <b>line-strong</b><br /><span class="mono">#404040</span><br /><span class="muto"
+                >bordi in vista</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #a3a3a3"></div>
+            <div class="d piccolo">
+              <b>fg-muted</b><br /><span class="mono">#A3A3A3</span><br /><span class="muto"
+                >testo secondario · 8,1:1</span
+              >
+            </div>
+          </div>
+          <div class="campione mini">
+            <div class="c" style="background: #737373"></div>
+            <div class="d piccolo">
+              <b>fg-subtle</b><br /><span class="mono">#737373</span><br /><span class="muto"
+                >solo decoro · 4,3:1</span
+              >
+            </div>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 2.6fr; gap: 6mm; margin-top: 5mm">
+          <div>
+            <h4>Stati</h4>
+            <div class="g3" style="gap: 2.5mm">
+              <div class="campione mini">
+                <div class="c" style="background: #4ade80"></div>
+                <div class="d piccolo">
+                  <b>success</b><br /><span class="mono">#4ADE80</span><br /><span class="muto"
+                    >disponibile</span
+                  >
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #fbbf24"></div>
+                <div class="d piccolo">
+                  <b>warning</b><br /><span class="mono">#FBBF24</span><br /><span class="muto"
+                    >ultimi pezzi</span
+                  >
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #ff5c5c"></div>
+                <div class="d piccolo">
+                  <b>danger</b><br /><span class="mono">#FF5C5C</span><br /><span class="muto"
+                    >errori</span
+                  >
+                </div>
+              </div>
+            </div>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Solo in piccolo: pallino di disponibilità, messaggi dei moduli.
+            </p>
+          </div>
+          <div>
+            <h4>Colori delle famiglie · in prova, da decidere</h4>
+            <div class="g5" style="gap: 2.5mm">
+              <div class="campione mini">
+                <div class="c" style="background: #4ade80"></div>
+                <div class="d piccolo">
+                  <b>Fiori</b> · Verde<br /><span class="mono">#4ADE80 · 11,7:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #d9925b"></div>
+                <div class="d piccolo">
+                  <b>Hash</b> · Caramello<br /><span class="mono">#D9925B · 8,0:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #ffb224"></div>
+                <div class="d piccolo">
+                  <b>Estratti</b> · Ambra<br /><span class="mono">#FFB224 · 11,3:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #ff5c6c"></div>
+                <div class="d piccolo">
+                  <b>Preroll</b> · Rosso<br /><span class="mono">#FF5C6C · 6,8:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #b98cff"></div>
+                <div class="d piccolo">
+                  <b>Cannagar</b> · Viola<br /><span class="mono">#B98CFF · 8,0:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #3cc4ff"></div>
+                <div class="d piccolo">
+                  <b>Vape</b> · Azzurro<br /><span class="mono">#3CC4FF · 10,2:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #ffe08a"></div>
+                <div class="d piccolo">
+                  <b>Oli</b> · Oro chiaro<br /><span class="mono">#FFE08A · 15,8:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #ff6fcf"></div>
+                <div class="d piccolo">
+                  <b>Edibles</b> · Rosa<br /><span class="mono">#FF6FCF · 8,2:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #efe8da"></div>
+                <div class="d piccolo">
+                  <b>Semi</b> · Avorio<br /><span class="mono">#EFE8DA · 16,7:1</span>
+                </div>
+              </div>
+              <div class="campione mini">
+                <div class="c" style="background: #2dd4bf"></div>
+                <div class="d piccolo">
+                  <b>Cloni</b> · Turchese<br /><span class="mono">#2DD4BF · 10,9:1</span>
+                </div>
+              </div>
+            </div>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Solo nel sito, solo come puntino, nome della famiglia e riga sopra la scheda. Non
+              toccano logo, prezzi, bottoni, pack. Visibili con
+              <span class="mono">?colori=si</span>; finché non vengono approvati il sito resta nero
+              e giallo.
+            </p>
+          </div>
+        </div>
+        <h4 style="margin-top: 5mm">Accoppiamenti da evitare</h4>
+        <div class="g5" style="gap: 3mm">
+          <div class="riquadro" style="height: 13mm; background: #fff">
+            <span class="ko">NO</span
+            ><span style="color: var(--giallo); font-weight: 700; font-size: 10pt"
+              >Testo giallo</span
+            >
+          </div>
+          <div class="riquadro" style="height: 13mm">
+            <span class="ko">NO</span
+            ><span style="color: #737373; font-size: 9pt">Testo in fg-subtle (4,3:1)</span>
+          </div>
+          <div class="riquadro" style="height: 13mm; background: var(--giallo)">
+            <span class="ko">NO</span
+            ><span style="color: #ff6fcf; font-weight: 700; font-size: 10pt"
+              >Famiglia su giallo</span
+            >
+          </div>
+          <div
+            class="riquadro"
+            style="height: 13mm; background: linear-gradient(90deg, #050505, #dfff00)"
+          >
+            <span class="ko">NO</span
+            ><span style="color: #fff; font-weight: 700; font-size: 10pt">Sfumature</span>
+          </div>
+          <div class="riquadro" style="height: 13mm">
+            <span class="ko">NO</span
+            ><span style="color: #4ade80; font-weight: 700; font-size: 10pt"
+              >Verde come accento</span
+            >
+          </div>
+        </div>
+        <p class="didas">
+          Il verde «canapa» non è un colore del brand: si usa solo per «Disponibile». Il giallo non
+          si abbina ad altri colori accesi.
+        </p>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>09</span></div>
+    </section>
+
+    <!-- ================= 08 CARATTERI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>08 · Caratteri</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Due famiglie per tutto</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm">
+        <div class="card" style="display: flex; flex-direction: column">
+          <p class="et g">Titoli · display</p>
+          <p
+            style="
+              font-family: Anton;
+              font-size: 64pt;
+              line-height: 0.9;
+              text-transform: uppercase;
+              margin-top: 2mm;
+            "
+          >
+            Anton
+          </p>
+          <p
+            style="
+              font-family: Anton;
+              font-size: 15pt;
+              line-height: 1.1;
+              margin-top: 2mm;
+              text-transform: uppercase;
+            "
+          >
+            ABCDEFGHIJKLMNOPQRSTUVWXYZ<br />0123456789 € % + − / &amp;
+          </p>
+          <p
+            style="
+              font-family: Anton;
+              font-size: 26pt;
+              line-height: 0.9;
+              text-transform: uppercase;
+              color: var(--giallo);
+              margin: 5mm 0;
+            "
+          >
+            Shop the drop.<br />CBD: +31%
+          </p>
+          <table style="margin-top: auto">
+            <tr>
+              <td>Peso</td>
+              <td>400 (unico)</td>
+            </tr>
+            <tr>
+              <td>Uso</td>
+              <td>titoli, nomi prodotto, numeri grandi, post social</td>
+            </tr>
+            <tr>
+              <td>Regole</td>
+              <td>sempre maiuscolo · interlinea 0,9–1 · spaziatura +0,005 em</td>
+            </tr>
+            <tr>
+              <td>Mai</td>
+              <td>paragrafi, testi sotto 14 px, corsivo finto, contorno</td>
+            </tr>
+            <tr>
+              <td>Riserva</td>
+              <td class="mono">Impact, Arial Narrow</td>
+            </tr>
+          </table>
+        </div>
+        <div class="card" style="display: flex; flex-direction: column">
+          <p class="et g">Testo e interfaccia · grotesk</p>
+          <p style="font-size: 56pt; line-height: 0.95; font-weight: 700; margin-top: 2mm">
+            Archivo
+          </p>
+          <div style="display: flex; gap: 5mm; margin-top: 2mm; font-size: 12pt">
+            <span style="font-weight: 400">Regular 400</span>
+            <span style="font-weight: 600">Semibold 600</span>
+            <span style="font-weight: 700">Bold 700</span>
+          </div>
+          <p
+            style="
+              font-weight: 600;
+              font-stretch: 80%;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+              font-size: 12pt;
+              margin-top: 2mm;
+            "
+          >
+            Condensato 80 % per etichette
+          </p>
+          <p class="muto" style="margin-top: 2mm">
+            Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz · à è é ì
+            ò ù
+          </p>
+          <p style="font-size: 10pt; line-height: 1.5; margin: 4mm 0; max-width: 110mm">
+            Note agrumate nette, fondo terroso, texture morbida e compatta. Setacciato a secco e
+            pressato a mano: ogni lotto arriva con il suo certificato di analisi.
+          </p>
+          <table style="margin-top: auto">
+            <tr>
+              <td>Versione</td>
+              <td>variabile: peso 100–900, larghezza 62–125 %</td>
+            </tr>
+            <tr>
+              <td>Uso</td>
+              <td>paragrafi, menu, bottoni, prezzi, moduli, legale, email</td>
+            </tr>
+            <tr>
+              <td>Regole</td>
+              <td>numeri tabellari (colonne allineate) · etichette spaziate 0,08–0,26 em</td>
+            </tr>
+            <tr>
+              <td>Mai</td>
+              <td>sotto i 10 px · corsivo · più di tre pesi nella stessa pagina</td>
+            </tr>
+            <tr>
+              <td>Riserva</td>
+              <td class="mono">system-ui, Segoe UI, Roboto</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div
+        class="card"
+        style="margin-top: 5mm; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm"
+      >
+        <div>
+          <h4>Licenza</h4>
+          <p class="piccolo">
+            Entrambi SIL Open Font License 1.1: gratuiti anche per uso commerciale, stampa, pack e
+            web. Nessun costo per tipografie, stampatori o affiliati.
+          </p>
+        </div>
+        <div>
+          <h4>Dove si prendono</h4>
+          <p class="piccolo">
+            Google Fonts (Anton, Archivo) o i file nel repository, già inclusi nel sito (<span
+              class="mono"
+              >@fontsource</span
+            >). L'archivio completo è in <span class="mono">design/archivio-font/</span> (PDF).
+          </p>
+        </div>
+        <div>
+          <h4>Il lettering del logo</h4>
+          <p class="piccolo">
+            Non è un carattere: è disegnato a mano. Non esiste un font «The Hasher» e non va
+            cercato.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>10</span></div>
+    </section>
+
+    <!-- ================= 09 GERARCHIA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>09 · Gerarchia dei testi</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Tredici livelli, dal display al micro</h2>
+      <div class="corpo">
+        <table class="aria">
+          <tr>
+            <th style="width: 34%">Esempio</th>
+            <th style="width: 12%">Livello</th>
+            <th style="width: 22%">Carattere</th>
+            <th style="width: 15%">Misure (telefono → computer)</th>
+            <th>Dove</th>
+          </tr>
+          <tr>
+            <td
+              style="
+                font-family: Anton;
+                font-size: 26pt;
+                line-height: 0.9;
+                text-transform: uppercase;
+              "
+            >
+              Premium CBD.
+            </td>
+            <td>Display</td>
+            <td>Anton 400 · maiuscolo</td>
+            <td>56 → 128 px · int. 0,9</td>
+            <td>Titolo della home e dei drop</td>
+          </tr>
+          <tr>
+            <td
+              style="
+                font-family: Anton;
+                font-size: 20pt;
+                line-height: 0.92;
+                text-transform: uppercase;
+              "
+            >
+              Tutti i prodotti
+            </td>
+            <td>Titolo 1</td>
+            <td>Anton 400 · maiuscolo</td>
+            <td>48 → 88 px · int. 0,92</td>
+            <td>Titolo di ogni pagina, uno solo</td>
+          </tr>
+          <tr>
+            <td
+              style="
+                font-family: Anton;
+                font-size: 15pt;
+                line-height: 0.95;
+                text-transform: uppercase;
+              "
+            >
+              Dal seme al tuo ordine.
+            </td>
+            <td>Titolo 2</td>
+            <td>Anton 400 · maiuscolo</td>
+            <td>36 → 60 px · int. 0,95</td>
+            <td>Titoli delle sezioni</td>
+          </tr>
+          <tr>
+            <td
+              style="font-family: Anton; font-size: 12pt; line-height: 1; text-transform: uppercase"
+            >
+              Lemon Haze
+            </td>
+            <td>Titolo 3</td>
+            <td>Anton 400 · maiuscolo</td>
+            <td>24 → 32 px · int. 1</td>
+            <td>Nomi nelle schede, titoli dei box</td>
+          </tr>
+          <tr>
+            <td style="font-size: 10.5pt; color: var(--grigio)">
+              Hash e fiori CBD d'eccezione, selezionati in Europa.
+            </td>
+            <td>Sottotitolo</td>
+            <td>Archivo 400</td>
+            <td>17 → 20 px · int. 1,5</td>
+            <td>Sotto i titoli</td>
+          </tr>
+          <tr>
+            <td style="font-size: 9pt">Note agrumate nette, fondo terroso.</td>
+            <td>Testo</td>
+            <td>Archivo 400</td>
+            <td>16 px · int. 1,5</td>
+            <td>Paragrafi, descrizioni, legale</td>
+          </tr>
+          <tr>
+            <td style="font-size: 8pt; color: var(--grigio)">Spedizione calcolata al checkout.</td>
+            <td>Testo piccolo</td>
+            <td>Archivo 400</td>
+            <td>14 px · int. 1,45</td>
+            <td>Note, moduli, banner cookie</td>
+          </tr>
+          <tr>
+            <td style="font-size: 12pt; font-weight: 600; color: var(--giallo)">24,90 €</td>
+            <td>Prezzo</td>
+            <td>Archivo 600 · giallo</td>
+            <td>22 px</td>
+            <td>Schede e carrello</td>
+          </tr>
+          <tr>
+            <td
+              style="
+                font-size: 8pt;
+                font-weight: 700;
+                letter-spacing: 0.26em;
+                color: var(--giallo);
+                text-transform: uppercase;
+              "
+            >
+              CBD: +18%
+            </td>
+            <td>Cannabinoide</td>
+            <td>Archivo 700 · maiuscolo · giallo</td>
+            <td>14 px · spaz. 0,26 em</td>
+            <td>Sottotitolo di ogni prodotto</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="sez" style="font-size: 7pt"><i class="rombo"></i>Negozio</span>
+            </td>
+            <td>Occhiello</td>
+            <td>Archivo 600 cond. 80 % · giallo</td>
+            <td>12 px · spaz. 0,14 em</td>
+            <td>Sopra i titoli, con il rombo</td>
+          </tr>
+          <tr>
+            <td><span class="et b" style="font-size: 7.5pt">Aggiungi al carrello</span></td>
+            <td>Etichetta</td>
+            <td>Archivo 600 cond. 80 %</td>
+            <td>13 px · spaz. 0,08 em</td>
+            <td>Menu, bottoni, schede</td>
+          </tr>
+          <tr>
+            <td><span class="et b" style="font-size: 6.5pt">Agrumato / terroso / morbido</span></td>
+            <td>Etichetta piccola</td>
+            <td>Archivo 600 cond. 80 %</td>
+            <td>11 px · spaz. 0,08 em</td>
+            <td>Badge, filtri, aromi, formati</td>
+          </tr>
+          <tr>
+            <td><span class="et" style="font-size: 5.8pt">7,11 €/g · 71 prodotti</span></td>
+            <td>Micro</td>
+            <td>Archivo 600 cond. 80 %</td>
+            <td>10 px · spaz. 0,08 em</td>
+            <td>Contatori, prezzo al grammo</td>
+          </tr>
+        </table>
+        <p class="piccolo muto" style="margin-top: 3mm">
+          Regola d'oro: un solo Titolo 1 per pagina; mai saltare un livello (dopo il Titolo 1 viene
+          il Titolo 2). Nei documenti stampati si usa la stessa scala in punti: Display 60–90 pt,
+          Titolo 1 30–48 pt, testo 9–10 pt, note 7–8 pt.
+        </p>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>11</span></div>
+    </section>
+
+    <!-- ================= 10 ELEMENTI GRAFICI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>10 · Elementi grafici</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Tratto, rombo, bande</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 6mm">
+        <div>
+          <h4>Il tratto calligrafico</h4>
+          <div class="g3" style="gap: 3mm">
+            <div class="foto" style="height: 42mm; background: var(--nero)">
+              <div
+                class="tratto"
+                style="
+                  -webkit-mask-size: 520%;
+                  mask-size: 520%;
+                  -webkit-mask-position: 99% 72%;
+                  mask-position: 99% 72%;
+                "
+              ></div>
+            </div>
+            <div class="foto" style="height: 42mm; background: var(--giallo)">
+              <div
+                class="tratto nero"
+                style="
+                  -webkit-mask-position: 2% 98%;
+                  mask-position: 2% 98%;
+                  -webkit-mask-size: 480%;
+                  mask-size: 480%;
+                "
+              ></div>
+            </div>
+            <div class="foto" style="height: 42mm; background: var(--nero)">
+              <div
+                class="tratto"
+                style="
+                  -webkit-mask-position: 62% 100%;
+                  mask-position: 62% 100%;
+                  -webkit-mask-size: 560%;
+                  mask-size: 560%;
+                "
+              ></div>
+            </div>
+          </div>
+          <p class="didas">
+            <b>Porzioni ingrandite del logo</b> (2,6–4 volte), mai tratti inventati. Giallo su nero
+            o nero su giallo. Sempre tagliate dal bordo, mai intere al centro. Mai sotto un testo da
+            leggere: stanno ai lati, dietro le foto, sui fianchi dei pack.
+          </p>
+          <h4 style="margin-top: 4mm">Le bande gialle</h4>
+          <div
+            style="
+              position: relative;
+              height: 26mm;
+              background: var(--giallo);
+              border-radius: 2mm;
+              overflow: hidden;
+              color: var(--nero);
+              padding: 4mm 5mm;
+            "
+          >
+            <div
+              class="tratto nero"
+              style="opacity: 0.12; -webkit-mask-position: 90% 20%; mask-position: 90% 20%"
+            ></div>
+            <p class="et" style="color: var(--nero); position: relative">
+              <i class="rombo nero" style="margin-right: 1.5mm"></i>Discovery box
+            </p>
+            <p
+              style="
+                font-family: Anton;
+                font-size: 18pt;
+                text-transform: uppercase;
+                line-height: 1;
+                position: relative;
+                margin-top: 1mm;
+              "
+            >
+              Tre prodotti, una scatola.
+            </p>
+          </div>
+          <p class="didas">
+            Il giallo diventa superficie solo in poche bande: categorie (Hash), Discovery Box, new
+            drop, Instagram e Telegram, apertura del franchising. Testo e bottoni neri sopra.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Il rombo ✦</h4>
+            <div style="display: flex; align-items: center; gap: 4mm">
+              <i class="rombo" style="width: 12mm; height: 12mm"></i>
+              <i class="rombo" style="width: 6mm; height: 6mm"></i>
+              <i class="rombo"></i>
+              <p class="piccolo muto">
+                Accento del brand: occhielli, elenchi, pack (sotto il logo), social, favicon. Uno
+                per blocco, mai in fila come decorazione.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Occhiello</h4>
+            <p class="sez"><i class="rombo"></i>Selected in Europe. Made for those who know.</p>
+            <p class="piccolo muto" style="margin-top: 1.5mm">
+              Rombo + etichetta gialla sopra ogni titolo di sezione.
+            </p>
+          </div>
+          <div class="card" style="padding: 0; overflow: hidden">
+            <div
+              style="
+                background: var(--giallo);
+                color: var(--nero);
+                display: flex;
+                gap: 5mm;
+                padding: 1.8mm 4mm;
+                white-space: nowrap;
+                font-weight: 700;
+                font-stretch: 80%;
+                letter-spacing: 0.08em;
+                font-size: 6.5pt;
+                text-transform: uppercase;
+              "
+            >
+              <span>Prodotti CBD legali</span><span>/</span><span>Spedizione in tutta la UE</span
+              ><span>/</span><span>Packaging discreto</span
+              ><span
+                style="
+                  background: var(--nero);
+                  color: var(--giallo);
+                  border-radius: 999px;
+                  padding: 0 1.5mm;
+                "
+                >18+</span
+              >
+            </div>
+            <div style="padding: 3mm 4mm">
+              <h4>Barra informativa</h4>
+              <p class="piccolo muto">
+                In cima a ogni pagina, scorre in continuo (ferma con «riduci movimento»). Tre
+                promesse + 18+.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Cannabinoide in evidenza</h4>
+            <p
+              style="font-family: Anton; font-size: 16pt; text-transform: uppercase; line-height: 1"
+            >
+              Royal Hash
+            </p>
+            <p
+              style="
+                font-weight: 700;
+                letter-spacing: 0.26em;
+                color: var(--giallo);
+                font-size: 8pt;
+                margin-top: 1mm;
+              "
+            >
+              CBD: +31%
+            </p>
+            <p class="piccolo muto" style="margin-top: 1.5mm">
+              Sigla spaziata, valore compatto, arrotondato per difetto. Per gli edibles la dose
+              («THC-X: 10 mg»).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>12</span></div>
+    </section>
+
+    <!-- ================= 11 COMPONENTI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>11 · Componenti del sito</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">I mattoni dell'interfaccia</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 6mm">
+        <div style="display: flex; flex-direction: column; gap: 3mm">
+          <div class="card">
+            <h4>Bottoni · forma a pillola · altezza 40 / 48 / 56 px</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 3mm; align-items: center">
+              <span class="pill" style="background: var(--giallo); color: var(--nero)"
+                >Shop the drop →</span
+              >
+              <span
+                class="pill"
+                style="color: var(--giallo); box-shadow: inset 0 0 0 0.4mm var(--giallo)"
+                >Scopri il lotto</span
+              >
+              <span class="pill" style="color: #fff; background: #171717">Annulla</span>
+              <span
+                style="
+                  background: var(--giallo);
+                  padding: 1.5mm;
+                  border-radius: 999px;
+                  display: inline-flex;
+                "
+                ><span class="pill" style="background: var(--nero); color: var(--giallo)"
+                  >Candidati ora →</span
+                ></span
+              >
+            </div>
+            <table style="margin-top: 3mm">
+              <tr>
+                <td><b>Primario</b></td>
+                <td>giallo pieno, testo nero · una sola azione principale per sezione</td>
+              </tr>
+              <tr>
+                <td><b>Contorno</b></td>
+                <td>filo giallo 1,5 px · azioni secondarie</td>
+              </tr>
+              <tr>
+                <td><b>Neutro</b></td>
+                <td>testo bianco · annulla, chiudi, torna indietro</td>
+              </tr>
+              <tr>
+                <td><b>Scuro</b></td>
+                <td>nero su fondo giallo · solo dentro le bande gialle</td>
+              </tr>
+            </table>
+          </div>
+          <div class="card">
+            <h4>Badge ed etichette</h4>
+            <div style="display: flex; gap: 2.5mm; align-items: center; flex-wrap: wrap">
+              <span
+                style="
+                  background: var(--giallo);
+                  color: var(--nero);
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.08em;
+                  font-size: 6.3pt;
+                  padding: 0.6mm 1.6mm;
+                  border-radius: 0.8mm;
+                "
+                >BEST SELLER</span
+              >
+              <span
+                style="
+                  background: var(--giallo);
+                  color: var(--nero);
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.08em;
+                  font-size: 6.3pt;
+                  padding: 0.6mm 1.6mm;
+                  border-radius: 0.8mm;
+                "
+                >NEW</span
+              >
+              <span
+                style="
+                  color: var(--giallo);
+                  box-shadow: inset 0 0 0 0.25mm var(--giallo);
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.08em;
+                  font-size: 6.3pt;
+                  padding: 0.6mm 1.6mm;
+                  border-radius: 0.8mm;
+                "
+                >LIMITED DROP</span
+              >
+              <span
+                style="
+                  background: #111;
+                  color: var(--grigio);
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.08em;
+                  font-size: 6.3pt;
+                  padding: 0.6mm 1.6mm;
+                  border-radius: 0.8mm;
+                "
+                >FOTO DEMO</span
+              >
+              <span class="et" style="color: #4ade80">● Disponibile</span>
+              <span class="et">● Esaurito</span>
+            </div>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Al massimo due badge per scheda. Raggio 4 px: sono etichette, non bottoni.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Filtri · linguette e chip</h4>
+            <div style="display: flex; gap: 2mm; align-items: center; flex-wrap: wrap">
+              <span
+                class="pill"
+                style="height: 6.5mm; background: var(--giallo); color: var(--nero); font-size: 6pt"
+                >Tutto 71</span
+              >
+              <span class="pill" style="height: 6.5mm; color: var(--giallo); font-size: 6pt"
+                >Fiori <span class="muto">11</span></span
+              >
+              <span class="pill" style="height: 6.5mm; color: var(--giallo); font-size: 6pt"
+                >Hash <span class="muto">14</span></span
+              >
+              <span style="width: 0.3mm; height: 5mm; background: var(--linea2)"></span>
+              <span
+                class="pill"
+                style="
+                  height: 6.5mm;
+                  box-shadow: inset 0 0 0 0.3mm var(--linea2);
+                  color: #fff;
+                  font-size: 6pt;
+                "
+                >CBD</span
+              >
+              <span
+                class="pill"
+                style="
+                  height: 6.5mm;
+                  box-shadow: inset 0 0 0 0.3mm var(--linea2);
+                  color: #fff;
+                  font-size: 6pt;
+                "
+                >THC-X</span
+              >
+              <span
+                class="pill"
+                style="
+                  height: 6.5mm;
+                  box-shadow: inset 0 0 0 0.3mm var(--linea2);
+                  color: #fff;
+                  font-size: 6pt;
+                "
+                >THC free</span
+              >
+            </div>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Ogni voce mostra quanti prodotti ci sono dietro e si spegne a zero: mai il vicolo
+              cieco «nessun risultato».
+            </p>
+          </div>
+          <div class="card">
+            <h4>Campi e stati</h4>
+            <div class="g3" style="gap: 3mm">
+              <div>
+                <p class="et" style="margin-bottom: 1mm">Normale</p>
+                <div
+                  style="
+                    height: 8mm;
+                    border-radius: 1.6mm;
+                    background: #111;
+                    box-shadow: inset 0 0 0 0.3mm var(--linea2);
+                    padding: 0 3mm;
+                    display: flex;
+                    align-items: center;
+                    color: var(--grigio2);
+                    font-size: 7.5pt;
+                  "
+                >
+                  La tua email
+                </div>
+              </div>
+              <div>
+                <p class="et" style="margin-bottom: 1mm">Attivo (tastiera)</p>
+                <div
+                  style="
+                    height: 8mm;
+                    border-radius: 1.6mm;
+                    background: #111;
+                    box-shadow: 0 0 0 0.6mm var(--giallo);
+                    padding: 0 3mm;
+                    display: flex;
+                    align-items: center;
+                    font-size: 7.5pt;
+                  "
+                >
+                  nome@esempio.it
+                </div>
+              </div>
+              <div>
+                <p class="et" style="margin-bottom: 1mm">Errore</p>
+                <div
+                  style="
+                    height: 8mm;
+                    border-radius: 1.6mm;
+                    background: #111;
+                    box-shadow: inset 0 0 0 0.3mm var(--rosso);
+                    padding: 0 3mm;
+                    display: flex;
+                    align-items: center;
+                    font-size: 7.5pt;
+                  "
+                >
+                  nome@
+                </div>
+                <p style="color: var(--rosso); font-size: 6.3pt; margin-top: 0.8mm">
+                  Controlla l'indirizzo email
+                </p>
+              </div>
+            </div>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Contorno giallo di 2 px su tutto ciò che si raggiunge con la tastiera. Messaggi
+              d'errore sotto il campo, con parole semplici.
+            </p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card" style="padding: 0; overflow: hidden">
+            <div style="height: 2mm; background: #d9925b; display: none"></div>
+            <div style="height: 44mm; overflow: hidden; position: relative">
+              <img
+                src="../../public/images/prodotti/preroll-gelato-41.jpg"
+                alt=""
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+              <span
+                style="
+                  position: absolute;
+                  top: 2mm;
+                  left: 2mm;
+                  background: var(--giallo);
+                  color: var(--nero);
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.08em;
+                  font-size: 6pt;
+                  padding: 0.5mm 1.5mm;
+                  border-radius: 0.8mm;
+                "
+                >BEST SELLER</span
+              >
+            </div>
+            <div style="padding: 3mm 4mm">
+              <p
+                style="
+                  font-family: Anton;
+                  font-size: 15pt;
+                  text-transform: uppercase;
+                  line-height: 1;
+                "
+              >
+                Gelato 41 Pre-roll
+              </p>
+              <p
+                style="
+                  font-weight: 700;
+                  letter-spacing: 0.26em;
+                  color: var(--giallo);
+                  font-size: 7.5pt;
+                  margin-top: 1mm;
+                "
+              >
+                CBD: +22%
+              </p>
+              <p class="et" style="margin-top: 1.5mm">Dolce / cremoso / agrumato · Singolo</p>
+              <div style="display: flex; align-items: baseline; gap: 2mm; margin-top: 2mm">
+                <span style="color: var(--giallo); font-weight: 600; font-size: 12pt">6,90 €</span>
+                <span class="et">6,90 €/g</span>
+                <span class="et" style="margin-left: auto">1 g</span>
+              </div>
+              <span
+                class="pill"
+                style="
+                  width: 100%;
+                  margin-top: 2.5mm;
+                  height: 7mm;
+                  color: var(--giallo);
+                  box-shadow: inset 0 0 0 0.4mm var(--giallo);
+                "
+                >Aggiungi al carrello</span
+              >
+            </div>
+          </div>
+          <p class="didas">
+            <b>Scheda prodotto:</b> foto 4:3 su fondo scuro · badge · nome in Anton · cannabinoide
+            giallo · aromi · prezzo + prezzo al grammo · formato · un bottone. Al passaggio del
+            mouse tutta la scheda prende un filo giallo.
+            <span class="muto"
+              >(Esempio ricomposto per il documento: nome, prezzo e valori sono demo.)</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>13</span></div>
+    </section>
+
+    <!-- ================= 12 GRIGLIA ICONE MOVIMENTO ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>12 · Griglia, spazi, icone, movimento</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Le misure che tengono tutto insieme</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 5mm">
+        <div class="card">
+          <h4>Griglia e spazi</h4>
+          <table>
+            <tr>
+              <td>Larghezza massima</td>
+              <td><b>1280 px</b> (testi lunghi 672 px)</td>
+            </tr>
+            <tr>
+              <td>Margini laterali</td>
+              <td>16 → 40 px secondo lo schermo</td>
+            </tr>
+            <tr>
+              <td>Spazio tra sezioni</td>
+              <td>56 → 112 px</td>
+            </tr>
+            <tr>
+              <td>Schermi di controllo</td>
+              <td>390 · 834 · 1440 px</td>
+            </tr>
+            <tr>
+              <td>Griglia negozio</td>
+              <td>
+                2 colonne telefono/tablet · 3 portatile · 4 schermi larghi, con scheda «In evidenza»
+                alta due righe
+              </td>
+            </tr>
+            <tr>
+              <td>Area di tocco</td>
+              <td>minimo 44 × 44 px</td>
+            </tr>
+          </table>
+          <h4 style="margin-top: 4mm">Raggi</h4>
+          <div style="display: flex; gap: 3mm; align-items: flex-end">
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 12mm;
+                  height: 9mm;
+                  border: 0.4mm solid var(--giallo);
+                  border-radius: 1mm;
+                "
+              ></div>
+              <p class="et" style="margin-top: 1mm">badge 4</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 12mm;
+                  height: 9mm;
+                  border: 0.4mm solid var(--giallo);
+                  border-radius: 2mm;
+                "
+              ></div>
+              <p class="et" style="margin-top: 1mm">campi 8</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 12mm;
+                  height: 9mm;
+                  border: 0.4mm solid var(--giallo);
+                  border-radius: 3mm;
+                "
+              ></div>
+              <p class="et" style="margin-top: 1mm">schede 12</p>
+            </div>
+            <div style="text-align: center">
+              <div
+                style="
+                  width: 16mm;
+                  height: 9mm;
+                  border: 0.4mm solid var(--giallo);
+                  border-radius: 999px;
+                "
+              ></div>
+              <p class="et" style="margin-top: 1mm">bottoni pillola</p>
+            </div>
+          </div>
+          <p class="piccolo muto" style="margin-top: 2mm">
+            Ombre: sul nero non si vedono. Si separa con bordi da 1 px (#262626).
+          </p>
+        </div>
+        <div class="card">
+          <h4>Icone</h4>
+          <div style="display: flex; gap: 4mm; color: var(--giallo)">
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M9 3h6M10 3v6L4.5 18.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"
+              />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2M15 18H9M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"
+              />
+              <circle cx="17" cy="18" r="2" />
+              <circle cx="7" cy="18" r="2" />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="3" y="11" width="18" height="11" rx="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"
+              />
+              <path d="m3.3 7 8.7 5 8.7-5M12 22V12" />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              width="22"
+              height="22"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 10a4 4 0 0 1-8 0" />
+              <path d="M3.1 6h17.8" />
+              <path d="M3.4 5.5 5 3h14l1.6 2.5L21 20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1Z" />
+            </svg>
+          </div>
+          <table style="margin-top: 3mm">
+            <tr>
+              <td>Libreria</td>
+              <td>Lucide (lineari, open source)</td>
+            </tr>
+            <tr>
+              <td>Spessore</td>
+              <td>1,5–1,75 px (2 px solo sotto i 16 px)</td>
+            </tr>
+            <tr>
+              <td>Colore</td>
+              <td>giallo per le garanzie, bianco nell'interfaccia</td>
+            </tr>
+            <tr>
+              <td>Mai</td>
+              <td>icone piene, emoji, foglie, icone di terze parti miste</td>
+            </tr>
+          </table>
+          <p class="piccolo muto" style="margin-top: 2mm">
+            Le garanzie usano sempre le stesse: laboratorio, camion, lucchetto, pacco. Bottoni solo
+            icona con nome per lo screen reader.
+          </p>
+        </div>
+        <div class="card">
+          <h4>Movimento</h4>
+          <table>
+            <tr>
+              <td>Durata standard</td>
+              <td><b>200 ms</b></td>
+            </tr>
+            <tr>
+              <td>Curva</td>
+              <td class="mono">cubic-bezier(0.22, 1, 0.36, 1)</td>
+            </tr>
+            <tr>
+              <td>Cambio pagina</td>
+              <td>dissolvenza 180 ms, si riparte dall'alto</td>
+            </tr>
+            <tr>
+              <td>Comparsa</td>
+              <td>i blocchi salgono di poco e appaiono, una volta sola</td>
+            </tr>
+            <tr>
+              <td>Titoli</td>
+              <td>entrano una parola alla volta</td>
+            </tr>
+            <tr>
+              <td>Foto grandi</td>
+              <td>parallasse leggero (±30 px)</td>
+            </tr>
+            <tr>
+              <td>Barra info</td>
+              <td>scorre in 38 s, senza stacchi</td>
+            </tr>
+            <tr>
+              <td>Schede</td>
+              <td>si sollevano e prendono il filo giallo</td>
+            </tr>
+          </table>
+          <p class="piccolo" style="margin-top: 2mm">
+            Con «riduci movimento» attivo nel telefono tutto si ferma, video compreso (parte in
+            pausa). È un requisito di accessibilità, non un'opzione.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>14</span></div>
+    </section>
+
+    <!-- ================= 13 FOTOGRAFIA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>13 · Fotografia</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">La foto prova la qualità</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.15fr 1fr; gap: 6mm">
+        <div>
+          <h4>Il trattamento The Hasher · prima e dopo</h4>
+          <div class="g2" style="gap: 3mm">
+            <div>
+              <div class="foto" style="height: 44mm">
+                <img src="../../design/inputs/filiera/setacciatura-originale.jpg" alt="" />
+              </div>
+              <p class="didas"><b>Originale</b> fornito dal brand</p>
+            </div>
+            <div>
+              <div class="foto" style="height: 44mm">
+                <img src="../../public/images/filiera/setacciatura.jpg" alt="" />
+              </div>
+              <p class="didas"><b>Trattata</b> per il sito</p>
+            </div>
+          </div>
+          <p class="piccolo" style="margin-top: 2mm">
+            Colore quasi tolto, ombre schiacciate sul nero, giallo acido solo sulle alte luci,
+            vignettatura e grana leggera. Ripetibile su qualunque foto con
+            <span class="mono">scripts/look-hasher.py</span>: così le foto chiare da laboratorio non
+            stonano sul nero.
+          </p>
+          <div class="g2" style="gap: 5mm; margin-top: 4mm">
+            <div>
+              <h4>Sì</h4>
+              <ul class="lista piccolo">
+                <li>Prodotto vero, texture a fuoco (macro)</li>
+                <li>Fondo nero controllato, luce laterale</li>
+                <li>Una sola idea per foto</li>
+                <li>Persone di spalle o mani al lavoro</li>
+                <li>Filiera vera: campi, setaccio, pressa</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color: var(--rosso)">No</h4>
+              <ul class="lista no piccolo">
+                <li>Foglie di cannabis come simbolo</li>
+                <li>Fumo, persone che fumano, sballo</li>
+                <li>Fondi bianchi, colori saturi</li>
+                <li>Camici e sfondi «medicali»</li>
+                <li>Minori o persone che sembrano tali</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h4>La filiera e l'azienda</h4>
+          <div class="g3" style="gap: 2.5mm">
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/filiera/semina.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/filiera/coltivazione.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/filiera/pressatura.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/campi.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/serra.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/laboratorio.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/controllo.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/magazzino.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 30mm">
+              <img src="../../public/images/azienda/negozio.jpg" alt="" />
+            </div>
+          </div>
+          <p class="didas">
+            <b>Prima riga:</b> foto della filiera fornite dal brand, trattate.
+            <b>Seconda e terza:</b>
+            render approvati da Lorenzo per la pagina L'azienda (campi, serra in Svizzera,
+            laboratorio rosin, controllo qualità, magazzino, negozio di sera). Nei render i valori
+            sugli schermi devono restare da CBD (mai THC alto).
+          </p>
+          <div class="card" style="margin-top: 3mm">
+            <p class="piccolo">
+              <b style="color: var(--giallo)">Da fare:</b> servizio fotografico vero dei prodotti
+              (fondo nero, macro, pack), oggi il sito usa ritagli dai mockup marcati «Foto demo».
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>15</span></div>
+    </section>
+
+    <!-- ================= 14 PACKAGING FRONTE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>14 · Packaging: il fronte</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Fatto per dominare lo scaffale</h2>
+      <p class="sotto">
+        Struttura nera. Codici in giallo acido. Informazioni in bianco. Stesso ordine su ogni
+        confezione.
+      </p>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.25fr 1fr; gap: 6mm">
+        <div class="foto" style="height: 100%; background: var(--nero)">
+          <img
+            src="../../public/images/prodotti/preroll-mimosa.jpg"
+            alt=""
+            style="object-fit: cover; object-position: 40% 50%"
+          />
+          <!-- numeri sopra la foto -->
+          <div style="position: absolute; inset: 0">
+            <span class="marca" style="left: 60%; top: 20%">1</span>
+            <span class="marca" style="left: 60%; top: 27.5%">2</span>
+            <span class="marca" style="left: 63%; top: 35%">3</span>
+            <span class="marca" style="left: 63%; top: 41%">4</span>
+            <span class="marca" style="left: 63%; top: 51%">5</span>
+            <span class="marca" style="left: 60%; top: 63%">6</span>
+            <span class="marca" style="left: 58%; top: 81%">7</span>
+            <span class="marca" style="left: 63%; top: 87.5%">8</span>
+            <span class="marca" style="left: 29%; top: 19%">9</span>
+            <span class="marca" style="left: 29%; top: 55%">10</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3mm">
+          <table>
+            <tr>
+              <th style="width: 6mm">#</th>
+              <th>Elemento</th>
+              <th>Regola</th>
+            </tr>
+            <tr>
+              <td><b>1</b></td>
+              <td>Logo</td>
+              <td>giallo, centrato, in alto, area di rispetto piena</td>
+            </tr>
+            <tr>
+              <td><b>2</b></td>
+              <td>Rombo</td>
+              <td>unico, sotto il logo</td>
+            </tr>
+            <tr>
+              <td><b>3</b></td>
+              <td>Linea</td>
+              <td>CBD · THC-X · THC-A · CBG · CBN, bianco, Archivo nero</td>
+            </tr>
+            <tr>
+              <td><b>4</b></td>
+              <td>Contenuto</td>
+              <td>riquadro giallo: «Contiene 40%» o la dose</td>
+            </tr>
+            <tr>
+              <td><b>5</b></td>
+              <td>Nome</td>
+              <td>genetica o prodotto, bianco, massimo 2 righe</td>
+            </tr>
+            <tr>
+              <td><b>6</b></td>
+              <td>Tipo e varietà</td>
+              <td>tipo in bianco, sativa/indica/ibrida in giallo</td>
+            </tr>
+            <tr>
+              <td><b>7</b></td>
+              <td>Formato</td>
+              <td>riquadro con filo giallo: 1G · 2G · 3X1G · 10ML · 20PZ</td>
+            </tr>
+            <tr>
+              <td><b>8</b></td>
+              <td>Garanzie</td>
+              <td>Premium cannabis · Hand crafted · Lab tested</td>
+            </tr>
+            <tr>
+              <td><b>9</b></td>
+              <td>Fianco</td>
+              <td>claim in verticale: Plants · People · Purpose</td>
+            </tr>
+            <tr>
+              <td><b>10</b></td>
+              <td>Tratto</td>
+              <td>porzione del logo che avvolge il fianco</td>
+            </tr>
+          </table>
+          <div class="card">
+            <h4>Retro e fondo · zone di conformità</h4>
+            <p class="piccolo">
+              Da impaginare su ogni pack, testi da validare con il legale per ogni Paese: numero di
+              lotto e data · peso netto · QR al certificato di analisi del lotto · «Riservato ai
+              maggiori di 18 anni» · avvertenze d'uso · dati dell'operatore (ragione sociale,
+              indirizzo) · codice a barre · simboli di riciclo.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Scritte vietate sul pack</h4>
+            <p class="piccolo">
+              «100% legal» (sostituito da «Lab tested») · claim salutistici · «naturale» sul THC-X ·
+              loghi di altri marchi (il retro della bozza semi ne aveva uno: si usa solo il fronte).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>16</span></div>
+    </section>
+
+    <!-- ================= 15 PACKAGING FAMIGLIE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>15 · Packaging: le famiglie</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Una famiglia di confezioni</h2>
+      <div class="corpo">
+        <div class="g4" style="gap: 3mm">
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/preroll-gelato-41.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Preroll</b> · astuccio singolo o multipack</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/cannagar-royal.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Cannagar</b> · classico o con hash</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/vape-amnesia-thcx.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Vape pen</b> · blister</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/cartuccia-wedding-cake-thca.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Cartuccia</b> · blister, 1 ml</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/edibles-mango.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Gommose</b> · busta richiudibile con 18+</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/olio-full-spectrum.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Olio</b> · scatola + contagocce ambrato</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/semi-gorilla-glue.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Semi</b> · busta sagomata, solo fronte</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 4 / 3">
+              <img src="../../public/images/prodotti/cloni-lemon-haze.jpg" alt="" />
+            </div>
+            <p class="didas"><b>Cloni</b> · vaschetta trasparente, talea fuori</p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1.3fr; gap: 5mm; margin-top: 4mm">
+          <div class="card">
+            <h4>Hash e fiori</h4>
+            <p class="piccolo">
+              Barattolo in vetro nero opaco (hash), busta nera richiudibile con finestra (fiori),
+              scatola rigida con il nome grande (drop), scatola di spedizione brandizzata dentro.
+              Riferimento: la tavola originale del brand.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Materiali</h4>
+            <p class="piccolo">
+              Nero opaco o soft touch, giallo a Pantone (vedi colori), bianco coprente. Niente oro,
+              argento, olografici o finestre colorate.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Come sono fatte queste foto</h4>
+            <p class="piccolo">
+              Dalle bozze di Lorenzo, rigenerate con gli script in
+              <span class="mono">scripts/</span>
+              (pack, buste, blister, boccetta, vaschetta): stesse grafiche, scritte dal catalogo,
+              fondo scuro con alone giallo e riflesso. Sono mockup: per stampare servono fustelle e
+              file esecutivi dal fornitore.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>17</span></div>
+    </section>
+
+    <!-- ================= 16 LINEE FAMIGLIE NOMI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>16 · Linee, famiglie, nomi</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Come si chiama ogni cosa</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 6mm">
+        <div>
+          <h4>Dieci famiglie, quattro gruppi</h4>
+          <div class="g4" style="gap: 3mm">
+            <div class="card">
+              <p class="et g">I classici</p>
+              <h3 style="margin-top: 1.5mm; line-height: 1.15">Fiori<br />Hash<br />Estratti</h3>
+            </div>
+            <div class="card">
+              <p class="et g">Pronti all'uso</p>
+              <h3 style="margin-top: 1.5mm; line-height: 1.15">Preroll<br />Cannagar<br />Vape</h3>
+            </div>
+            <div class="card">
+              <p class="et g">Oli ed edibles</p>
+              <h3 style="margin-top: 1.5mm; line-height: 1.15">Oli<br />Edibles</h3>
+            </div>
+            <div class="card">
+              <p class="et g">Da coltivare</p>
+              <h3 style="margin-top: 1.5mm; line-height: 1.15">Semi<br />Cloni</h3>
+            </div>
+          </div>
+          <p class="didas">
+            L'ordine è fisso: così nella barra del negozio, nel menu Shop, nel pannello «Famiglia»
+            del telefono e nei cataloghi. Il reparto <b>Merch</b> (per fumare, abbigliamento, skate
+            e sticker) sta fuori dal negozio.
+          </p>
+          <h4 style="margin-top: 4mm">Cinque linee + un'etichetta</h4>
+          <div style="display: flex; gap: 2.5mm; flex-wrap: wrap">
+            <span
+              class="pill"
+              style="box-shadow: inset 0 0 0 0.35mm var(--giallo); color: var(--giallo)"
+              >CBD</span
+            >
+            <span
+              class="pill"
+              style="box-shadow: inset 0 0 0 0.35mm var(--giallo); color: var(--giallo)"
+              >THC-X</span
+            >
+            <span
+              class="pill"
+              style="box-shadow: inset 0 0 0 0.35mm var(--giallo); color: var(--giallo)"
+              >THC-A</span
+            >
+            <span
+              class="pill"
+              style="box-shadow: inset 0 0 0 0.35mm var(--giallo); color: var(--giallo)"
+              >CBG</span
+            >
+            <span
+              class="pill"
+              style="box-shadow: inset 0 0 0 0.35mm var(--giallo); color: var(--giallo)"
+              >CBN</span
+            >
+            <span class="pill" style="box-shadow: inset 0 0 0 0.35mm var(--linea2); color: #fff"
+              >THC free</span
+            >
+          </div>
+          <p class="didas">
+            La linea è il cannabinoide guida del prodotto. «THC free» non è una linea: è l'etichetta
+            dei lotti certificati 0,0 %. THC-X e THC-A portano sempre la nota «vendibile solo dove
+            la legge lo consente».
+          </p>
+          <div class="browser" style="margin-top: 4mm">
+            <div class="barra"><i></i><i></i><i></i><span>menu Shop</span></div>
+            <img src="../../design/screenshots/menu-shop--desktop.png" alt="" />
+          </div>
+          <p class="didas"><b>Menu Shop:</b> ogni famiglia con la sua foto, nello stesso ordine.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Nomi dei prodotti</h4>
+            <table>
+              <tr>
+                <td>Genetica</td>
+                <td>Lemon Haze · Gelato 41 · Gorilla Glue</td>
+              </tr>
+              <tr>
+                <td>+ linea se serve</td>
+                <td>Mimosa THC-X · OG Kush THC-A</td>
+              </tr>
+              <tr>
+                <td>+ tipo</td>
+                <td>Pre-roll · Cannagar · Vape · Cartridge</td>
+              </tr>
+              <tr>
+                <td>Nomi propri</td>
+                <td>Royal Hash · Ketama Gold · Notte (olio CBN)</td>
+              </tr>
+            </table>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              «Notte» va bene come nome; «aiuta a dormire» no.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Lavorazioni (hash ed estratti)</h4>
+            <p class="piccolo">
+              Dry sift · Super dry · Mousse · 3x filtered · Frozen sift · Static sift · Ice-o-lator
+              · Libanese · Fresh frozen · Dry ice · Semidry · Sugar wax · Shatter · Crumble ·
+              Terpsolate · Piattella · Budder · Isolato
+            </p>
+          </div>
+          <div class="card">
+            <h4>Coltivazione (fiori)</h4>
+            <p class="piccolo">
+              Indoor hydro → Indoor → Cali → Glasshouse → Greenhouse → Outdoor, dal più pregiato.
+              Tipologie: Big Bud, Small Bud, Trim.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Badge di collezione</h4>
+            <p class="piccolo">
+              New · Best seller · Limited drop. Linee esclusive previste per la rete: TH Original,
+              Black Label, Drops, Reserve, Collabs.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>18</span></div>
+    </section>
+
+    <!-- ================= 17 CANCELLERIA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>17 · Cancelleria · proposta</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Biglietto, carta, busta</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1.05fr 1.1fr; gap: 6mm">
+        <div>
+          <h4>Biglietto da visita · 85 × 55 mm · scala 1:1</h4>
+          <div
+            style="
+              width: 85mm;
+              height: 55mm;
+              background: var(--nero);
+              border: 0.3mm solid var(--linea2);
+              border-radius: 1mm;
+              position: relative;
+              overflow: hidden;
+              display: grid;
+              place-items: center;
+            "
+          >
+            <div
+              class="tratto"
+              style="
+                -webkit-mask-size: 600%;
+                mask-size: 600%;
+                -webkit-mask-position: 99% 70%;
+                mask-position: 99% 70%;
+                left: 78%;
+              "
+            ></div>
+            <img
+              src="img/logo-acid-rifilato.png"
+              alt=""
+              style="width: 42mm; position: relative; margin-right: 8mm"
+            />
+          </div>
+          <p class="didas">
+            <b>Fronte:</b> nero soft touch, logo giallo a Pantone, tratto sul bordo destro.
+          </p>
+          <div
+            style="
+              width: 85mm;
+              height: 55mm;
+              background: var(--giallo);
+              color: var(--nero);
+              border-radius: 1mm;
+              padding: 5mm;
+              margin-top: 3mm;
+              display: flex;
+              flex-direction: column;
+              position: relative;
+            "
+          >
+            <p
+              style="font-family: Anton; font-size: 13pt; text-transform: uppercase; line-height: 1"
+            >
+              [Nome Cognome]
+            </p>
+            <p
+              style="
+                font-weight: 700;
+                font-stretch: 80%;
+                letter-spacing: 0.12em;
+                font-size: 6pt;
+                text-transform: uppercase;
+                margin-top: 1mm;
+              "
+            >
+              [Ruolo]
+            </p>
+            <div style="margin-top: auto; font-size: 6.5pt; line-height: 1.45">
+              <p>[nome]@thehasher.com</p>
+              <p>+39 [telefono]</p>
+              <p><b>thehasher.com</b> · @thehasher</p>
+            </div>
+            <i
+              class="rombo nero"
+              style="position: absolute; right: 5mm; top: 5mm; width: 3.5mm; height: 3.5mm"
+            ></i>
+          </div>
+          <p class="didas">
+            <b>Retro:</b> giallo pieno, testi neri in Archivo, nome in Anton. Carta 400 g, angoli
+            vivi.
+          </p>
+        </div>
+        <div>
+          <h4>Carta intestata · A4 · scala 40 %</h4>
+          <div
+            style="
+              width: 84mm;
+              height: 118.8mm;
+              background: #fff;
+              color: #111;
+              padding: 7mm 7mm 5mm;
+              display: flex;
+              flex-direction: column;
+              position: relative;
+              font-size: 4.3pt;
+              line-height: 1.5;
+            "
+          >
+            <div style="display: flex; justify-content: space-between; align-items: flex-start">
+              <img src="img/logo-black-rifilato.png" alt="" style="width: 16mm" />
+              <div style="text-align: right; font-size: 3.6pt; color: #555">
+                thehasher.com<br />info@thehasher.com
+              </div>
+            </div>
+            <div
+              style="height: 0.6mm; background: var(--giallo); margin: 3mm 0 5mm; width: 12mm"
+            ></div>
+            <p style="color: #555">Milano, 29 settembre 2026</p>
+            <p style="margin-top: 3mm"><b>Oggetto:</b> condizioni per i rivenditori 2026</p>
+            <p style="margin-top: 3mm">Gentile partner,</p>
+            <p style="margin-top: 1.5mm">
+              le inviamo il listino riservato ai rivenditori e le condizioni di fornitura. Ogni
+              lotto arriva con il suo certificato di analisi e il riassortimento parte entro 24–72
+              ore in tutta Europa.
+            </p>
+            <p style="margin-top: 1.5mm">Restiamo a disposizione per una prima chiamata.</p>
+            <p style="margin-top: 3mm">Cordiali saluti,<br /><b>[Nome Cognome]</b> · [Ruolo]</p>
+            <div
+              style="
+                margin-top: auto;
+                border-top: 0.2mm solid #ddd;
+                padding-top: 1.5mm;
+                font-size: 3.4pt;
+                color: #666;
+              "
+            >
+              [Ragione sociale] · [Sede legale] · P. IVA [__________] · REA [__] · Capitale sociale
+              [__] · PEC [__]
+            </div>
+          </div>
+          <p class="didas">
+            <b>Carta bianca</b> (le lettere si stampano in ufficio): logo nero, il giallo solo come
+            filetto, mai come testo. Dati societari obbligatori nel piede. Città e data di esempio.
+          </p>
+        </div>
+        <div>
+          <h4>Busta DL · 220 × 110 mm · scala 40 %</h4>
+          <div
+            style="
+              width: 88mm;
+              height: 44mm;
+              background: #fff;
+              color: #111;
+              padding: 4mm;
+              position: relative;
+              font-size: 3.6pt;
+            "
+          >
+            <img src="img/logo-black-rifilato.png" alt="" style="width: 13mm" />
+            <p style="margin-top: 1mm; color: #555">[Ragione sociale] · [Indirizzo]</p>
+            <div
+              style="
+                position: absolute;
+                right: 6mm;
+                bottom: 7mm;
+                width: 36mm;
+                height: 14mm;
+                border: 0.2mm solid #ccc;
+                border-radius: 0.8mm;
+              "
+            ></div>
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                height: 1mm;
+                width: 100%;
+                background: var(--giallo);
+              "
+            ></div>
+          </div>
+          <p class="didas">
+            <b>Fronte:</b> bianca con finestra, logo nero, filetto giallo sul fondo.
+          </p>
+          <div
+            style="
+              width: 88mm;
+              height: 44mm;
+              background: var(--nero);
+              border: 0.3mm solid var(--linea2);
+              position: relative;
+              overflow: hidden;
+              margin-top: 3mm;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                height: 22mm;
+                background: #111;
+                clip-path: polygon(0 0, 100% 0, 50% 100%);
+              "
+            ></div>
+            <div
+              style="
+                position: absolute;
+                left: 50%;
+                top: 22mm;
+                transform: translate(-50%, -50%);
+                width: 9mm;
+                height: 9mm;
+                border-radius: 50%;
+                background: var(--giallo);
+                display: grid;
+                place-items: center;
+              "
+            >
+              <i class="rombo nero" style="width: 4mm; height: 4mm"></i>
+            </div>
+          </div>
+          <p class="didas">
+            <b>Versione nera</b> per inviti, lanci e kit rivenditori: chiusa dal sigillo giallo
+            (pagina 21).
+          </p>
+          <div class="card" style="margin-top: 3mm">
+            <h4>Altri stampati da derivare</h4>
+            <p class="piccolo">
+              Fattura e DDT (logo nero, dati in piede) · cartellina A4 nera con tratto · timbro
+              (solo rombo + ragione sociale) · badge per fiere.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>19</span></div>
+    </section>
+
+    <!-- ================= 18 EMAIL ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>18 · Email e firma · proposta</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Ogni email è una vetrina</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1.1fr; gap: 8mm">
+        <div>
+          <h4>Email di conferma ordine · larghezza 600 px</h4>
+          <div
+            style="
+              width: 100%;
+              max-width: 110mm;
+              border: 0.3mm solid var(--linea2);
+              border-radius: 2mm;
+              overflow: hidden;
+            "
+          >
+            <div
+              style="
+                background: var(--nero);
+                padding: 5mm;
+                text-align: center;
+                border-bottom: 0.3mm solid var(--linea);
+              "
+            >
+              <img src="img/logo-acid-rifilato.png" alt="" style="width: 26mm; margin: 0 auto" />
+            </div>
+            <div style="background: var(--nero); padding: 5mm">
+              <p class="sez" style="font-size: 6pt"><i class="rombo"></i>Ordine TH-2609-4471</p>
+              <p
+                style="
+                  font-family: Anton;
+                  font-size: 17pt;
+                  text-transform: uppercase;
+                  line-height: 0.95;
+                  margin-top: 1.5mm;
+                "
+              >
+                Grazie, il tuo ordine è in preparazione.
+              </p>
+              <p class="piccolo muto" style="margin-top: 2mm">
+                Parte entro 24 ore in un pacco anonimo. Ti scriviamo con il codice di tracciamento
+                appena il corriere lo ritira.
+              </p>
+              <div
+                style="
+                  display: flex;
+                  gap: 3mm;
+                  align-items: center;
+                  margin-top: 3mm;
+                  border-top: 0.3mm solid var(--linea);
+                  padding-top: 3mm;
+                "
+              >
+                <div class="foto" style="width: 14mm; height: 11mm; flex: none">
+                  <img src="../../public/images/prodotti/preroll-gelato-41.jpg" alt="" />
+                </div>
+                <div class="piccolo" style="flex: 1">
+                  <b>Gelato 41 Pre-roll</b><br /><span class="muto">1 g · quantità 2</span>
+                </div>
+                <span style="color: var(--giallo); font-weight: 600">13,80 €</span>
+              </div>
+              <span
+                class="pill"
+                style="margin-top: 4mm; background: var(--giallo); color: var(--nero); height: 7mm"
+                >Segui l'ordine</span
+              >
+            </div>
+            <div style="background: #111; padding: 3mm 5mm; font-size: 5pt; color: var(--grigio2)">
+              [Ragione sociale] · P. IVA [__] · Riservato ai maggiori di 18 anni · Preferenze email
+            </div>
+          </div>
+          <p class="didas">
+            Esempio con dati demo. Stessa struttura per registrazione, spedizione, reso, newsletter.
+            Font di sistema come riserva: molti programmi di posta non caricano Anton.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div>
+            <h4>Firma email</h4>
+            <div
+              style="
+                background: #fff;
+                color: #111;
+                border-radius: 2mm;
+                padding: 5mm;
+                display: flex;
+                gap: 5mm;
+                align-items: center;
+                font-size: 7pt;
+                line-height: 1.45;
+              "
+            >
+              <div style="background: var(--nero); border-radius: 1.5mm; padding: 3mm; flex: none">
+                <img src="img/logo-acid-rifilato.png" alt="" style="width: 20mm" />
+              </div>
+              <div>
+                <p style="font-weight: 700; font-size: 8.5pt">[Nome Cognome]</p>
+                <p style="color: #555">[Ruolo] · The Hasher</p>
+                <p style="margin-top: 1mm">[nome]@thehasher.com · +39 [telefono]</p>
+                <p><b>thehasher.com</b> · Instagram @thehasher</p>
+                <p style="margin-top: 1mm; font-size: 5.5pt; color: #777">
+                  [Ragione sociale] · P. IVA [__________]
+                </p>
+              </div>
+            </div>
+            <p class="didas">
+              Logo come immagine (PNG 2×, larghezza 120 px), testo vero per il resto: si legge anche
+              con le immagini bloccate. Niente frasi motivazionali, niente banner.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Indirizzi previsti</h4>
+            <table>
+              <tr>
+                <td class="mono">info@</td>
+                <td>domande sui prodotti</td>
+              </tr>
+              <tr>
+                <td class="mono">ordini@</td>
+                <td>assistenza ordini</td>
+              </tr>
+              <tr>
+                <td class="mono">b2b@</td>
+                <td>rivenditori e distributori</td>
+              </tr>
+              <tr>
+                <td class="mono">press@</td>
+                <td>stampa e collaborazioni</td>
+              </tr>
+              <tr>
+                <td class="mono">privacy@</td>
+                <td>richieste sui dati personali</td>
+              </tr>
+            </table>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Tutti su <b>thehasher.com</b>, già scritti nel sito. Dominio da confermare
+              all'acquisto.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Regole</h4>
+            <ul class="lista piccolo">
+              <li>Oggetto corto e concreto, niente maiuscolo gridato né emoji.</li>
+              <li>Newsletter solo con consenso; ogni email ha il link per cancellarsi.</li>
+              <li>Sconti con durata e condizioni scritte (regolamento in /promozioni).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>20</span></div>
+    </section>
+
+    <!-- ================= 19 SPEDIZIONE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>19 · Spedizione · proposta</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Anonima fuori. The Hasher dentro.</h2>
+      <p class="sotto">
+        La promessa è «packaging discreto»: il corriere e i vicini non devono capire cosa c'è nel
+        pacco. Il brand si scopre solo aprendo.
+      </p>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6mm">
+        <div>
+          <h4>Esterno</h4>
+          <div
+            style="
+              height: 58mm;
+              border-radius: 2mm;
+              background: #1a1a1a;
+              border: 0.3mm solid var(--linea2);
+              position: relative;
+              overflow: hidden;
+            "
+          >
+            <div
+              style="
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 50%;
+                height: 7mm;
+                transform: translateY(-50%);
+                background: #0a0a0a;
+              "
+            ></div>
+            <div
+              style="
+                position: absolute;
+                right: 7mm;
+                bottom: 7mm;
+                width: 34mm;
+                height: 22mm;
+                background: #fff;
+                color: #111;
+                padding: 2mm;
+                font-size: 4pt;
+                line-height: 1.4;
+              "
+            >
+              <p style="font-weight: 700">MITTENTE</p>
+              <p>[Ragione sociale]</p>
+              <p style="font-weight: 700; margin-top: 1mm">DESTINATARIO</p>
+              <p>Nome Cognome · Via … · CAP Città</p>
+              <div
+                style="
+                  margin-top: 1mm;
+                  height: 3.5mm;
+                  background: repeating-linear-gradient(
+                    90deg,
+                    #111 0 0.3mm,
+                    #fff 0.3mm 0.6mm,
+                    #111 0.6mm 1.1mm,
+                    #fff 1.1mm 1.4mm
+                  );
+                "
+              ></div>
+            </div>
+          </div>
+          <ul class="lista piccolo" style="margin-top: 2mm">
+            <li>Scatola nera o avana neutra, nastro nero liscio.</li>
+            <li>
+              Mittente = ragione sociale, mai «The Hasher», mai parole come CBD, hash, cannabis.
+            </li>
+            <li>Nessun logo, nessun colore giallo all'esterno.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Interno</h4>
+          <div
+            style="
+              height: 58mm;
+              border-radius: 2mm;
+              background: var(--giallo);
+              position: relative;
+              overflow: hidden;
+              color: var(--nero);
+            "
+          >
+            <div
+              class="tratto nero"
+              style="
+                -webkit-mask-size: 520%;
+                mask-size: 520%;
+                -webkit-mask-position: 99% 72%;
+                mask-position: 99% 72%;
+                left: 58%;
+              "
+            ></div>
+            <div style="position: absolute; left: 6mm; bottom: 6mm">
+              <img src="img/logo-black-rifilato.png" alt="" style="width: 30mm" />
+              <p
+                style="
+                  font-family: Anton;
+                  text-transform: uppercase;
+                  font-size: 11pt;
+                  line-height: 1;
+                  margin-top: 2mm;
+                "
+              >
+                Good plants.<br />Brighter days.
+              </p>
+            </div>
+          </div>
+          <ul class="lista piccolo" style="margin-top: 2mm">
+            <li>Interno del coperchio stampato giallo con il tratto nero.</li>
+            <li>Prodotti in carta velina nera chiusa dal sigillo.</li>
+            <li>Biglietto con il QR ai certificati dei lotti e l'invito al Club.</li>
+          </ul>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div>
+            <h4>Sigillo · Ø 40 mm</h4>
+            <div style="display: flex; gap: 5mm; align-items: center">
+              <svg viewBox="0 0 100 100" style="width: 40mm; height: 40mm; flex: none">
+                <circle cx="50" cy="50" r="49" fill="#dfff00" />
+                <defs>
+                  <path id="giro" d="M50,50 m-37,0 a37,37 0 1,1 74,0 a37,37 0 1,1 -74,0" />
+                </defs>
+                <text font-family="Archivo" font-weight="700" font-size="7.4" fill="#050505">
+                  <textPath href="#giro" textLength="228" lengthAdjust="spacing">
+                    SEALED FOR A BRIGHTER TOMORROW ✦
+                  </textPath>
+                </text>
+                <circle cx="50" cy="50" r="27" fill="#050505" />
+                <path
+                  d="M50 36 53.6 46.4 64 50 53.6 53.6 50 64 46.4 53.6 36 50 46.4 46.4z"
+                  fill="#dfff00"
+                />
+              </svg>
+              <p class="piccolo muto">
+                Chiude la velina, le buste nere e i kit. È anche la «garanzia di integrità»: se è
+                rotto, il cliente lo vede.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Biglietto nel pacco · A6</h4>
+            <div style="display: flex; gap: 3mm; align-items: center">
+              <div
+                style="
+                  width: 16mm;
+                  height: 16mm;
+                  flex: none;
+                  background: #fff;
+                  padding: 1.2mm;
+                  display: grid;
+                  grid-template-columns: repeat(7, 1fr);
+                  gap: 0.3mm;
+                "
+              >
+                <i style="background: #111"></i><i style="background: #111"></i
+                ><i style="background: #111"></i><i></i><i style="background: #111"></i><i></i
+                ><i style="background: #111"></i> <i style="background: #111"></i><i></i
+                ><i style="background: #111"></i><i style="background: #111"></i><i></i
+                ><i style="background: #111"></i><i style="background: #111"></i>
+                <i style="background: #111"></i><i style="background: #111"></i><i></i><i></i
+                ><i style="background: #111"></i><i></i><i style="background: #111"></i> <i></i
+                ><i style="background: #111"></i><i style="background: #111"></i
+                ><i style="background: #111"></i><i></i><i style="background: #111"></i><i></i>
+                <i style="background: #111"></i><i></i><i style="background: #111"></i><i></i
+                ><i style="background: #111"></i><i style="background: #111"></i
+                ><i style="background: #111"></i> <i style="background: #111"></i
+                ><i style="background: #111"></i><i></i><i style="background: #111"></i><i></i
+                ><i></i><i style="background: #111"></i> <i style="background: #111"></i><i></i
+                ><i style="background: #111"></i><i style="background: #111"></i
+                ><i style="background: #111"></i><i style="background: #111"></i
+                ><i style="background: #111"></i>
+              </div>
+              <p class="piccolo">
+                «Il certificato del tuo lotto è qui.» + codice sconto del Club. QR segnaposto.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Da verificare</h4>
+            <p class="piccolo">
+              Formati scatola con il corriere scelto (oggi nei dati demo compare BRT), imbottitura,
+              borsa termica per i cloni (piante vive).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="g4" style="margin-top: 4mm; gap: 3mm">
+        <div class="card" style="display: flex; gap: 3mm; align-items: center; padding: 3mm">
+          <p class="num" style="font-size: 18pt">1</p>
+          <p class="piccolo">Arriva un pacco neutro, come tanti altri.</p>
+        </div>
+        <div class="card" style="display: flex; gap: 3mm; align-items: center; padding: 3mm">
+          <p class="num" style="font-size: 18pt">2</p>
+          <p class="piccolo">Si apre: il giallo e il claim dentro al coperchio.</p>
+        </div>
+        <div class="card" style="display: flex; gap: 3mm; align-items: center; padding: 3mm">
+          <p class="num" style="font-size: 18pt">3</p>
+          <p class="piccolo">Velina nera chiusa dal sigillo: si rompe una volta sola.</p>
+        </div>
+        <div class="card" style="display: flex; gap: 3mm; align-items: center; padding: 3mm">
+          <p class="num" style="font-size: 18pt">4</p>
+          <p class="piccolo">Prodotti + biglietto con il QR al certificato del lotto.</p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>21</span></div>
+    </section>
+
+    <!-- ================= 20 PUNTO VENDITA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>20 · Punto vendita e rete</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Own The Hasher</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.35fr 1fr; gap: 6mm">
+        <div>
+          <div class="foto" style="height: 62mm">
+            <img src="../../public/images/franchising/esterno.jpg" alt="" />
+          </div>
+          <div class="g2" style="gap: 3mm; margin-top: 3mm">
+            <div class="foto" style="height: 36mm">
+              <img src="../../public/images/franchising/interno.jpg" alt="" />
+            </div>
+            <div class="foto" style="height: 36mm">
+              <img src="../../public/images/franchising/bancone.jpg" alt="" />
+            </div>
+          </div>
+          <p class="didas">
+            <b>Render di progetto approvati</b> (esterno, interno, bancone). Facciata nera, insegna
+            con il logo giallo retroilluminato, scaffali neri con luce calda radente, pack come
+            unico colore. Tre formati: Corner, Store, Flagship.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3.5mm">
+          <div class="fila" style="gap: 3.5mm; align-items: stretch">
+            <div style="flex: 1">
+              <h4>Shopper</h4>
+              <div style="height: 38mm; position: relative">
+                <div
+                  style="
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    width: 14mm;
+                    height: 9mm;
+                    transform: translateX(-50%);
+                    border: 0.8mm solid #333;
+                    border-bottom: 0;
+                    border-radius: 7mm 7mm 0 0;
+                  "
+                ></div>
+                <div
+                  style="
+                    position: absolute;
+                    left: 10%;
+                    right: 10%;
+                    top: 7mm;
+                    bottom: 0;
+                    background: var(--nero);
+                    border: 0.3mm solid var(--linea2);
+                    display: grid;
+                    place-items: center;
+                  "
+                >
+                  <div style="text-align: center">
+                    <img
+                      src="img/logo-acid-rifilato.png"
+                      alt=""
+                      style="width: 22mm; margin: 0 auto"
+                    />
+                    <p
+                      style="
+                        font-weight: 700;
+                        font-stretch: 80%;
+                        letter-spacing: 0.18em;
+                        font-size: 4.5pt;
+                        margin-top: 1.5mm;
+                      "
+                    >
+                      GOOD PLANTS. BRIGHTER DAYS.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="flex: 1.25">
+              <h4>Tessera Club</h4>
+              <div
+                style="
+                  height: 32mm;
+                  border-radius: 2.5mm;
+                  background: var(--nero);
+                  border: 0.3mm solid var(--linea2);
+                  position: relative;
+                  overflow: hidden;
+                  padding: 3mm;
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 6mm;
+                "
+              >
+                <div
+                  class="tratto"
+                  style="
+                    -webkit-mask-size: 600%;
+                    mask-size: 600%;
+                    -webkit-mask-position: 99% 70%;
+                    mask-position: 99% 70%;
+                    left: 74%;
+                  "
+                ></div>
+                <img
+                  src="img/logo-acid-rifilato.png"
+                  alt=""
+                  style="width: 16mm; position: relative"
+                />
+                <p
+                  style="
+                    font-family: Anton;
+                    font-size: 11pt;
+                    text-transform: uppercase;
+                    margin-top: auto;
+                    position: relative;
+                  "
+                >
+                  The Hasher Club
+                </p>
+                <p class="et g" style="position: relative; font-size: 5pt">Member · TH 0000 0000</p>
+              </div>
+            </div>
+          </div>
+          <p class="didas">
+            Livelli del Club: Starter, Member, Black, Elite. Un'unica fedeltà per negozi e sito.
+          </p>
+          <div>
+            <h4>Cartellino prezzo · 70 × 40 mm</h4>
+            <div
+              style="
+                width: 70mm;
+                height: 40mm;
+                background: var(--nero);
+                border: 0.3mm solid var(--linea2);
+                border-radius: 1mm;
+                padding: 3mm;
+                display: flex;
+                flex-direction: column;
+              "
+            >
+              <div style="display: flex; justify-content: space-between; align-items: flex-start">
+                <p
+                  style="
+                    font-family: Anton;
+                    font-size: 13pt;
+                    text-transform: uppercase;
+                    line-height: 1;
+                  "
+                >
+                  Lemon Haze
+                </p>
+                <span
+                  style="
+                    background: var(--giallo);
+                    color: var(--nero);
+                    font-weight: 700;
+                    font-stretch: 80%;
+                    font-size: 4.5pt;
+                    padding: 0.4mm 1.2mm;
+                    border-radius: 0.6mm;
+                    letter-spacing: 0.08em;
+                  "
+                  >BEST SELLER</span
+                >
+              </div>
+              <p
+                style="
+                  font-weight: 700;
+                  letter-spacing: 0.26em;
+                  color: var(--giallo);
+                  font-size: 5.5pt;
+                  margin-top: 0.8mm;
+                "
+              >
+                CBD: +18%
+              </p>
+              <p class="et" style="font-size: 4.8pt; margin-top: 0.8mm">
+                Hash · Dry sift · Agrumato / terroso
+              </p>
+              <div style="display: flex; align-items: baseline; gap: 2mm; margin-top: auto">
+                <span style="color: var(--giallo); font-weight: 600; font-size: 13pt">24,90 €</span>
+                <span class="et" style="font-size: 5pt">3,5 g · 7,11 €/g</span>
+                <i class="rombo" style="margin-left: auto"></i>
+              </div>
+            </div>
+            <p class="didas">
+              Stesso ordine della scheda online. Prezzo al grammo sempre visibile. Dati demo.
+            </p>
+          </div>
+          <div class="card">
+            <h4>In negozio, sempre</h4>
+            <p class="piccolo">
+              Vetrofania «18+ · Vendita riservata ai maggiori di 18 anni» all'ingresso · QR ai
+              certificati sullo scaffale · nessun prodotto sfuso fuori dal pack · musica, luce e
+              divise nere (merch).
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>22</span></div>
+    </section>
+
+    <!-- ================= 21 SOCIAL FEED ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>21 · Social: il feed · proposta</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Riconoscibile prima del logo</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 118mm 1fr; gap: 8mm">
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1mm;
+            align-content: start;
+          "
+        >
+          <div class="post">
+            <img
+              class="sf"
+              src="../../public/images/prodotti/preroll-mimosa.jpg"
+              alt=""
+              style="object-position: 40% 50%"
+            />
+            <div class="velo"></div>
+            <p class="txt">New<br />drop</p>
+            <i class="rombo" style="position: absolute; left: 5%; bottom: 7%"></i>
+          </div>
+          <div class="post" style="display: grid; place-items: center">
+            <div style="text-align: center">
+              <img src="img/logo-acid-rifilato.png" alt="" style="width: 24mm; margin: 0 auto" /><i
+                class="rombo"
+                style="margin-top: 2mm; width: 1.8mm; height: 1.8mm"
+              ></i>
+              <p
+                style="
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.25em;
+                  font-size: 4.3pt;
+                  margin-top: 1mm;
+                "
+              >
+                PREMIUM CBD HASH
+              </p>
+            </div>
+          </div>
+          <div class="post">
+            <img class="sf" src="../../public/images/filiera/pressatura.jpg" alt="" />
+            <div class="velo"></div>
+            <p class="txt" style="left: auto; right: 5%; text-align: right">Lemon<br />haze</p>
+            <p class="sub" style="left: auto; right: 5%; color: #fff">Hash CBD · 3,5 g</p>
+          </div>
+          <div class="post">
+            <img class="sf" src="../../public/images/azienda/controllo.jpg" alt="" />
+            <div class="velo basso"></div>
+            <p class="txt" style="top: auto; bottom: 12%; font-size: 13pt">
+              Un lotto.<br />Un certificato.
+            </p>
+            <p class="sub" style="color: var(--giallo)">Lab tested</p>
+          </div>
+          <div class="post">
+            <img
+              class="sf"
+              src="../../public/images/prodotti/semi-gorilla-glue.jpg"
+              alt=""
+              style="object-position: 45% 50%"
+            />
+          </div>
+          <div class="post" style="background: var(--giallo)">
+            <div
+              class="tratto nero"
+              style="
+                -webkit-mask-size: 520%;
+                mask-size: 520%;
+                -webkit-mask-position: 99% 72%;
+                mask-position: 99% 72%;
+                left: 55%;
+                top: 45%;
+              "
+            ></div>
+            <p class="txt" style="color: var(--nero); font-size: 15pt">
+              Good<br />plants.<br />Brighter<br />days.
+            </p>
+          </div>
+          <div class="post">
+            <img class="sf" src="../../public/images/filiera/setacciatura.jpg" alt="" />
+            <div class="velo basso"></div>
+            <p class="txt" style="top: auto; bottom: 12%; font-size: 14pt">
+              Dal seme<br />alla resina
+            </p>
+            <p class="sub" style="color: #fff">La filiera</p>
+          </div>
+          <div class="post" style="display: grid; place-items: center">
+            <div style="text-align: center">
+              <img src="img/logo-acid-rifilato.png" alt="" style="width: 24mm; margin: 0 auto" />
+              <p
+                style="
+                  font-weight: 700;
+                  font-stretch: 80%;
+                  letter-spacing: 0.25em;
+                  font-size: 4.3pt;
+                  margin-top: 2mm;
+                "
+              >
+                SHOP THE DROP
+              </p>
+            </div>
+            <div
+              class="tratto"
+              style="
+                -webkit-mask-size: 420%;
+                mask-size: 420%;
+                -webkit-mask-position: 0% 100%;
+                mask-position: 0% 100%;
+                opacity: 0.9;
+                top: 70%;
+              "
+            ></div>
+          </div>
+          <div class="post">
+            <img class="sf" src="../../public/images/azienda/magazzino.jpg" alt="" />
+            <div class="velo basso"></div>
+            <p class="txt" style="top: auto; bottom: 12%; font-size: 14pt">
+              24–72 ore<br />in Europa
+            </p>
+            <p class="sub" style="color: #fff">Packaging discreto</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Formati</h4>
+            <table>
+              <tr>
+                <td>Post quadrato</td>
+                <td class="mono">1080 × 1080</td>
+              </tr>
+              <tr>
+                <td>Post verticale (consigliato)</td>
+                <td class="mono">1080 × 1350</td>
+              </tr>
+              <tr>
+                <td>Storie e reel</td>
+                <td class="mono">1080 × 1920</td>
+              </tr>
+              <tr>
+                <td>Area sicura storie</td>
+                <td>250 px liberi sopra e sotto</td>
+              </tr>
+              <tr>
+                <td>Avatar</td>
+                <td>logo giallo in cerchio nero</td>
+              </tr>
+            </table>
+          </div>
+          <div class="card">
+            <h4>Regole della griglia</h4>
+            <ul class="lista piccolo">
+              <li>Alternare: prodotto · marchio · dettaglio. Mai due foto prodotto vicine.</li>
+              <li>Un post, un obiettivo, un'idea visiva dominante.</li>
+              <li>
+                Titoli in Anton giallo, al massimo 3 righe; testo piccolo in Archivo spaziato.
+              </li>
+              <li>Tratto e rombo al posto delle decorazioni; niente cornici, niente filtri.</li>
+              <li>Ogni nono post almeno un post di «fiducia»: lotto, laboratorio, consegna.</li>
+            </ul>
+          </div>
+          <p class="didas">
+            Griglia ricomposta con le foto del sito, handle provvisorio @thehasher. Nomi e valori
+            demo.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>23</span></div>
+    </section>
+
+    <!-- ================= 22 SOCIAL STORIE REGOLE ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>22 · Social: storie e contenuti</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Coerenti senza ripetersi</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 7mm">
+        <div>
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm">
+            <div class="post" style="aspect-ratio: 9/16; border-radius: 2mm">
+              <img class="sf" src="img/v-verticale-resina.jpg" alt="" />
+            </div>
+            <div class="post" style="aspect-ratio: 9/16; border-radius: 2mm">
+              <img class="sf" src="img/v-verticale-edibles.jpg" alt="" />
+            </div>
+            <div
+              class="post"
+              style="aspect-ratio: 9/16; border-radius: 2mm; background: var(--giallo)"
+            >
+              <div
+                class="tratto nero"
+                style="
+                  -webkit-mask-size: 420%;
+                  mask-size: 420%;
+                  -webkit-mask-position: 100% 100%;
+                  mask-position: 100% 100%;
+                  top: 55%;
+                "
+              ></div>
+              <p
+                class="et"
+                style="position: absolute; left: 8%; top: 8%; color: var(--nero); font-size: 5pt"
+              >
+                Newsletter
+              </p>
+              <p
+                style="
+                  position: absolute;
+                  left: 8%;
+                  top: 14%;
+                  font-family: Anton;
+                  font-size: 34pt;
+                  line-height: 0.9;
+                  color: var(--nero);
+                "
+              >
+                −5%
+              </p>
+              <p
+                style="
+                  position: absolute;
+                  left: 8%;
+                  top: 36%;
+                  font-family: Anton;
+                  font-size: 11pt;
+                  line-height: 0.95;
+                  color: var(--nero);
+                  text-transform: uppercase;
+                "
+              >
+                per 6 mesi<br />con l'account
+              </p>
+            </div>
+            <div class="post" style="aspect-ratio: 9/16; border-radius: 2mm">
+              <img class="sf" src="img/v-verticale-chiusura.jpg" alt="" />
+            </div>
+          </div>
+          <p class="didas">
+            <b>Storie 9:16:</b> due fotogrammi del video verticale, invito newsletter (lo stesso
+            sconto del sito), chiusura con logo e claim.
+          </p>
+          <div class="card" style="margin-top: 4mm">
+            <h4>Sei tipi di contenuto (dal manuale)</h4>
+            <table>
+              <tr>
+                <td><b>Prodotto</b></td>
+                <td>pack protagonista, nome, un'azione chiara</td>
+              </tr>
+              <tr>
+                <td><b>Dettaglio</b></td>
+                <td>macro della texture come prova, non come decoro</td>
+              </tr>
+              <tr>
+                <td><b>Drop</b></td>
+                <td>titoli condensati per lanci e riassortimenti</td>
+              </tr>
+              <tr>
+                <td><b>Brand</b></td>
+                <td>logo calligrafico e tratti per farsi riconoscere</td>
+              </tr>
+              <tr>
+                <td><b>Fiducia</b></td>
+                <td>lotto, laboratorio, chiarezza sulla consegna</td>
+              </tr>
+              <tr>
+                <td><b>Storia</b></td>
+                <td>verticali veloci, gerarchia forte da telefono</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card" style="border-color: #5a1e1e">
+            <h4 style="color: var(--rosso)">Regole delle piattaforme · attenzione</h4>
+            <ul class="lista no piccolo">
+              <li>
+                Le piattaforme limitano la pubblicità di prodotti a base di cannabinoidi: niente
+                sponsorizzate sui prodotti senza verificare le regole del momento.
+              </li>
+              <li>Mai claim salutistici, mai prezzi e sconti nelle sponsorizzate.</li>
+              <li>Mai persone che fumano, mai inviti al consumo.</li>
+              <li>Profilo con «18+» in biografia e link al sito con verifica dell'età.</li>
+              <li>Creator e ambassador: #adv sempre visibile e stesse regole del brand.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Canali</h4>
+            <table>
+              <tr>
+                <td>Instagram</td>
+                <td class="mono">@thehasher</td>
+                <td class="muto">provvisorio</td>
+              </tr>
+              <tr>
+                <td>Telegram</td>
+                <td class="mono">t.me/thehasher</td>
+                <td class="muto">provvisorio · sconti fine lotto</td>
+              </tr>
+            </table>
+            <p class="piccolo muto" style="margin-top: 2mm">
+              Da registrare subito, insieme ai domini, anche se non si pubblica ancora.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Voce sui social</h4>
+            <p class="piccolo">
+              Stessa del sito: frasi corte, numeri veri, nessuna emoji nei titoli. Risposte ai
+              commenti entro 24 ore, mai consigli d'uso medici.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>24</span></div>
+    </section>
+
+    <!-- ================= 23 SITO COMPUTER ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>23 · Sito: computer</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Premium, e vende</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5mm">
+        <div>
+          <div class="browser">
+            <div class="barra"><i></i><i></i><i></i><span>thehasher.com</span></div>
+            <img
+              src="img/home-hero.jpg"
+              alt=""
+              style="height: 60mm; width: 100%; object-fit: cover; object-position: top"
+            />
+          </div>
+          <p class="didas"><b>Home.</b> Dopo il video: una promessa, un bottone, tre garanzie.</p>
+        </div>
+        <div>
+          <div class="browser">
+            <div class="barra"><i></i><i></i><i></i><span>thehasher.com/negozio</span></div>
+            <img
+              src="img/negozio.jpg"
+              alt=""
+              style="height: 60mm; width: 100%; object-fit: cover; object-position: top"
+            />
+          </div>
+          <p class="didas"><b>Negozio.</b> Famiglie a gruppi, linee, filtri, 4 colonne.</p>
+        </div>
+        <div>
+          <div class="browser">
+            <div class="barra">
+              <i></i><i></i><i></i><span>thehasher.com/prodotto/lemon-haze</span>
+            </div>
+            <img
+              src="img/prodotto.jpg"
+              alt=""
+              style="height: 60mm; width: 100%; object-fit: cover; object-position: top"
+            />
+          </div>
+          <p class="didas"><b>Prodotto.</b> Formati con prezzo al grammo, lotto, analisi.</p>
+        </div>
+        <div>
+          <div class="browser">
+            <div class="barra"><i></i><i></i><i></i><span>thehasher.com/franchising</span></div>
+            <img
+              src="img/franchising.jpg"
+              alt=""
+              style="height: 60mm; width: 100%; object-fit: cover; object-position: top"
+            />
+          </div>
+          <p class="didas"><b>Franchising.</b> Una delle bande gialle: la promessa in grande.</p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>25</span></div>
+    </section>
+
+    <!-- ================= 24 SITO TELEFONO ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>24 · Sito: telefono</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Prima il telefono</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1fr 1fr 1.35fr; gap: 6mm">
+        <div>
+          <div class="telefono">
+            <div class="schermo"><img src="img/m-home.jpg" alt="" /></div>
+          </div>
+          <p class="didas"><b>Home</b></p>
+        </div>
+        <div>
+          <div class="telefono">
+            <div class="schermo"><img src="img/m-negozio.jpg" alt="" /></div>
+          </div>
+          <p class="didas"><b>Negozio:</b> due tasti, Famiglia e Filtri</p>
+        </div>
+        <div>
+          <div class="telefono">
+            <div class="schermo"><img src="img/m-prodotto.jpg" alt="" /></div>
+          </div>
+          <p class="didas"><b>Prodotto:</b> barra d'acquisto in basso</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Il sito oggi</h4>
+            <table>
+              <tr>
+                <td>Pagine</td>
+                <td><b>40</b> indirizzi, di cui 5 di lavoro</td>
+              </tr>
+              <tr>
+                <td>Prodotti demo</td>
+                <td><b>86</b> (71 negozio + 15 merch)</td>
+              </tr>
+              <tr>
+                <td>Famiglie · linee</td>
+                <td><b>10</b> · <b>5</b> + THC free</td>
+              </tr>
+              <tr>
+                <td>Pagine legali</td>
+                <td><b>10</b> + FAQ in 7 gruppi</td>
+              </tr>
+              <tr>
+                <td>Blog</td>
+                <td><b>9</b> articoli</td>
+              </tr>
+              <tr>
+                <td>Controllo</td>
+                <td>390 · 834 · 1440 px</td>
+              </tr>
+            </table>
+          </div>
+          <div class="card">
+            <h4>Regole di esperienza</h4>
+            <ul class="lista piccolo">
+              <li>Verifica 18+ all'ingresso, banner cookie con «Rifiuta» accanto ad «Accetta».</li>
+              <li>Una sola azione principale per sezione.</li>
+              <li>Filtri nell'indirizzo: si condividono e si tornano a trovare.</li>
+              <li>Checkout isolato, senza menu, in tre passi.</li>
+              <li>Prezzo al grammo ovunque ci sia un peso.</li>
+              <li>Tap ≥ 44 px, contrasto ≥ 4,5:1, un solo titolo principale.</li>
+            </ul>
+          </div>
+          <p class="didas">
+            Anteprima online: roicandesign-bot.github.io/theasher · esclusa dai motori di ricerca.
+          </p>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>26</span></div>
+    </section>
+
+    <!-- ================= 25 VIDEO ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>25 · Video di apertura</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">The Hasher in 12 secondi</h2>
+      <div class="corpo">
+        <div class="g4" style="gap: 3mm">
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9"><img src="img/v01-logo.jpg" alt="" /></div>
+            <p class="didas"><b>0–1,4 s</b> · logo da sfocato a nitido, fumo</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9"><img src="img/v02-seme.jpg" alt="" /></div>
+            <p class="didas"><b>1,4–2,6 s</b> · «Dal seme» · coltivazioni in Europa</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v03-resina.jpg" alt="" />
+            </div>
+            <p class="didas"><b>2,6–3,7 s</b> · «Alla resina» · lavorata da noi</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v04-famiglie.jpg" alt="" />
+            </div>
+            <p class="didas"><b>3,7–8 s</b> · carosello: pieno al centro, nome della famiglia</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v05-cloni.jpg" alt="" />
+            </div>
+            <p class="didas"><b>…</b> · fino ai cloni</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v06-24ore.jpg" alt="" />
+            </div>
+            <p class="didas"><b>~8,5 s</b> · «Pronto in 24 ore» · dalla casa madre</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v07-europa.jpg" alt="" />
+            </div>
+            <p class="didas"><b>~9,3 s</b> · «In tutta Europa» · online e nei negozi</p>
+          </div>
+          <div>
+            <div class="foto" style="aspect-ratio: 16/9">
+              <img src="img/v08-chiusura.jpg" alt="" />
+            </div>
+            <p class="didas"><b>9,8–12 s</b> · logo, claim, thehasher.com</p>
+          </div>
+        </div>
+        <div class="g3" style="margin-top: 4mm; gap: 5mm">
+          <div class="card">
+            <h4>File</h4>
+            <p class="mono" style="line-height: 1.6">
+              public/video/intro-16x9.mp4 · .webm<br />public/video/intro-9x16.mp4 · .webm<br />+
+              immagine di copertina per ognuno
+            </p>
+            <p class="piccolo muto" style="margin-top: 1.5mm">
+              16:9 per computer, 9:16 per telefono (scelto in automatico). MP4 per Safari e Chrome,
+              WebM di riserva.
+            </p>
+          </div>
+          <div class="card">
+            <h4>Regole</h4>
+            <ul class="lista piccolo">
+              <li>Muto, in loop, parte da solo; tasto pausa sempre visibile.</li>
+              <li>Cerchio giallo con freccia: ferma e porta giù al sito.</li>
+              <li>Con «riduci movimento» parte fermo.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Stile</h4>
+            <p class="piccolo">
+              Fumo di sigaretta generato (filamenti che salgono), testi in Anton bianco e giallo con
+              occhiello, nessun logo piccolo in angolo. Rigenerabile con
+              <span class="mono">scripts/video-intro.py</span>. Stato:
+              <b>v2 in attesa di conferma</b>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>27</span></div>
+    </section>
+
+    <!-- ================= 26 MERCH ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>26 · Merch</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Il brand da indossare e da usare</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1.7fr 1fr; gap: 6mm">
+        <div class="g5" style="gap: 2.5mm; align-content: start">
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/t-shirt.jpg" alt="" />
+            </div>
+            <p class="didas">T-shirt</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/felpa.jpg" alt="" />
+            </div>
+            <p class="didas">Felpa</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/cappellino.jpg" alt="" />
+            </div>
+            <p class="didas">Cappellino</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/skate.jpg" alt="" />
+            </div>
+            <p class="didas">Tavola skate</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/sticker.jpg" alt="" />
+            </div>
+            <p class="didas">Sticker</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/grinder.jpg" alt="" />
+            </div>
+            <p class="didas">Grinder</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/cartine.jpg" alt="" />
+            </div>
+            <p class="didas">Cartine</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/filtri.jpg" alt="" />
+            </div>
+            <p class="didas">Filtri</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/coni.jpg" alt="" />
+            </div>
+            <p class="didas">Coni</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/clipper.jpg" alt="" />
+            </div>
+            <p class="didas">Accendino</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/porta-clipper.jpg" alt="" />
+            </div>
+            <p class="didas">Porta accendino</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/vassoio.jpg" alt="" />
+            </div>
+            <p class="didas">Vassoio</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/roll-kit.jpg" alt="" />
+            </div>
+            <p class="didas">Roll kit</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/tubi.jpg" alt="" />
+            </div>
+            <p class="didas">Tubi</p>
+          </div>
+          <div>
+            <div class="foto" style="height: 25mm">
+              <img src="../../public/images/merch/busta.jpg" alt="" />
+            </div>
+            <p class="didas">Busta anti-odore</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm">
+          <div class="card">
+            <h4>Regole</h4>
+            <ul class="lista piccolo">
+              <li>Capi neri, logo giallo ricamato o serigrafato (minimo 35 mm sul ricamo).</li>
+              <li>
+                Tratto calligrafico sulle maniche o sul retro, mai sul fronte insieme al logo.
+              </li>
+              <li>Accessori neri con logo giallo; cartine e filtri con libretto nero.</li>
+              <li>Niente foglie, niente scritte sul consumo.</li>
+              <li>Accendini conformi alle norme di sicurezza e a prova di bambino.</li>
+              <li>Tessili con etichetta di composizione.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Stato</h4>
+            <p class="piccolo">
+              Le immagini sono illustrazioni segnaposto (logo vero su fondo pack). Costi, quantità
+              minime e fornitori indicativi in <span class="mono">design/MERCH.md</span>. Nome del
+              reparto: <b>Merch</b>, in alternativa Accessori, Headshop o Supply: da decidere.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>28</span></div>
+    </section>
+
+    <!-- ================= 27 IL LAVORO FIN QUI ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>27 · Il lavoro fin qui</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Dal 14 al 29 settembre</h2>
+      <div class="corpo" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 8mm">
+        <div class="g2" style="gap: 3mm; align-content: start">
+          <div class="card">
+            <p class="num">40</p>
+            <p class="et">indirizzi del sito</p>
+          </div>
+          <div class="card">
+            <p class="num">86</p>
+            <p class="et">prodotti demo</p>
+          </div>
+          <div class="card">
+            <p class="num">10</p>
+            <p class="et">famiglie</p>
+          </div>
+          <div class="card">
+            <p class="num">5+1</p>
+            <p class="et">linee + THC free</p>
+          </div>
+          <div class="card">
+            <p class="num">36</p>
+            <p class="et">foto pack generate</p>
+          </div>
+          <div class="card">
+            <p class="num">15</p>
+            <p class="et">articoli merch</p>
+          </div>
+          <div class="card">
+            <p class="num">10</p>
+            <p class="et">pagine legali</p>
+          </div>
+          <div class="card">
+            <p class="num">2</p>
+            <p class="et">video 16:9 e 9:16</p>
+          </div>
+          <div class="card">
+            <p class="num">147</p>
+            <p class="et">schermate di controllo</p>
+          </div>
+          <div class="card">
+            <p class="num">51</p>
+            <p class="et">salvataggi pubblicati</p>
+          </div>
+        </div>
+        <div>
+          <table>
+            <tr>
+              <th style="width: 18mm">Quando</th>
+              <th>Cosa</th>
+            </tr>
+            <tr>
+              <td><b>14/09</b></td>
+              <td>
+                Lettura del brand (tavola, mockup, manuale), specifica tecnica completa in 10
+                documenti, stile, componenti, home in 12 sezioni
+              </td>
+            </tr>
+            <tr>
+              <td><b>15–17/09</b></td>
+              <td>
+                Pagina prodotto, mappa del sito, prova «packaging system» (annullata), animazioni
+              </td>
+            </tr>
+            <tr>
+              <td><b>27/09</b></td>
+              <td>
+                Percorso d'acquisto, area cliente, racconto e blog, pagine legali, 18+ e cookie,
+                tassonomia del catalogo, filiera con foto vere, rivenditori, franchising «Own The
+                Hasher», analisi prezzi e piano di crescita
+              </td>
+            </tr>
+            <tr>
+              <td><b>28/09</b></td>
+              <td>
+                Render del negozio, L'azienda a capitoli, Ambassador; dieci famiglie con pack nuovi
+                (preroll, cannagar, vape, gommose, semi, oli, cloni), linea THC-A, reparto Merch;
+                pacchetto legale e FAQ riscritti; video v1 e v2; gerarchia e archivio font; prova
+                colori
+              </td>
+            </tr>
+            <tr>
+              <td><b>29/09</b></td>
+              <td>
+                Brief del progetto per altre AI, anteprima esclusa dai motori di ricerca, questo
+                documento
+              </td>
+            </tr>
+          </table>
+          <div class="card" style="margin-top: 4mm">
+            <h4>Documenti di progetto</h4>
+            <p class="piccolo">
+              <span class="mono">PROJECT_BRIEF.md</span> (quadro completo) ·
+              <span class="mono">docs/</span> (specifica per lo sviluppo) ·
+              <span class="mono">design/DECISIONS.md</span> (ogni scelta con il perché) ·
+              <span class="mono">design/LEGALE.md</span> (rischi per prodotto e Paese, riservato) ·
+              <span class="mono">design/MERCH.md</span> · archivio font in PDF.
+            </p>
+          </div>
+          <div class="g5" style="gap: 2.5mm; margin-top: 4mm">
+            <div class="foto" style="aspect-ratio: 1">
+              <img src="../../public/images/prodotti/vape-gelato-thca.jpg" alt="" />
+            </div>
+            <div class="foto" style="aspect-ratio: 1">
+              <img src="../../public/images/prodotti/edibles-watermelon.jpg" alt="" />
+            </div>
+            <div class="foto" style="aspect-ratio: 1">
+              <img src="../../public/images/azienda/laboratorio.jpg" alt="" />
+            </div>
+            <div class="foto" style="aspect-ratio: 1">
+              <img src="../../public/images/franchising/interno.jpg" alt="" />
+            </div>
+            <div class="foto" style="aspect-ratio: 1">
+              <img
+                src="../../public/images/prodotti/preroll-og-kush-thca.jpg"
+                alt=""
+                style="object-position: 40% 50%"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>29</span></div>
+    </section>
+
+    <!-- ================= 28 FILE E KIT ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>28 · File e kit di consegna</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Cosa c'è, cosa manca</h2>
+      <div class="corpo">
+        <table class="media">
+          <tr>
+            <th style="width: 22%">Elemento</th>
+            <th style="width: 12%">Stato</th>
+            <th style="width: 36%">Dove / cosa</th>
+            <th>Per chiudere</th>
+          </tr>
+          <tr>
+            <td>Logo PNG (3 versioni)</td>
+            <td style="color: #4ade80">pronto</td>
+            <td class="mono">public/brand/</td>
+            <td class="muto">—</td>
+          </tr>
+          <tr>
+            <td>Logo vettoriale SVG / EPS / PDF</td>
+            <td style="color: var(--rosso)">manca</td>
+            <td>—</td>
+            <td>file originale da chi ha disegnato il logo</td>
+          </tr>
+          <tr>
+            <td>Versione piccola del logo</td>
+            <td style="color: #fbbf24">parziale</td>
+            <td>rombo come favicon</td>
+            <td>decidere se serve un monogramma</td>
+          </tr>
+          <tr>
+            <td>Colori digitali</td>
+            <td style="color: #4ade80">pronto</td>
+            <td class="mono">src/styles/tokens.css</td>
+            <td class="muto">—</td>
+          </tr>
+          <tr>
+            <td>Pantone e prove colore</td>
+            <td style="color: var(--rosso)">manca</td>
+            <td>—</td>
+            <td>mazzetta e prova di stampa con lo stampatore</td>
+          </tr>
+          <tr>
+            <td>Caratteri</td>
+            <td style="color: #4ade80">pronto</td>
+            <td class="mono">design/archivio-font/ (PDF)</td>
+            <td class="muto">—</td>
+          </tr>
+          <tr>
+            <td>Foto della filiera e render</td>
+            <td style="color: #4ade80">pronto</td>
+            <td class="mono">public/images/filiera · azienda · franchising</td>
+            <td class="muto">—</td>
+          </tr>
+          <tr>
+            <td>Foto prodotto vere</td>
+            <td style="color: var(--rosso)">manca</td>
+            <td>oggi ritagli demo e mockup</td>
+            <td>servizio fotografico su fondo nero</td>
+          </tr>
+          <tr>
+            <td>Mockup pack (8 famiglie)</td>
+            <td style="color: #fbbf24">parziale</td>
+            <td class="mono">public/images/prodotti/ + scripts/</td>
+            <td>fustelle, esecutivi, zone di conformità validate</td>
+          </tr>
+          <tr>
+            <td>Cancelleria, email, sigillo, Club</td>
+            <td style="color: #fbbf24">proposta</td>
+            <td>questo documento, pagine 19–22</td>
+            <td>approvazione, poi esecutivi di stampa</td>
+          </tr>
+          <tr>
+            <td>Template social modificabili</td>
+            <td style="color: #fbbf24">proposta</td>
+            <td>questo documento, pagine 23–24</td>
+            <td>versioni modificabili (Canva o Figma)</td>
+          </tr>
+          <tr>
+            <td>Sito (prototipo)</td>
+            <td style="color: #4ade80">pronto</td>
+            <td>anteprima online + schermate</td>
+            <td>sviluppo vero (fase 2)</td>
+          </tr>
+          <tr>
+            <td>Video di apertura</td>
+            <td style="color: #fbbf24">in attesa</td>
+            <td class="mono">public/video/</td>
+            <td>conferma della v2</td>
+          </tr>
+          <tr>
+            <td>Catalogo B2B e listino</td>
+            <td style="color: var(--rosso)">manca</td>
+            <td>prezzi demo nelle pagine B2B</td>
+            <td>listino vero, poi catalogo PDF</td>
+          </tr>
+          <tr>
+            <td>Franchise deck</td>
+            <td style="color: var(--rosso)">manca</td>
+            <td>il bottone c'è nella pagina</td>
+            <td>numeri confermati dal negozio pilota</td>
+          </tr>
+        </table>
+        <div class="card" style="margin-top: 4mm">
+          <h4>Formati di consegna per chi produce</h4>
+          <div class="g4" style="gap: 5mm">
+            <p class="piccolo">
+              <b>Logo:</b> SVG e PDF vettoriali + PNG trasparente 2× · versioni giallo, nero,
+              bianco.
+            </p>
+            <p class="piccolo">
+              <b>Stampa:</b> PDF/X-4, 3 mm di abbondanza, immagini a 300 dpi, giallo come tinta
+              piatta Pantone.
+            </p>
+            <p class="piccolo">
+              <b>Web e social:</b> JPG o WebP sRGB, 2400 px sul lato lungo, sotto i 400 KB per il
+              sito.
+            </p>
+            <p class="piccolo">
+              <b>Video:</b> MP4 H.264 + WebM, muto, 1920×1080 e 1080×1920, sotto i 6 MB.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>30</span></div>
+    </section>
+
+    <!-- ================= 29 COSA MANCA ================= -->
+    <section class="pagina">
+      <div class="testa">
+        <span class="sez"><i class="rombo"></i>29 · Cosa manca</span
+        ><span class="doc">The Hasher / Immagine coordinata</span>
+      </div>
+      <h2 class="titolo">Da completare, in ordine</h2>
+      <div class="corpo" style="display: flex; flex-direction: column; gap: 5mm">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 3mm">
+          <div class="card" style="background: var(--giallo); color: var(--nero); border: 0">
+            <p class="num" style="color: var(--nero); font-size: 20pt">1</p>
+            <p class="piccolo"><b>Domani:</b> domini e nomi social, tutti insieme.</p>
+          </div>
+          <div class="card">
+            <p class="num" style="font-size: 20pt">2</p>
+            <p class="piccolo">Anteprima protetta su Cloudflare, repository privato.</p>
+          </div>
+          <div class="card">
+            <p class="num" style="font-size: 20pt">3</p>
+            <p class="piccolo">
+              Scelte di design aperte: colori, Merch, video, proposte di questo documento.
+            </p>
+          </div>
+          <div class="card">
+            <p class="num" style="font-size: 20pt">4</p>
+            <p class="piccolo">Società che vende e parere legale per Paese e famiglia.</p>
+          </div>
+          <div class="card">
+            <p class="num" style="font-size: 20pt">5</p>
+            <p class="piccolo">Catalogo, prezzi, foto e certificati veri.</p>
+          </div>
+          <div class="card">
+            <p class="num" style="font-size: 20pt">6</p>
+            <p class="piccolo">Sviluppo del negozio vero con Vishu, poi lancio in un Paese.</p>
+          </div>
+        </div>
+        <div
+          style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; align-items: start"
+        >
+          <div class="card">
+            <h4>Decisioni di Lorenzo</h4>
+            <ul class="lista piccolo">
+              <li>Domini (domani) e account social</li>
+              <li>Repository privato o pagine di lavoro tolte dal sito</li>
+              <li>Colori per famiglia: sì o no</li>
+              <li>Nome del reparto: Merch o alternativa</li>
+              <li>Video v2: conferma o correzioni</li>
+              <li>8 foto degli estratti da approvare</li>
+              <li>Proposte di questo documento: cancelleria, spedizione, social, Club</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Materiali da raccogliere</h4>
+            <ul class="lista piccolo">
+              <li>Dati della società che vende (ragione sociale, P. IVA, sede, PEC)</li>
+              <li>Catalogo vero: prodotti, formati, prezzi B2C e B2B</li>
+              <li>Certificati di analisi per lotto</li>
+              <li>Foto prodotto vere</li>
+              <li>Logo vettoriale originale</li>
+              <li>Pantone del giallo</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Legale e fornitori</h4>
+            <ul class="lista piccolo">
+              <li>
+                Quali famiglie si vendono in quale Paese (edibles, THC-X, THC-A, vape, cloni sono a
+                rischio)
+              </li>
+              <li>Validazione dei testi legali e delle etichette</li>
+              <li>Fornitore di pagamenti che accetti il CBD</li>
+              <li>Corriere, formati scatola, resi</li>
+              <li>Laboratorio di analisi</li>
+              <li>Stampatore packaging e merch</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>Sito e sviluppo</h4>
+            <ul class="lista piccolo">
+              <li>Anteprima su Cloudflare con accesso protetto (dopo i domini)</li>
+              <li>Aggiornare /stato con i numeri di oggi</li>
+              <li>Verifica finale a 3 schermi e controllo accessibilità</li>
+              <li>Allineare la specifica tecnica al prototipo</li>
+              <li>Approvare le 10 decisioni per lo sviluppo</li>
+              <li>Fase 2 con Vishu: negozio vero, pagamenti, pannello di gestione, 5 lingue</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="piede"><span>The Hasher / Immagine coordinata</span><span>31</span></div>
+    </section>
+
+    <!-- ================= RETRO ================= -->
+    <section class="pagina cover" style="background: var(--giallo)">
+      <div
+        class="tratto nero"
+        style="
+          -webkit-mask-size: 700%;
+          mask-size: 700%;
+          -webkit-mask-position: 99% 72%;
+          mask-position: 99% 72%;
+          left: 80%;
+        "
+      ></div>
+      <div style="position: relative; height: 100%; display: grid; place-items: center">
+        <div style="text-align: center; padding: 10mm 14mm; margin-right: 20mm">
+          <img src="img/logo-black-rifilato.png" alt="" style="width: 110mm; margin: 0 auto" />
+          <p
+            style="
+              font-family: Anton;
+              font-size: 22pt;
+              text-transform: uppercase;
+              color: var(--nero);
+              margin-top: 8mm;
+              letter-spacing: 0.02em;
+            "
+          >
+            Good plants. Brighter days.
+          </p>
+          <p
+            style="
+              font-weight: 700;
+              font-stretch: 80%;
+              letter-spacing: 0.2em;
+              font-size: 7pt;
+              color: var(--nero);
+              margin-top: 3mm;
+            "
+          >
+            THEHASHER.COM · PREMIUM CBD HASH &amp; CBD FLOWER
+          </p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
