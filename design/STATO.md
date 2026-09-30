@@ -6,7 +6,7 @@
 
 ## Chi c'è
 
-- **Sviluppatore**: **Vishu** (repo `roicandesign-bot`). Farà la parte tecnica (Next.js, database, admin) partendo da `docs/`. Con Lorenzo si lavora solo sulle vibes: look, pagine, screenshot.
+- **Sviluppatore**: **Vishu** (repo `roicandesign-bot`). Fa la parte tecnica: negozio collegato a Supabase, back office con Lovable (`docs/11-lovable-supabase.md`). Con Lorenzo si lavora solo sulle vibes: look, pagine, screenshot.
 - **Responsabile design** («il capo»): **Lorenzo**, non è uno sviluppatore. Definirà design e prototipo usando le sessioni Claude Code su questo repo. Con lui: italiano, poche domande, mostrare risultati, correggere a vista.
 
 ## Cosa è pronto (fase 1, ambiente)
@@ -49,6 +49,10 @@ Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, see
 ## Proposta Lovable + Supabase (2026-09-30)
 
 In valutazione `docs/11-lovable-supabase.md`: negozio in questo repo collegato a Supabase, back office in un progetto Lovable separato. Se approvata, sostituisce le decisioni 1, 2 e 9 (Next.js/Prisma).
+
+## Supabase (2026-09-30)
+
+Progetto `ykmhjuraaxxatnksxljg` creato da Vishu. Schema, RLS e seed pronti in `supabase/` (verificati su Postgres locale), non ancora applicati: la rete della sessione blocca `*.supabase.co`.
 
 ## Prossimo passo
 
