@@ -3,7 +3,7 @@
 # Uso (dal tuo computer, con git e bun installati):
 #   bash scripts/sposta-in-lovable.sh https://github.com/roicandesign-bot/safe-cracker-tool.git
 set -euo pipefail
-REPO="${1:?Manca l'indirizzo del repo di Lovable}"
+REPO="${1:?Manca l indirizzo del repo di Lovable}"
 QUI="$(cd "$(dirname "$0")/.." && pwd)"
 DST="$(mktemp -d)/lovable"
 
@@ -32,11 +32,17 @@ echo "→ Guscio Lovable: il sito intero come unica pagina, solo lato browser"
 cp -r "$QUI/lovable/src/." src/
 
 echo "→ Dipendenze che a Lovable mancano"
-bun add react-router-dom@^7.9.0 motion@^12.23.0 @fontsource/anton@^5.3.0 @fontsource-variable/archivo@^5.3.0
-bun add -d prettier-plugin-tailwindcss
-
-echo "→ Provo la build"
-bun run build
+if command -v bun >/dev/null 2>&1; then
+  bun add react-router-dom@^7.9.0 motion@^12.23.0 @fontsource/anton@^5.3.0 @fontsource-variable/archivo@^5.3.0
+  bun add -d prettier-plugin-tailwindcss
+  echo "→ Provo la build"
+  bun run build
+else
+  # Senza bun: scrivo le dipendenze in package.json e lascio che Lovable installi e costruisca.
+  sed -i 's/"dependencies": {/"dependencies": {\n    "@fontsource-variable\/archivo": "^5.3.0",\n    "@fontsource\/anton": "^5.3.0",\n    "motion": "^12.23.0",\n    "react-router-dom": "^7.9.0",/' package.json
+  sed -i 's/"devDependencies": {/"devDependencies": {\n    "prettier-plugin-tailwindcss": "^0.6.14",/' package.json
+  echo "  (bun non trovato: salto la build, la farà Lovable)"
+fi
 
 echo "→ Salvo e pubblico su GitHub (Lovable si aggiorna da solo)"
 git add -A
