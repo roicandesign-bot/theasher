@@ -46,6 +46,10 @@ Verificato in sessione remota: PostgreSQL 16 si avvia in locale (migrazioni, see
 
 - Privacy, cookie policy, FAQ e termini: spunto da **Rollz** e **Califarm** (chiesto da Lorenzo il 28/09/2026). Vedi `design/PROGRESS.md`.
 
+## Proposta Lovable + Supabase (2026-09-30)
+
+In valutazione `docs/11-lovable-supabase.md`: negozio in questo repo collegato a Supabase, back office in un progetto Lovable separato. Se approvata, sostituisce le decisioni 1, 2 e 9 (Next.js/Prisma).
+
 ## Prossimo passo
 
 Approvazione delle decisioni → milestone **M0 Fondazione** sul branch `claude/the-hasher-ecommerce-o8r9lt`, poi merge su `main` a fine milestone approvata.
