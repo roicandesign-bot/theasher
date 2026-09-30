@@ -80,3 +80,11 @@ Lovable non importa un repo esistente: crea lui il repo e lo sincronizza sul bra
 
 Il codice è già compatibile: Vite + React + TypeScript + Tailwind, `base` a `/`, dev server sulla
 porta 8080 come nei progetti Lovable.
+
+### Come si fa la copia (2026-09-30)
+
+Le sessioni Claude sul web **non possono copiare file tra due repo**: il controllo di sicurezza lo
+blocca. La copia la fa Vishu dal suo computer con `scripts/sposta-in-lovable.sh`, che scarica il repo
+di Lovable, ci mette il sito, aggiunge i 4 pacchetti mancanti, prova la build e pubblica.
+I file del guscio Lovable (`HasherApp`, route «cattura tutto», `styles.css`, `__root.tsx`) sono in
+`lovable/src/`. Screenshot e input di design (180 MB) restano in `theasher`.

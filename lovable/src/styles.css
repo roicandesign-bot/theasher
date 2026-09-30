@@ -1,0 +1,4 @@
+/* Font self-hosted (Anton + Archivo variabile) e tutto lo stile del sito: src/styles/ */
+@import '@fontsource/anton';
+@import '@fontsource-variable/archivo/wdth.css';
+@import './styles/index.css';
