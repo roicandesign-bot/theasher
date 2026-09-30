@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Logo } from '@/components/ui/Logo'
 import { site } from '@/data/site'
+import { caveauInArrivo } from '@/lib/intro'
 
 const CHIAVE = 'hasher_age_ok'
 
@@ -12,13 +14,18 @@ const CHIAVE = 'hasher_age_ok'
 export function AgeGate() {
   const [aperto, setAperto] = useState(false)
   const [rifiutato, setRifiutato] = useState(false)
+  const { pathname } = useLocation()
 
   useEffect(() => {
+    // sulla home il caveau chiede lui l'età: una sola porta, non due
+    if (caveauInArrivo(pathname)) return
     try {
       if (!sessionStorage.getItem(CHIAVE)) setAperto(true)
     } catch {
       setAperto(true)
     }
+    // solo all'ingresso nel sito
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

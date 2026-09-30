@@ -136,6 +136,13 @@ export const dropReserve = [
   },
 ]
 
+/** Il prossimo lotto Reserve: il caveau della home mostra il conto alla rovescia (data demo). */
+export const prossimoReserve = {
+  nome: 'Reserve Nº 07 · Royal Hash Frozen',
+  pezzi: 180,
+  apre: '2026-10-07T18:00:00+02:00',
+}
+
 /** Le regole che fanno fidare: scritte in chiaro sulla pagina, complete nel regolamento. */
 export const regoleClub = [
   'Il livello si calcola sugli ordini consegnati negli ultimi 12 mesi, resi esclusi.',

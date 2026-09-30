@@ -50,7 +50,8 @@ ritagli demo dai mockup.
 - **Colori per famiglia**: prova attiva con `/negozio?colori=si`, tavola in
   `design/screenshots/prova-colori-famiglie.png`. Se va bene diventa il default, se no si toglie.
 - **Nome del reparto**: Merch (online) oppure Accessori / Headshop / Supply.
-- **Video di apertura v2** in cima alla home: conferma o correzioni.
+- **Apertura della home**: A Caveau (predefinita) o B Resina, al posto del video che non è piaciuto.
+  Prova con `?intro=caveau`, `?intro=resina`, `?intro=video`. Video dimostrativi in `design/screenshots/apertura-*.mp4`.
 - **The Hasher Club**: livelli, soglie e percentuali sono una proposta (`/club`, `/account/club`,
   `/regolamento-club`). Da confermare con i conti e con il legale.
 - **Immagine coordinata v1** (`design/immagine-coordinata/THE-HASHER-immagine-coordinata.pdf`, 32 pagine):

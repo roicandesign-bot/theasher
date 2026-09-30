@@ -136,3 +136,41 @@
     display: none;
   }
 }
+
+/* Apertura «Caveau» della home ------------------------------------------------ */
+@keyframes griglia {
+  to {
+    background-position: 0 72px;
+  }
+}
+@keyframes scan-rivela {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+@keyframes scan-linea {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  10%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes riflesso {
+  0% {
+    background-position: 150% 0;
+  }
+  35%,
+  100% {
+    background-position: -50% 0;
+  }
+}

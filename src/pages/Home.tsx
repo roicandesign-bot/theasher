@@ -13,12 +13,15 @@ import {
   Star,
   Truck,
 } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { Card } from '@/components/ui/Card'
 import { Container } from '@/components/ui/Container'
 import { Filiera } from '@/components/sections/Filiera'
+import { IntroCaveau } from '@/components/sections/IntroCaveau'
+import { IntroResina } from '@/components/sections/IntroResina'
 import { IntroVideo } from '@/components/sections/IntroVideo'
 import { StrisciaScorrevole } from '@/components/sections/StrisciaScorrevole'
 import { Diamond } from '@/components/ui/Diamond'
@@ -35,6 +38,7 @@ import { home } from '@/data/home'
 import { bestSellers, formatQuantita, newDrop, productPath } from '@/data/products'
 import { site } from '@/data/site'
 import { useCart } from '@/lib/cart'
+import { introScelta } from '@/lib/intro'
 
 import { asset } from '@/lib/asset'
 import { cn } from '@/lib/cn'
@@ -56,7 +60,7 @@ export default function Home() {
   return (
     <>
       {/* ---------- Apertura: il video di 12 secondi ---------- */}
-      <IntroVideo />
+      <Apertura />
 
       {/* ---------- Hero ---------- */}
       <section className="relative overflow-hidden">
@@ -563,4 +567,12 @@ export default function Home() {
       </Section>
     </>
   )
+}
+
+/** L'apertura della home, in prova: caveau (predefinita), resina, oppure il video di prima. */
+function Apertura() {
+  const [scelta] = useState(introScelta)
+  if (scelta === 'video') return <IntroVideo />
+  if (scelta === 'resina') return <IntroResina />
+  return <IntroCaveau />
 }

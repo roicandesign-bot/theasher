@@ -147,6 +147,7 @@ async function main() {
       await context.addInitScript(() => {
         try {
           sessionStorage.setItem('hasher_age_ok', 'si')
+          sessionStorage.setItem('hasher_caveau', 'si')
           localStorage.setItem(
             'hasher_consensi',
             JSON.stringify({ statistiche: true, marketing: true, versione: 1 }),
