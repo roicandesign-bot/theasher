@@ -640,7 +640,91 @@ export const pagineTesto: PaginaTesto[] = [
       {
         titolo: 'Programmi fedeltà e ambassador',
         paragrafi: [
+          'I vantaggi del Club (livelli, sconti di livello, accessi anticipati, inviti) sono nel Regolamento del Club.',
           'Le condizioni del programma ambassador (commissioni, codici personali, pagamenti) sono nell’accordo che firmi all’ingresso nel programma. I codici ambassador sono personali e non si possono pubblicare su siti di coupon.',
+        ],
+      },
+    ],
+  },
+  {
+    slug: 'regolamento-club',
+    eyebrow: 'Legale',
+    titolo: 'Regolamento del Club',
+    lead: 'Come si entra, come si sale di livello, cosa si ottiene e come trattiamo i tuoi dati. Il Club è gratuito e riservato ai maggiorenni.',
+    daCompletare: true,
+    aggiornato: '30 settembre 2026',
+    sezioni: [
+      {
+        titolo: 'Chi organizza il Club',
+        paragrafi: [
+          'Il programma «The Hasher Club» è organizzato da ' +
+            T.ragioneSociale +
+            ', ' +
+            T.sede +
+            ', P. IVA ' +
+            T.piva +
+            '. Per qualsiasi domanda: ' +
+            T.email +
+            '.',
+        ],
+      },
+      {
+        titolo: 'Chi può partecipare',
+        paragrafi: [
+          'Il Club è gratuito e aperto alle persone maggiorenni residenti nei Paesi in cui vendiamo, con un account sul sito. L’iscrizione è personale: un account per persona, non cedibile.',
+          'Si entra creando l’account e si esce quando si vuole dall’area cliente, senza costi. Uscendo si perdono livello, inviti e vantaggi non ancora usati.',
+        ],
+      },
+      {
+        titolo: 'I livelli e come si calcolano',
+        paragrafi: [
+          'Il livello dipende dal totale degli ordini consegnati negli ultimi 12 mesi, online e nei negozi The Hasher che aderiscono, al netto di resi, rimborsi, spedizione e carte regalo. Il calcolo si aggiorna ogni giorno.',
+        ],
+        elenco: [
+          'Starter: dalla creazione dell’account.',
+          'Member: dal primo ordine consegnato.',
+          'Black: da 400 € di ordini consegnati negli ultimi 12 mesi, oppure per 90 giorni con l’invito di un membro Black.',
+          'Elite: solo su invito dell’organizzatore, fino a 100 membri per Paese, con una revisione ogni 12 mesi basata su anzianità, partecipazione e rispetto del regolamento.',
+        ],
+      },
+      {
+        titolo: 'I vantaggi',
+        paragrafi: [
+          'I vantaggi di ogni livello sono descritti nella pagina del Club e consistono solo in sconti sul prezzo di listino, accessi anticipati o riservati ai prodotti, spedizioni gratuite e servizi. Non ci sono punti, premi né catalogo premi.',
+          'Gli sconti di livello non si sommano ad altri codici: al checkout si applica quello più conveniente. Non valgono su carte regalo e spedizione. I prezzi barrati seguono il Regolamento sconti e promozioni (prezzo più basso dei 30 giorni precedenti).',
+          'I lotti della linea Reserve sono disponibili per i livelli indicati, in quantità limitate e fino a esaurimento; l’accesso anticipato non garantisce la disponibilità del prodotto.',
+        ],
+      },
+      {
+        titolo: 'Cambi di livello',
+        paragrafi: [
+          'Quando il totale degli ultimi 12 mesi scende sotto la soglia, ti avvisiamo via email almeno 30 giorni prima del cambio. Si scende di un livello alla volta; Starter resta finché hai l’account.',
+        ],
+      },
+      {
+        titolo: 'Inviti',
+        paragrafi: [
+          'I membri Black ed Elite ricevono inviti personali (Black: 2 a trimestre). Gli inviti non si vendono, non si scambiano con denaro o prodotti e non si pubblicano su siti, social o gruppi pubblici. In caso di abuso l’organizzatore può annullare gli inviti e riportare il membro al livello Member.',
+        ],
+      },
+      {
+        titolo: 'Tessera',
+        paragrafi: [
+          'La tessera, digitale o fisica, è personale e resta di proprietà dell’organizzatore. In caso di smarrimento si blocca dall’area cliente e se ne chiede una nuova.',
+        ],
+      },
+      {
+        titolo: 'Dati personali',
+        paragrafi: [
+          'Per gestire il Club trattiamo dati dell’account, acquisti e livello, per eseguire il regolamento che accetti (art. 6.1.b GDPR). Le comunicazioni promozionali richiedono il consenso alla newsletter.',
+          'Le offerte costruite sui tuoi acquisti (profilazione) richiedono un consenso separato e facoltativo, che puoi revocare in ogni momento dall’area cliente: senza, il Club funziona lo stesso. Seguendo le indicazioni del Garante sulle carte fedeltà, i dati di dettaglio degli acquisti usati per la profilazione si conservano al massimo 12 mesi e quelli per il marketing al massimo 24 mesi. Maggiori dettagli nell’informativa privacy.',
+        ],
+      },
+      {
+        titolo: 'Modifiche e fine del programma',
+        paragrafi: [
+          'Possiamo modificare il regolamento o chiudere il Club con un preavviso di almeno 30 giorni via email e su questa pagina. Le modifiche non tolgono vantaggi già maturati e non ancora scaduti.',
+          'Il Club non è un’operazione a premio: i vantaggi sono solo sconti, accessi e servizi (DPR 430/2001, art. 6). Il testo va validato dal legale prima del lancio, anche per ogni Paese in cui il Club è attivo.',
         ],
       },
     ],

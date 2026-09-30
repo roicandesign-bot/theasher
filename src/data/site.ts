@@ -41,6 +41,7 @@ export const site = {
         { label: 'Skate e sticker', to: '/merch?categoria=skate', img: 'images/merch/skate.jpg' },
       ],
     },
+    { label: 'Club', to: '/club' },
     { label: 'Diventa rivenditore', to: '/diventa-distributore' },
     { label: 'Franchising', to: '/franchising' },
     { label: 'Blog', to: '/blog' },
@@ -68,6 +69,7 @@ export const site = {
       { label: 'Best seller', to: '/#best-seller' },
     ],
     info: [
+      { label: 'The Hasher Club', to: '/club' },
       { label: 'L’azienda', to: '/azienda' },
       { label: 'Blog', to: '/blog' },
       { label: 'Analisi di laboratorio', to: '/analisi' },
@@ -85,6 +87,7 @@ export const site = {
       { label: 'Condizioni di vendita', to: '/termini' },
       { label: 'Avvertenze prodotti', to: '/avvertenze' },
       { label: 'Sconti e promozioni', to: '/promozioni' },
+      { label: 'Regolamento del Club', to: '/regolamento-club' },
       { label: 'Condizioni rivenditori', to: '/condizioni-rivenditori' },
       { label: 'Note legali', to: '/legale' },
     ],

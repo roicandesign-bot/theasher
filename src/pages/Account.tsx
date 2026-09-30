@@ -1,6 +1,17 @@
-// Area cliente: riepilogo, storico ordini, dettaglio con tracking, indirizzi.
+// Area cliente: riepilogo, storico ordini, dettaglio con tracking, indirizzi, Club.
 // Una pagina sola con menu laterale; il contenuto cambia in base all'indirizzo.
-import { ArrowRight, Check, MapPin, Package, Repeat, Truck } from 'lucide-react'
+import {
+  ArrowRight,
+  Check,
+  Crown,
+  KeyRound,
+  Lock,
+  MapPin,
+  Package,
+  Repeat,
+  Truck,
+} from 'lucide-react'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
@@ -9,7 +20,9 @@ import { Container } from '@/components/ui/Container'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
 import { AccountNav } from '@/components/shop/AccountNav'
+import { TesseraClub } from '@/components/club/TesseraClub'
 import { cliente, indirizzi, ordini } from '@/data/account'
+import { dropReserve, livelli, membroDemo } from '@/data/club'
 import { findProduct, productPath } from '@/data/products'
 import { useCart } from '@/lib/cart'
 import { cn } from '@/lib/cn'
@@ -58,6 +71,22 @@ export function AccountHome() {
           <p className="truncate text-sm">{cliente.email}</p>
         </Card>
       </div>
+
+      <Link
+        to="/account/club"
+        className="mt-5 flex flex-wrap items-center justify-between gap-4 rounded-card bg-surface p-5 ring-1 ring-line transition ring-inset hocus:ring-primary"
+      >
+        <span className="flex items-center gap-3">
+          <Crown className="size-5 shrink-0 text-primary" strokeWidth={1.5} />
+          <span>
+            <span className="block font-semibold">Club: {livelloAttuale().nome}</span>
+            <span className="block text-sm text-fg-muted">
+              Mancano {formatPrice(mancaA())} per diventare Black
+            </span>
+          </span>
+        </span>
+        <span className="label text-[0.6875rem] text-primary">La tua tessera →</span>
+      </Link>
 
       <div className="mt-10">
         <div className="flex flex-wrap items-center justify-between gap-3">
@@ -228,6 +257,185 @@ export function AccountAddresses() {
       <Button variant="outline" className="mt-6">
         Aggiungi un indirizzo
       </Button>
+    </Guscio>
+  )
+}
+
+/* ---------------------------------------------------------------- Club */
+
+const soglia = livelli.find((l) => l.id === 'black')!.soglia!
+/** Spesa che conta per il livello: solo ordini consegnati (demo: negli ultimi 12 mesi). */
+const spesaConsegnata = () =>
+  ordini.filter((o) => o.stato === 'Consegnato').reduce((t, o) => t + o.totale, 0)
+const spesaInViaggio = () =>
+  ordini.filter((o) => o.stato !== 'Consegnato').reduce((t, o) => t + o.totale, 0)
+const mancaA = () => Math.max(0, soglia - spesaConsegnata())
+const livelloAttuale = () => livelli.find((l) => l.id === membroDemo.livello)!
+
+/** Il Club dal lato del membro: tessera, livello, cosa manca, drop, inviti, consenso. */
+export function AccountClub() {
+  const attuale = livelloAttuale()
+  const prossimo = livelli.find((l) => l.id === 'black')!
+  const speso = spesaConsegnata()
+  const quota = Math.min(100, Math.round((speso / soglia) * 100))
+  const [profilazione, setProfilazione] = useState(membroDemo.consensoProfilazione)
+
+  return (
+    <Guscio titolo="Il tuo Club">
+      <div className="grid items-start gap-8 xl:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <TesseraClub
+            livello={membroDemo.livello}
+            numero={membroDemo.numero}
+            nome={`${cliente.nome} ${cliente.cognome[0]}.`}
+            className="max-w-md"
+          />
+          <p className="mt-3 text-sm text-fg-muted">
+            Tessera digitale: in negozio mostra il codice in cassa. Numero {membroDemo.numero}.
+          </p>
+          <Button variant="outline" size="sm" className="mt-4">
+            Aggiungi al portafoglio del telefono
+          </Button>
+        </div>
+
+        <Card className="flex flex-col gap-5">
+          <div className="flex flex-wrap items-baseline justify-between gap-3">
+            <p className="label text-[0.75rem] text-primary">Livello attuale</p>
+            <p className="font-display text-h2 uppercase">{attuale.nome}</p>
+          </div>
+          <div>
+            <div className="flex items-baseline justify-between gap-3 text-sm">
+              <span>
+                {formatPrice(speso)} <span className="text-fg-muted">negli ultimi 12 mesi</span>
+              </span>
+              <span className="text-fg-muted">Black a {formatPrice(soglia)}</span>
+            </div>
+            <div
+              role="progressbar"
+              aria-label="Avanzamento verso Black"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={quota}
+              className="mt-2 h-2.5 overflow-hidden rounded-full bg-bg-alt ring-1 ring-line ring-inset"
+            >
+              <div className="h-full rounded-full bg-primary" style={{ width: `${quota}%` }} />
+            </div>
+            <p className="mt-3 text-sm text-fg-muted">
+              Mancano <b className="text-fg">{formatPrice(mancaA())}</b> per diventare Black.
+              L’ordine in viaggio ({formatPrice(spesaInViaggio())}) conta appena arriva.
+            </p>
+          </div>
+          <ol className="flex flex-col border-l-2 border-line pl-6">
+            {membroDemo.dal.map((d) => (
+              <li key={d.livello} className="relative pb-4 last:pb-0">
+                <span
+                  aria-hidden="true"
+                  className="absolute top-1 -left-[31px] grid size-5 place-items-center rounded-full bg-primary text-primary-fg"
+                >
+                  <Check className="size-3" strokeWidth={3} />
+                </span>
+                <p className="text-sm font-semibold">{d.livello}</p>
+                <p className="text-xs text-fg-muted">dal {d.data}</p>
+              </li>
+            ))}
+          </ol>
+        </Card>
+      </div>
+
+      <div className="mt-10 grid gap-5 lg:grid-cols-2">
+        <div>
+          <p className="label text-[0.75rem] text-primary">Attivi per te</p>
+          <ul className="mt-4 flex flex-col gap-3">
+            {attuale.vantaggi.map((v) => (
+              <li key={v} className="flex items-start gap-3 text-sm">
+                <Check className="mt-0.5 size-4 shrink-0 text-primary" strokeWidth={2.5} />
+                {v}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="label text-[0.75rem] text-fg-muted">Con Black</p>
+          <ul className="mt-4 flex flex-col gap-3">
+            {prossimo.vantaggi.slice(0, 5).map((v) => (
+              <li key={v} className="flex items-start gap-3 text-sm text-fg-muted">
+                <Lock className="mt-0.5 size-4 shrink-0" strokeWidth={1.75} />
+                {v}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-10">
+        <p className="label text-[0.75rem] text-primary">Prossimi drop</p>
+        <ul className="mt-4 flex flex-col gap-3">
+          <li>
+            <Card className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="font-semibold">Mimosa THC-X Pre-roll · nuovo lotto</p>
+                <p className="text-sm text-fg-muted">
+                  Per te: giovedì alle 18:00 · per tutti: venerdì alle 18:00
+                </p>
+              </div>
+              <Badge>24 h prima</Badge>
+            </Card>
+          </li>
+          {dropReserve.slice(0, 2).map((d) => (
+            <li key={d.numero}>
+              <Card className="flex flex-wrap items-center justify-between gap-4 opacity-80">
+                <div className="flex items-center gap-3">
+                  <Lock className="size-5 shrink-0 text-fg-muted" strokeWidth={1.75} />
+                  <div>
+                    <p className="font-semibold">
+                      Reserve {d.numero} · {d.nome}
+                    </p>
+                    <p className="text-sm text-fg-muted">
+                      {d.pezzi} pezzi · riservato a Black ed Elite
+                    </p>
+                  </div>
+                </div>
+                <Badge variant="muted">Si apre con Black</Badge>
+              </Card>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-2 text-xs text-fg-subtle">Drop e date di esempio.</p>
+      </div>
+
+      <div className="mt-10 grid gap-5 lg:grid-cols-2">
+        <Card className="flex flex-col gap-3">
+          <p className="flex items-center gap-2 label text-[0.75rem] text-primary">
+            <KeyRound className="size-4" /> Inviti
+          </p>
+          <p className="text-sm text-fg-muted">
+            Gli inviti arrivano con Black: due a trimestre, da dare a chi vuoi tu. Chi entra con il
+            tuo invito è Black per 90 giorni.
+          </p>
+          <p className="font-display text-h3 text-fg-subtle uppercase">0 disponibili</p>
+        </Card>
+        <Card className="flex flex-col gap-3">
+          <p className="label text-[0.75rem] text-primary">Offerte su misura</p>
+          <label className="flex items-start gap-3 text-sm">
+            <input
+              type="checkbox"
+              checked={profilazione}
+              onChange={(e) => setProfilazione(e.target.checked)}
+              className="mt-0.5 size-4 shrink-0 accent-primary"
+            />
+            <span>
+              Usate i miei acquisti per propormi drop e offerte adatte a me.{' '}
+              <span className="text-fg-muted">
+                Facoltativo. Senza questo consenso il Club funziona lo stesso; i dati di dettaglio
+                si tengono al massimo 12 mesi.
+              </span>
+            </span>
+          </label>
+          <Link to="/regolamento-club" className="text-sm text-primary underline">
+            Regolamento del Club
+          </Link>
+        </Card>
+      </div>
     </Guscio>
   )
 }

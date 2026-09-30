@@ -1,10 +1,11 @@
-import { LogOut, MapPin, Package, User } from 'lucide-react'
+import { Crown, LogOut, MapPin, Package, User } from 'lucide-react'
 import { NavLink } from 'react-router-dom'
 import { cn } from '@/lib/cn'
 
 const voci = [
   { to: '/account', label: 'Riepilogo', icon: User, end: true },
   { to: '/account/ordini', label: 'I miei ordini', icon: Package, end: false },
+  { to: '/account/club', label: 'Il tuo Club', icon: Crown, end: false },
   { to: '/account/indirizzi', label: 'Indirizzi', icon: MapPin, end: false },
 ]
 

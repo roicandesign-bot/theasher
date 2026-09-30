@@ -1,8 +1,15 @@
 import type { ComponentType } from 'react'
 import Home from './pages/Home'
-import { AccountAddresses, AccountHome, AccountOrderDetail, AccountOrders } from './pages/Account'
+import {
+  AccountAddresses,
+  AccountClub,
+  AccountHome,
+  AccountOrderDetail,
+  AccountOrders,
+} from './pages/Account'
 import About from './pages/About'
 import Auth from './pages/Auth'
+import Club from './pages/Club'
 import Contact from './pages/Contact'
 import Distributor from './pages/Distributor'
 import Faq from './pages/Faq'
@@ -46,6 +53,7 @@ export const routes: AppRoute[] = [
   { path: '/', label: 'Home', component: Home },
   { path: '/negozio', label: 'Negozio', component: Shop, inNav: false },
   { path: '/merch', label: 'Merch', component: Merch, inNav: false },
+  { path: '/club', label: 'The Hasher Club', component: Club, inNav: false },
   { path: '/carrello', label: 'Carrello', component: Cart, inNav: false },
   { path: '/checkout', label: 'Checkout', component: Checkout, inNav: false, bare: true },
   {
@@ -95,6 +103,7 @@ export const routes: AppRoute[] = [
   { path: '/legale', label: 'Note legali', component: TextPage, inNav: false },
   { path: '/avvertenze', label: 'Avvertenze prodotti', component: TextPage, inNav: false },
   { path: '/promozioni', label: 'Sconti e promozioni', component: TextPage, inNav: false },
+  { path: '/regolamento-club', label: 'Regolamento del Club', component: TextPage, inNav: false },
   {
     path: '/condizioni-rivenditori',
     label: 'Condizioni rivenditori',
@@ -113,6 +122,7 @@ export const routes: AppRoute[] = [
     inNav: false,
     screenshotPath: '/account/ordini/TH-2609-4471',
   },
+  { path: '/account/club', label: 'Il tuo Club', component: AccountClub, inNav: false },
   { path: '/account/indirizzi', label: 'Indirizzi', component: AccountAddresses, inNav: false },
   { path: '/mappa', label: 'Mappa del sito', component: Sitemap, inNav: false },
   { path: '/styleguide', label: 'Styleguide', component: Styleguide, inNav: false },

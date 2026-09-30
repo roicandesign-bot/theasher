@@ -1,7 +1,7 @@
 // Accedi, registrati, password dimenticata: tre schermate dallo stesso impianto.
 // Solo UI: i moduli non inviano nulla.
 import { ArrowRight } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { Diamond } from '@/components/ui/Diamond'
@@ -21,7 +21,7 @@ const testi: Record<Modo, { eyebrow: string; titolo: string; lead: string; cta: 
   registrati: {
     eyebrow: 'Nuovo account',
     titolo: 'Creiamo l’account.',
-    lead: 'Serve solo un’email. Gli ordini restano tracciati e il riordino diventa immediato.',
+    lead: 'Serve solo un’email. Entri subito nel Club come Starter: −5 % per sei mesi con la newsletter.',
     cta: 'Crea account',
   },
   password: {
@@ -33,6 +33,7 @@ const testi: Record<Modo, { eyebrow: string; titolo: string; lead: string; cta: 
 }
 
 const vantaggi = [
+  'Entri nel Club The Hasher: drop in anteprima dal primo ordine',
   'Storico degli ordini e stato della spedizione',
   'Riordino in un click dei prodotti già presi',
   'Indirizzi salvati: il checkout diventa questione di secondi',
@@ -46,6 +47,8 @@ export default function Auth() {
       ? 'password'
       : 'accedi'
   const t = testi[modo]
+  const [params] = useSearchParams()
+  const invito = params.get('invito') ?? ''
 
   return (
     <Section>
@@ -71,6 +74,24 @@ export default function Auth() {
                 autoComplete={modo === 'registrati' ? 'new-password' : 'current-password'}
                 required
               />
+            )}
+            {modo === 'registrati' && (
+              <div className="flex flex-col gap-2">
+                <Campo
+                  id="invito"
+                  label="Codice invito (facoltativo)"
+                  placeholder="TH-XXXX-XXXX"
+                  defaultValue={invito}
+                  autoComplete="off"
+                  className="font-mono tracking-[0.12em] uppercase"
+                />
+                <p className="text-xs text-fg-muted">
+                  Con l’invito di un membro Black entri come Black per 90 giorni.{' '}
+                  <Link to="/club" className="text-primary underline">
+                    Come funziona il Club
+                  </Link>
+                </p>
+              </div>
             )}
             {modo === 'registrati' && (
               <label className="flex items-start gap-3 text-sm text-fg-muted">

@@ -402,6 +402,12 @@ export default function Home() {
             <Eyebrow>{home.newsletter.eyebrow}</Eyebrow>
             <h2 className="mt-3 text-h2">{home.newsletter.title}</h2>
             <p className="mt-4 max-w-prose text-lead text-fg-muted">{home.newsletter.text}</p>
+            <Link
+              to="/club"
+              className="mt-5 inline-flex items-center gap-2 label text-[0.75rem] text-primary transition hocus:text-fg"
+            >
+              Come funziona il Club <ArrowRight className="size-4" />
+            </Link>
           </div>
           <form className="flex flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="newsletter-email" className="sr-only">

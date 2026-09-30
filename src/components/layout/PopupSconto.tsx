@@ -79,7 +79,7 @@ export function PopupSconto() {
         </button>
 
         <div className="bg-primary px-6 py-5 text-primary-fg">
-          <p className="label text-[0.625rem]">Newsletter</p>
+          <p className="label text-[0.625rem]">The Hasher Club · Starter</p>
           <p className="mt-1 font-display text-display leading-none">−5%</p>
           <p className="mt-1 label text-[0.75rem]">per i prossimi 6 mesi</p>
         </div>
@@ -111,11 +111,11 @@ export function PopupSconto() {
             }}
           >
             <h2 id="popup-sconto-titolo" className="text-h3">
-              Crea l’account, prendi il 5 %.
+              Entra nel Club, prendi il 5 %.
             </h2>
             <p className="text-fg-muted">
-              Iscriviti alla newsletter mentre crei il tuo account: 5 % di sconto su tutti gli
-              ordini per i prossimi sei mesi. Niente spam, solo drop e analisi.
+              Crea l’account e iscriviti alla newsletter: sei Starter del Club e hai il 5 % su tutti
+              gli ordini per sei mesi. Dal primo ordine, i drop si aprono per te 24 ore prima.
             </p>
             <label htmlFor="popup-email" className="sr-only">
               Email

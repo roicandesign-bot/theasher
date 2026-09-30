@@ -51,6 +51,8 @@ ritagli demo dai mockup.
   `design/screenshots/prova-colori-famiglie.png`. Se va bene diventa il default, se no si toglie.
 - **Nome del reparto**: Merch (online) oppure Accessori / Headshop / Supply.
 - **Video di apertura v2** in cima alla home: conferma o correzioni.
+- **The Hasher Club**: livelli, soglie e percentuali sono una proposta (`/club`, `/account/club`,
+  `/regolamento-club`). Da confermare con i conti e con il legale.
 - **Immagine coordinata v1** (`design/immagine-coordinata/THE-HASHER-immagine-coordinata.pdf`, 32 pagine):
   approvare le proposte nuove (cancelleria, email, spedizione, sigillo, Club, social).
 

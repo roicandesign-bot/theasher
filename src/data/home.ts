@@ -181,11 +181,11 @@ export const home = {
     nota: 'Spedizione gratuita inclusa.',
   },
   newsletter: {
-    eyebrow: 'Newsletter',
+    eyebrow: 'The Hasher Club',
     title: 'Il drop, prima degli altri.',
-    text: 'Nuovi lotti, restock e il 10 % sul primo ordine. Una mail ogni tanto, mai spam.',
+    text: 'Entri nel Club con la tua email: −5 % per sei mesi, drop in anteprima dal primo ordine, lotti Reserve quando diventi Black. Una mail ogni tanto, mai spam.',
     placeholder: 'La tua email',
-    cta: 'Iscriviti',
+    cta: 'Entra nel Club',
     consent:
       'Acconsento a ricevere comunicazioni da The Hasher. Posso disiscrivermi quando voglio.',
   },
