@@ -1,5 +1,9 @@
 # Stato del progetto (memoria per le prossime sessioni)
 
+> **⚠️ Dal 2026-09-30 il sito vive nel repo di Lovable: https://github.com/roicandesign-bot/safe-cracker-tool**
+> Questo repo (`theasher`) è l'archivio del prototipo: screenshot, input di design, storia. Le modifiche
+> al sito si fanno **solo** in `safe-cracker-tool` (Lovable, Lorenzo e le sessioni Claude).
+
 > Claude: leggi questo file all'inizio di ogni sessione insieme a `PROGRESS.md`.
 > Aggiornalo quando cambia qualcosa di strutturale (non a ogni pagina: per quello c'è PROGRESS).
 > Ultimo aggiornamento: 2026-09-27
