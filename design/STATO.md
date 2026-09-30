@@ -52,7 +52,7 @@ In valutazione `docs/11-lovable-supabase.md`: negozio in questo repo collegato a
 
 ## Supabase (2026-09-30)
 
-Progetto `ykmhjuraaxxatnksxljg` creato da Vishu. Schema, RLS e seed pronti in `supabase/` (verificati su Postgres locale), non ancora applicati: la rete della sessione blocca `*.supabase.co`.
+Progetto `ykmhjuraaxxatnksxljg` creato da Vishu. Collegato a Claude con il **connettore Supabase** (non serve token né rete aperta). **M0 applicata**: schema, RLS e catalogo (86 prodotti) sono sul progetto, advisor di sicurezza puliti. Dettagli in `supabase/README.md`.
 
 ## Prossimo passo
 

@@ -227,7 +227,7 @@ create index order_lines_order_idx on public.order_lines (order_id);
 
 -- ---------------------------------------------------------------- updated_at
 create or replace function public.touch_updated_at()
-returns trigger language plpgsql as $$
+returns trigger language plpgsql set search_path = '' as $$
 begin new.updated_at = now(); return new; end;
 $$;
 create trigger products_touch before update on public.products

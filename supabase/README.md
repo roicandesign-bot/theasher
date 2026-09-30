@@ -1,6 +1,10 @@
 # Supabase · The Hasher
 
-Progetto: `ykmhjuraaxxatnksxljg` (regione UE). Piano generale in `docs/11-lovable-supabase.md`.
+Progetto: **The Hasher** `ykmhjuraaxxatnksxljg`, regione `eu-west-1` (Irlanda), PostgreSQL 17.
+Collegato a Claude con il connettore Supabase. Piano generale in `docs/11-lovable-supabase.md`.
+
+**Stato (2026-09-30): M0 applicata.** Le due migrazioni sono sul progetto; catalogo caricato
+(86 prodotti, 121 formati, 13 categorie, 10 Paesi). Advisor di sicurezza: nessun avviso.
 
 | File                                            | Cosa fa                                                                                  |
 | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
