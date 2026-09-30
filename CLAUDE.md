@@ -69,7 +69,7 @@ scripts/screenshot.mjs     cattura tutte le route a mobile/tablet/desktop
 ## Comandi
 
 ```
-npm run dev          server di sviluppo (http://localhost:5173)
+npm run dev          server di sviluppo (http://localhost:8080, la porta di Lovable)
 npm run check        lint + typecheck + format + build   ← deve passare prima di dire «fatto»
 npm run screenshot   build + screenshot in design/screenshots/  (opzioni: --routes /,/x  --viewports mobile,desktop)
 npm run format       formatta tutto con Prettier

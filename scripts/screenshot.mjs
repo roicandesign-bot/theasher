@@ -6,7 +6,7 @@
  * Uso:
  *   npm run screenshot                    # build + preview + cattura tutte le route
  *   npm run screenshot -- --routes /,/chi-siamo
- *   npm run screenshot -- --url http://localhost:5173   # usa un server già avviato
+ *   npm run screenshot -- --url http://localhost:8080   # usa un server già avviato
  *   npm run screenshot -- --viewports mobile,desktop
  *   npm run screenshot -- --no-fullpage   # solo la parte "above the fold"
  *

@@ -64,3 +64,19 @@ i propri ordini e il back office richiede il ruolo admin.
 | M3  | Login clienti + area account                                             | registrazione e ordini personali            |
 | M4  | Checkout + ordini + email + bonifico                                     | primo ordine vero end-to-end                |
 | M5  | PSP definitivo, deploy di produzione, dominio                            | sito in vendita                             |
+
+## Aggiornamento 2026-09-30: tutto il sito su Lovable
+
+Vishu vuole gestire da Lovable **tutto il sito**, non solo il back office. Supabase resta l'unico
+servizio esterno (il progetto `ykmhjuraaxxatnksxljg`, con la M0 già applicata).
+
+Lovable non importa un repo esistente: crea lui il repo e lo sincronizza sul branch `main`. Quindi:
+
+1. Vishu crea un progetto Lovable vuoto e lo collega a GitHub: Lovable crea un repo nuovo.
+2. Claude copia in quel repo il codice di `theasher` (sostituisce lo scheletro di Lovable).
+3. In Lovable si collega Supabase al progetto **esistente** (non crearne uno nuovo).
+4. Da lì il repo di Lovable è **l'unico** in cui si lavora: Lovable, Lorenzo e le sessioni Claude
+   lavorano tutti lì. `theasher` resta come archivio del prototipo.
+
+Il codice è già compatibile: Vite + React + TypeScript + Tailwind, `base` a `/`, dev server sulla
+porta 8080 come nei progetti Lovable.

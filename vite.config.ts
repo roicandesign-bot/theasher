@@ -12,7 +12,7 @@ export default defineConfig({
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },
   server: {
-    port: 5173,
+    port: 8080, // la porta che si aspetta Lovable
     strictPort: false,
   },
   preview: {
